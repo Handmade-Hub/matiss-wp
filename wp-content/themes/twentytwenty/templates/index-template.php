@@ -13,10 +13,11 @@
 get_header();
 $banners = get_field('banner');
 $slider_products = get_field('products_slider');
+$work_info = get_field('work_info');
 ?>
 <script>
     console.log(<?php print_r(json_encode(
-                    $slider_products
+                    $work_info
                 )); ?>)
 </script>
 <!-- banner -->
@@ -92,6 +93,47 @@ $slider_products = get_field('products_slider');
                 </div>
                 <div class="new-collection__swiper-pagination dots-primary swiper-pagination"></div>
                 <a href="<?= $slider_products['button_url'] ?>" class="new-collection__button button__outline"><?= $slider_products['button_label'] ?></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- work -->
+<section class="work">
+    <div class="work__wrapper bg-gray space-sections">
+        <div class="container">
+            <div class="work__inner">
+                <h2 class="work__title uppercase text-center fw-500"><?= $work_info['title'] ?></h2>
+                <div class="work__content">
+                    <div class="work__images">
+                        <?php if ($work_info['imge_1']) { ?>
+                            <div class="work__image tablet-none"><img src="<?= $work_info['imge_1']['url'] ?>" alt="<?= $work_info['imge_1']['alt'] ?>"></div>
+                        <?php } ?>
+                        <?php if ($work_info['imge_2']) { ?>
+                            <div class="work__image"><img src="<?= $work_info['imge_2']['url'] ?>" alt="<?= $work_info['imge_2']['alt'] ?>"></div>
+                        <?php } ?>
+                    </div>
+                    <ul class="work__list">
+                        <?php
+                        $counter_items = 1;
+                        foreach ($work_info['work_items'] as $item) { ?>
+                            <li class="work__item">
+                                <div class="work__item_content">
+                                    <div class="work__item_number fw-500 text-center"><?= $counter_items ?></div>
+                                    <div class="work__item_case">
+                                        <h6 class="work__item_title fw-500"><?= $item['title'] ?></h6>
+                                        <p class="work__item_text"><?= $item['text'] ?></p>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                            $counter_items++;
+                        } ?>
+                    </ul>
+                    <div class="work__images tablet-up-none">
+                        <div class="work__image"><img src="images/work-one.jpg" alt="image"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
