@@ -16,10 +16,11 @@ $banners = get_field('banner');
 $slider_products = get_field('products_slider');
 $work_info = get_field('work_info');
 $acivements = get_field('achivements');
+$goals = get_field('goals');
 ?>
 <script>
     console.log(<?php print_r(json_encode(
-                    $acivements
+                    $goals
                 )); ?>)
 </script>
 <!-- banner -->
@@ -156,6 +157,45 @@ $acivements = get_field('achivements');
                         </li>
                     <?php } ?>
                 </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- goal -->
+<section class="goal">
+    <div class="goal__wrapper space-sections">
+        <div class="container">
+            <div class="goal__inner">
+                <div class="goal__content">
+                    <h3 class="goal__title open-sans text-center fw-500"><?= $goals['title'] ?></h3>
+                    <p class="goal__text text-center"><?= $goals['description'] ?></p>
+                    <a href="<?= $goals['button_url'] ?>" class="goal__button button__primary"><?= $goals['button_label'] ?></a>
+                </div>
+                <div class="goal__case">
+                    <div class="goal__swiper swiper">
+                        <div class="goal__swiper-wrapper swiper-wrapper">
+                            <?php foreach ($goals['video'] as $video) { ?>
+                                <div class="goal__swiper-slide swiper-slide">
+                                    <div class="goal__video">
+                                        <iframe src="<?= $video['link'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="goal__swiper-button-prev swiper-button-prev swiper-button-primary">
+                        <div class="arrow-primary">
+                            <img src="images/icons/button-arrow-left.svg" alt="arrow-left">
+                        </div>
+                    </div>
+                    <div class="goal__swiper-button-next swiper-button-next swiper-button-primary">
+                        <div class="arrow-primary">
+                            <img src="images/icons/button-arrow-right.svg" alt="arrow-right">
+                        </div>
+                    </div>
+                </div>
+                <div class="goal__swiper-pagination swiper-pagination dots-primary"></div>
             </div>
         </div>
     </div>
