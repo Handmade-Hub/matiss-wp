@@ -17,10 +17,11 @@ $slider_products = get_field('products_slider');
 $work_info = get_field('work_info');
 $acivements = get_field('achivements');
 $goals = get_field('goals');
+$advantages = get_field('advantages');
 ?>
 <script>
     console.log(<?php print_r(json_encode(
-                    $goals
+                    $advantages
                 )); ?>)
 </script>
 <!-- banner -->
@@ -200,5 +201,28 @@ $goals = get_field('goals');
         </div>
     </div>
 </section>
+
+<!-- advantages -->
+<section class="advantages">
+    <div class="advantages__wrapper bg-gray space-sections">
+        <div class="container">
+            <div class="advantages__inner">
+                <h2 class="advantages__title fw-500 text-center uppercase"><?= $advantages['title'] ?></h2>
+                <ul class="advantages__list">
+                    <?php foreach ($advantages['items'] as $item) { ?>
+                        <li class="advantages__item bg-white">
+                            <div class="advantages__item_icon">
+                                <img src="<?= $item['icon']['url'] ?>" alt="icon">
+                            </div>
+                            <p class="advantages__item_title fz-22"><?= $item['heading'] ?></p>
+                            <p class="advantages__item_text"><?= $item['text'] ?></p>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
 <?php
 get_footer();
