@@ -18,10 +18,12 @@ $work_info = get_field('work_info');
 $acivements = get_field('achivements');
 $goals = get_field('goals');
 $advantages = get_field('advantages');
+$clients = get_field('clients');
+
 ?>
 <script>
     console.log(<?php print_r(json_encode(
-                    $advantages
+                    $clients
                 )); ?>)
 </script>
 <!-- banner -->
@@ -224,5 +226,26 @@ $advantages = get_field('advantages');
     </div>
 </section>
 
+<!-- clients -->
+<section class="clients">
+    <div class="clients__wrapper space-sections">
+        <div class="container">
+            <div class="clients__inner">
+                <h2 class="clients__title fw-500 text-center uppercase"><?= $clients['title'] ?></h2>
+            </div>
+        </div>
+        <div class="clients__swiper swiper">
+            <div class="clients__swiper-wrapper swiper-wrapper">
+                <?php foreach ([1, 2, 3] as $key) {
+                    foreach ($clients['images'] as $image) { ?>
+                        <div class="clients__swiper-slide swiper-slide">
+                            <img src="<?= $image['image']['url'] ?>" alt="<?= $image['image']['alt'] ?>">
+                        </div>
+                <?php }
+                } ?>
+            </div>
+        </div>
+    </div>
+</section>
 <?php
 get_footer();
