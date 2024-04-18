@@ -11,13 +11,15 @@
 
 
 get_header();
+
 $banners = get_field('banner');
 $slider_products = get_field('products_slider');
 $work_info = get_field('work_info');
+$acivements = get_field('achivements');
 ?>
 <script>
     console.log(<?php print_r(json_encode(
-                    $work_info
+                    $acivements
                 )); ?>)
 </script>
 <!-- banner -->
@@ -139,5 +141,24 @@ $work_info = get_field('work_info');
     </div>
 </section>
 
+<!-- achievements -->
+<section class="achievements">
+    <div class="achievements__wrapper">
+        <div class="container">
+            <h2 class="achievements__title uppercase fw-500 text-center letter-2"><?= $acivements['title'] ?></h2>
+        </div>
+        <div class="achievements__inner" style="background: url('<?= $acivements['backgroung_image']['url'] ?>') center / cover no-repeat;">
+            <div class="container">
+                <ul class="achievements__list">
+                    <?php foreach ($acivements['items'] as $item) { ?>
+                        <li class="achievements__item">
+                            <p class="achievements__item_title fz-24 text-center h2"><span class="h2 open-sans"><?= $item['counter'] ?></span><?= $item['text'] ?></p>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 <?php
 get_footer();
