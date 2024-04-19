@@ -213,20 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
  }
 
- // description accordion
- if (document.querySelectorAll('.description').length) {
-  const wrapper = document.querySelector('.description__wrapper');
-  const button = wrapper.querySelector('.description__button');
-
-  button.addEventListener('click', e => {
-   button.classList.toggle('active');
-   wrapper.classList.toggle('active');
-   if (wrapper.classList.contains('active')) wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
-   else if (screenWidth >= 768) wrapper.style.maxHeight = '360px';
-   else wrapper.style.maxHeight = '388px'
-  });
- }
-
  // filters
  if (document.querySelectorAll('.filters').length) {
   const filtersItems = document.querySelectorAll('.filters__item');
@@ -235,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   filtersItems.forEach(item => {
    const menu = item.querySelector('.filters__item_list');
-   
+
    if (menu != null && menu != undefined) {
     // filters drop-down
     item.addEventListener('mouseover', evt => {
@@ -264,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
        choosedList.appendChild(li);
        // remove item
        const closeButton = li.querySelector('button');
-       closeButton.addEventListener('click', function() {
+       closeButton.addEventListener('click', function () {
         li.remove();
         if (!choosedList.querySelectorAll('li').length) choosedBlock.classList.add('empty');
        })
@@ -273,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // clear all choosed filters
     const clearButton = document.querySelector('.filters__choosed_clear');
-    clearButton.addEventListener('click', function() {
+    clearButton.addEventListener('click', function () {
      choosedBlock.classList.add('empty');
      const choosedItem = choosedList.querySelectorAll('li');
      choosedItem.forEach(element => {
@@ -502,10 +488,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const shortText = text.slice(0, 18);
   if (text.split('').length > 17) {
    title.innerText = shortText + '...'
-   title.addEventListener('mouseover', function() {
+   title.addEventListener('mouseover', function () {
     title.innerHTML = text;
    })
-   title.addEventListener('mouseout', function() {
+   title.addEventListener('mouseout', function () {
     title.innerText = shortText + '...'
    })
   }
@@ -519,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const body = document.body;
   const cartIcon = document.querySelectorAll('.header__cart');
   // open modal
-  button.addEventListener('click', e => {
+  button.addEventListener('click', () => {
    if (!button.classList.contains('error')) {
     modal.classList.add('open');
     body.classList.add('menu-open');
@@ -530,11 +516,26 @@ document.addEventListener('DOMContentLoaded', function () {
   })
   // close modal
   buttonClose.forEach(button => {
-   button.addEventListener('click', e => {
+   button.addEventListener('click', () => {
     modal.classList.remove('open');
     body.classList.remove('menu-open');
    })
   })
  }
-
 });
+
+const descriptionAccordion = (initialHeight, mobileHeight) => {
+ // description accordion
+ if (document.querySelectorAll('.description').length) {
+  const wrapper = document.querySelector('.description__wrapper');
+  const button = wrapper.querySelector('.description__button');
+
+  button.addEventListener('click', () => {
+   button.classList.toggle('active');
+   wrapper.classList.toggle('active');
+   if (wrapper.classList.contains('active')) wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+   else if (screenWidth >= 768) wrapper.style.maxHeight = `${mobileHeight}px`;
+   else wrapper.style.maxHeight = `${initialHeight}px`
+  });
+ }
+}

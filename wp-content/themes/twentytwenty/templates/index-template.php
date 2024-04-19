@@ -19,11 +19,13 @@ $acivements = get_field('achivements');
 $goals = get_field('goals');
 $advantages = get_field('advantages');
 $clients = get_field('clients');
+$map = get_field('map');
+$description = get_field('description');
 
 ?>
 <script>
     console.log(<?php print_r(json_encode(
-                    $clients
+                    $description
                 )); ?>)
 </script>
 <!-- banner -->
@@ -247,5 +249,48 @@ $clients = get_field('clients');
         </div>
     </div>
 </section>
+
+<!-- map -->
+<section class="map">
+    <div class="map__wrapper bg-gray space-sections">
+        <div class="container">
+            <div class="map__inner">
+                <h2 class="map__title text-center fw-500 uppercase"><?= $map['title'] ?></h2>
+                <p class="map__subtitle text-center"><?= $map['text'] ?></p>
+            </div>
+        </div>
+        <div class="map__case">
+            <img src="images/map.png" alt="map">
+            <div class="map__dots">
+                <?php foreach ($map['doats'] as $doat) { ?>
+                    <div class="map__dot" style="--vertial: <?= $doat['vertical'] ?>%; --horizontal: <?= $doat['horizontal'] ?>%"></div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- description -->
+<section class="description" style="--min-height: <?= $description['min-height'] ?>px; --min-height-mob: <?= $description['min-height-mob'] ?>px;">
+    <div class="description__wrapper space-sections">
+        <button class="description__button">
+            <div class="arrow-primary">
+                <img src="images/icons/button-arrow-down.svg" alt="button">
+            </div>
+        </button>
+        <div class="container">
+            <div class="description__inner">
+                <?php echo ($description['content']) ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script defer>
+    (() => {
+        descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+    })()
+</script>
+
 <?php
 get_footer();
