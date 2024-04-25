@@ -205,6 +205,12 @@ function twentytwenty_register_styles()
 
 	// Add print CSS.
 	wp_enqueue_style('twentytwenty-print-style', get_template_directory_uri() . '/print.css', null, $theme_version, 'print');
+
+	$parent_style = 'parent-style';
+
+	wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+	wp_enqueue_style('reset', get_template_directory_uri() . '/assets/css/reset.css');
+	wp_enqueue_style('style', get_template_directory_uri() . '/assets/css/styles.css');
 }
 
 add_action('wp_enqueue_scripts', 'twentytwenty_register_styles');
@@ -231,6 +237,12 @@ function twentytwenty_register_scripts()
 	 */
 	wp_enqueue_script('twentytwenty-js', get_template_directory_uri() . '/assets/js/index.js', array(), $theme_version);
 	wp_script_add_data('twentytwenty-js', 'strategy', 'defer');
+
+	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), $theme_version);
+	wp_script_add_data('swiper', 'strategy', '');
+
+	wp_enqueue_script('global', get_template_directory_uri() . '/assets/js/global.js', array(), $theme_version);
+	wp_script_add_data('global', 'strategy', 'defer');
 }
 
 add_action('wp_enqueue_scripts', 'twentytwenty_register_scripts');
@@ -858,3 +870,84 @@ function WebP_is_displayable($result, $path)
 	return $result;
 }
 add_filter('file_is_displayable_image', 'WebP_is_displayable', 10, 2);
+
+
+function custom_breadcrumbs()
+{
+	// Settings
+	$separator = '  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M8 4L15.5 11.5L8 19" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>';
+	$home_text = 'Головна';
+	$show_on_home = false;
+
+	global $post;
+	$home_link = home_url('/');
+
+	echo '<div class="breadcrumbs">';
+	echo '<div class="breadcrumbs__wrapper">';
+	echo '<div class="container">';
+	echo '<nav class="breadcrumbs__inner">';
+	echo '<ul class="breadcrumbs__list">';
+
+	// echo '<a href="' . $home_link . '">' . $home_text . '</a>' . ' ' . $separator . ' ';
+
+	echo '	<li class="breadcrumbs__item">
+				<a href="' . $home_link . '" class="breadcrumbs__item_link fw-500">' . $home_text . '</a>' . $separator . '</li>';
+
+	if (is_category() || is_single()) {
+		$category = get_the_category();
+		if ($category) {
+			$cat_id = $category[0]->cat_ID;
+			$cats = get_category_parents($cat_id, true, ' ' . $separator . ' ');
+			if ($show_on_home && is_single()) {
+				echo '	<li class="breadcrumbs__item">
+							<a href="' . $home_link . '" class="breadcrumbs__item_link fw-500">' . $home_text . '</a>' . $separator . '</li>';
+			}
+			// echo $cats;
+			echo '<li class="breadcrumbs__item">
+			<p class="breadcrumbs__item_link fw-500">' . $cats . '</p>' . $separator . '</li>';
+		}
+		if (is_single()) {
+			echo '<li class="breadcrumbs__item">
+						<p class="breadcrumbs__item_link fw-500">' . the_title() . '</p>' . $separator . '</li>';
+		}
+	} elseif (is_page()) {
+		if ($post->post_parent) {
+			$parent_id = $post->post_parent;
+			$breadcrumbs = array();
+			while ($parent_id) {
+				$page = get_page($parent_id);
+				$breadcrumbs[] = '<li class="breadcrumbs__item">
+				<a href="' . get_permalink($page->ID) . '" class="breadcrumbs__item_link fw-500">' . get_the_title($page->ID) . '</a>' . $separator . '</li>';
+
+				$parent_id = $page->post_parent;
+			}
+			$breadcrumbs = array_reverse($breadcrumbs);
+			foreach ($breadcrumbs as $crumb) {
+				// echo $crumb . ' ' . $separator . ' ';
+				echo '<li class="breadcrumbs__item">
+				<p class="breadcrumbs__item_link fw-500">' . $crumb . '</p>' . $separator . '</li>';
+			}
+		}
+		echo '<li class="breadcrumbs__item">
+		<p class="breadcrumbs__item_link fw-500">' . get_the_title() . '</p>' . $separator . '</li>';
+	} elseif (is_archive()) {
+		$archive_title = get_the_archive_title();
+		$parts = explode(':', $archive_title);
+		$category_name = end($parts);
+		$category_name = trim($category_name);
+
+		echo '	<li class="breadcrumbs__item">
+		<a href="/каталог" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
+
+		echo '<li class="breadcrumbs__item">
+		<p class="breadcrumbs__item_link fw-500">' . $category_name . '</p>' . $separator . '</li>';
+	}
+
+	echo '</ul>';
+	echo '</nav>';
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+}
