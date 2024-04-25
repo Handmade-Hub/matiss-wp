@@ -241,9 +241,13 @@ function twentytwenty_register_scripts()
 	wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), $theme_version);
 	wp_script_add_data('swiper', 'strategy', '');
 
+	wp_enqueue_script('fancybox', get_template_directory_uri() . '/assets/js/fancybox.js', array(), $theme_version);
+	wp_script_add_data('fancybox', 'strategy', 'defer');
+
 	wp_enqueue_script('global', get_template_directory_uri() . '/assets/js/global.js', array(), $theme_version);
 	wp_script_add_data('global', 'strategy', 'defer');
 }
+
 
 add_action('wp_enqueue_scripts', 'twentytwenty_register_scripts');
 
