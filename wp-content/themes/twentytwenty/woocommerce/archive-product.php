@@ -18,6 +18,8 @@
 
 defined('ABSPATH') || exit;
 
+wp_enqueue_style('fancybox', get_template_directory_uri() . '/assets/css/fancybox.css');
+
 get_header();
 
 /**
