@@ -164,11 +164,15 @@
 
 <?php $description = get_field('description'); ?>
 
-<script defer>
-	document.addEventListener('DOMContentLoaded', function() {
-		descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
-	})
-</script>
+<?php if ($description) { ?>
+
+	<script defer>
+		document.addEventListener('DOMContentLoaded', function() {
+			descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+		})
+	</script>
+
+<?php }; ?>
 
 <?php wp_footer(); ?>
 
