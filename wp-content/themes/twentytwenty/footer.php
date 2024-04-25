@@ -20,12 +20,12 @@
 			<div class="footer__inner">
 				<div class="footer__block">
 					<a href="/" class="footer__logo footer__logo_mobile">
-						<img src="images/footer-logo.svg" alt="logo">
+						<img src="<?= home_url(); ?>/images/footer-logo.svg" alt="logo">
 					</a>
 					<div class="footer__content">
 						<div class="footer__wrap">
 							<a href="/" class="footer__logo">
-								<img src="images/footer-logo.svg" alt="logo">
+								<img src="<?= home_url(); ?>/images/footer-logo.svg" alt="logo">
 							</a>
 							<div class="footer__info">
 								<p class="footer__info_title fw-600">Салони</p>
@@ -116,39 +116,39 @@
 						<ul class="footer__social">
 							<li class="footer__social_item">
 								<a href="#" class="footer__social_link">
-									<img src="images/icons/footer-instagram.svg" alt="instagram">
+									<img src="<?= home_url(); ?>/images/icons/footer-instagram.svg" alt="instagram">
 								</a>
 							</li>
 							<li class="footer__social_item">
 								<a href="#" class="footer__social_link">
-									<img src="images/icons/footer-facebook.svg" alt="facebook">
+									<img src="<?= home_url(); ?>/images/icons/footer-facebook.svg" alt="facebook">
 								</a>
 							</li>
 							<li class="footer__social_item">
 								<a href="#" class="footer__social_link">
-									<img src="images/icons/footer-youtube.svg" alt="youtube">
+									<img src="<?= home_url(); ?>/images/icons/footer-youtube.svg" alt="youtube">
 								</a>
 							</li>
 							<li class="footer__social_item">
 								<a href="#" class="footer__social_link">
-									<img src="images/icons/footer-pinterest.svg" alt="pinterest">
+									<img src="<?= home_url(); ?>/images/icons/footer-pinterest.svg" alt="pinterest">
 								</a>
 							</li>
 							<li class="footer__social_item">
 								<a href="#" class="footer__social_link">
-									<img src="images/icons/footer-etsy.svg" alt="etsy">
+									<img src="<?= home_url(); ?>/images/icons/footer-etsy.svg" alt="etsy">
 								</a>
 							</li>
 						</ul>
 						<ul class="footer__payments">
 							<li class="footer__payments_item">
-								<img src="images/icons/footer-paypal.svg" alt="paypal">
+								<img src="<?= home_url(); ?>/images/icons/footer-paypal.svg" alt="paypal">
 							</li>
 							<li class="footer__payments_item">
-								<img src="images/icons/footer-mastercard.svg" alt="mastercard">
+								<img src="<?= home_url(); ?>/images/icons/footer-mastercard.svg" alt="mastercard">
 							</li>
 							<li class="footer__payments_item">
-								<img src="images/icons/footer-visa.svg" alt="visa">
+								<img src="<?= home_url(); ?>/images/icons/footer-visa.svg" alt="visa">
 							</li>
 						</ul>
 					</div>
@@ -162,8 +162,13 @@
 	</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="./wp-content/themes/twentytwenty/assets/js/global.js" defer></script>
+<?php $description = get_field('description'); ?>
+
+<script defer>
+	document.addEventListener('DOMContentLoaded', function() {
+		descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+	})
+</script>
 
 <?php wp_footer(); ?>
 
