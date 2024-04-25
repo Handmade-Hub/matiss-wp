@@ -345,6 +345,7 @@ get_header();
 	</div>
 </div>
 
+
 <!-- <header class="woocommerce-products-header">
 	<?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
 		<h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
@@ -360,63 +361,116 @@ get_header();
 	do_action('woocommerce_archive_description');
 	?>
 </header> -->
-<?php
-if (woocommerce_product_loop()) {
 
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	// do_action('woocommerce_before_shop_loop');
-	woocommerce_catalog_ordering();
-	woocommerce_product_loop_start();
+<section class="collection">
+	<div class="collection__wrapper">
+		<div class="container">
+			<div class="collection__inner">
+				<ul class="collection__list" style="--per-col: <?php echo esc_attr(wc_get_loop_prop('columns')); ?>">
+					<?php
+					if (woocommerce_product_loop()) {
 
-	if (wc_get_loop_prop('total')) {
-		while (have_posts()) {
-			the_post();
+						/**
+						 * Hook: woocommerce_before_shop_loop.
+						 *
+						 * @hooked woocommerce_output_all_notices - 10
+						 * @hooked woocommerce_result_count - 20
+						 * @hooked woocommerce_catalog_ordering - 30
+						 */
+						// do_action('woocommerce_before_shop_loop');
+						woocommerce_catalog_ordering();
+						// woocommerce_product_loop_start();
 
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action('woocommerce_shop_loop');
+						if (wc_get_loop_prop('total')) {
+							while (have_posts()) {
+								the_post();
+								/**
+								 * Hook: woocommerce_shop_loop.
+								 */
+								do_action('woocommerce_shop_loop');
 
-			wc_get_template_part('content', 'product');
-		}
-	}
+								wc_get_template_part('content', 'product');
+							}
+						}
 
-	woocommerce_product_loop_end();
+						// woocommerce_product_loop_end();
 
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 *
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action('woocommerce_after_shop_loop');
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action('woocommerce_no_products_found');
-}
+						/**
+						 * Hook: woocommerce_after_shop_loop.
+						 *
+						 * @hooked woocommerce_pagination - 10
+						 */
+						do_action('woocommerce_after_shop_loop');
+					} else {
+						/**
+						 * Hook: woocommerce_no_products_found.
+						 *
+						 * @hooked wc_no_products_found - 10
+						 */
+						do_action('woocommerce_no_products_found');
+					}
 
-/**
- * Hook: woocommerce_after_main_content.
- *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
- */
+					/**
+					 * Hook: woocommerce_after_main_content.
+					 *
+					 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+					 */
 
-/**
- * Hook: woocommerce_sidebar.
- *
- * @hooked woocommerce_get_sidebar - 10
- */
-do_action('woocommerce_sidebar');
-?>
+					/**
+					 * Hook: woocommerce_sidebar.
+					 *
+					 * @hooked woocommerce_get_sidebar - 10
+					 */
+					do_action('woocommerce_sidebar');
+					?>
+					<li class="collection__item">
+						<div class="product-card product-card--trend product-card--fitting-ua">
+							<a href="#" class="product-card__link"></a>
+							<div class="product-card__image">
+								<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-two.jpg" alt="product">
+								<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-two-preview.jpg" alt="product">
+							</div>
+							<div class="product-card__info">
+								<h3 class="product-card__title fz-22 text-center open-sans">Impression</h3>
+								<div class="product-card__price fz-20 text-center"><span>від $330</span></div>
+							</div>
+						</div>
+					</li>
+					<li class="collection__item">
+						<div class="product-card product-card--sale">
+							<a href="#" class="product-card__link"></a>
+							<div class="product-card__image">
+								<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-four.jpg" alt="product">
+								<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-four-preview.jpg" alt="product">
+							</div>
+							<div class="product-card__info">
+								<h3 class="product-card__title fz-22 text-center open-sans">Rime</h3>
+								<div class="product-card__price fz-20 text-center">
+									<span>від</span>
+									<span class="product-card__price_sale">$240</span>
+									<span class="product-card__price_old">$290</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="collection__item">
+						<div class="product-card">
+							<a href="#" class="product-card__link"></a>
+							<div class="product-card__image">
+								<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-five.jpg" alt="product">
+								<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-five-preview.jpg" alt="product">
+							</div>
+							<div class="product-card__info">
+								<h3 class="product-card__title fz-22 text-center open-sans">Rime 2</h3>
+								<div class="product-card__price fz-20 text-center"><span>від $290</span></div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 
 <script defer>
 	(() => {
