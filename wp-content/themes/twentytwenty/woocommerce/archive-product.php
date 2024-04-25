@@ -44,9 +44,10 @@ get_header();
 						</div>
 						<div class="filters__item_list">
 							<ul class="filters__item_options">
-								<li class="filters__item_option">Нові</li>
-								<li class="filters__item_option">Популярні</li>
-								<li class="filters__item_option">Ціна від найнижчої</li>
+								<li class="filters__item_option" data-value="date">Нові</li>
+								<li class="filters__item_option" data-value="popularity">Популярні</li>
+								<li class="filters__item_option" data-value="price">Ціна від найнижчої</li>
+								<li class="filters__item_option" data-value="price-desc">Ціна від найвижчої</li>
 								<li class="filters__item_option">Знижка</li>
 								<li class="filters__item_option">Доступна примірка</li>
 							</ul>
@@ -419,7 +420,25 @@ do_action('woocommerce_sidebar');
 	(() => {
 		const filtersItemOptions = document.querySelector('.filters__item_options');
 		const woocommerceOrdering = document.querySelector('.woocommerce-ordering');
-		console.log(woocommerceOrdering);
+
+		const getSort = (element) => {
+			const dataValue = element.dataset.value;
+			if (element.closest('.filters__item_option') && dataValue) {
+				updSort(dataValue);
+			}
+		};
+
+		const updSort = (value) => {
+			const option = woocommerceOrdering.querySelector(`[value=${value}]`);
+
+			option.selected = true;
+
+			woocommerceOrdering.submit();
+		};
+
+		filtersItemOptions.addEventListener('click', evt => {
+			getSort(evt.target);
+		})
 	})()
 </script>
 

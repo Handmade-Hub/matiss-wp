@@ -6945,3 +6945,7 @@ button {
 .checkout__block_radios p {
   margin-bottom: 2.4rem;
 }
+
+.woocommerce-ordering {
+  display: none;
+}
