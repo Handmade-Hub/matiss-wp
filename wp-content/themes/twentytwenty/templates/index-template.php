@@ -23,11 +23,6 @@ $map = get_field('map');
 $description = get_field('description');
 
 ?>
-<script>
-    console.log(<?php print_r(json_encode(
-                    $description
-                )); ?>)
-</script>
 <!-- banner -->
 <section class="banner">
     <div class="banner__wrapper">
@@ -285,12 +280,6 @@ $description = get_field('description');
         </div>
     </div>
 </section>
-
-<script defer>
-    (() => {
-        descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
-    })()
-</script>
 
 <?php
 get_footer();
