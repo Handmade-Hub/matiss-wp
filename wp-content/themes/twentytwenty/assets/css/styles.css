@@ -822,6 +822,10 @@ button {
   gap: 1rem;
 }
 
+.header__icons img {
+  max-width: initial;
+}
+
 @media (min-width: 1200px) {
   .header__icons {
     gap: 1.8rem;
