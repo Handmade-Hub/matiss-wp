@@ -71,7 +71,7 @@ get_header();
 							</div>
 							<div class="filters__item_case">
 								<p>$<span class="filters__item_min"></span> - $ <span class="filters__item_max"></span></p>
-								<button>Застосувати</button>
+								<button id="filter_pridce_btn">Застосувати</button>
 							</div>
 						</div>
 					</li>
@@ -423,49 +423,6 @@ get_header();
 					 */
 					do_action('woocommerce_sidebar');
 					?>
-					<li class="collection__item">
-						<div class="product-card product-card--trend product-card--fitting-ua">
-							<a href="#" class="product-card__link"></a>
-							<div class="product-card__image">
-								<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-two.jpg" alt="product">
-								<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-two-preview.jpg" alt="product">
-							</div>
-							<div class="product-card__info">
-								<h3 class="product-card__title fz-22 text-center open-sans">Impression</h3>
-								<div class="product-card__price fz-20 text-center"><span>від $330</span></div>
-							</div>
-						</div>
-					</li>
-					<li class="collection__item">
-						<div class="product-card product-card--sale">
-							<a href="#" class="product-card__link"></a>
-							<div class="product-card__image">
-								<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-four.jpg" alt="product">
-								<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-four-preview.jpg" alt="product">
-							</div>
-							<div class="product-card__info">
-								<h3 class="product-card__title fz-22 text-center open-sans">Rime</h3>
-								<div class="product-card__price fz-20 text-center">
-									<span>від</span>
-									<span class="product-card__price_sale">$240</span>
-									<span class="product-card__price_old">$290</span>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="collection__item">
-						<div class="product-card">
-							<a href="#" class="product-card__link"></a>
-							<div class="product-card__image">
-								<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-five.jpg" alt="product">
-								<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-five-preview.jpg" alt="product">
-							</div>
-							<div class="product-card__info">
-								<h3 class="product-card__title fz-22 text-center open-sans">Rime 2</h3>
-								<div class="product-card__price fz-20 text-center"><span>від $290</span></div>
-							</div>
-						</div>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -495,6 +452,31 @@ get_header();
 		filtersItemOptions.addEventListener('click', evt => {
 			getSort(evt.target);
 		})
+	})();
+	(() => {
+		const filterPridceBtn = document.querySelector('#filter_pridce_btn');
+
+		const queryFilterByPrice = () => {
+			const min = document.querySelector('.filters__item_min').innerText;
+			const max = document.querySelector('.filters__item_max').innerText;
+			const url = window.location.href;
+			const search = window.location.search;
+
+			let newUrl = "";
+
+			if (search.includes('min_price') || search.includes('max_price')) {
+				newUrl = url.replace(/([?&])min_price=(\d+)+/g, `$1min_price=${min}`);
+				newUrl = newUrl.replace(/([?&])max_price=(\d+)+/g, `$1max_price=${max}`);
+			} else {
+				const perf = window.location.search != "" ? "&" : "?";
+
+				newUrl = `${url + perf}min_price=${min}&max_price=${max}`;
+			}
+
+			window.location.href = newUrl;
+		}
+
+		filterPridceBtn.addEventListener('click', queryFilterByPrice)
 	})()
 </script>
 

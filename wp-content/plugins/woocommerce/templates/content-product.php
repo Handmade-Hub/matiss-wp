@@ -24,16 +24,50 @@ global $product;
 if (empty($product) || !$product->is_visible()) {
 	return;
 }
+
+$bage = get_field('bage');
+$fitting_available = get_field('fitting_available');
+
 ?>
 <script>
-	console.log(<?php printf(($product)) ?>)
+	// console.log(<?php printf(json_encode($fitting_available)) ?>);
+	// console.log(<?php printf(json_encode($bage)) ?>);
 </script>
 <li class="collection__item">
-	<div class="product-card">
+	<div class="product-card 
+						<?php
+						if ($fitting_available) {
+							echo (' product-card--trend');
+						};
+
+						if (!empty($bage)) {
+							echo (' product-card--fitting-ua');
+						};
+
+						if ($product->is_on_sale()) {
+							echo (' product-card--sale');
+						};
+
+						?>
+						">
 		<a href="#" class="product-card__link"></a>
 		<div class="product-card__image">
-			<img class="product-card__image_primary" src="<?= home_url(); ?>/images/product-card/product-five.jpg" alt="product">
-			<img class="product-card__image_preview" src="<?= home_url(); ?>/images/product-card/product-five-preview.jpg" alt="product">
+			<?php
+
+			$image_id  = $product->get_image_id();
+			$image_url = wp_get_attachment_image_url($image_id, 'full');
+
+			?>
+			<img class="product-card__image_primary" src="<?= $image_url ?>" alt="image preview of <?= $product->name ?>">
+			<?php if ($product->get_gallery_image_ids() && $product->get_gallery_image_ids()[0]) : ?>
+				<?php
+
+				$second_image_id  = $product->get_gallery_image_ids()[0];
+				$second_image_url = wp_get_attachment_image_url($second_image_id, 'full');
+
+				?>
+				<img class="product-card__image_preview" src="<?= $second_image_url ?>" alt="second image preview of <?= $product->name ?>">
+			<?php endif; ?>
 		</div>
 		<div class="product-card__info">
 			<h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
