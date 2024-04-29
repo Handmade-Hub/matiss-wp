@@ -955,3 +955,59 @@ function custom_breadcrumbs()
 	echo '</div>';
 	echo '</div>';
 }
+
+add_filter('woocommerce_product_query', 'filter_products_by_category');
+function filter_products_by_category($query)
+{
+	if (!is_admin() && isset($_GET['product_category']) && $_GET['product_category'] != '') {
+		$query->set('tax_query', array(
+			array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => $_GET['product_category'],
+			),
+		));
+	}
+	return $query;
+}
+
+function get_unique_acf_field_values($field_name, $post_type = 'product')
+{
+	global $wpdb;
+	$query = "SELECT DISTINCT meta_value 
+              FROM $wpdb->postmeta 
+              INNER JOIN $wpdb->posts ON $wpdb->postmeta.post_id = $wpdb->posts.ID 
+              WHERE $wpdb->posts.post_type = '$post_type' 
+              AND $wpdb->posts.post_status = 'publish' 
+              AND $wpdb->postmeta.meta_key = '$field_name' 
+              AND $wpdb->postmeta.meta_value != ''
+              ORDER BY meta_value ASC";
+	return $wpdb->get_col($query);
+}
+
+function showItems($field_name)
+{
+
+	$field_values = get_unique_acf_field_values($field_name);
+	$common_arr = [];
+
+	foreach ($field_values as $value) {
+		$arr = unserialize($value);
+		if ($arr) {
+			$common_arr = array_merge($common_arr, $arr);
+		} else {
+			// echo ('<script>console.log("' . $value . '")</script>');
+			$common_arr[] = $value;
+		}
+	};
+
+	$common_arr = array_unique($common_arr);
+
+	// echo ('<script>console.log(' . json_encode($common_arr) . ')</script>');
+
+
+
+	foreach ($common_arr as $value) {
+		echo '<li class="filters__item_option" data-value="' . $value . '">' . $value . '</li>';
+	};
+}

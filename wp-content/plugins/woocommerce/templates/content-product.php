@@ -30,8 +30,8 @@ $fitting_available = get_field('fitting_available');
 
 ?>
 <script>
-	// console.log(<?php printf(json_encode($fitting_available)) ?>);
-	// console.log(<?php printf(json_encode($bage)) ?>);
+	// console.log(<?php printf(json_encode($common_values)); ?>);
+	// console.log(<?php printf(json_encode($parameters)) ?>);
 </script>
 <li class="collection__item">
 	<div class="product-card 
@@ -50,7 +50,7 @@ $fitting_available = get_field('fitting_available');
 
 						?>
 						">
-		<a href="#" class="product-card__link"></a>
+		<a href="<?= $product->get_permalink() ?>" class="product-card__link"></a>
 		<div class="product-card__image">
 			<?php
 

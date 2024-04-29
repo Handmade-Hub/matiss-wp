@@ -32,6 +32,7 @@ get_header();
 
 ?>
 
+
 <div class="filters">
 	<div class="filters__wrapper bg-gray">
 		<div class="container">
@@ -83,13 +84,8 @@ get_header();
 							</svg>
 						</div>
 						<div class="filters__item_list">
-							<ul class="filters__item_options">
-								<li class="filters__item_option">Прямокутник</li>
-								<li class="filters__item_option">Горизонтальна</li>
-								<li class="filters__item_option">Квадрат</li>
-								<li class="filters__item_option">Триптих</li>
-								<li class="filters__item_option">Пара</li>
-								<li class="filters__item_option">Круг</li>
+							<ul class="filters__item_options" data-key="form">
+								<?php showItems('form') ?>
 							</ul>
 						</div>
 					</li>
@@ -101,8 +97,9 @@ get_header();
 							</svg>
 						</div>
 						<div class="filters__item_list">
-							<ul class="filters__item_options">
-								<li class="filters__item_option">Золото</li>
+							<ul class="filters__item_options" data-key="color">
+								<?php showItems('color') ?>
+								<!-- <li class="filters__item_option">Золото</li>
 								<li class="filters__item_option">Срібло</li>
 								<li class="filters__item_option">Чорний</li>
 								<li class="filters__item_option">Білий</li>
@@ -118,7 +115,7 @@ get_header();
 								<li class="filters__item_option">Синій</li>
 								<li class="filters__item_option">Блакинтий</li>
 								<li class="filters__item_option">Фіолетовий</li>
-								<li class="filters__item_option">Сірий</li>
+								<li class="filters__item_option">Сірий</li> -->
 							</ul>
 						</div>
 					</li>
@@ -130,8 +127,10 @@ get_header();
 							</svg>
 						</div>
 						<div class="filters__item_list">
-							<ul class="filters__item_options">
-								<li class="filters__item_option">Сучасна класика</li>
+							<ul class="filters__item_options" data-key="style">
+								<?php showItems('style') ?>
+
+								<!-- <li class="filters__item_option">Сучасна класика</li>
 								<li class="filters__item_option">Арт-деко</li>
 								<li class="filters__item_option">Мінімалізм</li>
 								<li class="filters__item_option">Хай-тек</li>
@@ -139,7 +138,7 @@ get_header();
 								<li class="filters__item_option">Функціоналізм</li>
 								<li class="filters__item_option">Фьюжн</li>
 								<li class="filters__item_option">Скандинавський</li>
-								<li class="filters__item_option">Кантрі</li>
+								<li class="filters__item_option">Кантрі</li> -->
 							</ul>
 						</div>
 					</li>
@@ -151,8 +150,10 @@ get_header();
 							</svg>
 						</div>
 						<div class="filters__item_list">
-							<ul class="filters__item_options">
-								<li class="filters__item_option">Абстракції</li>
+							<ul class="filters__item_options" data-key="category">
+								<?php showItems('category') ?>
+
+								<!-- <li class="filters__item_option">Абстракції</li>
 								<li class="filters__item_option">Сюжетні</li>
 								<li class="filters__item_option">Флористичні мотиви</li>
 								<li class="filters__item_option">Пейзажі</li>
@@ -161,7 +162,7 @@ get_header();
 								<li class="filters__item_option">Портретні</li>
 								<li class="filters__item_option">Графіка</li>
 								<li class="filters__item_option">Космос</li>
-								<li class="filters__item_option">Архітектура</li>
+								<li class="filters__item_option">Архітектура</li> -->
 							</ul>
 						</div>
 					</li>
@@ -173,11 +174,13 @@ get_header();
 							</svg>
 						</div>
 						<div class="filters__item_list">
-							<ul class="filters__item_options">
-								<li class="filters__item_option">Олія</li>
+							<ul class="filters__item_options" data-key="category">
+								<?php showItems('matherials') ?>
+
+								<!-- <li class="filters__item_option">Олія</li>
 								<li class="filters__item_option">Акрил</li>
 								<li class="filters__item_option">Чорнила</li>
-								<li class="filters__item_option">Текстурна паста</li>
+								<li class="filters__item_option">Текстурна паста</li> -->
 							</ul>
 						</div>
 					</li>
@@ -189,14 +192,16 @@ get_header();
 							</svg>
 						</div>
 						<div class="filters__item_list">
-							<ul class="filters__item_options">
-								<li class="filters__item_option">Кухня</li>
+							<ul class="filters__item_options" data-key="rooms">
+								<?php showItems('rooms') ?>
+
+								<!-- <li class="filters__item_option">Кухня</li>
 								<li class="filters__item_option">Вітальня</li>
 								<li class="filters__item_option">Спальня</li>
 								<li class="filters__item_option">Коридор</li>
 								<li class="filters__item_option">Кабінет</li>
 								<li class="filters__item_option">Ванна кімната</li>
-								<li class="filters__item_option">Дитяча кімната</li>
+								<li class="filters__item_option">Дитяча кімната</li> -->
 							</ul>
 						</div>
 					</li>
@@ -368,6 +373,7 @@ get_header();
 			<div class="collection__inner">
 				<ul class="collection__list" style="--per-col: <?php echo esc_attr(wc_get_loop_prop('columns')); ?>">
 					<?php
+
 					if (woocommerce_product_loop()) {
 
 						/**
@@ -382,14 +388,70 @@ get_header();
 						// woocommerce_product_loop_start();
 
 						if (wc_get_loop_prop('total')) {
-							while (have_posts()) {
-								the_post();
-								/**
-								 * Hook: woocommerce_shop_loop.
-								 */
-								do_action('woocommerce_shop_loop');
+							$posts = have_posts();
 
-								wc_get_template_part('content', 'product');
+							if (!empty($_GET)) {
+								$args = array(
+									'post_type'      => 'product',
+									'posts_per_page' => -1,
+								);
+
+								$parameters = $_GET;
+								$par_arr    = array();
+
+								foreach ($parameters as $key => $value) {
+									if ($key == 'min_price' || $key == 'max_price') {
+										$args['meta_query'][] = array(
+											'key'     => '_price', // Используем '_price' для сравнения с ценой товара.
+											'value'   => $value,
+											'compare' => $key == 'min_price' ? '>=' : '<=', // Устанавливаем соответствующий оператор сравнения.
+											'type'    => 'NUMERIC' // Указываем тип значения.
+										);
+									} elseif ($key == 'orderby') {
+										if ($value == 'price-desc') {
+											$args['orderby']  = 'meta_value_num'; // Сортировка по убыванию цены.
+											$args['order']    = 'DESC';
+											$args['meta_key'] = '_price';
+										} elseif ($value == 'price') {
+											$args['orderby']  = 'meta_value_num'; // Сортировка по возрастанию цены.
+											$args['order']    = 'ASC';
+											$args['meta_key'] = '_price';
+										}
+									} else {
+										$par_arr[] = array(
+											'key'     => $key,
+											'value'   => $value,
+											'compare' => 'LIKE'
+										);
+									}
+								}
+
+								if (!empty($par_arr)) {
+									$args['meta_query'][] = array(
+										'relation' => 'AND',
+										$par_arr
+									);
+								}
+
+								$query = new WP_Query($args);
+
+								if ($query->have_posts()) {
+									while ($query->have_posts()) {
+										$query->the_post();
+
+										do_action('woocommerce_shop_loop');
+
+										wc_get_template_part('content', 'product');
+									}
+								}
+							} else {
+								while (have_posts()) {
+									the_post();
+
+									do_action('woocommerce_shop_loop');
+
+									wc_get_template_part('content', 'product');
+								}
 							}
 						}
 
@@ -477,7 +539,43 @@ get_header();
 		}
 
 		filterPridceBtn.addEventListener('click', queryFilterByPrice)
-	})()
+	})();
+	(() => {
+		const filtersList = document.querySelector('.filters__list_desktop');
+
+		const filterHandler = (element) => {
+			if (!element.closest('[data-value]')) {
+				return;
+			}
+
+			let dataValue = element.closest('[data-value]').dataset.value;
+			let newUrl = "";
+
+			const dataKey = element.closest('[data-key]').dataset.key;
+			const searchParams = new URLSearchParams(window.location.search);
+			const url = window.location.href;
+
+			if (searchParams.has(dataKey)) {
+				searchParams.set(dataKey, dataValue);
+				newUrl = `${url.split('?')[0]}?${searchParams.toString()}`;
+			} else {
+				const perf = window.location.search !== "" ? "&" : "?";
+				newUrl = `${url + perf}${dataKey}=${dataValue}`;
+			}
+
+			console.log(dataKey + " - " + dataValue);
+			console.log(newUrl);
+
+			// Декодируем URL и заменяем закодированные символы на нормальный текст
+			const decodedUrl = decodeURIComponent(newUrl);
+
+			window.location.href = decodedUrl;
+		};
+
+
+
+		filtersList.addEventListener('click', evt => filterHandler(evt.target))
+	})();
 </script>
 
 <?php
