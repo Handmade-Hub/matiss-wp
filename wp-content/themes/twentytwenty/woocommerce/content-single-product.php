@@ -71,7 +71,6 @@ foreach ($mobile_gallery_images as $image_id) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-
     <div class="product__wrapper">
         <div class="product__swiper swiper mobile-up-none">
             <button class="wishlist-add">
@@ -103,15 +102,14 @@ foreach ($mobile_gallery_images as $image_id) {
                 <div class="product__case">
                     <div class="product__image mobile-none">
                         <?php
-                        $image_id = $product->get_image_id(); // Отримати ідентифікатор зображення товару
-                        $image_url = wp_get_attachment_image_url( $image_id, 'full' ); // Отримати URL зображення за ідентифікатором
+                        $image_id = $product->get_image_id();
+                        $image_url = wp_get_attachment_image_url( $image_id, 'full' );
                         ?>
                         <a href="<?php echo $image_url; ?>" data-fancybox="gallery">
                             <?php
                             echo $product->get_image( "large" );
                             ?>
                         </a>
-
                     </div>
                     <div class="product__information">
                         <button class="wishlist-add mobile-none">
@@ -144,37 +142,7 @@ foreach ($mobile_gallery_images as $image_id) {
                                 }
                                 ?>
                             </div>
-<!--                            <div class="product__select">-->
-<!--                                <p class="product__select_title">Select a size*</p>-->
-<!--                                <div class="product__select_panel" data-content="Select"><span class="--default">Select</span></div>-->
-<!--                                <ul class="product__select_list">-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>20x20</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>30x30</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>40x40</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>50x50</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>60x60</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>70x70</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>80x80</p>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                                <p class="product__select_error">Please select a size</p>-->
-<!--                            </div>-->
-                            <div class="product__select">
                                 <?php
-
                                 /**
                                  * Hook: woocommerce_single_product_summary.
                                  *
@@ -195,184 +163,32 @@ foreach ($mobile_gallery_images as $image_id) {
                                 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
                                 do_action( 'woocommerce_single_product_summary' );
                                 ?>
-<!--                                <p class="product__select_title">Select a frame</p>-->
-<!--                                <div class="product__select_panel" data-content="Select a frame"><span>Without a frame</span></div>-->
-<!--                                <ul class="product__select_list">-->
-<!--                                    <li data-type="0" class="product__select_item multichoice">-->
-<!--                                        <p>Wood frame</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>30x30</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>40x40</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>50x50</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>60x60</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>70x70</p>-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_item">-->
-<!--                                        <p>80x80</p>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                                <ul data-type="0" class="product__select_multi">-->
-<!--                                    <li class="product__select_multi-item">-->
-<!--                                        Black-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_multi-item">-->
-<!--                                        White-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_multi-item">-->
-<!--                                        Gold-->
-<!--                                    </li>-->
-<!--                                    <li class="product__select_multi-item">-->
-<!--                                        Silver-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                                <p class="product__select_error">Please select a frame</p>-->
-                            </div>
+
                         </div>
-<!--                        <div class="product__buttons">-->
-<!--                            <a href="#" class="product__button button__primary add-to-cart">Add to cart</a>-->
-<!--                            <a href="#" class="product__button button__outline">Buy in one click</a>-->
-<!--                        </div>-->
                     </div>
                 </div>
                 <ul class="product__media mobile-none">
-                    <li class="product__media_item">
-                        <a href="images/paintings/big-two.jpg" data-fancybox="gallery">
-                            <img src="images/paintings/two.jpg" alt="image">
-                        </a>
-                    </li>
-                    <li class="product__media_item">
-                        <a href="images/paintings/big-three.jpg" data-fancybox="gallery">
-                            <img src="images/paintings/three.jpg" alt="image">
-                        </a>
-                    </li>
-                    <li class="product__media_item">
-                        <a href="images/paintings/big-four.jpg" data-fancybox="gallery">
-                            <img src="images/paintings/four.jpg" alt="image">
-                        </a>
-                    </li>
-                    <li class="product__media_item">
-                        <a href="images/paintings/big-five.jpg" data-fancybox="gallery">
-                            <img src="images/paintings/five.jpg" alt="image">
-                        </a>
-                    </li>
-                    <li class="product__media_item">
-                        <a href="images/paintings/big-six.jpg" data-fancybox="gallery">
-                            <img src="images/paintings/six.jpg" alt="image">
-                        </a>
-                    </li>
-                    <li class="product__media_item">
-                        <a href="images/paintings/big-seven.jpg" data-fancybox="gallery">
-                            <img src="images/paintings/seven.jpg" alt="image">
-                        </a>
-                    </li>
+                    <?php
+                    $attachment_ids = $product->get_gallery_image_ids();
+
+                    if ( $attachment_ids && $product->get_image_id() ) {
+                        foreach ( $attachment_ids as $attachment_id ) {
+                            $image_url = wp_get_attachment_image_url( $attachment_id, 'full' );
+                            ?>
+                            <li class="product__media_item">
+                                <a href="<?php echo $image_url; ?>" data-fancybox="gallery">
+                                    <?php
+                                    echo wp_get_attachment_image( $attachment_id, 'large' );
+                                    ?>
+                                </a>
+                            </li>
+                    <?php
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
-        <div class="woocommerce-product-gallery">
-            <?php
-            echo $product->get_image( "large" );
-            ?>
-        </div>
-
-        <div class="summary entry-summary">
-            <div class="title_wrapper">
-                <h1 class="product_title entry-title"><?php echo $product_title; ?></h1>
-                <img src="<?= home_url(); ?>/images/icons/icon-wishlist-black.svg" alt="wishlist">
-            </div>
-            <span class="sku_wrapper"><?php echo __( 'Артикул:', 'twentytwenty' ); ?>
-                <span class="sku"><?php echo $product_sku; ?></span>
-            </span>
-            <div class="test-var-pri"></div>
-            <p class="price">
-                <span class="price-from"><?php echo __( 'від', 'twentytwenty' ); ?></span>
-                <span class="woocommerce-Price-amount amount">
-                    <bdi><?php echo wc_price( $min_price ); ?></bdi>
-                </span>
-            </p>
-            <?php
-            // Product meta
-            if ( ! empty( $product_meta ) ) {
-            ?>
-                <div class="product_meta">
-                    <?php
-                    if ( ! empty ( $product_meta[ 'Матеріали' ] ) ) {
-                        ?>
-                        <span class="meta_wrapper">
-                            <span class="meta_name">
-                                <?php echo __('Матеріали:', 'twentytwenty'); ?>
-                            </span>
-                            <span class="meta_value">
-                                <?php echo $product_meta[ 'Матеріали' ]; ?>
-                            </span>
-                        </span>
-                        <?php
-                    }
-                    ?>
-                    <?php
-                    if ( ! empty ( $product_meta[ 'Примітки' ] ) ) {
-                        ?>
-                        <span class="meta_wrapper">
-                            <span class="meta_name">
-                                <?php echo __('Примітки:', 'twentytwenty'); ?>
-                            </span>
-                        <span class="meta_value">
-                            <?php echo $product_meta[ 'Примітки' ]; ?>
-                        </span>
-                        </span>
-                        <?php
-                    }
-                    ?>
-                </div>
-            <?php
-            }
-            ?>
-            <?php
-
-            /**
-             * Hook: woocommerce_single_product_summary.
-             *
-             * @hooked woocommerce_template_single_title - 5
-             * @hooked woocommerce_template_single_rating - 10
-             * @hooked woocommerce_template_single_price - 10
-             * @hooked woocommerce_template_single_excerpt - 20
-             * @hooked woocommerce_template_single_add_to_cart - 30
-             * @hooked woocommerce_template_single_meta - 40
-             * @hooked woocommerce_template_single_sharing - 50
-             * @hooked WC_Structured_Data::generate_product_data() - 60
-             */
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
-            do_action( 'woocommerce_single_product_summary' );
-            ?>
-        </div>
-
-
-    </div>
-    <div class="product__gallery">
-        <?php
-        global $product;
-
-        $attachment_ids = $product->get_gallery_image_ids();
-
-        if ( $attachment_ids && $product->get_image_id() ) {
-            foreach ( $attachment_ids as $attachment_id ) {
-                echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $attachment_id ), $attachment_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-            }
-        }
-        ?>
     </div>
 </div>
 
