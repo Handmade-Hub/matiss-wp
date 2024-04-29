@@ -1030,7 +1030,7 @@ function add_custom_tab_to_woocommerce_settings_tabs( $tabs ) {
 
 add_action( 'woocommerce_settings_tabs_custom_info', 'output_custom_info_tab_content' );
 
-//template tab content
+//template tab content in woocommerce settings
 function output_custom_info_tab_content() {
     ?>
     <h2>Додаткові налаштування</h2>
@@ -1084,7 +1084,8 @@ function save_custom_info_fields() {
 
     foreach ( $fields as $field ) {
         if ( isset( $_POST[ $field ] ) ) {
-            $value = wp_kses_post( $_POST[ $field ] );
+            $value = wp_unslash( $_POST[ $field ] );
+            $value = wpautop( wp_kses_post( $value ) );
             update_option( $field, $value );
         }
     }
