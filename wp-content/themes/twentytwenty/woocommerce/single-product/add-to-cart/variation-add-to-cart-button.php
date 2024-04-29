@@ -19,6 +19,11 @@ global $product;
         <button type="submit" class="product__button button__outline add-to-cart single_add_to_cart_button button"><?php echo __( 'Купити в один клік', 'twentytwenty' ); ?></button>
     </div>
 
+    <div class="product__buttons">
+        <a href="#" class="product__button button__primary add-to-cart">Add to cart</a>
+        <a href="#" class="product__button button__outline">Buy in one click</a>
+    </div>
+
 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
 	<input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />

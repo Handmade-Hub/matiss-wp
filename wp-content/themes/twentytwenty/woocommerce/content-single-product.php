@@ -162,8 +162,8 @@ foreach ($mobile_gallery_images as $image_id) {
                                 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
                                 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
                                 do_action( 'woocommerce_single_product_summary' );
-                                ?>
 
+                                ?>
                         </div>
                     </div>
                 </div>
@@ -191,5 +191,9 @@ foreach ($mobile_gallery_images as $image_id) {
         </div>
     </div>
 </div>
+
+<?php
+wc_get_template_part( 'single-product/add-to-cart/modal');
+?>
 
 
