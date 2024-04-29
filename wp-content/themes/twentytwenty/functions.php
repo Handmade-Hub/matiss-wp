@@ -955,3 +955,137 @@ function custom_breadcrumbs()
 	echo '</div>';
 	echo '</div>';
 }
+
+
+// change variation product label
+function custom_attribute_label( $label, $name, $product ) {
+    switch ( $name ) {
+        case 'Розмір':
+            $label = __( 'Оберіть розмір*', 'twentytwenty' );
+            break;
+        case 'Рама':
+            $label = __( 'Оберіть раму', 'twentytwenty' );
+            break;
+    }
+
+    return $label;
+}
+add_filter( 'woocommerce_attribute_label', 'custom_attribute_label', 10, 3 );
+
+// remove all default wc tabs
+add_filter( 'woocommerce_product_tabs', 'remove_product_tabs', 98 );
+function remove_product_tabs( $tabs ) {
+    return array();
+}
+
+// add new wc tabs
+add_filter( 'woocommerce_product_tabs', function( $tabs ) {
+    $meta_fields = array( 'wc_cus_delivery_info', 'wc_cus_payment_info', 'wc_cus_guarantee_info' );
+    $meta_data = array();
+    $content = '';
+
+    // get value from custom fields
+    foreach ( $meta_fields as $field) {
+        $value = get_option( $field );
+        $meta_data[ $field ] = $value;
+    }
+
+    // add new tabs
+    foreach ( $meta_data as $key => $value ) {
+        $content = $value;
+        $tab_name = 'tab';
+
+        if ( $key === 'wc_cus_delivery_info' ) {
+            $tab_name = __( 'Доставка', 'twentytwenty' );
+        } elseif ( $key === 'wc_cus_payment_info' ) {
+            $tab_name = __( 'Оплата', 'twentytwenty' );
+        } elseif ( $key === 'wc_cus_guarantee_info' ) {
+            $tab_name = __( 'Гарантія', 'twentytwenty' );
+        }
+
+        $tabs[ $key ] = array(
+            'title'     => __( $tab_name, 'twentytwenty' ),
+            'priority'  => 50,
+            'callback'  => function() use ( $content ) {
+                custom_tab_content( $content );
+            }
+        );
+    }
+
+    return $tabs;
+}, 99);
+
+// tab content
+function custom_tab_content( $content ) {
+    echo '<div class="wc_tab-content">' . $content . '</div>';
+}
+
+// add new option tab in woocommerce settings
+add_filter( 'woocommerce_settings_tabs_array', 'add_custom_tab_to_woocommerce_settings_tabs', 50 );
+
+function add_custom_tab_to_woocommerce_settings_tabs( $tabs ) {
+    $tabs['custom_info'] = 'Додаткові налаштування';
+    return $tabs;
+}
+
+add_action( 'woocommerce_settings_tabs_custom_info', 'output_custom_info_tab_content' );
+
+//template tab content
+function output_custom_info_tab_content() {
+    ?>
+    <h2>Додаткові налаштування</h2>
+    <table class="form-table">
+        <tr valign="top">
+            <th scope="row" class="titledesc">Інформація про доставку</th>
+            <td class="forminp forminp-textarea">
+                <?php
+                custom_output_custom_editor( 'wc_cus_delivery_info' );
+                ?>
+            </td>
+        </tr>
+        <tr valign="top">
+            <th scope="row" class="titledesc">Інформація про оплату</th>
+            <td class="forminp forminp-textarea">
+                <?php
+                custom_output_custom_editor( 'wc_cus_payment_info' );
+                ?>
+            </td>
+        </tr>
+        <tr valign="top">
+            <th scope="row" class="titledesc">Інформація про гарантію</th>
+            <td class="forminp forminp-textarea">
+                <?php
+                custom_output_custom_editor( 'wc_cus_guarantee_info' );
+                ?>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+// add field in woocommerce settings
+function custom_output_custom_editor( $field_id ) {
+    $options = array(
+        'textarea_name' => $field_id,
+        'editor_class' => 'woocommerce_admin_textarea short',
+        'media_buttons' => false,
+        'textarea_rows' => 5,
+    );
+
+    $field_value = get_option( $field_id );
+
+    wp_editor( $field_value, $field_id, $options );
+}
+
+add_action( 'woocommerce_update_options', 'save_custom_info_fields' );
+
+function save_custom_info_fields() {
+    $fields = array( 'wc_cus_delivery_info', 'wc_cus_payment_info', 'wc_cus_guarantee_info' );
+
+    foreach ( $fields as $field ) {
+        if ( isset( $_POST[ $field ] ) ) {
+            $value = wp_kses_post( $_POST[ $field ] );
+            update_option( $field, $value );
+        }
+    }
+}
