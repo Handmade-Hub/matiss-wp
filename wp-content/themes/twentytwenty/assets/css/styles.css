@@ -3509,7 +3509,9 @@ button {
     padding: 2.4rem 0 0;
   }
 }
-
+.newsletter__form .wpforms-container {
+  /* display: none; */
+}
 .newsletter__form_field {
   position: relative;
   width: 100%;
@@ -3519,8 +3521,7 @@ button {
 .newsletter__form_label {
   position: absolute;
   left: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 1.2rem;
   transition: var(--duration-normal);
   background-color: var(--color-white);
 }
@@ -3554,9 +3555,21 @@ button {
   }
 }
 
+.newsletter__form_error {
+  padding-top: 0.8rem;
+  color: var(--color-red);
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  display: none;
+}
+
+.newsletter__form_error.error {
+  display: block;
+}
+
 .newsletter__form form {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 3.2rem;
 }
 
@@ -3574,6 +3587,7 @@ button {
 .newsletter__form form input:not(:placeholder-shown)~label,
 .newsletter__form form input:focus~label,
 .newsletter__form form input:focus-visible~label {
+  transform: translateY(-50%);
   top: 0;
   padding: 0 0.5rem;
   font-size: 1rem;

@@ -72,10 +72,11 @@ $result_array = get_information_menu_items();
     <p class="newsletter__text text-center fz-18"><?= $newsletter['text'] ?></p>
     <div class="newsletter__form">
      <?php echo do_shortcode('[wpforms id="325" title="false"]')?>
-     <form method="post">
+     <form id="newsletter__form_visible">
       <div class="newsletter__form_field">
-       <input class="newsletter__form_input" placeholder="Email" id="POST-name" type="text" name="name">
-       <label class="newsletter__form_label" for="POST-name">Email</label>
+       <input class="newsletter__form_input" placeholder="Email" id="POST-text" type="text" name="email">
+       <label class="newsletter__form_label" for="POST-text">Email</label>
+       <p class="newsletter__form_error">Будь ласка, введіть правильний email</p>
       </div>
       <input class="button__primary newsletter__form_button" type="submit" value="Підписатися">
      </form>

@@ -3523,6 +3523,14 @@ button {
     opacity: 0;
 }
 
+.newsletter__form_error {
+    padding-top: 0.8rem;
+    color: var(--color-red);
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    display: none;
+}
+
 .newsletter__form_button {
     max-width: 16rem;
     min-height: 4.8rem;

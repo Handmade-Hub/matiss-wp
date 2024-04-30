@@ -916,7 +916,7 @@ document.addEventListener('DOMContentLoaded', function () {
    })
   })
   // change  woocommerce select
-  function changeWcSelectValue (currentSelectedItem) {
+  function changeWcSelectValue(currentSelectedItem) {
    let itemValue = currentSelectedItem.innerText;
    let parentBlock = currentSelectedItem.closest('.product__select');
    let wcForm = currentSelectedItem.closest('.variations_form');
@@ -926,7 +926,7 @@ document.addEventListener('DOMContentLoaded', function () {
    wcForm.dispatchEvent(new Event('check_variations'));
   }
   // change woocommerce multiitem select
-  function changeWcSelectMultiValue (currentSelectedItem) {
+  function changeWcSelectMultiValue(currentSelectedItem) {
    let itemValue = currentSelectedItem.innerText;
    let parentBlock = currentSelectedItem.closest('.product__select');
    let wcForm = currentSelectedItem.closest('.variations_form');
@@ -1081,13 +1081,13 @@ document.addEventListener('DOMContentLoaded', function () {
   certificateSubmit.addEventListener('click', () => {
    if (certificateInput.value != '') certificateField.textContent = `$${certificateInput.value}`;
   })
-  
+
   // delivery method on the loading page
   if (deliveryMethod != null) {
    const deliveryMethodValue = document.querySelector('.delivery-method-value span');
-   if (deliveryMethodValue.textContent  == 'Відділення') deliveryMethod.classList.add('department');
+   if (deliveryMethodValue.textContent == 'Відділення') deliveryMethod.classList.add('department');
    else deliveryMethod.classList.remove('department');
-   if (deliveryMethodValue.textContent  == 'Адресна доставка') deliveryMethod.classList.add('address');
+   if (deliveryMethodValue.textContent == 'Адресна доставка') deliveryMethod.classList.add('address');
    else deliveryMethod.classList.remove('address');
   }
 
@@ -1134,9 +1134,9 @@ document.addEventListener('DOMContentLoaded', function () {
      }
      if (deliveryMethod != null) {
       const deliveryMethodValue = document.querySelector('.delivery-method-value span');
-      if (deliveryMethodValue.textContent  == 'Відділення') deliveryMethod.classList.add('department');
+      if (deliveryMethodValue.textContent == 'Відділення') deliveryMethod.classList.add('department');
       else deliveryMethod.classList.remove('department');
-      if (deliveryMethodValue.textContent  == 'Адресна доставка') deliveryMethod.classList.add('address');
+      if (deliveryMethodValue.textContent == 'Адресна доставка') deliveryMethod.classList.add('address');
       else deliveryMethod.classList.remove('address');
      }
     })
@@ -1242,12 +1242,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
    }
   })
-
-
-
-
  }
 
+ if (document.querySelectorAll('.newsletter').length) {
+  const visibleForm = document.getElementById('newsletter__form_visible');
+  const visibleFormInput = visibleForm.querySelector('input[type=text]');
+  const errorText = visibleForm.querySelector('.newsletter__form_error');
+  const hideForm = document.getElementById('wpforms-form-325');
+  const hideFormInput = hideForm.querySelector('input[name="wpforms[fields][1]"]');
+
+  visibleForm.addEventListener('submit', (e) => {
+   e.preventDefault();
+   // validate email
+   var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   if (!emailPattern.test(visibleFormInput.value)) {
+    errorText.classList.add('error');
+   } else {
+    errorText.classList.remove('error');
+    hideFormInput.value = visibleFormInput.value;
+    hideForm.submit();
+   }
+  })
+ }
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {
