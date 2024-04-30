@@ -99,7 +99,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                                     ?>
                                     <p class="product__select_error">
                                         <?php echo __('Будь-ласка, оберіть ', 'twentytwenty');
-                                        echo mb_strtolower( $attribute_name, 'UTF-8' ); ?>
+                                        echo __('Раму'); ?>
                                     </p>
                                 </div>
                             </td>

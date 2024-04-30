@@ -5533,16 +5533,11 @@ button {
 }
 
 .single-product .variations_form select {
-  position: relative;
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.6rem;
-  padding: 1.2rem;
-  width: 100%;
-  appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 8L12.5 15.5L5 8" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-  background-size: 2.4rem 2.4rem;
-  background-position: 97.5%;
-  background-repeat: no-repeat;
+  display: none;
+}
+
+.single-product .woocommerce-variation.single_variation {
+  display: none!important;
 }
 
 .product__select.error .product__select_error {

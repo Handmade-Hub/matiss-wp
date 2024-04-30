@@ -924,6 +924,17 @@ document.addEventListener('DOMContentLoaded', function () {
    wcSelect.value = itemValue;
    wcSelect.dispatchEvent(new Event('change'));
    wcForm.dispatchEvent(new Event('check_variations'));
+
+   // // if withot frame change color
+   // if (itemValue === 'Без рами') {
+   //  setTimeout(function (){
+   //   let multiSelect = document.querySelector('.product_form_item_multi select');
+   //   multiSelect.value = "Без кольору";
+   //   multiSelect.dispatchEvent(new Event('change'));
+   //   multiSelect.dispatchEvent(new Event('input'));
+   //   multiSelect.dispatchEvent(new Event('check_variations'));
+   //  },100)
+   // }
   }
   // change woocommerce multiitem select
   function changeWcSelectMultiValue (currentSelectedItem) {
@@ -935,6 +946,36 @@ document.addEventListener('DOMContentLoaded', function () {
    wcSelect.dispatchEvent(new Event('change'));
    wcForm.dispatchEvent(new Event('check_variations'));
   }
+  // validation form
+  function isformCanSubmitted() {
+   let selectPanels = jQuery('.product__select_panel');
+
+   let spans = selectPanels.find('span');
+   let isCanSubmitted = true;
+
+   selectPanels.each(function () {
+    if (jQuery(this).hasClass('multichoice') && jQuery(this).attr('data-choised') == 'null') {
+     isCanSubmitted = false;
+    }
+   })
+
+   spans.each(function () {
+    if (jQuery(this).hasClass('--default')) {
+     isCanSubmitted = false;
+    }
+   })
+
+   return isCanSubmitted;
+  }
+
+  const element = document.querySelector('.woocommerce-variation.single_variation');
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+   let mainPrice = document.querySelector('.product__content .product__price');
+   mainPrice.innerHTML = element.innerHTML;
+  });
+
+  observer.observe(element, { subtree: true, characterData: true, childList: true });
  }
 
  // add to cart modal
@@ -944,15 +985,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const buttonClose = document.querySelectorAll('.modal-add-to-cart__button_close');
   const cartIcon = document.querySelectorAll('.header__cart');
   // open modal
-  button.addEventListener('click', () => {
-   if (!button.classList.contains('error')) {
+  function openModal() {
+   // if (!button.classList.contains('error')) {
     modal.classList.add('open');
     body.classList.add('menu-open');
     cartIcon.forEach(icon => {
      icon.classList.add('not-empty');
     })
    }
-  })
+  // }
   // close modal
   buttonClose.forEach(button => {
    button.addEventListener('click', () => {
@@ -960,6 +1001,32 @@ document.addEventListener('DOMContentLoaded', function () {
     body.classList.remove('menu-open');
    })
   })
+  // change modal content
+  function changeModalContent(data) {
+   let quantity = data['quantity'];
+   let totalPrice = data['line_total'];
+   let variation = decodeUrlObject(data['variation']);
+   let size = variation['attribute_розмір'];
+   let frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+
+   // set content
+   jQuery('.modal-add-to-cart .atribute_size_value').text(size);
+   jQuery('.modal-add-to-cart .atribute_frame_value').text(frame);
+   jQuery('.modal-add-to-cart .modal-add-to-cart__case_quantity_value').text(quantity);
+   jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(totalPrice);
+  }
+ }
+
+ function decodeUrlObject(obj) {
+  let decodedObject = {};
+  for (let key in obj) {
+   if (obj.hasOwnProperty(key)) {
+    let decodedKey = decodeURIComponent(key);
+    let decodedValue = decodeURIComponent(obj[key]);
+    decodedObject[decodedKey] = decodedValue;
+   }
+  }
+  return decodedObject;
  }
 
  // modal add to cart
@@ -1248,6 +1315,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
  }
 
+ // add to cart handler
+ jQuery('.add-to-cart').click(function (){
+  if (isformCanSubmitted()) {
+   jQuery('.variations_form').trigger('submit');
+  }
+ });
+
+ // quick buy handler
+ jQuery('.quick_buy').click(function (){
+  if (isformCanSubmitted()) {
+   jQuery('.variations_form').trigger('submit', 'quick');
+  }
+ });
+
+ // ajax add to cart
+ jQuery('body').on('submit', '.variations_form', function(event, param) {
+  event.preventDefault();
+
+  let quantity = 1;
+  let productId = jQuery(this).find('.single_variation_wrap input[name="product_id"]').val();
+  let variationId = jQuery(this).find('.single_variation_wrap input[name="variation_id"]').val()
+
+  jQuery.ajax({
+   type: 'POST',
+   url: wc_add_to_cart_params.ajax_url,
+   data: {
+    'action': 'custom_add_to_cart',
+    'product_id': productId,
+    'variation_id': variationId,
+    'quantity': quantity
+   },
+   success: function(response) {
+    let data = JSON.parse(response);
+
+    // relocate if quick buy
+    if (param && param === 'quick') {
+     window.location.href = "checkout";
+    } else {
+     // change modal content and open
+     if (data) {
+      changeModalContent(data);
+      openModal();
+     }
+    }
+   },
+   error: function(error) {
+    console.log('error: ', error);
+   }
+  });
+ });
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {
@@ -1265,3 +1382,5 @@ const descriptionAccordion = (initialHeight, mobileHeight) => {
   });
  }
 }
+
+

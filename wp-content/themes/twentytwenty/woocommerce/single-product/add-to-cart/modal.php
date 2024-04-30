@@ -16,27 +16,38 @@ global $product;
         </button>
         <div class="container">
             <div class="modal-add-to-cart__inner">
-                <h4 class="modal-add-to-cart__title">Товар додано до кошика!</h4>
+                <h4 class="modal-add-to-cart__title"><?php echo __('Товар додано до кошика!', 'twentytwenty'); ?></h4>
                 <div class="modal-add-to-cart__item">
                     <div class="modal-add-to-cart__content">
                         <div class="modal-add-to-cart__image">
-                            <img src="images/paintings/one.jpg" alt="image">
+                            <?php echo $product->get_image('thumbnail'); ?>
                         </div>
                         <div class="modal-add-to-cart__case">
                             <div class="modal-add-to-cart__case_block">
-                                <h6 class="modal-add-to-cart__case_title">Impression</h6>
-                                <p>Розмір: 80х120 см</p>
-                                <p>Рама: біла деревʼяна</p>
+                                <h6 class="modal-add-to-cart__case_title"><?php echo $product->get_title(); ?></h6>
+                                <p class="atribute_size">
+                                    <?php echo __('Розмір: ', 'twentytwenty'); ?>
+                                    <span class="atribute_size_value"></span> <?php echo __('см', 'twentytwenty'); ?></p>
+                                <p class="atribute_frame">
+                                    <?php echo __('Рама: ', 'twentytwenty'); ?>
+                                    <span class="atribute_frame_value"></span>
+                                </p>
                             </div>
-                            <p class="modal-add-to-cart__case_quantity">Кількість: 1</p>
+                            <p class="modal-add-to-cart__case_quantity">
+                                <?php echo __('Кількість: ', 'twentytwenty'); ?>
+                                <span class="modal-add-to-cart__case_quantity_value"></span>
+                            </p>
                         </div>
                     </div>
-                    <p class="modal-add-to-cart__price">$195</p>
+                    <p class="modal-add-to-cart__price">$<span class="modal-add-to-cart__price_value"></span></p>
                 </div>
                 <div class="modal-add-to-cart__buttons">
-                    <button class="modal-add-to-cart__button button__outline modal-add-to-cart__button_close">продовжити
-                        покупки</button>
-                    <a href="#" class="modal-add-to-cart__button button__primary">оформити замовлення</a>
+                    <button class="modal-add-to-cart__button button__outline modal-add-to-cart__button_close">
+                        <?php echo __('продовжити покупки', 'twentytwenty'); ?>
+                    </button>
+                    <a href="#" class="modal-add-to-cart__button button__primary">
+                        <?php echo __('оформити замовлення', 'twentytwenty'); ?>
+                    </a>
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+wp_enqueue_style('fancybox', get_template_directory_uri() . '/assets/css/fancybox.css');
 
 get_header(); ?>
     <?php while ( have_posts() ) : ?>

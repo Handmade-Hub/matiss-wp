@@ -15,13 +15,8 @@ global $product;
 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
     <div class="product__buttons">
-        <button type="submit" class="product__button button__primary add-to-cart single_add_to_cart_button button"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
-        <button type="submit" class="product__button button__outline add-to-cart single_add_to_cart_button button"><?php echo __( 'Купити в один клік', 'twentytwenty' ); ?></button>
-    </div>
-
-    <div class="product__buttons">
-        <a href="#" class="product__button button__primary add-to-cart">Add to cart</a>
-        <a href="#" class="product__button button__outline">Buy in one click</a>
+        <a class="product__button button__primary add-to-cart"><?php echo __( 'Додати в кошик', 'twentytwenty' ); ?></a>
+        <a class="product__button button__outline quick_buy"><?php echo __( 'Купити в один клік', 'twentytwenty' ); ?></a>
     </div>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
