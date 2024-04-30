@@ -20,6 +20,8 @@ defined('ABSPATH') || exit;
 
 global $product;
 
+$product_category = wp_get_post_terms( get_the_ID(), 'product_cat', array( 'fields' => 'names' ) )[0];
+
 // Ensure visibility.
 if (empty($product) || !$product->is_visible()) {
 	return;
@@ -70,7 +72,19 @@ $fitting_available = get_field('fitting_available');
 		</div>
 		<div class="product-card__info">
 			<h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
-			<div class="product-card__price fz-20 text-center"><span><?= get_woocommerce_currency_symbol() . $product->price ?></span></div>
+            <?php
+
+            if ( $product_category === 'Розпис' ) {
+                ?>
+                <div class="product-card__price fz-20 text-center"><span><?= $product->price . ' ' . __('$/м.кв.', 'twentytwenty') ?></span></div>
+                <?php
+            } else {
+                ?>
+                <div class="product-card__price fz-20 text-center"><span><?= __( 'від', 'twentytwenty' ) . ' ' . get_woocommerce_currency_symbol() . $product->price ?></span></div>
+                <?php
+            }
+            ?>
+
 		</div>
 	</div>
 	<?php

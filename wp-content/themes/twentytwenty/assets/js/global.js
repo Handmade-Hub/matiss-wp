@@ -970,12 +970,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const element = document.querySelector('.woocommerce-variation.single_variation');
 
-  const observer = new MutationObserver(function(mutationsList, observer) {
+  const priceObserver = new MutationObserver(function(mutationsList, observer) {
    let mainPrice = document.querySelector('.product__content .product__price');
    mainPrice.innerHTML = element.innerHTML;
   });
 
-  observer.observe(element, { subtree: true, characterData: true, childList: true });
+  priceObserver.observe(element, { subtree: true, characterData: true, childList: true });
  }
 
  // add to cart modal
@@ -1056,17 +1056,75 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // submit form
   form.addEventListener('submit', e => {
+   e.preventDefault();
    const fields = form.querySelectorAll('.modal-order__field');
+   let isValid = true;
    fields.forEach(field => {
-    const input = field.querySelector('.modal-order__form_input--required');
-    if (input != null && input.value == '') {
-     e.preventDefault();
+    const input = field.querySelector('.modal-order__form_input');
+    if (input != null && input.value == '' && input.classList.contains('modal-order__form_input--required')) {
      field.classList.add('error');
+     isValid = false;
     } else {
      field.classList.remove('error');
     }
+
+    // validate email
+    if (input != null && input.value !== '' && input.getAttribute('id') === 'email') {
+     if (!validEmailAddress(input.value)) {
+      field.classList.add('error');
+      isValid = false;
+     } else {
+      field.classList.remove('error');
+     }
+    }
+
+    // validate phone number
+    if (input != null && input.value !== '' && input.getAttribute('id') === 'phone') {
+     if (!validPhoneNumber(input.value)) {
+      field.classList.add('error');
+      isValid = false;
+     } else {
+      field.classList.remove('error');
+     }
+    }
    })
+
+   let name = jQuery('.modal-order__form #name').val();
+   let phone = jQuery('.modal-order__form #phone').val();
+   let email = jQuery('.modal-order__form #email').val();
+   let message = jQuery('.modal-order__form #message').val();
+
+   if (isValid) {
+    jQuery('.wpcf7-form-control[name="your-name"]').val(name);
+    jQuery('.wpcf7-form-control[name="your-phone"]').val(phone);
+    jQuery('.wpcf7-form-control[name="your-email"]').val(email);
+    jQuery('.wpcf7-form-control[name="your-message"]').val(message);
+    jQuery('.wpcf7-submit').click();
+   }
+
+   console.log('isValid', isValid)
   })
+
+  /// response observer
+  const formResponseElement = document.querySelector('.wpcf7-response-output');
+
+  const formResponseObserver = new MutationObserver(function(mutationsList, observer) {
+   let formResponseBlock = document.querySelector('.modal-order-form-response');
+   formResponseBlock.innerHTML = formResponseElement.innerHTML;
+  });
+
+  formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
+
+  function validEmailAddress(email) {
+   var filter =
+       /^([\w-\.\+]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+   return filter.test(email);
+  }
+
+  function validPhoneNumber(phoneNumber) {
+   const phonePattern = /^\+?[0-9]{10,}$/;
+   return phonePattern.test(phoneNumber);
+  }
 
   // update items
   const updateItems = () => {
@@ -1100,7 +1158,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // select files
-  input.addEventListener('change', function () {
+  input.addEventListener('change', function (event) {
+   const cf7Files = document.querySelector('.wpcf7-drag-n-drop-file');
    if (arr.length == 0) {
     for (const file of this.files) {
      arr.push(file.name);
@@ -1120,7 +1179,11 @@ document.addEventListener('DOMContentLoaded', function () {
     choosedItems.forEach(choosedItem => {
      choosedItem.remove();
     });
+    input.value = '';
+    input.dispatchEvent(new Event('change'));
    })
+   // added files on hidden input
+   cf7Files.files = event.target.files;
   });
  }
 

@@ -8250,6 +8250,14 @@ button {
   }
 }
 
+.modal-order__inner .hidden_cf7_form {
+  display: none;
+}
+
+.modal-order-form-response {
+  color: var(--color-red);
+}
+
 .modal-order__title {
   font-weight: 500;
   font-size: 3.6rem;
