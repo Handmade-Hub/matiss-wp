@@ -566,7 +566,6 @@ get_header();
 			console.log(dataKey + " - " + dataValue);
 			console.log(newUrl);
 
-			// Декодируем URL и заменяем закодированные символы на нормальный текст
 			const decodedUrl = decodeURIComponent(newUrl);
 
 			window.location.href = decodedUrl;
