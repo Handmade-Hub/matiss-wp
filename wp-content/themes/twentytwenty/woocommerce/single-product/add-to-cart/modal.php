@@ -47,6 +47,16 @@ $attributes = $product->get_variation_attributes();
                                     <?php
                                 }
                                 ?>
+                                <?php
+                                if ( isset( $attributes[ 'Вартість' ] ) ) {
+                                    ?>
+                                    <p class="atribute_cost">
+                                        <?php echo __('Вартість: ', 'twentytwenty'); ?>
+                                        <span class="atribute_cost_value"></span>
+                                    </p>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <p class="modal-add-to-cart__case_quantity">
                                 <?php echo __('Кількість: ', 'twentytwenty'); ?>

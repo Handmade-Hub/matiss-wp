@@ -1006,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', function () {
    let quantity = 1;
    let totalPrice = data['line_total'];
    let variation = decodeUrlObject(data['variation']);
-   let size, frame;
+   let size, frame, cost;
 
    if (variation['attribute_розмір']) {
     size = variation['attribute_розмір'];
@@ -1016,9 +1016,14 @@ document.addEventListener('DOMContentLoaded', function () {
     frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
    }
 
+   if (variation['attribute_вартість']) {
+    cost = variation['attribute_вартість'];
+   }
+
    // set content
    jQuery('.modal-add-to-cart .atribute_size_value').text(size);
    jQuery('.modal-add-to-cart .atribute_frame_value').text(frame);
+   jQuery('.modal-add-to-cart .atribute_cost_value').text(cost);
    jQuery('.modal-add-to-cart .modal-add-to-cart__case_quantity_value').text(quantity);
    jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(totalPrice);
   }
