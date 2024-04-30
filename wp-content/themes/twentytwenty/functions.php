@@ -882,7 +882,7 @@ function custom_breadcrumbs()
 	$separator = '  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M8 4L15.5 11.5L8 19" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 					</svg>';
-	$home_text = 'Головна';
+	$home_text = 'Головна'; 
 	$show_on_home = false;
 
 	global $post;
@@ -1146,4 +1146,26 @@ function save_custom_info_fields()
 			update_option($field, $value);
 		}
 	}
+}
+
+function get_information_menu_items() {
+	$information_menu_obj = wp_get_nav_menu_items(26);
+	$result_array = array();
+
+	foreach ($information_menu_obj as $menu_item) {
+		if ($menu_item->menu_item_parent == 0) {
+			$parent_array = array(
+				'parent' => $menu_item,
+				'children' => array()
+			);
+			
+			foreach ($information_menu_obj as $child_menu_item) {
+				if ($child_menu_item->menu_item_parent == $menu_item->ID) {
+					$parent_array['children'][] = $child_menu_item;
+				}
+			}
+			$result_array[] = $parent_array;
+		}
+	}
+	return $result_array;
 }
