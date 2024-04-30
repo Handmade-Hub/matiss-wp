@@ -4,6 +4,8 @@
  */
 
 global $product;
+
+$attributes = $product->get_variation_attributes();
 ?>
 
 <section class="modal-add-to-cart">
@@ -25,13 +27,26 @@ global $product;
                         <div class="modal-add-to-cart__case">
                             <div class="modal-add-to-cart__case_block">
                                 <h6 class="modal-add-to-cart__case_title"><?php echo $product->get_title(); ?></h6>
-                                <p class="atribute_size">
-                                    <?php echo __('Розмір: ', 'twentytwenty'); ?>
-                                    <span class="atribute_size_value"></span> <?php echo __('см', 'twentytwenty'); ?></p>
-                                <p class="atribute_frame">
-                                    <?php echo __('Рама: ', 'twentytwenty'); ?>
-                                    <span class="atribute_frame_value"></span>
-                                </p>
+                                <?php
+                                if ( isset( $attributes[ 'Розмір' ] ) ) {
+                                ?>
+                                    <p class="atribute_size">
+                                        <?php echo __('Розмір: ', 'twentytwenty'); ?>
+                                        <span class="atribute_size_value"></span> <?php echo __('см', 'twentytwenty'); ?>
+                                    </p>
+                                <?php
+                                }
+                                ?>
+                                <?php
+                                if ( isset( $attributes[ 'Рама' ] ) ) {
+                                ?>
+                                    <p class="atribute_frame">
+                                        <?php echo __('Рама: ', 'twentytwenty'); ?>
+                                        <span class="atribute_frame_value"></span>
+                                    </p>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <p class="modal-add-to-cart__case_quantity">
                                 <?php echo __('Кількість: ', 'twentytwenty'); ?>

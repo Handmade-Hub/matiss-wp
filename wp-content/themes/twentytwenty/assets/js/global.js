@@ -1003,11 +1003,18 @@ document.addEventListener('DOMContentLoaded', function () {
   })
   // change modal content
   function changeModalContent(data) {
-   let quantity = data['quantity'];
+   let quantity = 1;
    let totalPrice = data['line_total'];
    let variation = decodeUrlObject(data['variation']);
-   let size = variation['attribute_розмір'];
-   let frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+   let size, frame;
+
+   if (variation['attribute_розмір']) {
+    size = variation['attribute_розмір'];
+   }
+
+   if (variation['attribute_колір-рами']) {
+    frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+   }
 
    // set content
    jQuery('.modal-add-to-cart .atribute_size_value').text(size);
