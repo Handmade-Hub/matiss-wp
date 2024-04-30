@@ -5367,6 +5367,7 @@ button {
 
 .product__image a {
   display: flex;
+  width: 100%;
 }
 
 .product__image img {
@@ -5394,6 +5395,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  height: 100%;
 }
 
 @media (max-width: 767px) {
@@ -5494,12 +5496,53 @@ button {
 
 .product__select {
   position: relative;
+  height: 100%;
 }
 
 @media (max-width: 767px) {
   .product__select {
     margin-top: 0.4rem;
   }
+}
+
+.variations_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.single-product .variations_form .variations {
+  text-align: left;
+  width: 100%;
+}
+
+.single-product .variations_form .variations tr {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-bottom: 1.7rem;
+}
+
+.single-product .variations_form .variations tr:last-child {
+  padding-bottom: 1.2rem;
+}
+
+.single-product .variations_form .variations tr label {
+  padding-bottom: 1rem;
+}
+
+.single-product .variations_form select {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.6rem;
+  padding: 1.2rem;
+  width: 100%;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 8L12.5 15.5L5 8" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background-size: 2.4rem 2.4rem;
+  background-position: 97.5%;
+  background-repeat: no-repeat;
 }
 
 .product__select.error .product__select_error {
@@ -5641,6 +5684,12 @@ button {
   line-height: 2.4rem;
   min-height: 4.8rem;
   border-width: 0.1rem;
+}
+
+.single-product .single_add_to_cart_button {
+   padding-top: inherit;
+   padding-bottom: inherit;
+   font-size: inherit;
 }
 
 .product__media {

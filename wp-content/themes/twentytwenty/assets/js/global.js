@@ -844,6 +844,7 @@ document.addEventListener('DOMContentLoaded', function () {
    items.forEach(item => {
     item.addEventListener('click', function () {
      panel.setAttribute('data-content', item.innerText);
+     changeWcSelectValue(item); // change WC select
      if (spanValue.classList.contains('--default')) spanValue.classList.remove('--default');
      spanValue.innerText = item.innerText;
      if (select.classList.contains('error')) select.classList.remove('error');
@@ -877,6 +878,7 @@ document.addEventListener('DOMContentLoaded', function () {
          if (e.target == multiItem) {
           multiItem.classList.add('choised');
           panel.setAttribute('data-choised', multiItem.innerText);
+          changeWcSelectMultiValue(multiItem);
           if (select.classList.contains('error')) select.classList.remove('error');
           if (buttonAdd.classList.contains('error')) buttonAdd.classList.remove('error');
          } else {
@@ -913,6 +915,26 @@ document.addEventListener('DOMContentLoaded', function () {
     })
    })
   })
+  // change  woocommerce select
+  function changeWcSelectValue (currentSelectedItem) {
+   let itemValue = currentSelectedItem.innerText;
+   let parentBlock = currentSelectedItem.closest('.product__select');
+   let wcForm = currentSelectedItem.closest('.variations_form');
+   let wcSelect = parentBlock.querySelector('.product_form_item select');
+   wcSelect.value = itemValue;
+   wcSelect.dispatchEvent(new Event('change'));
+   wcForm.dispatchEvent(new Event('check_variations'));
+  }
+  // change woocommerce multiitem select
+  function changeWcSelectMultiValue (currentSelectedItem) {
+   let itemValue = currentSelectedItem.innerText;
+   let parentBlock = currentSelectedItem.closest('.product__select');
+   let wcForm = currentSelectedItem.closest('.variations_form');
+   let wcSelect = parentBlock.querySelector('.product_form_item_multi select');
+   wcSelect.value = itemValue;
+   wcSelect.dispatchEvent(new Event('change'));
+   wcForm.dispatchEvent(new Event('check_variations'));
+  }
  }
 
  // add to cart modal
