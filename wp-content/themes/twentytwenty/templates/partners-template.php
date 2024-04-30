@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Our Team Template
+ * Template Name: Partners Template
  * Template Post Type: page
  *
  * @package WordPress
@@ -11,14 +11,14 @@
 
 get_header();
 
-$members = get_field('members');
+$partners = get_field('partners');
 $result_array = get_information_menu_items();
 ?>
 
 
 
 <script>
- console.log(<?php print_r(json_encode($members)) ?>)
+ console.log(<?php print_r(json_encode($partners)) ?>)
 </script>
 
 <!-- information-bar -->
@@ -40,22 +40,26 @@ $result_array = get_information_menu_items();
  </div>
 </section>
 
-<!-- our-team -->
-<section class="our-team">
- <div class="our-team__wrapper">
+<!-- partners -->
+<section class="partners">
+ <div class="partners__wrapper">
   <div class="container">
-   <div class="our-team__inner">
-    <ul class="our-team__list">
-     <?php foreach ($members as $member) { ?>
-      <li class="our-team__item">
-       <div class="our-team__image">
-        <img src="<?= $member['image']['url'] ?>" alt="<?= $member['image']['alt'] ?>">
+   <div class="partners__inner">
+    <ul class="partners__list">
+
+     <?php foreach ($partners as $partner) { ?>
+      <li class="partners__item">
+       <div class="partners__item_image">
+        <img src="<?= $partner['image']['url'] ?>" alt="<?= $partner['image']['alt'] ?>">
        </div>
-       <p class="our-team__name fw-600 text-center fz-22"><?= $member['name'] ?></p>
-       <p class="our-team__job text-center fz-18"><?= $member['position'] ?></p>
-       <p class="our-team__experience text-center"><?= $member['skills'] ?></p>
+       <div class="partners__item_content">
+        <h2 class="partners__item_title open-sans fz-22 fw-600"><?= $partner['name'] ?></h2>
+        <p class="partners__item_text fz-18"><?= $partner['description'] ?></p>
+        <a href="<?= $partner['button_url']['url'] ?>" class="partners__item_link"><?= $partner['button_label'] ?></a>
+       </div>
       </li>
      <?php } ?>
+
     </ul>
    </div>
   </div>
