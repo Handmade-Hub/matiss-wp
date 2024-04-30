@@ -12,13 +12,12 @@
 get_header();
 
 $partners = get_field('partners');
+$newsletter = get_field('newsletter');
 $result_array = get_information_menu_items();
 ?>
 
-
-
 <script>
- console.log(<?php print_r(json_encode($partners)) ?>)
+ console.log(<?php print_r(json_encode($newsletter)) ?>)
 </script>
 
 <!-- information-bar -->
@@ -46,7 +45,6 @@ $result_array = get_information_menu_items();
   <div class="container">
    <div class="partners__inner">
     <ul class="partners__list">
-
      <?php foreach ($partners as $partner) { ?>
       <li class="partners__item">
        <div class="partners__item_image">
@@ -59,8 +57,29 @@ $result_array = get_information_menu_items();
        </div>
       </li>
      <?php } ?>
-
     </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- newsletter -->
+<section class="newsletter">
+ <div class="newsletter__wrapper">
+  <div class="container">
+   <div class="newsletter__inner">
+    <h4 class="newsletter__title text-center fw-500"><?= $newsletter['title'] ?></h4>
+    <p class="newsletter__text text-center fz-18"><?= $newsletter['text'] ?></p>
+    <div class="newsletter__form">
+     <?php echo do_shortcode('[wpforms id="325" title="false"]')?>
+     <form method="post">
+      <div class="newsletter__form_field">
+       <input class="newsletter__form_input" placeholder="Email" id="POST-name" type="text" name="name">
+       <label class="newsletter__form_label" for="POST-name">Email</label>
+      </div>
+      <input class="button__primary newsletter__form_button" type="submit" value="Підписатися">
+     </form>
+    </div>
    </div>
   </div>
  </div>

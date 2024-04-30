@@ -15,12 +15,6 @@ $members = get_field('members');
 $result_array = get_information_menu_items();
 ?>
 
-
-
-<script>
- console.log(<?php print_r(json_encode($members)) ?>)
-</script>
-
 <!-- information-bar -->
 <section class="information-bar">
  <div class="information-bar__wrapper bg-gray">
