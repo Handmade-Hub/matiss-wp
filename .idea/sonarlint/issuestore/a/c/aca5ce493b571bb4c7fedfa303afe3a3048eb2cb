@@ -1,0 +1,110 @@
+
+UWeb:TableWithoutCaptionCheck" Add a description to this table.(åÜ„ßÿÿÿÿÿ8çÅ–õò1
+L	Web:S1827"*Remove this deprecated "valign" attribute.(†•ı±ıÿÿÿÿ8çÅ–õò1
+L	Web:S1827–"*Remove this deprecated "valign" attribute.(†•ı±ıÿÿÿÿ8çÅ–õò1
+L	Web:S1827"*Remove this deprecated "valign" attribute.(†•ı±ıÿÿÿÿ8çÅ–õò1
+Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8àÇ–õò1
+lphp:S103Æ"KSplit this 138 characters long line (which is greater than 120 authorized).(€¯Ú¸ÿÿÿÿÿ8àÇ–õò1
+lphp:S103Ï"KSplit this 122 characters long line (which is greater than 120 authorized).(»º¿Áıÿÿÿÿ8àÇ–õò1
+gphp:S103"KSplit this 153 characters long line (which is greater than 120 authorized).(Ğõ·8àÇ–õò1
+lphp:S103"KSplit this 155 characters long line (which is greater than 120 authorized).(÷¾áÿÿÿÿÿ8àÇ–õò1
+lphp:S103ä"KSplit this 127 characters long line (which is greater than 120 authorized).(¡„ÿóùÿÿÿÿ8àÇ–õò1
+lphp:S103Ë"KSplit this 160 characters long line (which is greater than 120 authorized).(Õ¡ï†ÿÿÿÿÿ8àÇ–õò1
+lphp:S103Õ"KSplit this 138 characters long line (which is greater than 120 authorized).(€¯Ú¸ÿÿÿÿÿ8àÇ–õò1
+lphp:S103”"KSplit this 226 characters long line (which is greater than 120 authorized).(ŸÊöÏşÿÿÿÿ8àÇ–õò1
+lphp:S103¥"KSplit this 136 characters long line (which is greater than 120 authorized).(ª¾¡êùÿÿÿÿ8àÇ–õò1
+gphp:S103¨"KSplit this 163 characters long line (which is greater than 120 authorized).(êúÌ8àÇ–õò1
+lphp:S103«"KSplit this 225 characters long line (which is greater than 120 authorized).(ñí´ùşÿÿÿÿ8àÇ–õò1
+gphp:S103¬"KSplit this 121 characters long line (which is greater than 120 authorized).(ÛÄç–8àÇ–õò1
+gphp:S103¼"KSplit this 221 characters long line (which is greater than 120 authorized).(ä§æƒ8àÇ–õò1
+lphp:S103—"KSplit this 218 characters long line (which is greater than 120 authorized).(àïœ¦ùÿÿÿÿ8àÇ–õò1
+gphp:S103˜"KSplit this 142 characters long line (which is greater than 120 authorized).(¬·´Å8àÇ–õò1
+gphp:S103™"KSplit this 334 characters long line (which is greater than 120 authorized).(åëŒ¨8àÇ–õò1
+gphp:S103"KSplit this 544 characters long line (which is greater than 120 authorized).(¸æÃî8àÇ–õò1
+gphp:S103¥"KSplit this 588 characters long line (which is greater than 120 authorized).(›Âº8àÇ–õò1
+gphp:S103ª"KSplit this 186 characters long line (which is greater than 120 authorized).(œ©Ëï8àÇ–õò1
+lphp:S103²"KSplit this 469 characters long line (which is greater than 120 authorized).(‚¸éûÿÿÿÿ8àÇ–õò1
+lphp:S103³"KSplit this 328 characters long line (which is greater than 120 authorized).(Œ¶œÌùÿÿÿÿ8áÇ–õò1
+lphp:S103¶"KSplit this 465 characters long line (which is greater than 120 authorized).(ğªÅòüÿÿÿÿ8áÇ–õò1
+gphp:S103·"KSplit this 266 characters long line (which is greater than 120 authorized).(ÖñÁĞ8áÇ–õò1
+lphp:S103º"KSplit this 132 characters long line (which is greater than 120 authorized).(¤¨‰Şüÿÿÿÿ8áÇ–õò1
+lphp:S103À"KSplit this 440 characters long line (which is greater than 120 authorized).(­ºôûÿÿÿÿ8áÇ–õò1
+lphp:S103Ã"KSplit this 334 characters long line (which is greater than 120 authorized).(‡Óİ»ıÿÿÿÿ8áÇ–õò1
+lphp:S103Ä"KSplit this 137 characters long line (which is greater than 120 authorized).(Á±ğüÿÿÿÿ8áÇ–õò1
+lphp:S103ó"KSplit this 121 characters long line (which is greater than 120 authorized).(õÙ§›üÿÿÿÿ8áÇ–õò1
+lphp:S103"KSplit this 121 characters long line (which is greater than 120 authorized).(Îù­êúÿÿÿÿ8áÇ–õò1
+lphp:S103"KSplit this 146 characters long line (which is greater than 120 authorized).(ÚÑÕ´ùÿÿÿÿ8áÇ–õò1
+|php:S100%"aRename function "twentytwenty_theme_support" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(„»üƒ8áÇ–õò1
+php:S100½"cRename function "twentytwenty_register_styles" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Óƒ¯ş8áÇ–õò1
+€php:S100ß"dRename function "twentytwenty_register_scripts" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ú¤èù8áÇ–õò1
+ƒphp:S100‰"gRename function "twentytwenty_skip_link_focus_fix" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Şğé›8áÇ–õò1
+ƒphp:S100"gRename function "twentytwenty_non_latin_languages" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Áäè¼8áÇ–õò1
+uphp:S100­"YRename function "twentytwenty_menus" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ãàéå8áÇ–õò1
+„php:S100Å"cRename function "twentytwenty_get_custom_logo" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ö€÷ñùÿÿÿÿ8áÇ–õò1
+ophp:S100ı"SRename function "wp_body_open" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ÿ¶Š8áÇ–õò1
+xphp:S100‰"]Rename function "twentytwenty_skip_link" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(“ô­N8áÇ–õò1
+ƒphp:S100š"hRename function "twentytwenty_sidebar_registration" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(–ó•8áÇ–õò1
+ƒphp:S100Ç"gRename function "twentytwenty_block_editor_styles" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ÙõÇ­8áÇ–õò1
+Šphp:S100ê"iRename function "twentytwenty_classic_editor_styles" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ã³™»şÿÿÿÿ8áÇ–õò1
+”php:S100€"xRename function "twentytwenty_add_classic_editor_customizer_styles" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‹Ş­í8áÇ–õò1
+˜php:S100›"wRename function "twentytwenty_add_classic_editor_non_latin_styles" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‡·êçûÿÿÿÿ8áÇ–õò1
+…php:S100¶"iRename function "twentytwenty_block_editor_settings" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(»ë§Ú8áÇ–õò1
+‚php:S100’"aRename function "twentytwenty_read_more_tag" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ŞÏ„’şÿÿÿÿ8áÇ–õò1
+—php:S100 "vRename function "twentytwenty_customize_controls_enqueue_scripts" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ØŞçûÿÿÿÿÿ8áÇ–õò1
+‹php:S100¸"jRename function "twentytwenty_customize_preview_init" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(äúŸÜûÿÿÿÿ8áÇ–õò1
+‡php:S100Õ"fRename function "twentytwenty_get_color_for_area" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(íñ·ùÿÿÿÿ8áÇ–õò1
+php:S100û"mRename function "twentytwenty_get_customizer_color_vars" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ë‹µšıÿÿÿÿ8áÇ–õò1
+‡php:S100"fRename function "twentytwenty_get_elements_array" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(É¢ªìıÿÿÿÿ8áÇ–õò1
+tphp:S100Ó"XRename function "WebP_upload_mimes" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ğğá¼8áÇ–õò1
+vphp:S100İ"ZRename function "WebP_is_displayable" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(äåæª8áÇ–õò1
+zphp:S100ï"YRename function "custom_breadcrumbs" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(«²¿üÿÿÿÿÿ8áÇ–õò1
+yphp:S100Á"]Rename function "custom_attribute_label" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(©Æºµ8áÇ–õò1
+vphp:S100Ñ"ZRename function "remove_product_tabs" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(—Ÿ¾8áÇ–õò1
+uphp:S100û"YRename function "custom_tab_content" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‘Äµ™8áÇ–õò1
+php:S100‚"rRename function "add_custom_tab_to_woocommerce_settings_tabs" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(íõşŸ8áÇ–õò1
+php:S100Š"eRename function "output_custom_info_tab_content" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(äÓÄÀ8áÇ–õò1
+~php:S100«"bRename function "custom_output_custom_editor" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‰ÊĞæ8áÇ–õò1
+zphp:S100º"^Rename function "save_custom_info_fields" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(®€Õ„8áÇ–õò1
+uphp:S100Ê"YRename function "custom_add_to_cart" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ĞÇÃ„8áÇ–õò1
+j	php:S1301Â"MReplace this "switch" statement with "if" statements to increase readability.(¢ø†ğ8áÇ–õò1
+:php:S113"'Add a new line at the end of this file.8áÇ–õò1
+v	php:S3776ï"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(«²¿üÿÿÿÿÿ8áÇ–õò1
+}	php:S1192Æ"[Define a constant instead of duplicating this literal "/assets/css/font-inter.css" 3 times.(€¯Ú¸ÿÿÿÿÿ8áÇ–õò1
+i	php:S1192º"GDefine a constant instead of duplicating this literal "</div>" 4 times.(˜ñÄøÿÿÿÿ8áÇ–õò1
+‹	php:S1192„"iDefine a constant instead of duplicating this literal "" class="breadcrumbs__item_link fw-500">" 3 times.(Îù­êúÿÿÿÿ8áÇ–õò1
+h	php:S1192„"FDefine a constant instead of duplicating this literal "</li>" 9 times.(Îù­êúÿÿÿÿ8áÇ–õò1
+|	php:S1488ı"_Immediately return this expression instead of assigning it to the temporary variable "$colors".(ü’§8áÇ–õò1
+O	php:S1481Ñ"2Remove this unused "$parent_style" local variable.(×îşñ8áÇ–õò1
+K	php:S1481”".Remove this unused "$elements" local variable.(¿‘â¢8áÇ–õò1
+M	php:S1172Á"0Remove the unused function parameter "$product".(©Æºµ8áÇ–õò1
+J	php:S1172Ñ"-Remove the unused function parameter "$tabs".(—Ÿ¾8áÇ–õò1
+C	php:S2003€"&Replace "require" with "require_once".(»“8áÇ–õò1
+H	php:S2003™"&Replace "require" with "require_once".(Äÿÿÿÿÿ8áÇ–õò1
+H	php:S2003œ"&Replace "require" with "require_once".(£±¡ùúÿÿÿÿ8áÇ–õò1
+C	php:S2003"&Replace "require" with "require_once".(ğí¸°8áÇ–õò1
+H	php:S2003 "&Replace "require" with "require_once".(ÀŒ÷×úÿÿÿÿ8áÇ–õò1
+H	php:S2003£"&Replace "require" with "require_once".(‰¾°¨ıÿÿÿÿ8áÇ–õò1
+C	php:S2003¦"&Replace "require" with "require_once".(ŒÈ—8áÇ–õò1
+H	php:S2003©"&Replace "require" with "require_once".(Œôšüÿÿÿÿ8áÇ–õò1
+C	php:S2003¬"&Replace "require" with "require_once".(Âûßä8âÇ–õò1
+H	php:S2003¯"&Replace "require" with "require_once".(¼™ô•üÿÿÿÿ8âÇ–õò1
+H	php:S2003²"&Replace "require" with "require_once".(Êô¸Ìúÿÿÿÿ8âÇ–õò1
+H	php:S2003µ"&Replace "require" with "require_once".(¦‰“¹şÿÿÿÿ8âÇ–õò1
+@php:S125¾"Remove this commented out code.(âÑ‘¹øÿÿÿÿ8âÇ–õò1
+@php:S125Ğ"Remove this commented out code.( ¯¸‘ÿÿÿÿÿ8âÇ–õò1
+@php:S125"Remove this commented out code.(‚’”®ûÿÿÿÿ8âÇ–õò1
+;php:S125"Remove this commented out code.(—ïÍÊ8âÇ–õò1
+@php:S125¤"Remove this commented out code.(ïı‚œùÿÿÿÿ8âÇ–õò1
+i	php:S4833€"LReplace "require" with namespace import mechanism through the "use" keyword.(»“8âÇ–õò1
+n	php:S4833™"LReplace "require" with namespace import mechanism through the "use" keyword.(Äÿÿÿÿÿ8âÇ–õò1
+n	php:S4833œ"LReplace "require" with namespace import mechanism through the "use" keyword.(£±¡ùúÿÿÿÿ8âÇ–õò1
+i	php:S4833"LReplace "require" with namespace import mechanism through the "use" keyword.(ğí¸°8âÇ–õò1
+n	php:S4833 "LReplace "require" with namespace import mechanism through the "use" keyword.(ÀŒ÷×úÿÿÿÿ8âÇ–õò1
+n	php:S4833£"LReplace "require" with namespace import mechanism through the "use" keyword.(‰¾°¨ıÿÿÿÿ8âÇ–õò1
+i	php:S4833¦"LReplace "require" with namespace import mechanism through the "use" keyword.(ŒÈ—8âÇ–õò1
+n	php:S4833©"LReplace "require" with namespace import mechanism through the "use" keyword.(Œôšüÿÿÿÿ8âÇ–õò1
+i	php:S4833¬"LReplace "require" with namespace import mechanism through the "use" keyword.(Âûßä8âÇ–õò1
+n	php:S4833¯"LReplace "require" with namespace import mechanism through the "use" keyword.(¼™ô•üÿÿÿÿ8âÇ–õò1
+n	php:S4833²"LReplace "require" with namespace import mechanism through the "use" keyword.(Êô¸Ìúÿÿÿÿ8âÇ–õò1
+n	php:S4833µ"LReplace "require" with namespace import mechanism through the "use" keyword.(¦‰“¹şÿÿÿÿ8âÇ–õò1
+Sphp:S131Â"7Add a "case default" clause to this "switch" statement.(¢ø†ğ8âÇ–õò1

@@ -1,0 +1,42 @@
+
+wjavascript:S3776"URefactor this function to reduce its Cognitive Complexity from 652 to the 15 allowed.(©å„x8­Æÿôò1
+njavascript:S11212"FExtract the assignment of "list.style.maxHeight" from this expression.(Ë·çùÿÿÿÿ8­Æÿôò1
+njavascript:S11212"FExtract the assignment of "list.style.maxHeight" from this expression.(Ë·çùÿÿÿÿ8­Æÿôò1
+`javascript:S1481˜"7Remove the declaration of the unused 'swiper' variable.(ÌùËŒıÿÿÿÿ8­Æÿôò1
+]javascript:S1854˜"4Remove this useless assignment to variable "swiper".(ÌùËŒıÿÿÿÿ8­Æÿôò1
+`javascript:S1481¢"7Remove the declaration of the unused 'swiper' variable.(ÚŠæãøÿÿÿÿ8­Æÿôò1
+]javascript:S1854¢"4Remove this useless assignment to variable "swiper".(ÚŠæãøÿÿÿÿ8­Æÿôò1
+djavascript:S1121Å"@Extract the assignment of "item.innerText" from this expression.(ÜĞ™8­Æÿôò1
+djavascript:S1121Ê"@Extract the assignment of "item.innerText" from this expression.(ÜĞ™8­Æÿôò1
+djavascript:S1121Ï"@Extract the assignment of "item.innerText" from this expression.(ÜĞ™8­Æÿôò1
+qjavascript:S1871ä"MThis branch's code block is the same as the block for the branch on line 225.(ì¸—Á8­Æÿôò1
+Zjavascript:S1481í"7Remove the declaration of the unused 'swiper' variable.(¤å˜48­Æÿôò1
+Wjavascript:S1854í"4Remove this useless assignment to variable "swiper".(¤å˜48­Æÿôò1
+`javascript:S1481ü"7Remove the declaration of the unused 'swiper' variable.(ŒøÒºùÿÿÿÿ8­Æÿôò1
+]javascript:S1854ü"4Remove this useless assignment to variable "swiper".(ŒøÒºùÿÿÿÿ8­Æÿôò1
+@javascript:S1534"Duplicate name 'speed'.(”‹¾Îşÿÿÿÿ8­Æÿôò1
+{javascript:S4144›"XUpdate this function so that its implementation is not identical to the one on line 371.(ËÌt8­Æÿôò1
+|javascript:S4144§"XUpdate this function so that its implementation is not identical to the one on line 383.(çŸË§8­Æÿôò1
+|javascript:S4144´"XUpdate this function so that its implementation is not identical to the one on line 396.(Å­˜ë8­Æÿôò1
+|javascript:S4144È"XUpdate this function so that its implementation is not identical to the one on line 416.(Û¸Â‘8­Æÿôò1
+pjavascript:S4138"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(‰Šô’8­Æÿôò1
+`javascript:S1481×"7Remove the declaration of the unused 'swiper' variable.(¦‘Ş£şÿÿÿÿ8­Æÿôò1
+]javascript:S1854×"4Remove this useless assignment to variable "swiper".(¦‘Ş£şÿÿÿÿ8­Æÿôò1
+ujavascript:S4138‡"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(Ì¢¾ıúÿÿÿÿ8­Æÿôò1
+Zjavascript:S1481£"7Remove the declaration of the unused 'swiper' variable.(É¨à68­Æÿôò1
+Wjavascript:S1854£"4Remove this useless assignment to variable "swiper".(É¨à68­Æÿôò1
+hjavascript:S6660õ"?'If' statement should not be the only statement in 'else' block(à÷ÿúüÿÿÿÿ8­Æÿôò1
+Gjavascript:S125 "Remove this commented out code.(— ØÀúÿÿÿÿ8­Æÿôò1
+Ujavascript:S1481¶",Remove unused function 'isformCanSubmitted'.(ËÄ˜ªùÿÿÿÿ8­Æÿôò1
+Zjavascript:S1481×"7Remove the declaration of the unused 'button' variable.(øƒ…#8­Æÿôò1
+Wjavascript:S1854×"4Remove this useless assignment to variable "button".(øƒ…#8­Æÿôò1
+Ljavascript:S1481Ü"#Remove unused function 'openModal'.(ù‘›áüÿÿÿÿ8­Æÿôò1
+Ajavascript:S125İ"Remove this commented out code.(îìÓm8­Æÿôò1
+Ujavascript:S1481í",Remove unused function 'changeModalContent'.(€¨ºãûÿÿÿÿ8­Æÿôò1
+pjavascript:S4138µ"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(‰Šô’8­Æÿôò1
+„javascript:S2703À	"`Add the "let", "const" or "var" keyword to this declaration of "radioInput" to make it explicit.(Ãö™å8­Æÿôò1
+ujavascript:S4138Ä	"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ıÅÿ‘úÿÿÿÿ8­Æÿôò1
+ujavascript:S4138Ş	"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(İö¾Úûÿÿÿÿ8­Æÿôò1
+javascript:S6582ò	"[Prefer using an optional chain expression instead, as it's more concise and easier to read.(ıÄùÖ8­Æÿôò1
+hjavascript:S6660Í
+"?'If' statement should not be the only statement in 'else' block(¥°ùÿÿÿÿ8­Æÿôò1
