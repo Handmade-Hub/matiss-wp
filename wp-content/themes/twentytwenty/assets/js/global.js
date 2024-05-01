@@ -69,12 +69,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   //  search modal
-  if (document.querySelectorAll('.header__search').length && document.querySelectorAll('.search-modal__wrapper').length) {
-    const buttons = document.querySelectorAll('.header__search');
+  const headerSearch = document.querySelectorAll('.header__search');
+  const searchModalWrapper = document.querySelectorAll('.search-modal__wrapper');
+
+  if (headerSearch.length && searchModalWrapper.length) {
     const modal = document.querySelector('.search-modal__wrapper');
     const buttonClose = document.querySelector('.search-modal__button_close');
-
-    buttons.forEach(button => {
+    console.log(modal);
+    headerSearch.forEach(button => {
       button.addEventListener('click', function () {
         modal.classList.add('open');
         body.classList.add('menu-open');
