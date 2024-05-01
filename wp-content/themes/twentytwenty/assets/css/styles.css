@@ -5687,9 +5687,9 @@ button {
 }
 
 .single-product .single_add_to_cart_button {
-   padding-top: inherit;
-   padding-bottom: inherit;
-   font-size: inherit;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  font-size: inherit;
 }
 
 .product__media {
@@ -8527,4 +8527,8 @@ button {
 
 .woocommerce-ordering {
   display: none;
+}
+
+.header__icons img {
+  max-width: initial;
 }
