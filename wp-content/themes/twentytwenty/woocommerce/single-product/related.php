@@ -21,6 +21,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// if default related products empty
+if ( empty( $related_products ) ) {
+    $related_category = 'Картини';
+    $args = array(
+        'category' => $related_category,
+        'posts_per_page' => 4,
+        'orderby' => 'rand',
+        'post__not_in' => array( $product->get_id() ),
+    );
+
+    $related_products = wc_get_products( $args );
+}
+
 if ( $related_products ) : ?>
 
 	<section class="featured-product">

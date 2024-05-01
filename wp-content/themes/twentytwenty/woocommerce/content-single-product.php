@@ -37,10 +37,14 @@ $product_sku = $product->get_sku();
 $product_description = $product->get_description();
 
 // price
-$variation_prices = $product->get_variation_prices();
+if ( $product->is_type( 'variable') ) {
+    $variation_prices = $product->get_variation_prices();
 
-if ( $variation_prices ) {
-    $min_price = min( $variation_prices['price'] );
+    if ( $variation_prices ) {
+        $min_price = min( $variation_prices['price'] );
+    }
+} else {
+    $min_price = $product->get_price();
 }
 
 // product metas
@@ -89,11 +93,6 @@ foreach ($mobile_gallery_images as $image_id) {
                     </div>
                     <?php
                 } ?>
-<!--                <div class="product__swiper-slide swiper-slide">-->
-<!--                    <a href="images/paintings/big-one.jpg" data-fancybox="gallery">-->
-<!--                        <img src="images/paintings/big-one.jpg" alt="image">-->
-<!--                    </a>-->
-<!--                </div>-->
             </div>
             <div class="product__swiper-pagination dots-primary swiper-pagination"></div>
         </div>
@@ -121,12 +120,28 @@ foreach ($mobile_gallery_images as $image_id) {
                         </button>
                         <div class="product__content">
                             <h2 class="product__title"><?php echo $product_title; ?></h2>
-                            <p><?php echo __( 'Артикул: ', 'twentytwenty' ); echo $product_sku; ?></p>
-                            <p class="product__price"><?php echo __( 'від', 'twentytwenty' ); ?>
+                            <?php
+                            if ( ! empty($product_sku ) ) {
+                            ?>
+                                <p><?php echo __( 'Артикул: ', 'twentytwenty' ); echo $product_sku; ?></p>
+                                <?php
+                            }
+                            ?>
+                            <p class="product__price">
+                                <?php
+                                if ( $product->is_type( 'variable') ) {
+                                    echo __( 'від', 'twentytwenty' );
+                                }
+                                ?>
                                 <span class="product__price_normal"><?php echo wc_price( $min_price ); ?></span>
-                                <!-- <span class="product__price_sale">$165</span> -->
                             </p>
                             <div class="product__content_wrap">
+                                <?php if ( ! empty ( $product_description ) ) { ?>
+                                    <div class="product__description">
+                                        <?php echo $product_description; ?>
+                                    </div>
+                                <?php } ?>
+
                                 <?php
                                 if ( ! empty ( $product_meta[ 'Матеріали' ] ) ) {
                                 ?>

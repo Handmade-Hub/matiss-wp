@@ -1,0 +1,27 @@
+
+9
+	readme.md,2\7\275d783e298228506068436512433d343feb52aa
+u
+Ewp-content/themes/twentytwenty/woocommerce/content-single-product.php,6\0\60720d77bd62303fa139a427b59cbb56b80a28e6
+n
+>wp-content/themes/twentytwenty/woocommerce/archive-product.php,7\9\792013ba19f844169bc4bd9d3ed33c748ff8470c
+e
+5wp-content/themes/twentytwenty/assets/js/customize.js,f\b\fbcf795ad4d23b2cb03e00efccae1d303188eebc
+]
+-wp-includes/js/tinymce/themes/modern/theme.js,0\f\0feb9d26fba38eb719545e6ae6708dd69a644c88
+
+Owp-content/themes/twentytwenty/woocommerce/single-product/add-to-cart/modal.php,8\8\88c41ad28ec41176be9821ef5a9b5d68ad505ce8
+‚
+Rwp-content/themes/twentytwenty/woocommerce/single-product/add-to-cart/variable.php,a\b\abdd0ec3c9bddf8a3078c7de3366a701d928f52b
+ƒ
+Swp-content/themes/twentytwenty/woocommerce/single-product/add-to-cart/variation.php,2\0\2028e3210fa969d528a57bf7c5a0606af21332da
+d
+4wp-content/themes/twentytwenty/assets/css/styles.css,5\a\5a438c97e630e0ee6e99064a43b0157cd3b6f9e3
+–
+fwp-content/themes/twentytwenty/woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php,2\2\220e7f04a445f2579cb741cc7bf99b38ab3e628b
+\
+,wp-content/themes/twentytwenty/functions.php,a\c\aca5ce493b571bb4c7fedfa303afe3a3048eb2cb
+m
+=wp-content/themes/twentytwenty/woocommerce/single-product.php,e\1\e1c799a913c98c20a61c72a8f6e4ea6e2de19441
+b
+2wp-content/themes/twentytwenty/assets/js/global.js,c\8\c85f3752a4609e1b67e8ccee27b1b92c03cb71a4

@@ -922,102 +922,259 @@ document.addEventListener('DOMContentLoaded', function () {
         })
       })
     })
-    // change  woocommerce select
-    function changeWcSelectValue(currentSelectedItem) {
-      let itemValue = currentSelectedItem.innerText;
-      let parentBlock = currentSelectedItem.closest('.product__select');
-      let wcForm = currentSelectedItem.closest('.variations_form');
-      let wcSelect = parentBlock.querySelector('.product_form_item select');
-      wcSelect.value = itemValue;
-      wcSelect.dispatchEvent(new Event('change'));
-      wcForm.dispatchEvent(new Event('check_variations'));
+  })
+// selection check
+const buttons = document.querySelectorAll('.product__button');
+buttons.forEach(button => {
+  button.addEventListener('click', e => {
+    // check on selected
+    if (spanValue.classList.contains('--default')) {
+      e.preventDefault();
+      select.classList.add('error');
+      buttonAdd.classList.add('error');
     }
-    // change woocommerce multiitem select
-    function changeWcSelectMultiValue(currentSelectedItem) {
-      let itemValue = currentSelectedItem.innerText;
-      let parentBlock = currentSelectedItem.closest('.product__select');
-      let wcForm = currentSelectedItem.closest('.variations_form');
-      let wcSelect = parentBlock.querySelector('.product_form_item_multi select');
-      wcSelect.value = itemValue;
-      wcSelect.dispatchEvent(new Event('change'));
-      wcForm.dispatchEvent(new Event('check_variations'));
+    // check on selected multichoce
+    if (panel.classList.contains('multichoice') && panel.getAttribute('data-choised') == 'null') {
+      e.preventDefault();
+      select.classList.add('error');
+      buttonAdd.classList.add('error');
     }
-  }
+  })
+})
+  })
+// change  woocommerce select
+function changeWcSelectValue(currentSelectedItem) {
+  let itemValue = currentSelectedItem.innerText;
+  let parentBlock = currentSelectedItem.closest('.product__select');
+  let wcForm = currentSelectedItem.closest('.variations_form');
+  let wcSelect = parentBlock.querySelector('.product_form_item select');
+  wcSelect.value = itemValue;
+  wcSelect.dispatchEvent(new Event('change'));
+  wcForm.dispatchEvent(new Event('check_variations'));
 
-  // add to cart modal
-  if (document.querySelectorAll('.add-to-cart').length && document.querySelectorAll('.modal-add-to-cart').length) {
-    const button = document.querySelector('.add-to-cart');
-    const modal = document.querySelector('.modal-add-to-cart');
-    const buttonClose = document.querySelectorAll('.modal-add-to-cart__button_close');
-    const cartIcon = document.querySelectorAll('.header__cart');
-    // open modal
+  // // if withot frame change color
+  // if (itemValue === 'Без рами') {
+  //  setTimeout(function (){
+  //   let multiSelect = document.querySelector('.product_form_item_multi select');
+  //   multiSelect.value = "Без кольору";
+  //   multiSelect.dispatchEvent(new Event('change'));
+  //   multiSelect.dispatchEvent(new Event('input'));
+  //   multiSelect.dispatchEvent(new Event('check_variations'));
+  //  },100)
+  // }
+}
+// change woocommerce multiitem select
+function changeWcSelectMultiValue(currentSelectedItem) {
+  let itemValue = currentSelectedItem.innerText;
+  let parentBlock = currentSelectedItem.closest('.product__select');
+  let wcForm = currentSelectedItem.closest('.variations_form');
+  let wcSelect = parentBlock.querySelector('.product_form_item_multi select');
+  wcSelect.value = itemValue;
+  wcSelect.dispatchEvent(new Event('change'));
+  wcForm.dispatchEvent(new Event('check_variations'));
+}
+// validation form
+function isformCanSubmitted() {
+  let selectPanels = jQuery('.product__select_panel');
+
+  let spans = selectPanels.find('span');
+  let isCanSubmitted = true;
+
+  selectPanels.each(function () {
+    if (jQuery(this).hasClass('multichoice') && jQuery(this).attr('data-choised') == 'null') {
+      isCanSubmitted = false;
+    }
+  })
+
+  spans.each(function () {
+    if (jQuery(this).hasClass('--default')) {
+      isCanSubmitted = false;
+    }
+  })
+
+  return isCanSubmitted;
+}
+
+const element = document.querySelector('.woocommerce-variation.single_variation');
+
+const priceObserver = new MutationObserver(function (mutationsList, observer) {
+  let mainPrice = document.querySelector('.product__content .product__price');
+  mainPrice.innerHTML = element.innerHTML;
+});
+
+priceObserver.observe(element, { subtree: true, characterData: true, childList: true });
+ }
+
+// add to cart modal
+if (document.querySelectorAll('.add-to-cart').length && document.querySelectorAll('.modal-add-to-cart').length) {
+  const button = document.querySelector('.add-to-cart');
+  const modal = document.querySelector('.modal-add-to-cart');
+  const buttonClose = document.querySelectorAll('.modal-add-to-cart__button_close');
+  const cartIcon = document.querySelectorAll('.header__cart');
+  // open modal
+  function openModal() {
+    // if (!button.classList.contains('error')) {
+    modal.classList.add('open');
+    body.classList.add('menu-open');
+    cartIcon.forEach(icon => {
+      icon.classList.add('not-empty');
+    })
+  }
+  // }
+  // close modal
+  buttonClose.forEach(button => {
     button.addEventListener('click', () => {
-      if (!button.classList.contains('error')) {
-        modal.classList.add('open');
-        body.classList.add('menu-open');
-        cartIcon.forEach(icon => {
-          icon.classList.add('not-empty');
-        })
-      }
+      modal.classList.remove('open');
+      body.classList.remove('menu-open');
     })
-    // close modal
-    buttonClose.forEach(button => {
-      button.addEventListener('click', () => {
-        modal.classList.remove('open');
-        body.classList.remove('menu-open');
-      })
-    })
+  })
+  // change modal content
+  function changeModalContent(data) {
+    let quantity = 1;
+    let totalPrice = data['line_total'];
+    let variation = decodeUrlObject(data['variation']);
+    let size, frame, cost;
+
+    if (variation['attribute_розмір']) {
+      size = variation['attribute_розмір'];
+    }
+
+    if (variation['attribute_колір-рами']) {
+      frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+    }
+
+    if (variation['attribute_вартість']) {
+      cost = variation['attribute_вартість'];
+    }
+
+    // set content
+    jQuery('.modal-add-to-cart .atribute_size_value').text(size);
+    jQuery('.modal-add-to-cart .atribute_frame_value').text(frame);
+    jQuery('.modal-add-to-cart .atribute_cost_value').text(cost);
+    jQuery('.modal-add-to-cart .modal-add-to-cart__case_quantity_value').text(quantity);
+    jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(totalPrice);
   }
+}
 
-  // modal add to cart
-  if (document.querySelectorAll('.modal-order').length && document.querySelectorAll('.product__button--modal-order').length) {
-    const modal = document.querySelector('.modal-order');
-    const form = modal.querySelector('.modal-order__form');
-    const input = modal.querySelector('.modal-order__add-file input');
-    const buttonOpen = document.querySelector('.product__button--modal-order');
-    const buttonsClose = document.querySelectorAll('.modal-order__close');
-    const buttonRemoveAll = document.querySelector('.modal-order__add-file_remove-all');
-    const result = form.querySelector('.modal-order__add-file_result');
-    const list = form.querySelector('.modal-order__add-file_list');
-    let arr = [];
+function decodeUrlObject(obj) {
+  let decodedObject = {};
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      let decodedKey = decodeURIComponent(key);
+      let decodedValue = decodeURIComponent(obj[key]);
+      decodedObject[decodedKey] = decodedValue;
+    }
+  }
+  return decodedObject;
+}
 
-    // open and hide modal
-    buttonOpen.addEventListener('click', function () {
-      modal.classList.add('open');
-      body.classList.add('menu-open');
-    });
+// modal add to cart
+if (document.querySelectorAll('.modal-order').length && document.querySelectorAll('.product__button--modal-order').length) {
+  const modal = document.querySelector('.modal-order');
+  const form = modal.querySelector('.modal-order__form');
+  const input = modal.querySelector('.modal-order__add-file input');
+  const buttonOpen = document.querySelector('.product__button--modal-order');
+  const buttonsClose = document.querySelectorAll('.modal-order__close');
+  const buttonRemoveAll = document.querySelector('.modal-order__add-file_remove-all');
+  const result = form.querySelector('.modal-order__add-file_result');
+  const list = form.querySelector('.modal-order__add-file_list');
+  let arr = [];
 
-    buttonsClose.forEach(buttonClose => {
-      buttonClose.addEventListener('click', function () {
-        modal.classList.remove('open');
-        body.classList.remove('menu-open');
-      })
+  // open and hide modal
+  buttonOpen.addEventListener('click', function () {
+    modal.classList.add('open');
+    body.classList.add('menu-open');
+  });
+
+  buttonsClose.forEach(buttonClose => {
+    buttonClose.addEventListener('click', function () {
+      modal.classList.remove('open');
+      body.classList.remove('menu-open');
     })
+  })
 
-    // submit form
-    form.addEventListener('submit', e => {
-      const fields = form.querySelectorAll('.modal-order__field');
-      fields.forEach(field => {
-        const input = field.querySelector('.modal-order__form_input--required');
-        if (input != null && input.value == '') {
-          e.preventDefault();
+  // submit form
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const fields = form.querySelectorAll('.modal-order__field');
+    let isValid = true;
+    fields.forEach(field => {
+      const input = field.querySelector('.modal-order__form_input');
+      if (input != null && input.value == '' && input.classList.contains('modal-order__form_input--required')) {
+        field.classList.add('error');
+        isValid = false;
+      } else {
+        field.classList.remove('error');
+      }
+
+      // validate email
+      if (input != null && input.value !== '' && input.getAttribute('id') === 'email') {
+        if (!validEmailAddress(input.value)) {
           field.classList.add('error');
+          isValid = false;
         } else {
           field.classList.remove('error');
         }
-      })
+      }
+
+      // validate phone number
+      if (input != null && input.value !== '' && input.getAttribute('id') === 'phone') {
+        if (!validPhoneNumber(input.value)) {
+          field.classList.add('error');
+          isValid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      }
     })
 
-    // update items
-    const updateItems = () => {
-      const choosedItems = list.querySelectorAll('li');
-      choosedItems.forEach(choosedItem => {
-        choosedItem.remove();
-      })
-      for (let i = 0; i < arr.length; i++) {
-        result.classList.add('not-empty');
-        let li = document.createElement('li');
-        li.innerHTML = `
+    let name = jQuery('.modal-order__form #name').val();
+    let phone = jQuery('.modal-order__form #phone').val();
+    let email = jQuery('.modal-order__form #email').val();
+    let message = jQuery('.modal-order__form #message').val();
+
+    if (isValid) {
+      jQuery('.wpcf7-form-control[name="your-name"]').val(name);
+      jQuery('.wpcf7-form-control[name="your-phone"]').val(phone);
+      jQuery('.wpcf7-form-control[name="your-email"]').val(email);
+      jQuery('.wpcf7-form-control[name="your-message"]').val(message);
+      jQuery('.wpcf7-submit').click();
+    }
+
+    console.log('isValid', isValid)
+  })
+
+  /// response observer
+  const formResponseElement = document.querySelector('.wpcf7-response-output');
+
+  const formResponseObserver = new MutationObserver(function (mutationsList, observer) {
+    let formResponseBlock = document.querySelector('.modal-order-form-response');
+    formResponseBlock.innerHTML = formResponseElement.innerHTML;
+  });
+
+  formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
+
+  function validEmailAddress(email) {
+    var filter =
+      /^([\w-\.\+]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return filter.test(email);
+  }
+
+  function validPhoneNumber(phoneNumber) {
+    const phonePattern = /^\+?[0-9]{10,}$/;
+    return phonePattern.test(phoneNumber);
+  }
+
+  // update items
+  const updateItems = () => {
+    const choosedItems = list.querySelectorAll('li');
+    choosedItems.forEach(choosedItem => {
+      choosedItem.remove();
+    })
+    for (let i = 0; i < arr.length; i++) {
+      result.classList.add('not-empty');
+      let li = document.createElement('li');
+      li.innerHTML = `
      <span>${arr[i]}</span>
      <button type="button" class="modal-order__add-file_remove">
      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1026,235 +1183,315 @@ document.addEventListener('DOMContentLoaded', function () {
      fill="black" />
     </svg>
     </button>`
-        buttonRemoveAll.insertAdjacentElement('beforeBegin', li);
-        // remove item
-        const buttonRemove = li.querySelector('button');
-        buttonRemove.addEventListener('click', () => {
-          li.remove();
-          arr = arr.filter(function (m) {
-            return m != li.querySelector('span').textContent;
-          })
-          if (arr.length == 0) result.classList.remove('not-empty');
+      buttonRemoveAll.insertAdjacentElement('beforeBegin', li);
+      // remove item
+      const buttonRemove = li.querySelector('button');
+      buttonRemove.addEventListener('click', () => {
+        li.remove();
+        arr = arr.filter(function (m) {
+          return m != li.querySelector('span').textContent;
         })
-      }
-    }
-
-    // select files
-    input.addEventListener('change', function () {
-      if (arr.length == 0) {
-        for (const file of this.files) {
-          arr.push(file.name);
-        }
-        updateItems();
-      } else {
-        for (const file of this.files) {
-          if (!arr.includes(file.name)) arr.push(file.name);
-        }
-        updateItems();
-      }
-      // remove all items
-      buttonRemoveAll.addEventListener('click', () => {
-        arr = [];
-        result.classList.remove('not-empty');
-        const choosedItems = list.querySelectorAll('li');
-        choosedItems.forEach(choosedItem => {
-          choosedItem.remove();
-        });
+        if (arr.length == 0) result.classList.remove('not-empty');
       })
-    });
+    }
   }
 
-  // checkout
-  if (document.querySelectorAll('.checkout').length) {
-    const selects = document.querySelectorAll('.checkout__select');
-    const form = document.getElementById('checkout__form');
-    const requiredFields = document.querySelectorAll('.checkout__block_field.--required');
-    const postDeliveryRadio = document.getElementById('deliveryOne');
-    const certificateButton = document.querySelector('.checkout__certificate_button');
-    const certificateWrap = document.querySelector('.checkout__certificate_wrap');
-    const checkboxes = document.querySelectorAll('.checkout__block_checkboxes input[type=checkbox]');
-    const additionally = document.querySelector('.checkout__order_checkbox');
-    const radioItems = document.querySelectorAll('.checkout__delivery_item');
-    const citySelect = document.querySelector('.checkout__select--city');
-    const cityRadio = document.querySelector('.checkout__delivery_item--city');
-    const certificateInput = document.querySelector('.checkout__certificate_field input');
-    const certificateSubmit = document.querySelector('.checkout__certificate_submit');
-    const certificateField = document.querySelector('.checkout__order_discount');
-    const deliveryMethod = document.querySelector('.delivery-method');
-    const rolledDelivery = document.querySelector('.checkout__rolled-delivery');
-    const rolledDeliveryRadio = document.getElementById('deliveryRolled');
-
-    // add sertificate
-    certificateSubmit.addEventListener('click', () => {
-      if (certificateInput.value != '') certificateField.textContent = `$${certificateInput.value}`;
-    })
-
-    // delivery method on the loading page
-    if (deliveryMethod != null) {
-      const deliveryMethodValue = document.querySelector('.delivery-method-value span');
-      if (deliveryMethodValue.textContent == 'Відділення') deliveryMethod.classList.add('department');
-      else deliveryMethod.classList.remove('department');
-      if (deliveryMethodValue.textContent == 'Адресна доставка') deliveryMethod.classList.add('address');
-      else deliveryMethod.classList.remove('address');
+  // select files
+  input.addEventListener('change', function (event) {
+    const cf7Files = document.querySelector('.wpcf7-drag-n-drop-file');
+    if (arr.length == 0) {
+      for (const file of this.files) {
+        arr.push(file.name);
+      }
+      updateItems();
+    } else {
+      for (const file of this.files) {
+        if (!arr.includes(file.name)) arr.push(file.name);
+      }
+      updateItems();
     }
-
-    // selects
-    selects.forEach(select => {
-      const trigger = select.querySelector('.checkout__select_panel');
-      const list = select.querySelector('.checkout__select_list');
-      const items = select.querySelectorAll('.checkout__select_item');
-      const span = select.querySelector('.checkout__select_panel span');
-
-      // hide selects
-      document.addEventListener('click', e => {
-        if (!select.contains(e.target)) {
-          trigger.classList.remove('active');
-          list.classList.remove('active');
-          list.style.maxHeight = null;
-        }
-      })
-
-      // show and hide select
-      trigger.addEventListener('click', () => {
-        if (!trigger.classList.contains('active')) {
-          trigger.classList.add('active');
-          list.classList.add('active');
-          list.style.maxHeight = list.scrollHeight + 'px';
-        } else {
-          trigger.classList.remove('active');
-          list.classList.remove('active');
-          list.style.maxHeight = null;
-        }
-      })
-
-      // change selects value
-      items.forEach(item => {
-        item.addEventListener('click', () => {
-          if (select.classList.contains('error')) select.classList.remove('error');
-          if (span.classList.contains('--default')) span.classList.remove('--default');
-          span.innerText = item.innerText;
-          // city select
-          if (citySelect != null && cityRadio != null) {
-            const panelText = citySelect.querySelector('.checkout__select_panel span').textContent
-            if (panelText == 'Київ' || panelText == 'Львів') cityRadio.classList.remove('disabled');
-            else cityRadio.classList.add('disabled')
-          }
-          if (deliveryMethod != null) {
-            const deliveryMethodValue = document.querySelector('.delivery-method-value span');
-            if (deliveryMethodValue.textContent == 'Відділення') deliveryMethod.classList.add('department');
-            else deliveryMethod.classList.remove('department');
-            if (deliveryMethodValue.textContent == 'Адресна доставка') deliveryMethod.classList.add('address');
-            else deliveryMethod.classList.remove('address');
-          }
-        })
-      })
+    // remove all items
+    buttonRemoveAll.addEventListener('click', () => {
+      arr = [];
+      result.classList.remove('not-empty');
+      const choosedItems = list.querySelectorAll('li');
+      choosedItems.forEach(choosedItem => {
+        choosedItem.remove();
+      });
+      input.value = '';
+      input.dispatchEvent(new Event('change'));
     })
+    // added files on hidden input
+    cf7Files.files = event.target.files;
+  });
+}
 
-    // radio show and hide
-    radioItems.forEach(radioItem => {
-      // add class checked on the loading page
-      radioInput = radioItem.querySelector('input[type=radio]');
-      if (radioInput.checked) radioItem.classList.add('checked');
-      // change checked input
-      radioInput.addEventListener('change', () => {
-        for (let i = 0; i < radioItems.length; i++) {
-          const input = radioItems[i].querySelector('input[type=radio]');
-          radioItems[i].classList.remove('checked');
-          if (input.checked) radioItems[i].classList.add('checked');
-        }
-      })
-    })
+// select files
+input.addEventListener('change', function () {
+  if (arr.length == 0) {
+    for (const file of this.files) {
+      arr.push(file.name);
+    }
+    updateItems();
+  } else {
+    for (const file of this.files) {
+      if (!arr.includes(file.name)) arr.push(file.name);
+    }
+    updateItems();
+  }
+  // remove all items
+  buttonRemoveAll.addEventListener('click', () => {
+    arr = [];
+    result.classList.remove('not-empty');
+    const choosedItems = list.querySelectorAll('li');
+    choosedItems.forEach(choosedItem => {
+      choosedItem.remove();
+    });
+  })
+});
+  }
 
-    // certificate show and hide
-    certificateButton.addEventListener('click', () => {
-      if (!certificateWrap.classList.contains('active')) {
-        certificateButton.classList.add('active');
-        certificateWrap.classList.add('active');
-        certificateWrap.style.maxHeight = certificateWrap.scrollHeight + 'px';
-      } else {
-        certificateButton.classList.remove('active');
-        certificateWrap.classList.remove('active');
-        certificateWrap.style.maxHeight = null;
+// checkout
+if (document.querySelectorAll('.checkout').length) {
+  const selects = document.querySelectorAll('.checkout__select');
+  const form = document.getElementById('checkout__form');
+  const requiredFields = document.querySelectorAll('.checkout__block_field.--required');
+  const postDeliveryRadio = document.getElementById('deliveryOne');
+  const certificateButton = document.querySelector('.checkout__certificate_button');
+  const certificateWrap = document.querySelector('.checkout__certificate_wrap');
+  const checkboxes = document.querySelectorAll('.checkout__block_checkboxes input[type=checkbox]');
+  const additionally = document.querySelector('.checkout__order_checkbox');
+  const radioItems = document.querySelectorAll('.checkout__delivery_item');
+  const citySelect = document.querySelector('.checkout__select--city');
+  const cityRadio = document.querySelector('.checkout__delivery_item--city');
+  const certificateInput = document.querySelector('.checkout__certificate_field input');
+  const certificateSubmit = document.querySelector('.checkout__certificate_submit');
+  const certificateField = document.querySelector('.checkout__order_discount');
+  const deliveryMethod = document.querySelector('.delivery-method');
+  const rolledDelivery = document.querySelector('.checkout__rolled-delivery');
+  const rolledDeliveryRadio = document.getElementById('deliveryRolled');
+
+  // add sertificate
+  certificateSubmit.addEventListener('click', () => {
+    if (certificateInput.value != '') certificateField.textContent = `$${certificateInput.value}`;
+  })
+
+  // delivery method on the loading page
+  if (deliveryMethod != null) {
+    const deliveryMethodValue = document.querySelector('.delivery-method-value span');
+    if (deliveryMethodValue.textContent == 'Відділення') deliveryMethod.classList.add('department');
+    else deliveryMethod.classList.remove('department');
+    if (deliveryMethodValue.textContent == 'Адресна доставка') deliveryMethod.classList.add('address');
+    else deliveryMethod.classList.remove('address');
+  }
+
+  // selects
+  selects.forEach(select => {
+    const trigger = select.querySelector('.checkout__select_panel');
+    const list = select.querySelector('.checkout__select_list');
+    const items = select.querySelectorAll('.checkout__select_item');
+    const span = select.querySelector('.checkout__select_panel span');
+
+    // hide selects
+    document.addEventListener('click', e => {
+      if (!select.contains(e.target)) {
+        trigger.classList.remove('active');
+        list.classList.remove('active');
+        list.style.maxHeight = null;
       }
     })
 
-    // checkboxes
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('click', () => {
-        let t = 0;
-        if (checkbox.checked) additionally.classList.add('active');
-        for (let i = 0; i < checkboxes.length; i++) {
-          if (checkboxes[i].checked) t = 1;
-        }
-        if (t == 0) additionally.classList.remove('active');
-      })
+    // show and hide select
+    trigger.addEventListener('click', () => {
+      if (!trigger.classList.contains('active')) {
+        trigger.classList.add('active');
+        list.classList.add('active');
+        list.style.maxHeight = list.scrollHeight + 'px';
+      } else {
+        trigger.classList.remove('active');
+        list.classList.remove('active');
+        list.style.maxHeight = null;
+      }
     })
 
-    // submit form
-    form.addEventListener('submit', e => {
-      // checking required fields
-      requiredFields.forEach(field => {
-        const input = field.querySelector('input');
-        if (input.value == '') {
-          field.classList.add('error');
-          e.preventDefault();
-        } else {
-          field.classList.remove('error');
+    // change selects value
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        if (select.classList.contains('error')) select.classList.remove('error');
+        if (span.classList.contains('--default')) span.classList.remove('--default');
+        span.innerText = item.innerText;
+        // city select
+        if (citySelect != null && cityRadio != null) {
+          const panelText = citySelect.querySelector('.checkout__select_panel span').textContent
+          if (panelText == 'Київ' || panelText == 'Львів') cityRadio.classList.remove('disabled');
+          else cityRadio.classList.add('disabled')
+        }
+        if (deliveryMethod != null) {
+          const deliveryMethodValue = document.querySelector('.delivery-method-value span');
+          if (deliveryMethodValue.textContent == 'Відділення') deliveryMethod.classList.add('department');
+          else deliveryMethod.classList.remove('department');
+          if (deliveryMethodValue.textContent == 'Адресна доставка') deliveryMethod.classList.add('address');
+          else deliveryMethod.classList.remove('address');
         }
       })
-      // checking delivery field
-      if (postDeliveryRadio != null && postDeliveryRadio.checked) {
-        if (deliveryMethod != null) {
-          if (deliveryMethod.classList.contains('department')) {
-            selects.forEach(select => {
-              if (select.classList.contains('--required')) {
-                const span = select.querySelector('.checkout__select_panel span');
-                if (span.classList.contains('--default')) {
-                  e.preventDefault();
-                  select.classList.add('error');
-                } else {
-                  select.classList.remove('error');
-                }
+    })
+  })
+
+  // radio show and hide
+  radioItems.forEach(radioItem => {
+    // add class checked on the loading page
+    radioInput = radioItem.querySelector('input[type=radio]');
+    if (radioInput.checked) radioItem.classList.add('checked');
+    // change checked input
+    radioInput.addEventListener('change', () => {
+      for (let i = 0; i < radioItems.length; i++) {
+        const input = radioItems[i].querySelector('input[type=radio]');
+        radioItems[i].classList.remove('checked');
+        if (input.checked) radioItems[i].classList.add('checked');
+      }
+    })
+  })
+
+  // certificate show and hide
+  certificateButton.addEventListener('click', () => {
+    if (!certificateWrap.classList.contains('active')) {
+      certificateButton.classList.add('active');
+      certificateWrap.classList.add('active');
+      certificateWrap.style.maxHeight = certificateWrap.scrollHeight + 'px';
+    } else {
+      certificateButton.classList.remove('active');
+      certificateWrap.classList.remove('active');
+      certificateWrap.style.maxHeight = null;
+    }
+  })
+
+  // checkboxes
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+      let t = 0;
+      if (checkbox.checked) additionally.classList.add('active');
+      for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) t = 1;
+      }
+      if (t == 0) additionally.classList.remove('active');
+    })
+  })
+
+  // submit form
+  form.addEventListener('submit', e => {
+    // checking required fields
+    requiredFields.forEach(field => {
+      const input = field.querySelector('input');
+      if (input.value == '') {
+        field.classList.add('error');
+        e.preventDefault();
+      } else {
+        field.classList.remove('error');
+      }
+    })
+    // checking delivery field
+    if (postDeliveryRadio != null && postDeliveryRadio.checked) {
+      if (deliveryMethod != null) {
+        if (deliveryMethod.classList.contains('department')) {
+          selects.forEach(select => {
+            if (select.classList.contains('--required')) {
+              const span = select.querySelector('.checkout__select_panel span');
+              if (span.classList.contains('--default')) {
+                e.preventDefault();
+                select.classList.add('error');
+              } else {
+                select.classList.remove('error');
+              }
+            }
+          })
+        }
+        if (deliveryMethod.classList.contains('address')) {
+          const fields = document.querySelectorAll('.checkout__address-delivery_field.--required');
+          if (fields.length) {
+            fields.forEach(field => {
+              const input = field.querySelector('input');
+              if (input.value == '') {
+                field.classList.add('error');
+                e.preventDefault();
+              } else {
+                field.classList.remove('error');
               }
             })
           }
-          if (deliveryMethod.classList.contains('address')) {
-            const fields = document.querySelectorAll('.checkout__address-delivery_field.--required');
-            if (fields.length) {
-              fields.forEach(field => {
-                const input = field.querySelector('input');
-                if (input.value == '') {
-                  field.classList.add('error');
-                  e.preventDefault();
-                } else {
-                  field.classList.remove('error');
-                }
-              })
-            }
+        }
+      }
+    }
+    if (rolledDelivery != null && rolledDeliveryRadio.checked) {
+      const fields = document.querySelectorAll('.checkout__rolled-delivery_field.--required');
+      if (fields.length) {
+        fields.forEach(field => {
+          const input = field.querySelector('input');
+          if (input.value == '') {
+            field.classList.add('error');
+            e.preventDefault();
+          } else {
+            field.classList.remove('error');
           }
-        }
+        })
       }
-      if (rolledDelivery != null && rolledDeliveryRadio.checked) {
-        const fields = document.querySelectorAll('.checkout__rolled-delivery_field.--required');
-        if (fields.length) {
-          fields.forEach(field => {
-            const input = field.querySelector('input');
-            if (input.value == '') {
-              field.classList.add('error');
-              e.preventDefault();
-            } else {
-              field.classList.remove('error');
-            }
-          })
-        }
-      }
-    })
+    }
+  })
 
 
 
 
+}
+
+// add to cart handler
+jQuery('.add-to-cart').click(function () {
+  if (isformCanSubmitted()) {
+    jQuery('.variations_form').trigger('submit');
   }
+});
 
+// quick buy handler
+jQuery('.quick_buy').click(function () {
+  if (isformCanSubmitted()) {
+    jQuery('.variations_form').trigger('submit', 'quick');
+  }
+});
+
+// ajax add to cart
+jQuery('body').on('submit', '.variations_form', function (event, param) {
+  event.preventDefault();
+
+  let quantity = 1;
+  let productId = jQuery(this).find('.single_variation_wrap input[name="product_id"]').val();
+  let variationId = jQuery(this).find('.single_variation_wrap input[name="variation_id"]').val()
+
+  jQuery.ajax({
+    type: 'POST',
+    url: wc_add_to_cart_params.ajax_url,
+    data: {
+      'action': 'custom_add_to_cart',
+      'product_id': productId,
+      'variation_id': variationId,
+      'quantity': quantity
+    },
+    success: function (response) {
+      let data = JSON.parse(response);
+
+      // relocate if quick buy
+      if (param && param === 'quick') {
+        window.location.href = "checkout";
+      } else {
+        // change modal content and open
+        if (data) {
+          changeModalContent(data);
+          openModal();
+        }
+      }
+    },
+    error: function (error) {
+      console.log('error: ', error);
+    }
+  });
+});
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {
@@ -1272,3 +1509,5 @@ const descriptionAccordion = (initialHeight, mobileHeight) => {
     });
   }
 }
+
+

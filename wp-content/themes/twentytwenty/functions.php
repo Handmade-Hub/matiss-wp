@@ -1017,6 +1017,9 @@ function custom_attribute_label($label, $name, $product)
 		case 'Рама':
 			$label = __('Оберіть раму', 'twentytwenty');
 			break;
+		case 'Вартість':
+			$label = __('Оберіть вартість*', 'twentytwenty');
+			break;
 	}
 
 	return $label;
@@ -1145,5 +1148,35 @@ function save_custom_info_fields()
 			$value = wpautop(wp_kses_post($value));
 			update_option($field, $value);
 		}
+	}
+}
+
+// custom ajax add to cart
+add_action('wp_ajax_custom_add_to_cart', 'custom_add_to_cart');
+add_action('wp_ajax_nopriv_custom_add_to_cart', 'custom_add_to_cart');
+
+function custom_add_to_cart()
+{
+	if (isset($_POST['product_id']) && isset($_POST['quantity'])) {
+		$product_id = intval($_POST['product_id']);
+		$quantity = intval($_POST['quantity']);
+		$variation_id = isset($_POST['variation_id']) ? intval($_POST['variation_id']) : 0;
+
+		if ($variation_id > 0) {
+			WC()->cart->add_to_cart($product_id, $quantity, $variation_id);
+			$added_product = wc_get_product($variation_id);
+		} else {
+			WC()->cart->add_to_cart($product_id, $quantity);
+			$added_product = wc_get_product($product_id);
+		}
+
+		$cart_items = WC()->cart->get_cart();
+		$cart_item_keys = array_keys($cart_items);
+		$last_cart_item_key = end($cart_item_keys);
+		$last_cart_item = $cart_items[$last_cart_item_key];
+
+		echo json_encode($last_cart_item);
+
+		wp_die();
 	}
 }

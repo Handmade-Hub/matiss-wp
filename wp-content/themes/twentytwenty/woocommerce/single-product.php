@@ -18,6 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+wp_enqueue_style('fancybox', get_template_directory_uri() . '/assets/css/fancybox.css');
 
 get_header(); ?>
     <?php while ( have_posts() ) : ?>
@@ -26,11 +27,12 @@ get_header(); ?>
         <?php
         $product_category = wp_get_post_terms( get_the_ID(), 'product_cat', array( 'fields' => 'names' ) )[0];
 
-        if ( $product_category === 'Картини' || $product_category === 'Постери' ) {
-            wc_get_template_part( 'content', 'single-product' );
-        } elseif ($product_category === 'Розпис') {
+        if ( $product_category === 'Розпис' ) {
             wc_get_template_part( 'content', 'single-product-painting-wall' );
+        } else {
+            wc_get_template_part( 'content', 'single-product' );
         }
+
         ?>
 
     <?php endwhile; // end of the loop. ?>
@@ -44,6 +46,9 @@ get_header(); ?>
     do_action( 'woocommerce_after_main_content' );
     ?>
 <?php
+if ( $product_category === 'Розпис' ) {
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+}
 do_action( 'woocommerce_after_single_product_summary' );
 do_action('woocommerce_after_single_product');
 get_footer();

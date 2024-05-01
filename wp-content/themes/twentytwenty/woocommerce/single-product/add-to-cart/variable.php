@@ -68,6 +68,16 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                                         ?>
                                     </ul>
                                     <?php
+                                    if ( $attribute_name !== 'Рама') {
+                                    ?>
+                                    <p class="product__select_error">
+                                        <?php echo __('Будь-ласка, оберіть ', 'twentytwenty');
+                                        echo mb_strtolower($attribute_name); ?>
+                                    </p>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
                                     if ( $attribute_name === 'Рама' ) {
                                         ?>
                                         <ul data-type="0" class="product__select_multi">
@@ -94,13 +104,13 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                                             );
                                             ?>
                                         </div>
+                                        <p class="product__select_error">
+                                            <?php echo __('Будь-ласка, оберіть ', 'twentytwenty');
+                                            echo __('раму'); ?>
+                                        </p>
                                         <?php
                                     }
                                     ?>
-                                    <p class="product__select_error">
-                                        <?php echo __('Будь-ласка, оберіть ', 'twentytwenty');
-                                        echo mb_strtolower( $attribute_name, 'UTF-8' ); ?>
-                                    </p>
                                 </div>
                             </td>
                         </tr>
