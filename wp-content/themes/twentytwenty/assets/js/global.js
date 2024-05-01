@@ -925,16 +925,14 @@ document.addEventListener('DOMContentLoaded', function () {
    wcSelect.dispatchEvent(new Event('change'));
    wcForm.dispatchEvent(new Event('check_variations'));
 
-   // // if withot frame change color
-   // if (itemValue === 'Без рами') {
-   //  setTimeout(function (){
-   //   let multiSelect = document.querySelector('.product_form_item_multi select');
-   //   multiSelect.value = "Без кольору";
-   //   multiSelect.dispatchEvent(new Event('change'));
-   //   multiSelect.dispatchEvent(new Event('input'));
-   //   multiSelect.dispatchEvent(new Event('check_variations'));
-   //  },100)
-   // }
+   // if withot frame change color
+   if (itemValue === 'Без рами') {
+     let multiSelect = document.querySelector('.product_form_item_multi select');
+
+     multiSelect.value = "Без кольору";
+     multiSelect.dispatchEvent(new Event('change', { bubbles: true }));
+     multiSelect.dispatchEvent(new Event('check_variations'));
+   }
   }
   // change woocommerce multiitem select
   function changeWcSelectMultiValue (currentSelectedItem) {
@@ -1004,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // change modal content
   function changeModalContent(data) {
    let quantity = 1;
-   let totalPrice = data['line_total'];
+   let price = data['price'];
    let variation = decodeUrlObject(data['variation']);
    let size, frame, cost;
 
@@ -1012,8 +1010,10 @@ document.addEventListener('DOMContentLoaded', function () {
     size = variation['attribute_розмір'];
    }
 
-   if (variation['attribute_колір-рами']) {
+   if (variation['attribute_колір-рами'] && variation['attribute_колір-рами'] !== 'Без кольору') {
     frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+   } else {
+    frame = variation['attribute_рама'].toLowerCase();
    }
 
    if (variation['attribute_вартість']) {
@@ -1025,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', function () {
    jQuery('.modal-add-to-cart .atribute_frame_value').text(frame);
    jQuery('.modal-add-to-cart .atribute_cost_value').text(cost);
    jQuery('.modal-add-to-cart .modal-add-to-cart__case_quantity_value').text(quantity);
-   jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(totalPrice);
+   jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(price);
   }
  }
 
@@ -1423,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', function () {
    },
    success: function(response) {
     let data = JSON.parse(response);
-
+    console.log('response', data)
     // relocate if quick buy
     if (param && param === 'quick') {
      window.location.href = "checkout";

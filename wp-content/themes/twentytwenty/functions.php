@@ -1103,21 +1103,33 @@ function custom_add_to_cart() {
         $product_id = intval( $_POST[ 'product_id' ] );
         $quantity = intval( $_POST[ 'quantity' ] );
         $variation_id = isset( $_POST[ 'variation_id' ] ) ? intval( $_POST[ 'variation_id' ] ) : 0;
+        $isVariableProduct = true;
 
         if ( $variation_id > 0 ) {
             WC()->cart->add_to_cart( $product_id, $quantity, $variation_id );
-            $added_product = wc_get_product($variation_id);
+            $current_product = wc_get_product( $variation_id );
+            $isVariableProduct = true;
         } else {
             WC()->cart->add_to_cart( $product_id, $quantity );
-            $added_product = wc_get_product($product_id);
+            $current_product = wc_get_product( $product_id );
+            $isVariableProduct = false;
         }
 
+        // get cart
         $cart_items = WC()->cart->get_cart();
-        $cart_item_keys = array_keys($cart_items);
-        $last_cart_item_key = end($cart_item_keys);
-        $last_cart_item = $cart_items[$last_cart_item_key];
 
-        echo json_encode($last_cart_item);
+        /// find current product in cart items
+        foreach ($cart_items as $item) {
+            if ( $isVariableProduct && $item[ 'variation_id' ] === $variation_id ) {
+                $current_cart_item =  $item;
+            } elseif ( ! $isVariableProduct && $item[ '$product_id' ] === $product_id ) {
+                $current_cart_item =  $item;
+            }
+        }
+
+        $current_cart_item[ 'price' ] = $current_product->get_price();
+
+        echo json_encode($current_cart_item);
 
         wp_die();
     }
