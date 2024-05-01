@@ -1160,6 +1160,29 @@ document.addEventListener('DOMContentLoaded', function () {
     // remove item
     const buttonRemove = li.querySelector('button');
     buttonRemove.addEventListener('click', () => {
+     // get files array
+     let filesArray = input.files;
+     let deletedFileName = li.querySelector('span').innerText;
+
+     // create new files array
+     let newFilesArray = [];
+
+     // add files in new array without target file
+     for (let file of filesArray) {
+      if (file.name !== deletedFileName) {
+       newFilesArray.push(file);
+      }
+     }
+
+     let dataTransfer = new DataTransfer();
+     newFilesArray.forEach(function(file) {
+      dataTransfer.items.add(file);
+     });
+
+     // add new file array in input
+     input.files = dataTransfer.files;
+     input.dispatchEvent(new Event('change'));
+
      li.remove();
      arr = arr.filter(function (m) {
       return m != li.querySelector('span').textContent;
