@@ -33,6 +33,7 @@ $fitting_available = get_field('fitting_available');
 	// console.log(<?php printf(json_encode($common_values)); ?>);
 	// console.log(<?php printf(json_encode($parameters)) ?>);
 </script>
+
 <li class="collection__item">
 	<div class="product-card 
 						<?php
@@ -71,7 +72,16 @@ $fitting_available = get_field('fitting_available');
 		</div>
 		<div class="product-card__info">
 			<h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
-			<div class="product-card__price fz-20 text-center"><span><?= get_woocommerce_currency_symbol() . $product->price ?></span></div>
+			<div class="product-card__price fz-20 text-center">
+				<?php if ($product->is_on_sale()) : ?>
+					<span>від</span>
+					<span class="product-card__price_sale"><?= get_woocommerce_currency_symbol() . $product->get_sale_price() ?></span>
+					<span class="product-card__price_old"><?= get_woocommerce_currency_symbol() . $product->price ?></span>
+				<?php else : ?>
+					<span><?= get_woocommerce_currency_symbol() . $product->price ?></span>
+				<?php endif; ?>
+			</div>
+
 		</div>
 	</div>
 	<?php
