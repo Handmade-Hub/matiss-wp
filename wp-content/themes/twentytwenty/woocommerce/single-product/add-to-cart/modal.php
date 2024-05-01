@@ -5,7 +5,9 @@
 
 global $product;
 
-$attributes = $product->get_variation_attributes();
+if ( $product->is_type( 'variable' ) ) {
+    $attributes = $product->get_variation_attributes();
+}
 ?>
 
 <section class="modal-add-to-cart">

@@ -4600,6 +4600,7 @@ button {
 .blog__item_media iframe,
 .blog__item_media img {
   width: 100%;
+  height: auto;
   min-height: 52rem;
   object-fit: cover;
 }

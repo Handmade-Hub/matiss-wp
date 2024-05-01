@@ -966,6 +966,9 @@ function custom_attribute_label( $label, $name, $product ) {
         case 'Рама':
             $label = __( 'Оберіть раму', 'twentytwenty' );
             break;
+        case 'Вартість':
+            $label = __( 'Оберіть вартість*', 'twentytwenty' );
+            break;
     }
 
     return $label;
@@ -1103,8 +1106,10 @@ function custom_add_to_cart() {
 
         if ( $variation_id > 0 ) {
             WC()->cart->add_to_cart( $product_id, $quantity, $variation_id );
+            $added_product = wc_get_product($variation_id);
         } else {
             WC()->cart->add_to_cart( $product_id, $quantity );
+            $added_product = wc_get_product($product_id);
         }
 
         $cart_items = WC()->cart->get_cart();
