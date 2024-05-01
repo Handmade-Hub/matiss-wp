@@ -6224,7 +6224,7 @@ button {
 }
 
 .search-modal__wrapper {
-    position: fixed;
+    position: absolute;
     top: -1000%;
     left: 0;
     width: 100%;

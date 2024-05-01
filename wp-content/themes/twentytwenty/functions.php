@@ -899,6 +899,11 @@ function custom_breadcrumbs()
 	echo '	<li class="breadcrumbs__item">
 				<a href="' . $home_link . '" class="breadcrumbs__item_link fw-500">' . $home_text . '</a>' . $separator . '</li>';
 
+	if (is_search()) {
+		echo '<li class="breadcrumbs__item">
+		<p class="breadcrumbs__item_link fw-500">Пошук</p></li>';
+	}
+
 	if (is_category() || is_single()) {
 		$category = get_the_category();
 		if ($category) {
