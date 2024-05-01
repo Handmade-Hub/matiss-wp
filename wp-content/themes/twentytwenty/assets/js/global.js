@@ -69,14 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   //  search modal
-  const headerSearch = document.querySelectorAll('.header__search');
-  const searchModalWrapper = document.querySelectorAll('.search-modal__wrapper');
-
-  if (headerSearch.length && searchModalWrapper.length) {
+  if (document.querySelectorAll('.header__search').length && document.querySelectorAll('.search-modal__wrapper').length) {
+    const buttons = document.querySelectorAll('.header__search');
     const modal = document.querySelector('.search-modal__wrapper');
     const buttonClose = document.querySelector('.search-modal__button_close');
-    console.log(modal);
-    headerSearch.forEach(button => {
+
+    buttons.forEach(button => {
       button.addEventListener('click', function () {
         modal.classList.add('open');
         body.classList.add('menu-open');
@@ -327,9 +325,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 let li = document.createElement('li');
                 li.classList.add('filters__choosed_item');
                 li.innerHTML = `
-        <span>${option.textContent}</span>
-        <button></button>
-        `
+         <span>${option.textContent}</span>
+         <button></button>
+         `
                 choosedList.appendChild(li);
                 // remove item
                 const closeButton = li.querySelector('button');
@@ -406,13 +404,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const fromPosition = from.value - to.min;
         const toPosition = to.value - to.min;
         controlSlider.style.background = `linear-gradient(
-    to right,
-    ${sliderColor} 0%,
-    ${sliderColor} ${(fromPosition) / (rangeDistance) * 100}%,
-    ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
-    ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
-    ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
-    ${sliderColor} 100%)`;
+     to right,
+     ${sliderColor} 0%,
+     ${sliderColor} ${(fromPosition) / (rangeDistance) * 100}%,
+     ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
+     ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
+     ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
+     ${sliderColor} 100%)`;
       }
 
       function setToggleAccessible(currentTarget) {
@@ -443,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
           li.classList.add('filters__choosed_item', 'filters__choosed_item--price');
           li.innerHTML =
             `<span>${priceValue}</span>
-      <button></button>`
+       <button></button>`
           choosedList.appendChild(li);
 
           // remove item
@@ -574,13 +572,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const fromPosition = from.value - to.min;
         const toPosition = to.value - to.min;
         controlSlider.style.background = `linear-gradient(
-     to right,
-     ${sliderColor} 0%,
-     ${sliderColor} ${(fromPosition) / (rangeDistance) * 100}%,
-     ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
-     ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
-     ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
-     ${sliderColor} 100%)`;
+      to right,
+      ${sliderColor} 0%,
+      ${sliderColor} ${(fromPosition) / (rangeDistance) * 100}%,
+      ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
+      ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
+      ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
+      ${sliderColor} 100%)`;
       }
 
       function setToggleAccessible(currentTarget) {
@@ -620,7 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
           li.classList.add('filters__choosed_item', 'filters__choosed_item--price');
           li.innerHTML =
             `<span>${priceValue}</span>
-      <button></button>`
+       <button></button>`
           choosedList.appendChild(li);
           // remove item
           const closeButton = li.querySelector('button');
@@ -666,7 +664,7 @@ document.addEventListener('DOMContentLoaded', function () {
               li.classList.add('filters__choosed_item');
               li.innerHTML =
                 `<span>${arr[i]}</span>
-          <button></button>`
+           <button></button>`
               choosedList.appendChild(li);
             }
           } else {
@@ -674,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function () {
             li.classList.add('filters__choosed_item');
             li.innerHTML =
               `<span>${arr[i]}</span>
-          <button></button>`
+           <button></button>`
             choosedList.appendChild(li);
           }
         }
@@ -921,26 +919,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
       })
-    });
-
-    // selection check
-    const buttons = document.querySelectorAll('.product__button');
-    buttons.forEach(button => {
-      button.addEventListener('click', e => {
-        // check on selected
-        if (spanValue.classList.contains('--default')) {
-          e.preventDefault();
-          select.classList.add('error');
-          buttonAdd.classList.add('error');
-        }
-        // check on selected multichoce
-        if (panel.classList.contains('multichoice') && panel.getAttribute('data-choised') == 'null') {
-          e.preventDefault();
-          select.classList.add('error');
-          buttonAdd.classList.add('error');
-        }
-      })
-    });
+    })
     // change  woocommerce select
     function changeWcSelectValue(currentSelectedItem) {
       let itemValue = currentSelectedItem.innerText;
@@ -1173,14 +1152,15 @@ document.addEventListener('DOMContentLoaded', function () {
       for (let i = 0; i < arr.length; i++) {
         result.classList.add('not-empty');
         let li = document.createElement('li');
-        li.innerHTML = `<span>${arr[i]}</span>
-                        <button type="button" class="modal-order__add-file_remove">
-                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M13.0667 4.30102C13.1237 4.24408 13.169 4.17647 13.1998 4.10204C13.2307 4.02762 13.2466 3.94784 13.2467 3.86726C13.2467 3.78669 13.2309 3.70689 13.2001 3.63243C13.1693 3.55797 13.1242 3.4903 13.0672 3.43329C13.0103 3.37628 12.9427 3.33104 12.8683 3.30016C12.7938 3.26928 12.7141 3.25336 12.6335 3.25331C12.5529 3.25326 12.4731 3.26908 12.3987 3.29987C12.3242 3.33066 12.2565 3.37581 12.1995 3.43275L8.49924 7.13302L4.80004 3.43275C4.6849 3.31761 4.52874 3.25293 4.36591 3.25293C4.20308 3.25293 4.04692 3.31761 3.93178 3.43275C3.81664 3.54789 3.75195 3.70406 3.75195 3.86689C3.75195 4.02972 3.81664 4.18588 3.93178 4.30102L7.63204 8.00022L3.93178 11.6994C3.87477 11.7564 3.82954 11.8241 3.79869 11.8986C3.76783 11.9731 3.75195 12.0529 3.75195 12.1336C3.75195 12.2142 3.76783 12.294 3.79869 12.3685C3.82954 12.443 3.87477 12.5107 3.93178 12.5677C4.04692 12.6828 4.20308 12.7475 4.36591 12.7475C4.44654 12.7475 4.52637 12.7316 4.60086 12.7008C4.67535 12.6699 4.74303 12.6247 4.80004 12.5677L8.49924 8.86742L12.1995 12.5677C12.3146 12.6827 12.4708 12.7472 12.6335 12.7471C12.7962 12.747 12.9522 12.6823 13.0672 12.5672C13.1822 12.452 13.2468 12.2959 13.2467 12.1332C13.2466 11.9704 13.1818 11.8144 13.0667 11.6994L9.36644 8.00022L13.0667 4.30102Z"
-                        fill="black" />
-                        </svg>
-                        </button>`;
+        li.innerHTML = `
+      <span>${arr[i]}</span>
+      <button type="button" class="modal-order__add-file_remove">
+      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M13.0667 4.30102C13.1237 4.24408 13.169 4.17647 13.1998 4.10204C13.2307 4.02762 13.2466 3.94784 13.2467 3.86726C13.2467 3.78669 13.2309 3.70689 13.2001 3.63243C13.1693 3.55797 13.1242 3.4903 13.0672 3.43329C13.0103 3.37628 12.9427 3.33104 12.8683 3.30016C12.7938 3.26928 12.7141 3.25336 12.6335 3.25331C12.5529 3.25326 12.4731 3.26908 12.3987 3.29987C12.3242 3.33066 12.2565 3.37581 12.1995 3.43275L8.49924 7.13302L4.80004 3.43275C4.6849 3.31761 4.52874 3.25293 4.36591 3.25293C4.20308 3.25293 4.04692 3.31761 3.93178 3.43275C3.81664 3.54789 3.75195 3.70406 3.75195 3.86689C3.75195 4.02972 3.81664 4.18588 3.93178 4.30102L7.63204 8.00022L3.93178 11.6994C3.87477 11.7564 3.82954 11.8241 3.79869 11.8986C3.76783 11.9731 3.75195 12.0529 3.75195 12.1336C3.75195 12.2142 3.76783 12.294 3.79869 12.3685C3.82954 12.443 3.87477 12.5107 3.93178 12.5677C4.04692 12.6828 4.20308 12.7475 4.36591 12.7475C4.44654 12.7475 4.52637 12.7316 4.60086 12.7008C4.67535 12.6699 4.74303 12.6247 4.80004 12.5677L8.49924 8.86742L12.1995 12.5677C12.3146 12.6827 12.4708 12.7472 12.6335 12.7471C12.7962 12.747 12.9522 12.6823 13.0672 12.5672C13.1822 12.452 13.2468 12.2959 13.2467 12.1332C13.2466 11.9704 13.1818 11.8144 13.0667 11.6994L9.36644 8.00022L13.0667 4.30102Z"
+      fill="black" />
+     </svg>
+     </button>`
         buttonRemoveAll.insertAdjacentElement('beforeBegin', li);
         // remove item
         const buttonRemove = li.querySelector('button');
@@ -1223,31 +1203,6 @@ document.addEventListener('DOMContentLoaded', function () {
       cf7Files.files = event.target.files;
     });
   }
-
-  // select files
-  input && input.addEventListener('change', function () {
-    if (arr.length == 0) {
-      for (const file of this.files) {
-        arr.push(file.name);
-      }
-      updateItems();
-    } else {
-      for (const file of this.files) {
-        if (!arr.includes(file.name)) arr.push(file.name);
-      }
-      updateItems();
-    }
-    // remove all items
-    buttonRemoveAll.addEventListener('click', () => {
-      arr = [];
-      result.classList.remove('not-empty');
-      const choosedItems = list.querySelectorAll('li');
-      choosedItems.forEach(choosedItem => {
-        choosedItem.remove();
-      });
-    })
-  });
-
 
   // checkout
   if (document.querySelectorAll('.checkout').length) {
@@ -1507,5 +1462,4 @@ const descriptionAccordion = (initialHeight, mobileHeight) => {
     });
   }
 }
-
 
