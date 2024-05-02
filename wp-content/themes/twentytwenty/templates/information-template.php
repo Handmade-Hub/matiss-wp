@@ -47,7 +47,7 @@ $result_array = get_information_menu_items();
     <div class="container">
      <div class="text-block__inner">
       <div class="text-block__image tablet-none">
-       <img src="images/information/one.png" alt="image">
+      <img src="<?= $text_block['image']['url'] ?>" alt="<?= $text_block['image']['alt'] ?>">
       </div>
       <div class="text-block__content">
        <h4><?= $text_block['title'] ?></h4>
@@ -101,7 +101,7 @@ $result_array = get_information_menu_items();
     <div class="container">
      <div class="text-block__inner">
       <div class="text-block__image tablet-none">
-       <img src="images/information/four.png" alt="image">
+      <img src="<?= $text_block_second['image']['url'] ?>" alt="<?= $text_block_second['image']['alt'] ?>">
       </div>
       <div class="text-block__content">
        <h4><?= $text_block_second['title'] ?></h4>
@@ -110,7 +110,7 @@ $result_array = get_information_menu_items();
      </div>
     </div>
     <div class="text-block__image tablet-up-none">
-     <img src="<?= $text_block_second['image']['url'] ?> alt="<?= $text_block_second['image']['alt'] ?>">
+     <img src="<?= $text_block_second['image']['url'] ?>" alt="<?= $text_block_second['image']['alt'] ?>">
     </div>
    </div>
 </section>
