@@ -246,6 +246,9 @@ function twentytwenty_register_scripts()
 
 	wp_enqueue_script('global', get_template_directory_uri() . '/assets/js/global.js', array(), $theme_version);
 	wp_script_add_data('global', 'strategy', 'defer');
+
+	wp_enqueue_script('wishlist', get_template_directory_uri() . '/assets/js/wishlist.js', array(), $theme_version);
+	wp_script_add_data('wishlist', 'strategy', 'defer');
 }
 
 
@@ -898,6 +901,11 @@ function custom_breadcrumbs()
 
 	echo '	<li class="breadcrumbs__item">
 				<a href="' . $home_link . '" class="breadcrumbs__item_link fw-500">' . $home_text . '</a>' . $separator . '</li>';
+
+	if (is_search()) {
+		echo '<li class="breadcrumbs__item">
+		<p class="breadcrumbs__item_link fw-500">Пошук</p></li>';
+	}
 
 	if (is_category() || is_single()) {
 		$category = get_the_category();

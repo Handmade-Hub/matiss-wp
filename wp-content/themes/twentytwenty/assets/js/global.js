@@ -1389,10 +1389,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     })
-
-
-
-
   }
 
   // add to cart handler
@@ -1445,6 +1441,24 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  const headerSearch = document.querySelector('#header-search');
+  const searchBtn = document.querySelector('.search-modal__button_search');
+
+  const submitSearch = () => {
+    const container = searchBtn.closest('.search-modal__field');
+    const input = container.querySelector('[type="text"]');
+    const formInput = headerSearch.querySelector('[type="search"]');
+
+    if (input.value == '') { return; };
+
+    formInput.value = input.value;
+
+    headerSearch.submit();
+  }
+
+  headerSearch && searchBtn.addEventListener('click', submitSearch)
+
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {
