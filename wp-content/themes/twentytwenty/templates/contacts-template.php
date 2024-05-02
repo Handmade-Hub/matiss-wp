@@ -28,6 +28,9 @@ if ( is_array( $locations ) && ! empty( $locations ) ) {
     $locations_second_half = $locations_chunks[ 1 ];
 }
 
+// map
+$map_points = $fields[ 'map_points' ];
+
 // contact form
 $form_title = $fields[ 'from_title' ];
 $shortcode_form = $fields[ 'shortcode_form' ];
@@ -169,6 +172,31 @@ $shortcode_subscribe_form = $fields[ 'shortcode_subscribe_form' ];
             <div class="contacts__map" id='map' class="apelsun-mapbox-wrap idf0d275f0">
             </div>
             <script>
+                var mapPoints = [];
+
+                <?php
+                if ( is_array( $map_points ) && ! empty( $map_points ) ) {
+                    foreach ( $map_points as $map_point ) {
+                        $point_info = json_encode( $map_point[ 'point_info' ], JSON_UNESCAPED_UNICODE );
+                        $point_coordinates = $map_point[ 'point' ];
+                        $explode_coordinates = explode( ',', $point_coordinates );
+
+                        //set data from php to js
+                        ?>
+
+                mapPoints.push({
+                        pointInfo: <?php echo $point_info; ?>,
+                        pointCoordinates: [ <?php echo $explode_coordinates[ 1 ]; ?>, <?php echo $explode_coordinates[ 0 ]; ?> ],
+                        htmlPoint: document.createElement('div')
+                    })
+
+                mapPoints[mapPoints.length - 1]['htmlPoint'].className = 'marker';
+
+                <?php
+                    }
+                }
+                ?>
+
                 mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGlzc3MiLCJhIjoiY2p3a2hqMnlnMHR5cTQ4cGJhejQ2ZWVobyJ9.bbN8M-syJjv2MvuLP9qHtw';
 
                 const screenWidth = window.screen.width;
@@ -181,41 +209,15 @@ $shortcode_subscribe_form = $fields[ 'shortcode_subscribe_form' ];
                     center: [30.55, 50.45],
                     zoom: zoomNumber
                 });
-                var eldata0 = document.createElement('div');
-                eldata0.className = 'marker';
 
-                new mapboxgl.Marker(eldata0)
-                    .setLngLat([30.484446, 50.430784])
-                    .setPopup(new mapboxgl.Popup({ offset: 25 })
-                        .setHTML("<p>\u041c\u0430\u0439\u0441\u0442\u0435\u0440\u043d\u044f Matiss<\/p>\r\n<p>\u0432\u0443\u043b. \u0428\u0430\u043f\u043e\u0432\u0430\u043b\u0430 2, \u043e\u0444 555<\/p>" + '</p>'))
-                    .addTo(map);
-
-                var eldata1 = document.createElement('div');
-                eldata1.className = 'marker';
-
-                new mapboxgl.Marker(eldata1)
-                    .setLngLat([30.358381, 50.438213])
-                    .setPopup(new mapboxgl.Popup({ offset: 25 })
-                        .setHTML("<p>\u0421\u0430\u043b\u043e\u043d \u043a\u0430\u0440\u0442\u0438\u043d Matiss<\/p>\r\n<p>\u0422\u0426 4Room<\/p>\r\n<p>\u041f\u0435\u0442\u0440\u043e\u043f\u0430\u0432\u043b\u0456\u0432\u0441\u044c\u043a\u0430 \u0411\u043e\u0440\u0449\u0430\u0433\u0456\u0432\u043a\u0430, \u0432\u0443\u043b.\u041f\u0435\u0442\u0440\u043e\u043f\u0430\u0432\u043b\u0456\u0432\u0441\u044c\u043a\u0430 6<\/p>" + '</p>'))
-                    .addTo(map);
-
-                var eldata2 = document.createElement('div');
-                eldata2.className = 'marker';
-
-                new mapboxgl.Marker(eldata2)
-                    .setLngLat([30.441198, 50.381854])
-                    .setPopup(new mapboxgl.Popup({ offset: 25 })
-                        .setHTML("<p>\u0421\u0430\u043b\u043e\u043d \u043a\u0430\u0440\u0442\u0438\u043d Matiss<\/p>\r\n<p>\u0422\u0426 \u0410\u0440\u0430\u043a\u0441<\/p>\r\n<p>\u0412\u0435\u043b\u0438\u043a\u0430 \u043a\u0456\u043b\u044c\u0446\u0435\u0432\u0430 \u0434\u043e\u0440\u043e\u0433\u0430 110<\/p>" + '</p>'))
-                    .addTo(map);
-
-                var eldata3 = document.createElement('div');
-                eldata3.className = 'marker';
-
-                new mapboxgl.Marker(eldata3)
-                    .setLngLat([23.907950, 49.830623])
-                    .setPopup(new mapboxgl.Popup({ offset: 25 })
-                        .setHTML("<p>\u0421\u0430\u043b\u043e\u043d \u043a\u0430\u0440\u0442\u0438\u043d Matiss<\/p>\r\n<p>\u0422\u0426&nbsp;\u0422\u0440\u0438 \u0441\u043b\u043e\u043d\u0438<\/p>\r\n<p>\u041b\u044c\u0432\u0456\u0432, \u0417\u0438\u043c\u043d\u0430 \u0432\u043e\u0434\u0430, \u042f\u0432\u0430\u0440\u044b\u0432\u0441\u044c\u043a\u0430 22<\/p>" + '</p>'))
-                    .addTo(map);
+                // add point to map
+                mapPoints.forEach(function (item){
+                    new mapboxgl.Marker(item.htmlPoint)
+                        .setLngLat(item.pointCoordinates)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 })
+                            .setHTML(item.pointInfo))
+                        .addTo(map);
+                })
 
                 // disable map zoom when using scroll
                 map.scrollZoom.disable();
