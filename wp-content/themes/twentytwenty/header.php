@@ -218,6 +218,6 @@
 		<?php
 		// Output the menu modal.
 		// get_template_part('template-parts/modal-menu');
-		if (!is_front_page() && is_page_template('our-team.php')) {
+		if (!is_front_page() && !is_page_template('our-team.php')) {
 			custom_breadcrumbs();
 		};
