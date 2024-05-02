@@ -246,6 +246,9 @@ function twentytwenty_register_scripts()
 
 	wp_enqueue_script('global', get_template_directory_uri() . '/assets/js/global.js', array(), $theme_version);
 	wp_script_add_data('global', 'strategy', 'defer');
+
+	wp_enqueue_script('wishlist', get_template_directory_uri() . '/assets/js/wishlist.js', array(), $theme_version);
+	wp_script_add_data('wishlist', 'strategy', 'defer');
 }
 
 
