@@ -393,6 +393,6 @@
 
 		<?php
 		// Output the menu modal.
-		if (!is_front_page() && !is_page_template('our-team.php') && !is_search()) {
+		if (!is_front_page() && !is_page_template(['our-team.php', 'templates/services-template.php']) && !is_search()) {
 			custom_breadcrumbs();
 		};

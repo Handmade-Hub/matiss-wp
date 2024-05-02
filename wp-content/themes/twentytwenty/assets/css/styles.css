@@ -4135,6 +4135,7 @@ button {
 
 .image-with-text__image img {
   max-width: 100%;
+  height: auto;
 }
 
 .image-with-text__content {
@@ -4272,6 +4273,7 @@ button {
 
 .column__image img {
   max-width: 100%;
+  height: auto;
   object-fit: cover;
   object-position: 75%;
 }
@@ -4367,6 +4369,7 @@ button {
 
 .column__case_image img {
   max-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
@@ -4447,6 +4450,7 @@ button {
 
 .multi-row__image img {
   max-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
@@ -4535,6 +4539,7 @@ button {
 
 .multi-row__case_image img {
   max-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
