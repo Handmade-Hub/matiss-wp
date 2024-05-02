@@ -704,22 +704,119 @@ document.addEventListener('DOMContentLoaded', function () {
   })
  }
 
+ // vilidation email\phone functions
+ function validEmailAddress(email) {
+  var filter =
+      /^([\w-\.\+]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  return filter.test(email);
+ }
+
+ function validPhoneNumber(phoneNumber) {
+  const phonePattern = /^\+?[0-9]{10,}$/;
+  return phonePattern.test(phoneNumber);
+ }
+
  // contact form error
  if (document.querySelectorAll('.contact-form').length) {
-  const form = document.querySelector('.contact-form form');
-  const requiredFields = form.querySelectorAll('.contact-form__field--required');
+  const form = document.querySelector('.contact-form form.contact-form_mask');
+  const requiredFields = form.querySelectorAll('.contact-form__field');
 
   form.addEventListener('submit', e => {
+   e.preventDefault();
+   let isValid = true;
+
    requiredFields.forEach(field => {
     const input = field.querySelector('input');
-    if (input.value == '') {
+    if (input != null && input.value == '' && field.classList.contains('contact-form__field--required')) {
      field.classList.add('error');
-     e.preventDefault();
+     isValid = false;
     } else {
      field.classList.remove('error');
     }
+
+    // validate email
+    if (input != null && input.value !== '' && input.getAttribute('id') === 'email') {
+     if (!validEmailAddress(input.value)) {
+      field.classList.add('error');
+      isValid = false;
+     } else {
+      field.classList.remove('error');
+     }
+    }
+
+    // validate phone number
+    if (input != null && input.value !== '' && input.getAttribute('id') === 'phone') {
+     if (!validPhoneNumber(input.value)) {
+      field.classList.add('error');
+      isValid = false;
+     } else {
+      field.classList.remove('error');
+     }
+    }
    })
+
+   let name = jQuery('.contact-form #name').val();
+   let phone = jQuery('.contact-form #phone').val();
+   let email = jQuery('.contact-form #email').val();
+   let message = jQuery('.contact-form #message').val();
+
+   if (isValid) {
+    jQuery('.contact-form .wpcf7-form-control[name="your-name"]').val(name);
+    jQuery('.contact-form .wpcf7-form-control[name="your-phone"]').val(phone);
+    jQuery('.contact-form .wpcf7-form-control[name="your-email"]').val(email);
+    jQuery('.contact-form .wpcf7-form-control[name="your-message"]').val(message);
+    jQuery('.contact-form .wpcf7-submit').click();
+   }
   })
+
+  /// response observer
+  const formResponseElement = document.querySelector('.contact-form .wpcf7-response-output');
+
+  const formResponseObserver = new MutationObserver(function(mutationsList, observer) {
+   let formResponseBlock = document.querySelector('.contact-form-response');
+   formResponseBlock.innerHTML = formResponseElement.innerHTML;
+  });
+
+  formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
+ }
+
+ // newsletter form error
+ if (document.querySelectorAll('.newsletter__form').length) {
+  const form = document.querySelector('.newsletter__form form.newsletter_form_mask');
+  const input = form.querySelector('.newsletter__form_input');
+  const errorMessage = document.querySelector('.newsletter__form .contact-form__error');
+
+  form.addEventListener('submit', e => {
+   e.preventDefault();
+   let isValid = true;
+
+   // validate email
+   if (input != null) {
+    if (!validEmailAddress(input.value)) {
+     errorMessage.classList.add('active');
+     isValid = false;
+    } else {
+     errorMessage.classList.remove('active');
+    }
+   }
+
+   let email = jQuery('.newsletter__form .newsletter__form_input').val();
+
+   if (isValid) {
+    jQuery('.newsletter__form .wpcf7-form-control[name="your-email"]').val(email);
+    jQuery('.newsletter__form .wpcf7-submit').click();
+   }
+  })
+
+  /// response observer
+  const formResponseElement = document.querySelector('.newsletter__form .wpcf7-response-output');
+
+  const formResponseObserver = new MutationObserver(function(mutationsList, observer) {
+   let formResponseBlock = document.querySelector('.subscribe-form-response');
+   formResponseBlock.innerHTML = formResponseElement.innerHTML;
+  });
+
+  formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
  }
 
  // featured-product swiper
@@ -1113,8 +1210,6 @@ document.addEventListener('DOMContentLoaded', function () {
     jQuery('.wpcf7-form-control[name="your-message"]').val(message);
     jQuery('.wpcf7-submit').click();
    }
-
-   console.log('isValid', isValid)
   })
 
   /// response observer
@@ -1126,17 +1221,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
-
-  function validEmailAddress(email) {
-   var filter =
-       /^([\w-\.\+]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-   return filter.test(email);
-  }
-
-  function validPhoneNumber(phoneNumber) {
-   const phonePattern = /^\+?[0-9]{10,}$/;
-   return phonePattern.test(phoneNumber);
-  }
 
   // update items
   const updateItems = () => {

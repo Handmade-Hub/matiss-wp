@@ -27,6 +27,19 @@ if ( is_array( $locations ) && ! empty( $locations ) ) {
     $locations_first_half = $locations_chunks[ 0 ];
     $locations_second_half = $locations_chunks[ 1 ];
 }
+
+// contact form
+$form_title = $fields[ 'from_title' ];
+$shortcode_form = $fields[ 'shortcode_form' ];
+
+// dillers
+$dillers_title_section = $fields[ 'dillers_title' ];
+$dillers = $fields[ 'dillers' ];
+
+// subscribe form
+$title_subscription = $fields[ 'title_subscription' ];
+$subtitle_subscription = $fields[ 'subtitle_subscription' ];
+$shortcode_subscribe_form = $fields[ 'shortcode_subscribe_form' ];
 ?>
     <!-- contacts -->
     <section class="contacts">
@@ -216,29 +229,36 @@ if ( is_array( $locations ) && ! empty( $locations ) ) {
         <div class="contact-form__wrapper">
             <div class="container">
                 <div class="contact-form__inner">
-                    <h4 class="contact-form__title">Замовити зворотній звʼязок</h4>
-                    <form>
+                    <h4 class="contact-form__title"><?php echo $form_title; ?></h4>
+                    <div class="hidden_cf7_form">
+                        <?php
+                        echo do_shortcode( $shortcode_form );
+                        ?>
+                    </div>
+                    <form class="contact-form_mask">
                         <div class="contact-form__case">
                             <div class="contact-form__field contact-form__field--required">
-                                <input type="text" name="name" placeholder="Імʼя*" id="name">
-                                <label for="name">Імʼя*</label>
-                                <p class="contact-form__error">Будь-ласка, введіть імʼя</p>
+                                <input type="text" name="name" placeholder="<?php echo __('Імʼя*', 'twentytwenty'); ?>" id="name">
+                                <label for="name"><?php echo __('Імʼя*', 'twentytwenty'); ?></label>
+                                <p class="contact-form__error"><?php echo __('Будь-ласка, введіть імʼя', 'twentytwenty'); ?></p>
                             </div>
                             <div class="contact-form__field contact-form__field--required">
-                                <input type="text" name="name" placeholder="Телефон*" id="phone">
-                                <label for="phone">Телефон*</label>
-                                <p class="contact-form__error">Будь-ласка, введіть номер телефону</p>
+                                <input type="text" name="name" placeholder="<?php echo __('Телефон*', 'twentytwenty'); ?>" id="phone">
+                                <label for="phone"><?php echo __('Телефон*', 'twentytwenty'); ?></label>
+                                <p class="contact-form__error"><?php echo __('Будь-ласка, введіть номер телефону', 'twentytwenty'); ?></p>
                             </div>
                         </div>
                         <div class="contact-form__field">
-                            <input type="text" name="name" placeholder="Email" id="email">
-                            <label for="email">Email</label>
+                            <input type="text" name="name" placeholder="<?php echo __('Email', 'twentytwenty'); ?>" id="email">
+                            <label for="email"><?php echo __('Email', 'twentytwenty'); ?></label>
+                            <p class="contact-form__error"><?php echo __( 'Будь-ласка, введіть правильний Email', 'twentytwenty' ); ?></p>
                         </div>
                         <div class="contact-form__field">
-                            <textarea placeholder="Повідомлення" name="message" id="message"></textarea>
-                            <label for="message">Повідомлення</label>
+                            <textarea placeholder="<?php echo __('Повідомлення', 'twentytwenty'); ?>" name="message" id="message"></textarea>
+                            <label for="message"><?php echo __('Повідомлення', 'twentytwenty'); ?></label>
                         </div>
-                        <input class="contact-form__button button__primary disabled" value="надіслати" type="submit">
+                        <input class="contact-form__button button__primary disabled" value="<?php echo __('надіслати', 'twentytwenty'); ?>" type="submit">
+                        <div class="contact-form-response"></div>
                     </form>
                 </div>
             </div>
@@ -250,111 +270,43 @@ if ( is_array( $locations ) && ! empty( $locations ) ) {
         <div class="dealers__wrapper bg-gray">
             <div class="container">
                 <div class="dealers__inner">
-                    <h3 class="dealers__title">Наші дилери</h3>
+                    <h3 class="dealers__title"><?php echo $dillers_title_section; ?></h3>
                     <ul class="dealers__list">
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">ОАЕ. Дубаї. Салон Iconic home. Showroom Baker</h4>
-                            <a href="#" class="dealers__item_link">www.iconichomeuae.com</a>
-                            <p>Dubai Design District (d3)</p>
-                            <p>Building 8,</p>
-                            <p>1st Floor, Dubai,</p>
-                            <a href="#" class="dealers__item_tel">+971 4 55 22 920</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон меблів "Sophie Decor"</h4>
-                            <a href="#" class="dealers__item_link">sophie-decor.com.ua</a>
-                            <p>ТЦ "4Room", -1 поверх</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 6</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (050) 355-2285</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон італійських меблів "Rim"</h4>
-                            <a href="#" class="dealers__item_link">www.rim.ua</a>
-                            <p>ТЦ "4Room", 1 поверх (ліве крило)</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 6</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (067) 500-4701</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон бельгійських меблів "ROM"</h4>
-                            <a href="#" class="dealers__item_link">https://rom-ua.com</a>
-                            <p>ТЦ "4Room", салон "ROM". 1 поверх.</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 12</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (066) 467-0226</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон меблів "WELOVEMEBEL"</h4>
-                            <a href="#" class="dealers__item_link">https://welovemebel.com.ua/ua/</a>
-                            <p>ТЦ "4Room", 2 поверх</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 6</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (063) 841-0335</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон меблів "WELOVEMEBEL"</h4>
-                            <a href="#" class="dealers__item_link">welovemebel.com.ua</a>
-                            <p>"Центральний Дім Меблів", -1 поверх</p>
-                            <p>бул. Дружби Народів, 23</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (067) 402-8216</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон бельгійських меблів "ROM"</h4>
-                            <a href="#" class="dealers__item_link">www.rom-ua.com</a>
-                            <p>ТЦ "Аракс", салон "ROM".</p>
-                            <p>1 поверх.</p>
-                            <p>вул. Велика Окружна, 110</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (095) 617-0525</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон італійських меблів "CARVELLI"</h4>
-                            <a href="#" class="dealers__item_link">www.tango.ua</a>
-                            <p>ТЦ "4Room",</p>
-                            <p>2 поверх</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 6</p>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон м'яких меблів та інтер'єру "Interios"</h4>
-                            <a href="#" class="dealers__item_link">www.millini.com.ua</a>
-                            <p>пр-т. Григоренка, 22/20, 2 поверх</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (044) 229-2902</a>
-                            <p>пн-пт 10.00 - 19.00,</p>
-                            <p>сб-нд 10.00 - 19.00</p>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон "Giorgio Concept"</h4>
-                            <a href="#" class="dealers__item_link">www.giorgioconcept.com</a>
-                            <p>ТЦ "Домосфера", 2 поверх</p>
-                            <p>Столичне шосе, 101</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (044) 252-7203</a>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (067) 555-1552</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон м'яких меблів "Millini"</h4>
-                            <a href="#" class="dealers__item_link">www.millini.com.ua</a>
-                            <p>ТЦ "4Room". - 1 поверх.</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 6</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (044) 229-2905</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Київ. Салон італійських меблів "Tango"</h4>
-                            <a href="#" class="dealers__item_link">www.tango.ua</a>
-                            <p>ТЦ "4Room", 2 поверх</p>
-                            <p>с. Петропавлівська Борщагівка,</p>
-                            <p>вул. Петропавлівська, 6</p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (044) 383-4900</a>
-                        </li>
-                        <li class="dealers__item">
-                            <h4 class="dealers__item_title">Одеса. Салон італійських меблів "Tango"</h4>
-                            <a href="#" class="dealers__item_link">www.tango.ua</a>
-                            <p class="dealers__item_adress">Люстдорфська дорога, 55/2 </p>
-                            <a href="#" class="dealers__item_tel">тел.: +38 (048) 737-3030</a>
-                            <a href="#" class="dealers__item_tel">тел.: +380 (97) 333-04-44</a>
-                            <p class="dealers__item_adress">10:00-20:00</p>
-                        </li>
+                        <?php
+                        if ( is_array( $dillers ) && ! empty( $dillers ) ) {
+                            foreach ( $dillers as $diller ) {
+                                $diller_name = $diller[ 'name' ];
+                                $site_url = $diller[ 'site_url' ];
+                                $address = $diller[ 'address' ];
+                                $phone_numbers = $diller[ 'pnone_numbers' ];
+                                $work_schedule = $diller[ 'work_schedule' ];
+                                ?>
+                                <li class="dealers__item">
+                                    <h4 class="dealers__item_title"><?php echo $diller_name; ?></h4>
+                                    <a href="<?php echo $site_url; ?>" class="dealers__item_link" target="_blank"><?php echo $site_url; ?></a>
+                                    <div class="dealers__item_address"><?php echo $address; ?></div>
+                                    <?php
+                                    // array phone numbers
+                                    if ( is_array( $phone_numbers ) && ! empty( $phone_numbers ) ) {
+                                        foreach ( $phone_numbers as $phone_number ) {
+                                            $diller_phone = $phone_number[ 'pnone' ];
+                                            $diller_phone_clear = preg_replace( '/\D/', '', $diller_phone );
+                                            ?>
+                                            <a href="tel:<?php echo $diller_phone_clear; ?>" class="dealers__item_tel"><?php echo __( 'тел.:', 'twentytwenty' ) . ' ' . $diller_phone; ?></a>
+                                            <?php
+                                        }
+                                    }
+                                    if ( ! empty( $work_schedule ) ) {
+                                    ?>
+                                    <div class="dealers__item_work-schedule"><?php echo $work_schedule; ?></div>
+                                        <?php
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -366,19 +318,24 @@ if ( is_array( $locations ) && ! empty( $locations ) ) {
         <div class="newsletter__wrapper">
             <div class="container">
                 <div class="newsletter__inner">
-                    <h4 class="newsletter__title text-center fw-500">Отримайте доступ до нашого щорічного каталогу картин в PDF
-                        форматі</h4>
-                    <p class="newsletter__text text-center fz-18">Готові вдосконалити ваші проекти за допомогою робіт від наших
-                        художників? Залиште email нижче, щоб отримати каталог для зручного використання
-                    </p>
+                    <h4 class="newsletter__title text-center fw-500"><?php echo $title_subscription; ?></h4>
+                    <p class="newsletter__text text-center fz-18"><?php echo $subtitle_subscription; ?></p>
                     <div class="newsletter__form">
-                        <form method="post">
+                        <div class="hidden_cf7_form">
+                            <?php
+                            echo do_shortcode( $shortcode_subscribe_form );
+                            ?>
+                        </div>
+                        <form class="newsletter_form_mask" method="post">
                             <div class="newsletter__form_field">
-                                <input class="newsletter__form_input" placeholder="Email" id="POST-name" type="text" name="name">
-                                <label class="newsletter__form_label" for="POST-name">Email</label>
+                                <input class="newsletter__form_input" placeholder="<?php echo __( 'Email', 'twentytwenty' ); ?>" id="POST-name" type="text" name="name">
+                                <label class="newsletter__form_label" for="POST-name"><?php echo __( 'Email', 'twentytwenty' ); ?></label>
                             </div>
-                            <input class="button__primary newsletter__form_button" type="submit" value="Підписатися">
+                            <input class="button__primary newsletter__form_button" type="submit" value="<?php echo __( 'Підписатися', 'twentytwenty' ); ?>">
+
                         </form>
+                        <p class="contact-form__error"><?php echo __( 'Будь-ласка, введіть правильний Email', 'twentytwenty' ); ?></p>
+                        <div class="subscribe-form-response"></div>
                     </div>
                 </div>
             </div>
