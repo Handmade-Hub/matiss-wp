@@ -116,7 +116,7 @@
 							<div class="header__search">
 								<img src="<?= home_url(); ?>/images/icons/icon-search.svg" alt="search">
 							</div>
-							<a href="#" class="header__wishlist">
+							<a href="/wishlist" class="header__wishlist">
 								<img src="<?= home_url(); ?>/images/icons/icon-wishlist.svg" alt="wishlist">
 							</a>
 							<a href="#" class="header__cart">
