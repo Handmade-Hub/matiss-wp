@@ -3517,9 +3517,11 @@ button {
     padding: 2.4rem 0 0;
   }
 }
+
 .newsletter__form .wpforms-container {
   /* display: none; */
 }
+
 .newsletter__form_field {
   position: relative;
   width: 100%;
@@ -6208,6 +6210,18 @@ button {
   .wishlist__item {
     max-width: 32.8rem;
   }
+}
+
+.wishlist-empty.hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.wishlist-empty:not(.hidden)~* {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .wishlist-empty__case {
