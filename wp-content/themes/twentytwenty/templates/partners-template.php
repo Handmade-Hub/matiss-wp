@@ -71,7 +71,7 @@ $result_array = get_information_menu_items();
     <h4 class="newsletter__title text-center fw-500"><?= $newsletter['title'] ?></h4>
     <p class="newsletter__text text-center fz-18"><?= $newsletter['text'] ?></p>
     <div class="newsletter__form">
-     <?php echo do_shortcode('[wpforms id="325" title="false"]')?>
+     <?php echo do_shortcode('[contact-form-7 id="170fa72" title="Newsletter"]')?>
      <form id="newsletter__form_visible">
       <div class="newsletter__form_field">
        <input class="newsletter__form_input" placeholder="Email" id="POST-text" type="text" name="email">

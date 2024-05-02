@@ -1548,6 +1548,46 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  const headerSearch = document.querySelector('#header-search');
+  const searchBtn = document.querySelector('.search-modal__button_search');
+
+  const submitSearch = () => {
+    const container = searchBtn.closest('.search-modal__field');
+    const input = container.querySelector('[type="text"]');
+    const formInput = headerSearch.querySelector('[type="search"]');
+
+    if (input.value == '') { return; };
+
+    formInput.value = input.value;
+
+    headerSearch.submit();
+  }
+
+  headerSearch && searchBtn.addEventListener('click', submitSearch)
+
+
+  if (document.querySelectorAll('.newsletter').length) {
+    const visibleForm = document.getElementById('newsletter__form_visible');
+    const visibleFormInput = visibleForm.querySelector('input[type=text]');
+    const errorText = visibleForm.querySelector('.newsletter__form_error');
+    const hideForm = document.querySelector('#wpcf7-f357-o1 form');
+    const hideFormInput = hideForm.querySelector('#wpcf7-f357-o1 input[type=email]');
+
+    visibleForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // validate email
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(visibleFormInput.value)) {
+        errorText.classList.add('error');
+      } else {
+        errorText.classList.remove('error');
+        hideFormInput.value = visibleFormInput.value;
+        hideForm.submit();
+      }
+    })
+  }
+
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {
