@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Header file for the Twenty Twenty WordPress default theme.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package WordPress
- * @subpackage Twenty_Twenty
- * @since Twenty Twenty 1.0
- */
+	* Header file for the Twenty Twenty WordPress default theme.
+	*
+	* @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+	*
+	* @package WordPress
+	* @subpackage Twenty_Twenty
+	* @since Twenty Twenty 1.0
+	*/
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
 
 </head>
 
-<body <?php body_class(); ?> id="scroll-top">
+<body <?php body_class(); ?>	id="scroll-top">
 
 	<?php
 	wp_body_open();
@@ -81,24 +81,24 @@
 
 								foreach ($result_array as $item) {
 									if (empty($item['children'])) { ?>
-										<li class="header__list_item">
-											<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600"><?= $item['parent']->title ?></a>
-										</li>
-									<?php
+												<li class="header__list_item">
+													<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600"><?= $item['parent']->title ?></a>
+												</li>
+											<?php
 									} else { ?>
-										<li class="header__list_item header__drop-down">
-											<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600 with-arrow"><?= $item['parent']->title ?>
-												<img src="<?= home_url(); ?>/images/icons/header-drop-icon.svg" alt="arrow">
-											</a>
-											<ul class="header__drop-down_list">
-												<?php foreach ($item['children'] as $child) { ?>
-													<li class="header__drop-down_item">
-														<a href="<?= $child->url ?>" class="header__drop-down_link fw-600"><?= $child->title ?></a>
-													</li>
-												<?php } ?>
-											</ul>
-										</li>
-								<?php }
+												<li class="header__list_item header__drop-down">
+													<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600 with-arrow"><?= $item['parent']->title ?>
+														<img src="<?= home_url(); ?>/images/icons/header-drop-icon.svg" alt="arrow">
+													</a>
+													<ul class="header__drop-down_list">
+														<?php foreach ($item['children'] as $child) { ?>
+																<li class="header__drop-down_item">
+																	<a href="<?= $child->url ?>" class="header__drop-down_link fw-600"><?= $child->title ?></a>
+																</li>
+														<?php } ?>
+													</ul>
+												</li>
+									<?php }
 								}
 								?>
 							</ul>
@@ -248,7 +248,7 @@
 						</div>
 					</div>
 					<form class="serach-form-hidden" id="header-search" role="search" <?php echo $twentytwenty_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. 
-																						?> method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+					?>	method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
 						<label for="<?php echo esc_attr($twentytwenty_unique_id); ?>">
 							<span class="screen-reader-text">
 								<?php
@@ -393,6 +393,7 @@
 
 		<?php
 		// Output the menu modal.
-		if (!is_front_page() && !is_page_template('our-team.php') && !is_search()) {
+		if (!is_front_page() && !is_page_template('information-template.php')	&& !is_search()) {
 			custom_breadcrumbs();
-		};
+		}
+		;

@@ -1459,6 +1459,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   headerSearch && searchBtn.addEventListener('click', submitSearch)
 
+
+  if (document.querySelectorAll('.newsletter').length) {
+    const visibleForm = document.getElementById('newsletter__form_visible');
+    const visibleFormInput = visibleForm.querySelector('input[type=text]');
+    const errorText = visibleForm.querySelector('.newsletter__form_error');
+    const hideForm = document.querySelector('#wpcf7-f357-o1 form');
+    const hideFormInput = hideForm.querySelector('#wpcf7-f357-o1 input[type=email]');
+  
+    visibleForm.addEventListener('submit', (e) => {
+     e.preventDefault();
+     // validate email
+     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     if (!emailPattern.test(visibleFormInput.value)) {
+      errorText.classList.add('error');
+     } else {
+      errorText.classList.remove('error');
+      hideFormInput.value = visibleFormInput.value;
+      hideForm.submit();
+     }
+    })
+   }
+
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {

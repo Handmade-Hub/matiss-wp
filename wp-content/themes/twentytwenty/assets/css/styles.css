@@ -3484,6 +3484,10 @@ button {
   }
 }
 
+.newsletter .wpcf7 {
+  display: none;
+}
+
 .newsletter__inner {
   width: 100%;
   max-width: 73.6rem;
@@ -3560,6 +3564,7 @@ button {
 @media (max-width: 767px) {
   .newsletter__form_button {
     max-width: 25.6rem;
+    margin: 0 auto;
   }
 }
 
