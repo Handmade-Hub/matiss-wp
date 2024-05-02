@@ -18,6 +18,7 @@ $faq = get_field('faq');
 $result_array = get_information_menu_items();
 ?>
 
+
 <script>
  console.log(<?php print_r(json_encode($faq)) ?>)
 </script>

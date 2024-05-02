@@ -81,24 +81,24 @@
 
 								foreach ($result_array as $item) {
 									if (empty($item['children'])) { ?>
-												<li class="header__list_item">
-													<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600"><?= $item['parent']->title ?></a>
-												</li>
-											<?php
-									} else { ?>
-												<li class="header__list_item header__drop-down">
-													<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600 with-arrow"><?= $item['parent']->title ?>
-														<img src="<?= home_url(); ?>/images/icons/header-drop-icon.svg" alt="arrow">
-													</a>
-													<ul class="header__drop-down_list">
-														<?php foreach ($item['children'] as $child) { ?>
-																<li class="header__drop-down_item">
-																	<a href="<?= $child->url ?>" class="header__drop-down_link fw-600"><?= $child->title ?></a>
+																<li class="header__list_item">
+																	<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600"><?= $item['parent']->title ?></a>
 																</li>
-														<?php } ?>
-													</ul>
-												</li>
-									<?php }
+															<?php
+									} else { ?>
+																<li class="header__list_item header__drop-down">
+																	<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600 with-arrow"><?= $item['parent']->title ?>
+																		<img src="<?= home_url(); ?>/images/icons/header-drop-icon.svg" alt="arrow">
+																	</a>
+																	<ul class="header__drop-down_list">
+																		<?php foreach ($item['children'] as $child) { ?>
+																						<li class="header__drop-down_item">
+																							<a href="<?= $child->url ?>" class="header__drop-down_link fw-600"><?= $child->title ?></a>
+																						</li>
+																		<?php } ?>
+																	</ul>
+																</li>
+											<?php }
 								}
 								?>
 							</ul>
@@ -390,10 +390,12 @@
 
 	<main class="main">
 
-
-		<?php
-		// Output the menu modal.
-		if (!is_front_page() && !is_page_template('information-template.php')	&& !is_search()) {
-			custom_breadcrumbs();
-		}
-		;
+		
+	<?php
+	// Output the menu modal
+	if (!is_front_page() && !is_page_template('templates/information-template.php')
+	&& !is_page_template('templates/our-team-template.php') && !is_page_template('templates/partners-template.php')
+	&& !is_page_template('templates/privacy-policy-template.php') && !is_page_template('templates/video-template.php') && !is_search()) {
+		custom_breadcrumbs();
+	}
+	?>
