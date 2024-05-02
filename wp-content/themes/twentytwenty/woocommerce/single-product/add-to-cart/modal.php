@@ -72,7 +72,7 @@ if ( $product->is_type( 'variable' ) ) {
                     <button class="modal-add-to-cart__button button__outline modal-add-to-cart__button_close">
                         <?php echo __('продовжити покупки', 'twentytwenty'); ?>
                     </button>
-                    <a href="#" class="modal-add-to-cart__button button__primary">
+                    <a href="checkout" class="modal-add-to-cart__button button__primary">
                         <?php echo __('оформити замовлення', 'twentytwenty'); ?>
                     </a>
                 </div>

@@ -709,22 +709,119 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
+  // vilidation email\phone functions
+  function validEmailAddress(email) {
+    var filter =
+      /^([\w-\.\+]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return filter.test(email);
+  }
+
+  function validPhoneNumber(phoneNumber) {
+    const phonePattern = /^\+?[0-9]{10,}$/;
+    return phonePattern.test(phoneNumber);
+  }
+
   // contact form error
   if (document.querySelectorAll('.contact-form').length) {
-    const form = document.querySelector('.contact-form form');
-    const requiredFields = form.querySelectorAll('.contact-form__field--required');
+    const form = document.querySelector('.contact-form form.contact-form_mask');
+    const requiredFields = form.querySelectorAll('.contact-form__field');
 
     form.addEventListener('submit', e => {
+      e.preventDefault();
+      let isValid = true;
+
       requiredFields.forEach(field => {
         const input = field.querySelector('input');
-        if (input.value == '') {
+        if (input != null && input.value == '' && field.classList.contains('contact-form__field--required')) {
           field.classList.add('error');
-          e.preventDefault();
+          isValid = false;
         } else {
           field.classList.remove('error');
         }
+
+        // validate email
+        if (input != null && input.value !== '' && input.getAttribute('id') === 'email') {
+          if (!validEmailAddress(input.value)) {
+            field.classList.add('error');
+            isValid = false;
+          } else {
+            field.classList.remove('error');
+          }
+        }
+
+        // validate phone number
+        if (input != null && input.value !== '' && input.getAttribute('id') === 'phone') {
+          if (!validPhoneNumber(input.value)) {
+            field.classList.add('error');
+            isValid = false;
+          } else {
+            field.classList.remove('error');
+          }
+        }
       })
+
+      let name = jQuery('.contact-form #name').val();
+      let phone = jQuery('.contact-form #phone').val();
+      let email = jQuery('.contact-form #email').val();
+      let message = jQuery('.contact-form #message').val();
+
+      if (isValid) {
+        jQuery('.contact-form .wpcf7-form-control[name="your-name"]').val(name);
+        jQuery('.contact-form .wpcf7-form-control[name="your-phone"]').val(phone);
+        jQuery('.contact-form .wpcf7-form-control[name="your-email"]').val(email);
+        jQuery('.contact-form .wpcf7-form-control[name="your-message"]').val(message);
+        jQuery('.contact-form .wpcf7-submit').click();
+      }
     })
+
+    /// response observer
+    const formResponseElement = document.querySelector('.contact-form .wpcf7-response-output');
+
+    const formResponseObserver = new MutationObserver(function (mutationsList, observer) {
+      let formResponseBlock = document.querySelector('.contact-form-response');
+      formResponseBlock.innerHTML = formResponseElement.innerHTML;
+    });
+
+    formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
+  }
+
+  // newsletter form error
+  if (document.querySelectorAll('.newsletter__form').length) {
+    const form = document.querySelector('.newsletter__form form.newsletter_form_mask');
+    const input = form.querySelector('.newsletter__form_input');
+    const errorMessage = document.querySelector('.newsletter__form .contact-form__error');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      let isValid = true;
+
+      // validate email
+      if (input != null) {
+        if (!validEmailAddress(input.value)) {
+          errorMessage.classList.add('active');
+          isValid = false;
+        } else {
+          errorMessage.classList.remove('active');
+        }
+      }
+
+      let email = jQuery('.newsletter__form .newsletter__form_input').val();
+
+      if (isValid) {
+        jQuery('.newsletter__form .wpcf7-form-control[name="your-email"]').val(email);
+        jQuery('.newsletter__form .wpcf7-submit').click();
+      }
+    })
+
+    /// response observer
+    const formResponseElement = document.querySelector('.newsletter__form .wpcf7-response-output');
+
+    const formResponseObserver = new MutationObserver(function (mutationsList, observer) {
+      let formResponseBlock = document.querySelector('.subscribe-form-response');
+      formResponseBlock.innerHTML = formResponseElement.innerHTML;
+    });
+
+    formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
   }
 
   // featured-product swiper
@@ -930,16 +1027,14 @@ document.addEventListener('DOMContentLoaded', function () {
       wcSelect.dispatchEvent(new Event('change'));
       wcForm.dispatchEvent(new Event('check_variations'));
 
-      // // if withot frame change color
-      // if (itemValue === 'Без рами') {
-      //  setTimeout(function (){
-      //   let multiSelect = document.querySelector('.product_form_item_multi select');
-      //   multiSelect.value = "Без кольору";
-      //   multiSelect.dispatchEvent(new Event('change'));
-      //   multiSelect.dispatchEvent(new Event('input'));
-      //   multiSelect.dispatchEvent(new Event('check_variations'));
-      //  },100)
-      // }
+      // if withot frame change color
+      if (itemValue === 'Без рами') {
+        let multiSelect = document.querySelector('.product_form_item_multi select');
+
+        multiSelect.value = "Без кольору";
+        multiSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        multiSelect.dispatchEvent(new Event('check_variations'));
+      }
     }
     // change woocommerce multiitem select
     function changeWcSelectMultiValue(currentSelectedItem) {
@@ -1009,7 +1104,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // change modal content
     function changeModalContent(data) {
       let quantity = 1;
-      let totalPrice = data['line_total'];
+      let price = data['price'];
       let variation = decodeUrlObject(data['variation']);
       let size, frame, cost;
 
@@ -1017,8 +1112,10 @@ document.addEventListener('DOMContentLoaded', function () {
         size = variation['attribute_розмір'];
       }
 
-      if (variation['attribute_колір-рами']) {
+      if (variation['attribute_колір-рами'] && variation['attribute_колір-рами'] !== 'Без кольору') {
         frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+      } else {
+        frame = variation['attribute_рама'].toLowerCase();
       }
 
       if (variation['attribute_вартість']) {
@@ -1030,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', function () {
       jQuery('.modal-add-to-cart .atribute_frame_value').text(frame);
       jQuery('.modal-add-to-cart .atribute_cost_value').text(cost);
       jQuery('.modal-add-to-cart .modal-add-to-cart__case_quantity_value').text(quantity);
-      jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(totalPrice);
+      jQuery('.modal-add-to-cart .modal-add-to-cart__price_value').text(price);
     }
   }
 
@@ -1118,8 +1215,6 @@ document.addEventListener('DOMContentLoaded', function () {
         jQuery('.wpcf7-form-control[name="your-message"]').val(message);
         jQuery('.wpcf7-submit').click();
       }
-
-      console.log('isValid', isValid)
     })
 
     /// response observer
@@ -1132,17 +1227,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     formResponseObserver.observe(formResponseElement, { subtree: true, characterData: true, childList: true });
 
-    function validEmailAddress(email) {
-      var filter =
-        /^([\w-\.\+]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-      return filter.test(email);
-    }
-
-    function validPhoneNumber(phoneNumber) {
-      const phonePattern = /^\+?[0-9]{10,}$/;
-      return phonePattern.test(phoneNumber);
-    }
-
     // update items
     const updateItems = () => {
       const choosedItems = list.querySelectorAll('li');
@@ -1153,18 +1237,41 @@ document.addEventListener('DOMContentLoaded', function () {
         result.classList.add('not-empty');
         let li = document.createElement('li');
         li.innerHTML = `
-      <span>${arr[i]}</span>
-      <button type="button" class="modal-order__add-file_remove">
-      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd"
-      d="M13.0667 4.30102C13.1237 4.24408 13.169 4.17647 13.1998 4.10204C13.2307 4.02762 13.2466 3.94784 13.2467 3.86726C13.2467 3.78669 13.2309 3.70689 13.2001 3.63243C13.1693 3.55797 13.1242 3.4903 13.0672 3.43329C13.0103 3.37628 12.9427 3.33104 12.8683 3.30016C12.7938 3.26928 12.7141 3.25336 12.6335 3.25331C12.5529 3.25326 12.4731 3.26908 12.3987 3.29987C12.3242 3.33066 12.2565 3.37581 12.1995 3.43275L8.49924 7.13302L4.80004 3.43275C4.6849 3.31761 4.52874 3.25293 4.36591 3.25293C4.20308 3.25293 4.04692 3.31761 3.93178 3.43275C3.81664 3.54789 3.75195 3.70406 3.75195 3.86689C3.75195 4.02972 3.81664 4.18588 3.93178 4.30102L7.63204 8.00022L3.93178 11.6994C3.87477 11.7564 3.82954 11.8241 3.79869 11.8986C3.76783 11.9731 3.75195 12.0529 3.75195 12.1336C3.75195 12.2142 3.76783 12.294 3.79869 12.3685C3.82954 12.443 3.87477 12.5107 3.93178 12.5677C4.04692 12.6828 4.20308 12.7475 4.36591 12.7475C4.44654 12.7475 4.52637 12.7316 4.60086 12.7008C4.67535 12.6699 4.74303 12.6247 4.80004 12.5677L8.49924 8.86742L12.1995 12.5677C12.3146 12.6827 12.4708 12.7472 12.6335 12.7471C12.7962 12.747 12.9522 12.6823 13.0672 12.5672C13.1822 12.452 13.2468 12.2959 13.2467 12.1332C13.2466 11.9704 13.1818 11.8144 13.0667 11.6994L9.36644 8.00022L13.0667 4.30102Z"
-      fill="black" />
-     </svg>
-     </button>`
+     <span>${arr[i]}</span>
+     <button type="button" class="modal-order__add-file_remove">
+     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <path fill-rule="evenodd" clip-rule="evenodd"
+     d="M13.0667 4.30102C13.1237 4.24408 13.169 4.17647 13.1998 4.10204C13.2307 4.02762 13.2466 3.94784 13.2467 3.86726C13.2467 3.78669 13.2309 3.70689 13.2001 3.63243C13.1693 3.55797 13.1242 3.4903 13.0672 3.43329C13.0103 3.37628 12.9427 3.33104 12.8683 3.30016C12.7938 3.26928 12.7141 3.25336 12.6335 3.25331C12.5529 3.25326 12.4731 3.26908 12.3987 3.29987C12.3242 3.33066 12.2565 3.37581 12.1995 3.43275L8.49924 7.13302L4.80004 3.43275C4.6849 3.31761 4.52874 3.25293 4.36591 3.25293C4.20308 3.25293 4.04692 3.31761 3.93178 3.43275C3.81664 3.54789 3.75195 3.70406 3.75195 3.86689C3.75195 4.02972 3.81664 4.18588 3.93178 4.30102L7.63204 8.00022L3.93178 11.6994C3.87477 11.7564 3.82954 11.8241 3.79869 11.8986C3.76783 11.9731 3.75195 12.0529 3.75195 12.1336C3.75195 12.2142 3.76783 12.294 3.79869 12.3685C3.82954 12.443 3.87477 12.5107 3.93178 12.5677C4.04692 12.6828 4.20308 12.7475 4.36591 12.7475C4.44654 12.7475 4.52637 12.7316 4.60086 12.7008C4.67535 12.6699 4.74303 12.6247 4.80004 12.5677L8.49924 8.86742L12.1995 12.5677C12.3146 12.6827 12.4708 12.7472 12.6335 12.7471C12.7962 12.747 12.9522 12.6823 13.0672 12.5672C13.1822 12.452 13.2468 12.2959 13.2467 12.1332C13.2466 11.9704 13.1818 11.8144 13.0667 11.6994L9.36644 8.00022L13.0667 4.30102Z"
+     fill="black" />
+    </svg>
+    </button>`
         buttonRemoveAll.insertAdjacentElement('beforeBegin', li);
         // remove item
         const buttonRemove = li.querySelector('button');
         buttonRemove.addEventListener('click', () => {
+          // get files array
+          let filesArray = input.files;
+          let deletedFileName = li.querySelector('span').innerText;
+
+          // create new files array
+          let newFilesArray = [];
+
+          // add files in new array without target file
+          for (let file of filesArray) {
+            if (file.name !== deletedFileName) {
+              newFilesArray.push(file);
+            }
+          }
+
+          let dataTransfer = new DataTransfer();
+          newFilesArray.forEach(function (file) {
+            dataTransfer.items.add(file);
+          });
+
+          // add new file array in input
+          input.files = dataTransfer.files;
+          input.dispatchEvent(new Event('change'));
+
           li.remove();
           arr = arr.filter(function (m) {
             return m != li.querySelector('span').textContent;
@@ -1424,7 +1531,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       success: function (response) {
         let data = JSON.parse(response);
-
+        console.log('response', data)
         // relocate if quick buy
         if (param && param === 'quick') {
           window.location.href = "checkout";
@@ -1441,24 +1548,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-
-  const headerSearch = document.querySelector('#header-search');
-  const searchBtn = document.querySelector('.search-modal__button_search');
-
-  const submitSearch = () => {
-    const container = searchBtn.closest('.search-modal__field');
-    const input = container.querySelector('[type="text"]');
-    const formInput = headerSearch.querySelector('[type="search"]');
-
-    if (input.value == '') { return; };
-
-    formInput.value = input.value;
-
-    headerSearch.submit();
-  }
-
-  headerSearch && searchBtn.addEventListener('click', submitSearch)
-
 });
 
 const descriptionAccordion = (initialHeight, mobileHeight) => {
