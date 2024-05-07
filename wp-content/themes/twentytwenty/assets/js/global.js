@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttonOpen = document.querySelectorAll('.header__cart');
     const modal = document.querySelector('.cart-modal');
     const buttonClose = document.querySelector('.cart-modal__close');
-    const cartItems = document.querySelectorAll('.cart-modal__item');
 
     document.addEventListener('click', e => {
       if (e.target == modal && modal.classList.contains('open')) {
@@ -105,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
       button.addEventListener('click', function () {
         modal.classList.add('open');
         body.classList.add('menu-open');
+        getCart();
       })
     })
     buttonClose.addEventListener('click', function () {
@@ -112,39 +112,129 @@ document.addEventListener('DOMContentLoaded', function () {
       body.classList.remove('menu-open');
     })
 
-    // quantity
-    cartItems.forEach(cartItem => {
-      const buttonPlus = cartItem.querySelector('.cart-modal__quantity_plus');
-      const buttonMinus = cartItem.querySelector('.cart-modal__quantity_minus');
-      const input = cartItem.querySelector('.cart-modal__quantity_input');
+    // set quantity
+    function setQuantityListener() {
+      const cartItems = document.querySelectorAll('.cart-modal__item');
+      cartItems.forEach(cartItem => {
+        const buttonPlus = cartItem.querySelector('.cart-modal__quantity_plus');
+        const buttonMinus = cartItem.querySelector('.cart-modal__quantity_minus');
+        const input = cartItem.querySelector('.cart-modal__quantity_input');
 
-      if (input.value == 99) buttonPlus.classList.add('disabled');
-      if (input.value == 1) buttonMinus.classList.add('disabled');
+        if (input.value == 99) buttonPlus.classList.add('disabled');
+        if (input.value == 1) buttonMinus.classList.add('disabled');
 
-      input.addEventListener('change', function () {
-        if (input.value >= 99) {
-          buttonPlus.classList.add('disabled');
-          if (buttonMinus.classList.contains('disabled')) buttonMinus.classList.remove('disabled');
+        input.addEventListener('change', function () {
+          let id = input.closest('.cart-modal__item').dataset.id;
+          let quantity = input.value;
+
+          if (input.value >= 99) {
+            buttonPlus.classList.add('disabled');
+            if (buttonMinus.classList.contains('disabled')) buttonMinus.classList.remove('disabled');
+
+          }
+          if (input.value <= 1) {
+            buttonMinus.classList.add('disabled');
+            if (buttonPlus.classList.contains('disabled')) buttonPlus.classList.remove('disabled');
+          }
+          if (input.value < 1) input.value = 1;
+          if (input.value > 99) input.value = 99;
+
+
+          changeQuantity(id, quantity);
+        })
+
+        buttonPlus.addEventListener('click', function () {
+          if (input.value < 99) input.value = ++input.value;
+          if (input.value == 99) buttonPlus.classList.add('disabled')
+          if (input.value > 1 && buttonMinus.classList.contains('disabled')) buttonMinus.classList.remove('disabled');
+          input.dispatchEvent(new Event('change'));
+        })
+        buttonMinus.addEventListener('click', function () {
+
+          if (input.value > 1) input.value = --input.value;
+          if (input.value == 1) buttonMinus.classList.add('disabled')
+          if (input.value < 99 && buttonPlus.classList.contains('disabled')) buttonPlus.classList.remove('disabled');
+          input.dispatchEvent(new Event('change'));
+        })
+      })
+    }
+
+    // remove cart item
+    function setRemoveListener() {
+      const cartItems = document.querySelectorAll('.cart-modal__item');
+      cartItems.forEach(cartItem => {
+        const buttonRemove = cartItem.querySelector('.cart-modal__item_remove');
+
+        buttonRemove.addEventListener('click', function () {
+          let id = buttonRemove.closest('.cart-modal__item').dataset.id;
+          removeCartItem(id);
+        })
+      })
+    }
+
+    function getCart() {
+      jQuery.ajax({
+        type: 'GET',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+          'action': 'get_cart_drawer'
+        },
+        success: function (response) {
+          let data = JSON.parse(response);
+          jQuery('.cart-modal .cart-modal__list').html(data['rendered_items']);
+          jQuery('.cart-modal .total_price_value').html(data['total_price']);
+          jQuery('.cart-modal .subtotal_price_value').html(data['total_saving']);
+          jQuery('.cart-modal .discount_price_value').html(data['total_discounted_price']);
+          jQuery('.cart-modal .cart-modal__count span').html(data['cart_count']);
+
+          setQuantityListener();
+          setRemoveListener();
+
+        },
+        error: function (error) {
+          console.log('error: ', error);
         }
-        if (input.value <= 1) {
-          buttonMinus.classList.add('disabled');
-          if (buttonPlus.classList.contains('disabled')) buttonPlus.classList.remove('disabled');
-        }
-        if (input.value < 1) input.value = 1;
-        if (input.value > 99) input.value = 99;
-      })
+      });
+    }
 
-      buttonPlus.addEventListener('click', function () {
-        if (input.value < 99) input.value = ++input.value;
-        if (input.value == 99) buttonPlus.classList.add('disabled')
-        if (input.value > 1 && buttonMinus.classList.contains('disabled')) buttonMinus.classList.remove('disabled');
-      })
-      buttonMinus.addEventListener('click', function () {
-        if (input.value > 1) input.value = --input.value;
-        if (input.value == 1) buttonMinus.classList.add('disabled')
-        if (input.value < 99 && buttonPlus.classList.contains('disabled')) buttonPlus.classList.remove('disabled');
-      })
-    })
+    function changeQuantity(id, quantity) {
+      jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+          'action': 'update_cart_quantity',
+          'quantity': quantity,
+          'id': id
+        },
+        success: function (response) {
+          getCart();
+          setQuantityListener();
+          setRemoveListener();
+        },
+        error: function (error) {
+          console.log('error: ', error);
+        }
+      });
+    }
+
+    function removeCartItem(id) {
+      jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+          'action': 'remove_cart_item',
+          'id': id
+        },
+        success: function (response) {
+          getCart();
+          setQuantityListener();
+          setRemoveListener();
+        },
+        error: function (error) {
+          console.log('error: ', error);
+        }
+      });
+    }
   }
 
   // banner swiper
@@ -1112,10 +1202,16 @@ document.addEventListener('DOMContentLoaded', function () {
         size = variation['attribute_розмір'];
       }
 
-      if (variation['attribute_колір-рами'] && variation['attribute_колір-рами'] !== 'Без кольору') {
-        frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
-      } else {
+      if (variation['attribute_рама']) {
         frame = variation['attribute_рама'].toLowerCase();
+      }
+
+      if (variation['attribute_колір-рами']) {
+        if (variation['attribute_колір-рами'] !== 'Без кольору') {
+          frame = variation['attribute_колір-рами'].toLowerCase() + ' ' + variation['attribute_рама'].split(' ')[0].toLowerCase();
+        } else {
+          frame = variation['attribute_рама'].toLowerCase();
+        }
       }
 
       if (variation['attribute_вартість']) {
@@ -1531,7 +1627,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       success: function (response) {
         let data = JSON.parse(response);
-        console.log('response', data)
+
         // relocate if quick buy
         if (param && param === 'quick') {
           window.location.href = "checkout";

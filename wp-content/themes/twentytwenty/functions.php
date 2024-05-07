@@ -1241,3 +1241,173 @@ function is_menu_item_active($menu_item)
 	}
 	return false;
 }
+
+// get cart drawer
+add_action('wp_ajax_get_cart_drawer', 'get_cart_drawer');
+add_action('wp_ajax_nopriv_get_cart_drawer', 'get_cart_drawer');
+
+function get_cart_drawer () {
+    $result = array();
+    $cart_items = WC()->cart->get_cart();
+    $cart_count = WC()->cart->get_cart_contents_count();
+
+    $result[ 'rendered_items' ] = render_cart_items( $cart_items );
+    $result[ 'cart_count' ] = $cart_count;
+
+    /// cart prices values
+    $total_regular_price = 0;
+    $total_discounted_price = 0;
+
+    foreach ( $cart_items as $cart_item_key => $cart_item ) {
+        $product = $cart_item[ 'data' ];
+        $price = $product->get_price();
+
+        if ($product->is_on_sale()) {
+            $total_discounted_price += $price * $cart_item[ 'quantity' ];
+        } else {
+            $total_regular_price += $price * $cart_item[ 'quantity' ];
+        }
+    }
+
+    $total_saving = $total_regular_price - $total_discounted_price;
+
+    $result[ 'total_price' ] = '$' . $total_regular_price;
+    $result[ 'total_discounted_price' ] = '$' . $total_discounted_price;
+    $result[ 'total_saving' ] = '$' . $total_saving;
+
+    echo json_encode( $result );
+    wp_die();
+}
+
+function render_cart_items($cart_items) {
+    if ( count( $cart_items ) > 0 ) {
+        $html = '';
+        foreach ( $cart_items as $cart_item_key=>$cart_item_value ) {
+            $product_id = 0;
+            if ( $cart_item_value['variation_id'] > 0 ) {
+                $current_product = wc_get_product( $cart_item_value[ 'variation_id' ] );
+                $product_id = $cart_item_value[ 'variation_id' ];
+            } else {
+                $current_product = wc_get_product( $cart_item_value[ 'product_id' ] );
+                $product_id = $cart_item_value[ 'product_id' ];
+            }
+
+            $image = get_the_post_thumbnail( $current_product->get_parent_id(), 'thumbnail' );
+            $title = $current_product->get_title();
+            $quantity = $cart_item_value[ 'quantity' ];
+            $active_quantity =  ($quantity == 1) ? 'disabled' : 'enabled';
+            $line_total = wc_price( $cart_item_value[ 'line_total' ] );
+            $atributes = $cart_item_value[ 'variation' ];
+            $atributes_encoded = array();
+            $atributes_html = '';
+            $has_attr_frame = false;
+
+            // url encoded
+            foreach ( $atributes as $key=>$value ) {
+                $atributes_encoded[ urldecode( $key ) ] = $value;
+            }
+
+            foreach ( $atributes_encoded as $key=>$value ) {
+                $attribute = explode( 'attribute_', $key )[ 1 ];
+                $attribute = str_replace('-', ' ', $attribute );
+
+                // capitalize string
+                $firstChar = mb_strtoupper( mb_substr( $attribute, 0, 1 ) );
+                $restOfString = mb_substr( $attribute, 1 );
+                $attribute = $firstChar . $restOfString;
+
+                if ( $key === 'attribute_колір-рами' && ! empty( $atributes_encoded[ 'attribute_рама' ] ) ) {
+                    if ( $has_attr_frame === false ) {
+                        if ( $atributes_encoded[ 'attribute_колір-рами' ] !== 'Без кольору' ) {
+                            $atributes_html .= '<p>' . __("Рама: ", "twentytwenty") . mb_strtolower( $atributes_encoded[ 'attribute_колір-рами' ] ) . ' ' . mb_strtolower(explode(' ', $atributes_encoded[ 'attribute_рама' ])[ 0 ] ) . '</p>' ;
+                        } else {
+                            $atributes_html .= '<p>' . __("Рама: ", "twentytwenty") . __("без рами", "twentytwenty") . '</p>' ;
+                        }
+                    }
+
+                    $has_attr_frame = true;
+                } elseif ( $key === 'attribute_рама' && ! empty( $atributes_encoded[ 'attribute_колір-рами' ] ) ) {
+                    if ( $has_attr_frame === false ) {
+                        if ( $atributes_encoded[ 'attribute_колір-рами' ] !== 'Без кольору' ) {
+                            $atributes_html .= '<p>' . __("Рама: ", "twentytwenty") . mb_strtolower( $atributes_encoded[ 'attribute_колір-рами' ] ) . ' ' . mb_strtolower(explode(' ', $atributes_encoded[ 'attribute_рама' ])[ 0 ] ) . '</p>' ;
+                        } else {
+                            $atributes_html .= '<p>' . __("Рама: ", "twentytwenty") . __("без рами", "twentytwenty") . '</p>' ;
+                        }
+                    }
+
+                    $has_attr_frame = true;
+                } else {
+                    $atributes_html = $atributes_html . '<p>'. $attribute . ': ' . mb_strtolower( $value ) . '</p>';
+                }
+            }
+
+            $html .= '
+        <li class="cart-modal__item" data-id="' . $cart_item_key . '">
+         <div class="cart-modal__item_image">
+         ' . $image . '
+         </div>
+         <div class="cart-modal__item_info">
+          <h3 class="cart-modal__item_title">' . $title . '</h3>
+          ' . $atributes_html . '
+          <div class="cart-modal__quantity">
+           <button class="cart-modal__quantity_minus ' . $active_quantity . '">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M18 12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black"></path>
+            </svg>
+           </button>
+           <input class="cart-modal__quantity_input" min="1" max="99" type="number" value="' . $quantity . '">
+           <button class="cart-modal__quantity_plus">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M18 12.998H13V17.998C13 18.2633 12.8946 18.5176 12.7071 18.7052C12.5196 18.8927 12.2652 18.998 12 18.998C11.7348 18.998 11.4804 18.8927 11.2929 18.7052C11.1054 18.5176 11 18.2633 11 17.998V12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H11V5.99805C11 5.73283 11.1054 5.47848 11.2929 5.29094C11.4804 5.1034 11.7348 4.99805 12 4.99805C12.2652 4.99805 12.5196 5.1034 12.7071 5.29094C12.8946 5.47848 13 5.73283 13 5.99805V10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black"></path>
+            </svg>
+           </button>
+          </div>
+         </div>
+         <p class="cart-modal__item_price">' . $line_total . '</p>
+         <button class="cart-modal__item_remove">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <path d="M4 12L12 4M4 4L12 12" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+         </button>
+        </li>
+';
+
+        }
+    } else {
+        $html = '<p class="cart-modal__empty">' . __("Ваш кошик порожній.", "twentytwenty") . '</p>';
+    }
+
+    return $html;
+}
+
+// update cart quantity
+add_action('wp_ajax_update_cart_quantity', 'update_cart_quantity');
+add_action('wp_ajax_nopriv_update_cart_quantity', 'update_cart_quantity');
+
+function update_cart_quantity() {
+    $cart = WC()->cart;
+
+    $cart_id = $_POST[ 'id' ];
+    $new_quantity = $_POST[ 'quantity' ];
+    $cart->set_quantity($cart_id, $new_quantity, true);
+}
+
+// remove cart item
+add_action('wp_ajax_remove_cart_item', 'remove_cart_item');
+add_action('wp_ajax_nopriv_remove_cart_item', 'remove_cart_item');
+
+function remove_cart_item() {
+    $cart = WC()->cart;
+    $cart_id = $_POST[ 'id' ];
+
+    $cart_items = $cart->get_cart();
+
+    foreach ($cart_items as $cart_item_key => $cart_item) {
+        if ($cart_item_key === $cart_id) {
+            $cart->remove_cart_item($cart_item_key);
+            break;
+        }
+    }
+}
+
+

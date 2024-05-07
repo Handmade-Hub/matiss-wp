@@ -5948,6 +5948,10 @@ button {
   top: -100%;
 }
 
+.woocommerce section.modal-add-to-cart {
+  padding-top: 0;
+}
+
 .modal-add-to-cart.open {
   top: 0;
 }
