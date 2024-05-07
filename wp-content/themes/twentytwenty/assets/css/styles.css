@@ -6504,6 +6504,7 @@ button {
   transition: all var(--duration-normal);
   display: flex;
   justify-content: flex-end;
+  background-color: rgba(0,0,0,.5);
 }
 
 .cart-modal.open {
