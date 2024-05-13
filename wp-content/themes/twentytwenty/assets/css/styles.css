@@ -656,14 +656,15 @@ button {
   }
 }
 
-.header__logo {
+.custom-logo-link {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header__logo img {
-  max-width: 100%;
+.custom-logo-link img {
+  width: 9.4rem;
+  height: auto;
   object-fit: cover;
 }
 
@@ -2602,6 +2603,11 @@ button {
   display: none;
 }
 
+.footer__logo img {
+  width: 7.7rem;
+  height: auto;
+}
+
 @media (min-width: 992px) {
   .footer__logo {
     margin-bottom: 2.4rem;
@@ -2669,6 +2675,9 @@ button {
 }
 
 .footer__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
   max-width: 16rem;
   width: 100%;
 }
@@ -2689,10 +2698,6 @@ button {
   .footer__menu {
     max-width: calc(50% - 1.6rem);
   }
-}
-
-.footer__menu_title {
-  margin-bottom: 1.6rem;
 }
 
 .footer__menu_list {

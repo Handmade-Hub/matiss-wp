@@ -1410,4 +1410,25 @@ function remove_cart_item() {
     }
 }
 
+/// add theme option page and register in ACF
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title' => 'Опції теми',
+        'menu_title' => 'Опції теми',
+        'menu_slug' => 'theme-settings',
+        'capability' => 'edit_posts',
+        'position' => 99,
+        'icon_url' => 'dashicons-admin-generic',
+        'redirect' => false
+    ));
+}
 
+function register_settings() {
+    register_setting('theme-settings', 'custom_option');
+    add_settings_section('custom_section', 'Секція налаштувань', 'section_callback', 'theme-settings');
+}
+add_action('admin_init', 'register_settings');
+
+function section_callback() {
+    echo '';
+}

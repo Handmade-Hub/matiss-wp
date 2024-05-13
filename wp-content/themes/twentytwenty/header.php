@@ -72,9 +72,16 @@
 			<div class="container">
 				<div class="header__inner">
 					<div class="header__block">
-						<a href="<?= home_url(); ?>" class="header__logo">
-							<img src="<?= home_url(); ?>/images/logo.svg" alt="logo">
-						</a>
+                            <?php
+                            if (has_custom_logo()) {
+                                the_custom_logo();
+                            } else {
+                                ?>
+                                <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>"
+                                                         rel="home"><?php bloginfo('name'); ?></a></p>
+                                <?php
+                            }
+                            ?>
 						<nav class="header__menu tablet-none">
 							<ul class="header__list">
 								<?php
@@ -106,7 +113,11 @@
 					</div>
 					<div class="header__pack tablet-none">
 						<div class="header__case">
-							<a href="tel:+380989940794" class="header__tel fw-600">+380 (98) 994 0794</a>
+                            <?php
+                            $phone = get_field('phone_numb', 'option');
+                            $phone_clear = preg_replace( '/\D/', '', $phone );
+                            ?>
+							<a href="tel:+<?php echo $phone_clear; ?>" class="header__tel fw-600"><?php echo $phone; ?></a>
 						</div>
 						<div class="header__localization">
 							<button class="header__localization_button active fw-600">UA</button>
