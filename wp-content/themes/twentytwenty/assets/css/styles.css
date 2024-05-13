@@ -1114,20 +1114,19 @@ button {
   transition: all var(--duration-normal);
 }
 
-@media (min-width: 992px) {
-  .filters__item_list {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    background-color: var(--color-gray-l);
-    transition: all var(--duration-normal);
-    max-height: 0;
-    overflow: hidden;
-    width: max-content;
-  }
+.filters__item_list {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  background-color: var(--color-gray-l);
+  transition: all var(--duration-normal);
+  max-height: 0;
+  overflow: hidden;
+  width: max-content;
 }
+
 
 .filters__item_list--range {
   padding: 0 0.5rem;
@@ -1235,8 +1234,9 @@ button {
   position: relative;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .filters__choosed {
+    display: none;
     gap: 1.6rem;
     padding-top: 2.4rem;
   }

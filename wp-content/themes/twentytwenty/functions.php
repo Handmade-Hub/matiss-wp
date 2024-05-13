@@ -996,7 +996,7 @@ function get_unique_acf_field_values($field_name, $post_type = 'product')
 	return $wpdb->get_col($query);
 }
 
-function showItems($field_name)
+function showItems($field_name, $device_type)
 {
 
 	$field_values = get_unique_acf_field_values($field_name);
@@ -1014,7 +1014,11 @@ function showItems($field_name)
 	$common_arr = array_unique($common_arr);
 
 	foreach ($common_arr as $value) {
-		echo '<li class="filters__item_option" data-value="' . $value . '">' . $value . '</li>';
+        if ($device_type === 'mobile'){
+            echo '<li class="filters-mobile__sublist_item" data-value="' . $value . '">' . $value . '</li>';
+        } else {
+            echo '<li class="filters__item_option" data-value="' . $value . '">' . $value . '</li>';
+        }
 	};
 }
 

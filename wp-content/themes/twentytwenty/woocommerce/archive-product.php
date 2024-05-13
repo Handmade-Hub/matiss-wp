@@ -248,6 +248,7 @@ get_header();
 		const filtersList = document.querySelector('.filters__list_desktop');
 
 		const filterHandler = (element) => {
+            console.log('filtersList element', element)
 			if (!element.closest('[data-value]')) {
 				return;
 			}
@@ -279,6 +280,130 @@ get_header();
 
 		filtersList.addEventListener('click', evt => filterHandler(evt.target))
 	})();
+
+    /// mobile filters
+    (() => {
+        const filtersList = document.querySelector('.filters-mobile__list');
+        const mobileSubmitFilter = document.querySelector('.filters-mobile__buttons_submit');
+        const mobileClearFilter = document.querySelector('.filters-mobile__buttons_remove');
+        const searchParams = new URLSearchParams(window.location.search);
+        let fromMobileSlider = document.getElementById('fromMobileSlider');
+        let toMobileSlider = document.getElementById('toMobileSlider');
+        let searchParamsArray = Array.from(searchParams.entries());
+        let choosedOption = {};
+
+        //get search params
+        if (searchParamsArray.length > 0) {
+            searchParamsArray.forEach(function (item) {
+                let key = item[0];
+                let values = item[1].split(',');
+                choosedOption[key] = values;
+
+                values.forEach(function (item) {
+                    // set min price range
+                    if (key === 'min_price') {
+                        fromMobileSlider.value = item;
+                    }
+                    // set max price range
+                    if (key === 'max_price') {
+                        toMobileSlider.value = item;
+                    }
+
+                    /// add active class in filter button
+                    if (key !== 'min_price' && key !== 'max_price' && key !== 'orderby') {
+                        let selector = `.filters-mobile__sublist[data-key="${key}"] .filters-mobile__sublist_item[data-value="${item}"]`;
+                        document.querySelector(selector).classList.add('choosed');
+                    }
+                })
+            })
+        }
+
+        // filter handler
+        const filterHandler = (element) => {
+            if (!element.closest('[data-value]')) {
+                return;
+            }
+
+            let dataValue = element.closest('[data-value]').dataset.value;
+            const dataKey = element.closest('[data-key]').dataset.key;
+
+            if (choosedOption[dataKey]) {
+                if (!choosedOption[dataKey].includes(dataValue)) {
+                    choosedOption[dataKey].push(dataValue);
+                } else {
+                    // remove if was second picked
+                    choosedOption[dataKey] = choosedOption[dataKey].filter(function (item) {
+                        return item !== dataValue;
+                    });
+
+                    if (choosedOption[dataKey].length === 0) delete choosedOption[dataKey];
+                }
+            } else {
+                choosedOption[dataKey] = []
+                choosedOption[dataKey].push(dataValue);
+            }
+
+            for (let key in choosedOption) {
+                choosedOption[key].forEach(function (childItem) {
+                })
+            }
+        };
+
+        filtersList.addEventListener('click', evt => filterHandler(evt.target))
+
+        // min price range
+        fromMobileSlider.addEventListener('change', function (event) {
+            choosedOption['min_price'] = [event.target.value];
+        });
+
+
+        // max price range
+        toMobileSlider.addEventListener('change', function (event) {
+            choosedOption['max_price'] = [event.target.value];
+        });
+
+        // submit filters
+        mobileSubmitFilter.addEventListener('click', function () {
+            setFilter();
+        })
+
+        // clear all filters
+        mobileClearFilter.addEventListener('click', function () {
+            let url = window.location.origin + window.location.pathname;
+            const decodedUrl = decodeURIComponent(url);
+            window.location.href = decodedUrl;
+        })
+
+        //orderby mobile filter
+        const mobileSortBy = document.querySelector('.mobile__orderby');
+
+        mobileSortBy.querySelectorAll('.filters__item_option').forEach(function (item) {
+            item.addEventListener('click', function (event) {
+                if (event.target.dataset.value) {
+                    choosedOption['orderby'] = [event.target.dataset.value];
+                    setFilter()
+                }
+            })
+        });
+
+        // set filter and reload page
+        function setFilter() {
+            let url = window.location.origin + window.location.pathname;
+            let params = '?';
+            let newUrl = "";
+            for (let key in choosedOption) {
+                let values = '';
+                choosedOption[key].forEach(function (value) {
+                    if (values !== '') values += ',';
+                    values += value
+                })
+                params += `${key}=${values}&`;
+            }
+            newUrl = `${url + params}`;
+            const decodedUrl = decodeURIComponent(newUrl);
+            window.location.href = decodedUrl;
+        }
+    })();
 </script>
 
 <?php
