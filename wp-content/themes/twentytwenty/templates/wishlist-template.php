@@ -32,64 +32,7 @@ get_header(); ?>
 
                 <h2 class="wishlist__title">Улюблені товари</h2>
                 <ul class="wishlist__list">
-                    <li class="wishlist__item">
-                        <div class="product-card">
-                            <a href="#" class="product-card__link"></a>
-                            <div class="product-card__image">
-                                <img class="product-card__image_primary" src="images/product-card/product-two.jpg" alt="product">
-                                <img class="product-card__image_preview" src="images/product-card/product-two-preview.jpg" alt="product">
-                            </div>
-                            <div class="product-card__info">
-                                <h3 class="product-card__title fz-22 text-center open-sans">Impression</h3>
-                                <div class="product-card__price fz-20 text-center"><span>від $330</span></div>
-                            </div>
-                            <button class="product-card__remove">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
-                    <li class="wishlist__item">
-                        <div class="product-card">
-                            <a href="#" class="product-card__link"></a>
-                            <div class="product-card__image">
-                                <img class="product-card__image_primary" src="images/product-card/product-four.jpg" alt="product">
-                                <img class="product-card__image_preview" src="images/product-card/product-four-preview.jpg" alt="product">
-                            </div>
-                            <div class="product-card__info">
-                                <h3 class="product-card__title fz-22 text-center open-sans">Rime</h3>
-                                <div class="product-card__price fz-20 text-center">
-                                    <span>від</span>
-                                    <span class="product-card__price_sale">$240</span>
-                                    <span class="product-card__price_old">$290</span>
-                                </div>
-                            </div>
-                            <button class="product-card__remove">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
-                    <li class="wishlist__item">
-                        <div class="product-card">
-                            <a href="#" class="product-card__link"></a>
-                            <div class="product-card__image">
-                                <img class="product-card__image_primary" src="images/product-card/product-five.jpg" alt="product">
-                                <img class="product-card__image_preview" src="images/product-card/product-five-preview.jpg" alt="product">
-                            </div>
-                            <div class="product-card__info">
-                                <h3 class="product-card__title fz-22 text-center open-sans">Rime 2</h3>
-                                <div class="product-card__price fz-20 text-center"><span>від $290</span></div>
-                            </div>
-                            <button class="product-card__remove">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
         </div>

@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const addToWishlist = () => {
+        console.log('addToWishlist')
         const coociesWishlist = localStorage.getItem('matis-wishlist');
         const productId = wishlistBtn.dataset.id;
 
@@ -40,6 +41,21 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             createLocalStorage(productId);
         };
+
+        wishlistBtn.classList.add('wishlist-added');
+    };
+
+    const removeFromWishlist = (id) => {
+        const whishlist = localStorage.getItem('matis-wishlist');
+        const idList = whishlist.split(',');
+        const newWishlist = idList.filter((item)=>{
+            if (item != id){
+                return item;
+            }
+        })
+        console.log('idList', idList)
+        console.log('newWishlist', newWishlist)
+        localStorage.setItem('matis-wishlist', newWishlist);
     };
 
 
@@ -49,25 +65,23 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const loadProducts = (wishlistId) => {
-        const parsedId = wishlistId.split(',');
-        const apiKey = 'ck_8e872869c7559c61d33d277263c8a1ad22dc48f0';
-        const apiSecret = 'cs_753ae6e56de5fcb3006f06ef89d43cbaeef3fd54';
-        const storeUrl = '/wp-json/wc/v3';
-        const endpoint = `${storeUrl}/products?consumer_key=${apiKey}&consumer_secret=${apiSecret}&include=${parsedId.join(',')}`;
-        console.log(endpoint);
-        // const loader = document.querySelector('.loader');
+        const url = wc_add_to_cart_params.ajax_url;
 
-        fetch(endpoint).then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // creatreCards(data);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-            .finally(() => {
-                // loader.style.display = "none"
-            });
+        jQuery.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                'action': 'get_wishlist',
+                'products': wishlistId
+            },
+            success: function (response) {
+                jQuery('.wishlist__list').append(response);
+                wishlistEvents();
+            },
+            error: function (error) {
+                console.log('error: ', error);
+            }
+        });
     }
 
     const checkProducts = (wishlistId) => {
@@ -89,7 +103,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    wishlistBtn && wishlistBtn.addEventListener('click', addToWishlist);
+    const checkIfAdded = () => {
+        const wishlist = localStorage.getItem('matis-wishlist');
+        const productId = wishlistBtn.dataset.id;
+        const wishlistIdList = wishlist.split(',');
+
+        if (wishlistIdList.includes(productId)) {
+            wishlistBtn.classList.add('wishlist-added')
+        }
+    }
+
+    wishlistBtn && wishlistBtn.addEventListener('click', () => {
+        if ( !wishlistBtn.classList.contains('wishlist-added')) {
+            addToWishlist();
+        } else {
+            const id = wishlistBtn.dataset.id;
+            removeFromWishlist(id);
+            wishlistBtn.classList.remove('wishlist-added');
+        }
+    });
+
+    function wishlistEvents(){
+        const wishlistBtnRemove = document.querySelectorAll('.product-card__remove');
+
+        wishlistBtnRemove && wishlistBtnRemove.forEach((item)=>{
+            item.addEventListener('click', (event)=>{
+                removeFromWishlist(event.currentTarget.dataset.id);
+                item.closest('.wishlist__item').remove();
+            })
+        })
+    }
+
+
+
+
 
     // const coociesWishlistJSON = JSON.parse(coociesWishlist);
     // const productsID = coociesWishlistJSON;
@@ -131,6 +178,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //     }
     //     );
     // }
+
+    wishlistBtn && checkIfAdded();
 
     wishlistContainer && loadWishlist();
 });

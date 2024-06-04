@@ -5467,6 +5467,8 @@ button {
   top: 0;
   right: 0;
   z-index: 2;
+  fill: transparent;
+  transition: fill .5s;
 }
 
 @media (max-width: 767px) {
@@ -5474,6 +5476,23 @@ button {
     right: 1.6rem;
     top: 1.6rem;
   }
+}
+
+@keyframes scale {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100%{
+    scale: 1;
+  }
+}
+
+.product__wrapper .wishlist-add.wishlist-added {
+  fill: black;
+  animation: scale .5s;
 }
 
 .product__swiper-slide {

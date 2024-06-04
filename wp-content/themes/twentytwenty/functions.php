@@ -1446,3 +1446,68 @@ function section_callback()
 {
 	echo '';
 }
+
+// get whishlist products
+add_action('wp_ajax_get_wishlist', 'get_wishlist');
+add_action('wp_ajax_nopriv_get_wishlist', 'get_wishlist');
+
+function get_wishlist()
+{
+    $products_id = $_GET['products'];
+    $products_id = explode(",", $products_id);
+
+    if (!empty($products_id)){
+        foreach ($products_id as $product_id){
+            $product = wc_get_product($product_id);
+
+            $product_category = wp_get_post_terms( $product->get_id(), 'product_cat', array( 'fields' => 'names' ) )[0];
+            ?>
+                <li class="wishlist__item">
+                    <div class="product-card">
+                        <a href="<?php echo $product->get_permalink(); ?>" class="product-card__link"></a>
+                        <div class="featured-product__swiper_image">
+                            <?php
+                            $image_id  = $product->get_image_id();
+                            $image_url = wp_get_attachment_image_url($image_id, 'full');
+
+                            ?>
+                            <img class="product-card__image_primary" src="<?= $image_url ?>" alt="image preview of <?= $product->name ?>">
+                            <?php if ($product->get_gallery_image_ids() && $product->get_gallery_image_ids()[0]) : ?>
+                                <?php
+
+                                $second_image_id  = $product->get_gallery_image_ids()[0];
+                                $second_image_url = wp_get_attachment_image_url($second_image_id, 'full');
+
+                                ?>
+                                <img class="product-card__image_preview" src="<?= $second_image_url ?>" alt="second image preview of <?= $product->name ?>">
+                            <?php endif; ?>
+                        </div>
+                        <div class="product-card__info">
+                            <h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
+                            <?php
+
+                            if ( $product_category === 'Розпис' ) {
+                                ?>
+                                <div class="product-card__price fz-20 text-center"><span><?= $product->price . ' ' . __('$/м.кв.', 'twentytwenty') ?></span></div>
+                                <?php
+                            } else {
+                                ?>
+                                <div class="product-card__price fz-20 text-center"><span><?= __( 'від', 'twentytwenty' ) . ' ' . get_woocommerce_currency_symbol() . $product->price ?></span></div>
+                                <?php
+                            }
+                            ?>
+
+                        </div>
+                        <button class="product-card__remove" data-id="<?=$product->get_id()?>">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </li>
+            <?php
+        }
+    }
+
+    wp_die();
+}
