@@ -48,7 +48,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="form">
-                        <?php showItems('form') ?>
+                        <?php showItems('form', 'desktop') ?>
                     </ul>
                 </div>
             </li>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="color">
-                        <?php showItems('color') ?>
+                        <?php showItems('color', 'desktop') ?>
                         <!-- <li class="filters__item_option">Золото</li>
 								<li class="filters__item_option">Срібло</li>
 								<li class="filters__item_option">Чорний</li>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="style">
-                        <?php showItems('style') ?>
+                        <?php showItems('style', 'desktop') ?>
 
                         <!-- <li class="filters__item_option">Сучасна класика</li>
 								<li class="filters__item_option">Арт-деко</li>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="category">
-                        <?php showItems('category') ?>
+                        <?php showItems('category', 'desktop') ?>
 
                         <!-- <li class="filters__item_option">Абстракції</li>
 								<li class="filters__item_option">Сюжетні</li>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="category">
-                        <?php showItems('matherials') ?>
+                        <?php showItems('matherials', 'desktop') ?>
 
                         <!-- <li class="filters__item_option">Олія</li>
 								<li class="filters__item_option">Акрил</li>
@@ -156,7 +156,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="rooms">
-                        <?php showItems('rooms') ?>
+                        <?php showItems('rooms', 'desktop') ?>
 
                         <!-- <li class="filters__item_option">Кухня</li>
 								<li class="filters__item_option">Вітальня</li>
@@ -170,13 +170,23 @@
             </li>
         </ul>
         <ul class="filters__list filters__list_mobile">
-            <li class="filters__item">
-                <button class="filters__item_select">
+            <li class="filters__item mobile__orderby">
+                <div class="filters__item_select">
                     <span>СОРТУВАННЯ</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 8L12.5 15.5L5 8" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                </button>
+                </div>
+                <div class="filters__item_list">
+                    <ul class="filters__item_options">
+                        <li class="filters__item_option" data-value="date">Нові</li>
+                        <li class="filters__item_option" data-value="popularity">Популярні</li>
+                        <li class="filters__item_option" data-value="price">Ціна від найнижчої</li>
+                        <li class="filters__item_option" data-value="price-desc">Ціна від найвижчої</li>
+                        <li class="filters__item_option">Знижка</li>
+                        <li class="filters__item_option">Доступна примірка</li>
+                    </ul>
+                </div>
             </li>
             <li class="filters__item">
                 <button class="filters__item_select filters__item_trigger">
@@ -220,85 +230,91 @@
                     </li>
                     <li class="filters-mobile__item">
                         <h5 class="filters-mobile__item_title">Форма</h5>
-                        <ul class="filters-mobile__sublist">
-                            <li class="filters-mobile__sublist_item">Прямокутник</li>
-                            <li class="filters-mobile__sublist_item">Горизонтальна</li>
-                            <li class="filters-mobile__sublist_item">Квадрат</li>
-                            <li class="filters-mobile__sublist_item">Триптих</li>
-                            <li class="filters-mobile__sublist_item">Пара</li>
-                            <li class="filters-mobile__sublist_item">Круг</li>
+                        <ul class="filters-mobile__sublist" data-key="form">
+                            <?php showItems('form', 'mobile') ?>
+<!--                            <li class="filters-mobile__sublist_item">Прямокутник</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Горизонтальна</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Квадрат</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Триптих</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Пара</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Круг</li>-->
                         </ul>
                     </li>
                     <li class="filters-mobile__item">
                         <h5 class="filters-mobile__item_title">Колір</h5>
-                        <ul class="filters-mobile__sublist">
-                            <li class="filters-mobile__sublist_item">Золото</li>
-                            <li class="filters-mobile__sublist_item">Срібло</li>
-                            <li class="filters-mobile__sublist_item">Чорний</li>
-                            <li class="filters-mobile__sublist_item">Білий</li>
-                            <li class="filters-mobile__sublist_item">Коричневий</li>
-                            <li class="filters-mobile__sublist_item">Бежевий</li>
-                            <li class="filters-mobile__sublist_item">Жовтий</li>
-                            <li class="filters-mobile__sublist_item">Зелений</li>
-                            <li class="filters-mobile__sublist_item">Смарагдовий</li>
-                            <li class="filters-mobile__sublist_item">Бірюзовий</li>
-                            <li class="filters-mobile__sublist_item">Червоний</li>
-                            <li class="filters-mobile__sublist_item">Бордовий</li>
-                            <li class="filters-mobile__sublist_item">Рожевий</li>
-                            <li class="filters-mobile__sublist_item">Синій</li>
-                            <li class="filters-mobile__sublist_item">Блакинтий</li>
-                            <li class="filters-mobile__sublist_item">Фіолетовий</li>
-                            <li class="filters-mobile__sublist_item">Сірий</li>
+                        <ul class="filters-mobile__sublist" data-key="color">
+                            <?php showItems('color', 'mobile') ?>
+<!--                            <li class="filters-mobile__sublist_item">Золото</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Срібло</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Чорний</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Білий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Коричневий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Бежевий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Жовтий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Зелений</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Смарагдовий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Бірюзовий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Червоний</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Бордовий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Рожевий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Синій</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Блакинтий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Фіолетовий</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Сірий</li>-->
                         </ul>
                     </li>
                     <li class="filters-mobile__item">
                         <h5 class="filters-mobile__item_title">Стиль</h5>
-                        <ul class="filters-mobile__sublist">
-                            <li class="filters-mobile__sublist_item">Сучасна класика</li>
-                            <li class="filters-mobile__sublist_item">Арт-деко</li>
-                            <li class="filters-mobile__sublist_item">Хай-тек</li>
-                            <li class="filters-mobile__sublist_item">Мінімалізм</li>
-                            <li class="filters-mobile__sublist_item">Лофт</li>
-                            <li class="filters-mobile__sublist_item">Фьюжн</li>
-                            <li class="filters-mobile__sublist_item">Кантрі</li>
-                            <li class="filters-mobile__sublist_item">Функціоналізм</li>
-                            <li class="filters-mobile__sublist_item">Скандинавський</li>
+                        <ul class="filters-mobile__sublist" data-key="style">
+                            <?php showItems('style', 'mobile') ?>
+<!--                            <li class="filters-mobile__sublist_item">Сучасна класика</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Арт-деко</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Хай-тек</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Мінімалізм</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Лофт</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Фьюжн</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Кантрі</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Функціоналізм</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Скандинавський</li>-->
                         </ul>
                     </li>
                     <li class="filters-mobile__item">
                         <h5 class="filters-mobile__item_title">Категорія</h5>
-                        <ul class="filters-mobile__sublist">
-                            <li class="filters-mobile__sublist_item">Абстракції</li>
-                            <li class="filters-mobile__sublist_item">Сюжетні</li>
-                            <li class="filters-mobile__sublist_item">Фактурні</li>
-                            <li class="filters-mobile__sublist_item">Флористичні мотиви</li>
-                            <li class="filters-mobile__sublist_item">Пейзажі</li>
-                            <li class="filters-mobile__sublist_item">Мінімалістичні</li>
-                            <li class="filters-mobile__sublist_item">Портретні</li>
-                            <li class="filters-mobile__sublist_item">Графіка</li>
-                            <li class="filters-mobile__sublist_item">Космос</li>
-                            <li class="filters-mobile__sublist_item">Архітектура</li>
+                        <ul class="filters-mobile__sublist" data-key="category">
+                            <?php showItems('category', 'mobile') ?>
+<!--                            <li class="filters-mobile__sublist_item">Абстракції</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Сюжетні</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Фактурні</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Флористичні мотиви</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Пейзажі</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Мінімалістичні</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Портретні</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Графіка</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Космос</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Архітектура</li>-->
                         </ul>
                     </li>
                     <li class="filters-mobile__item">
                         <h5 class="filters-mobile__item_title">Матеріали</h5>
-                        <ul class="filters-mobile__sublist">
-                            <li class="filters-mobile__sublist_item">Олія</li>
-                            <li class="filters-mobile__sublist_item">Акрил</li>
-                            <li class="filters-mobile__sublist_item">Текстурна паста</li>
-                            <li class="filters-mobile__sublist_item">Чорнила</li>
+                        <ul class="filters-mobile__sublist" data-key="category">
+                            <?php showItems('matherials', 'mobile') ?>
+<!--                            <li class="filters-mobile__sublist_item">Олія</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Акрил</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Текстурна паста</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Чорнила</li>-->
                         </ul>
                     </li>
                     <li class="filters-mobile__item">
                         <h5 class="filters-mobile__item_title">Кімнати</h5>
-                        <ul class="filters-mobile__sublist">
-                            <li class="filters-mobile__sublist_item">Кухня</li>
-                            <li class="filters-mobile__sublist_item">Вітальня</li>
-                            <li class="filters-mobile__sublist_item">Спальня</li>
-                            <li class="filters-mobile__sublist_item">Кабінет</li>
-                            <li class="filters-mobile__sublist_item">Ванна кімната</li>
-                            <li class="filters-mobile__sublist_item">Коридор</li>
-                            <li class="filters-mobile__sublist_item">Дитяча кімната</li>
+                        <ul class="filters-mobile__sublist" data-key="rooms">
+                            <?php showItems('rooms', 'mobile') ?>
+<!--                            <li class="filters-mobile__sublist_item">Кухня</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Вітальня</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Спальня</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Кабінет</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Ванна кімната</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Коридор</li>-->
+<!--                            <li class="filters-mobile__sublist_item">Дитяча кімната</li>-->
                         </ul>
                     </li>
                 </ul>

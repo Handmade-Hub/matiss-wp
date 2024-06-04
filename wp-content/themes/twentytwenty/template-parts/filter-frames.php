@@ -48,7 +48,8 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="form">
-                        <?php showItems('form') ?>
+                        <?php // showItems('form') 
+                        ?>
                     </ul>
                 </div>
             </li> -->
@@ -61,7 +62,8 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="style">
-                        <?php showItems('style') ?>
+                        <?php // showItems('style') 
+                        ?>
                     </ul>
                 </div>
             </li> -->
@@ -74,7 +76,8 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="category">
-                        <?php showItems('category') ?>
+                        <?php // showItems('category') 
+                        ?>
                     </ul>
                 </div>
             </li> -->
@@ -87,7 +90,8 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="rooms">
-                    <?php showItems('rooms') ?>
+                    <?php // showItems('rooms') 
+                    ?>
                     </ul>
                 </div>
             </li> -->
@@ -100,7 +104,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="category">
-                        <?php showItems('matherials') ?>
+                        <?php showItems('matherials', 'desktop') ?>
                     </ul>
                 </div>
             </li>
@@ -113,7 +117,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="color">
-                        <?php showItems('mod') ?>
+                        <?php showItems('mod', 'desktop') ?>
                     </ul>
                 </div>
             </li>
@@ -126,7 +130,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="color">
-                        <?php showItems('color') ?>
+                        <?php showItems('color', 'desktop') ?>
                     </ul>
                 </div>
             </li>

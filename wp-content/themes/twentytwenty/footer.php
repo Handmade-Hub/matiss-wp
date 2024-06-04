@@ -12,167 +12,204 @@
  * @since Twenty Twenty 1.0
  */
 
+
+$header_menu_obj = wp_get_nav_menu_items(20);
+$result_array = array();
+
+foreach ($header_menu_obj as $menu_item) {
+    if ($menu_item->menu_item_parent == 0) {
+        $parent_array = array(
+            'parent' => $menu_item,
+            'children' => array()
+        );
+
+        foreach ($header_menu_obj as $child_menu_item) {
+            if ($child_menu_item->menu_item_parent == $menu_item->ID) {
+                $parent_array['children'][] = $child_menu_item;
+            }
+        }
+
+        $result_array[] = $parent_array;
+    }
+}
+
 ?>
 </main>
 <footer class="footer">
-	<div class="footer__wrapper space-sections">
-		<div class="container">
-			<div class="footer__inner">
-				<div class="footer__block">
-					<a href="/" class="footer__logo footer__logo_mobile">
-						<img src="<?= home_url(); ?>/images/footer-logo.svg" alt="logo">
-					</a>
-					<div class="footer__content">
-						<div class="footer__wrap">
-							<a href="/" class="footer__logo">
-								<img src="<?= home_url(); ?>/images/footer-logo.svg" alt="logo">
-							</a>
-							<div class="footer__info">
-								<p class="footer__info_title fw-600">Салони</p>
-								<ul class="footer__info_list">
-									<li class="footer__info_item">
-										<p class="footer__info_adress">ТЦ 4room, Петропавлівська Борщагівка, вул. Петропавлівська, 6</p>
-										<p class="footer__info_time">Пн-Нд. 10.00-20.00</p>
-									</li>
-									<li class="footer__info_item">
-										<p class="footer__info_adress">ТЦ Аракс, Київ, вул. Кільцева дорога, 110</p>
-										<p class="footer__info_time">Пн-Нд. 10.00-20.00</p>
-									</li>
-									<li class="footer__info_item">
-										<p class="footer__info_adress">ТЦ Три Слони, Львів, вул. Яворівська, 22</p>
-										<p class="footer__info_time">Пн-Нд. 11.00-19.00</p>
-									</li>
-								</ul>
-							</div>
-							<div class="footer__info">
-								<p class="footer__info_title fw-600">Майстерня</p>
-								<ul class="footer__info_list">
-									<li class="footer__info_item">
-										<p class="footer__info_adress">Київ, вул. Генерала Шаповала, 2, офіс 555</p>
-										<p class="footer__info_time">Пн-Пт. 10.00-19.00</p>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="footer__menu">
-							<p class="footer__menu_title fw-600">Каталог</p>
-							<nav class="footer__menu_nav">
-								<ul class="footer__menu_list">
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Картини</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Постери</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Рами</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Індивідуальне замовлення</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Подарунковий сертифікат</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Розпис</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
-						<div class="footer__menu">
-							<p class="footer__menu_title fw-600">Інформація</p>
-							<nav class="footer__menu_nav">
-								<ul class="footer__menu_list">
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Загальна інформація</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Послуги</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Наша команда</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Відео</a>
-									</li>
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Партнери</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
-						<div class="footer__menu">
-							<p class="footer__menu_title fw-600">Блог</p>
-							<nav class="footer__menu_nav">
-								<ul class="footer__menu_list">
-									<li class="footer__menu_item">
-										<a href="#" class="footer__menu_link">Контакти</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-					<div class="footer__icons">
-						<ul class="footer__social">
-							<li class="footer__social_item">
-								<a href="#" class="footer__social_link">
-									<img src="<?= home_url(); ?>/images/icons/footer-instagram.svg" alt="instagram">
-								</a>
-							</li>
-							<li class="footer__social_item">
-								<a href="#" class="footer__social_link">
-									<img src="<?= home_url(); ?>/images/icons/footer-facebook.svg" alt="facebook">
-								</a>
-							</li>
-							<li class="footer__social_item">
-								<a href="#" class="footer__social_link">
-									<img src="<?= home_url(); ?>/images/icons/footer-youtube.svg" alt="youtube">
-								</a>
-							</li>
-							<li class="footer__social_item">
-								<a href="#" class="footer__social_link">
-									<img src="<?= home_url(); ?>/images/icons/footer-pinterest.svg" alt="pinterest">
-								</a>
-							</li>
-							<li class="footer__social_item">
-								<a href="#" class="footer__social_link">
-									<img src="<?= home_url(); ?>/images/icons/footer-etsy.svg" alt="etsy">
-								</a>
-							</li>
-						</ul>
-						<ul class="footer__payments">
-							<li class="footer__payments_item">
-								<img src="<?= home_url(); ?>/images/icons/footer-paypal.svg" alt="paypal">
-							</li>
-							<li class="footer__payments_item">
-								<img src="<?= home_url(); ?>/images/icons/footer-mastercard.svg" alt="mastercard">
-							</li>
-							<li class="footer__payments_item">
-								<img src="<?= home_url(); ?>/images/icons/footer-visa.svg" alt="visa">
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="footer__copyright">
-					<p>© 2023. All rights reserved.</p>
-					<a href="#">Політка конфіденційності</a>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="footer__wrapper space-sections">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__block">
+                    <div class="footer__logo footer__logo_mobile">
+                        <?php
+                        if (has_custom_logo()) {
+                            the_custom_logo();
+                        } else {
+                        ?>
+                            <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="footer__content">
+                        <div class="footer__wrap">
+                            <div class="footer__logo">
+                                <?php
+                                if (has_custom_logo()) {
+                                    the_custom_logo();
+                                } else {
+                                ?>
+                                    <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div class="footer__info">
+                                <p class="footer__info_title fw-600"><?php echo __('Салони', 'twentytwenty'); ?></p>
+                                <ul class="footer__info_list">
+                                    <?php
+                                    $salons = get_field('salons_list', 'option');
+                                    if (is_array($salons) && !empty($salons)) {
+                                        foreach ($salons as $salon) {
+                                    ?>
+                                            <li class="footer__info_item">
+                                                <?php echo $salon['salon']; ?>
+                                            </li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                            <div class="footer__info">
+                                <p class="footer__info_title fw-600"><?php echo __('Майстерня', 'twentytwenty'); ?></p>
+                                <ul class="footer__info_list">
+                                    <?php
+                                    $workshops = get_field('workshops', 'option');
+                                    if (is_array($workshops) && !empty($workshops)) {
+                                        foreach ($workshops as $workshop) {
+                                    ?>
+                                            <li class="footer__info_item">
+                                                <?php echo $workshop['workshop']; ?>
+                                            </li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php
+                        $menu_counter = 1;
+                        foreach ($result_array as $key => $item) {
+                            if ($menu_counter < 4) {
+                        ?>
+                                <div class="footer__menu">
+                                <?php
+                            }
+                            if (empty($item['children'])) { ?>
+                                    <a href="<?= $item['parent']->url ?>" class="footer__menu_link"><?= $item['parent']->title ?></a>
+                                <?php
+                            } else { ?>
+                                    <p class="footer__menu_title fw-600"><?= $item['parent']->title ?></p>
+                                    <nav class="footer__menu_nav">
+                                        <ul class="footer__menu_list">
+                                            <?php foreach ($item['children'] as $child) { ?>
+                                                <li class="footer__menu_item">
+                                                    <a href="<?= $child->url ?>" class="footer__menu_link"><?= $child->title ?></a>
+                                                </li>
+                                            <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    </nav>
+                                <?php
+                            }
+                            if ($menu_counter < 3 || $key === key(array_slice($result_array, -1, 1, true))) {
+                                ?>
+                                </div>
+                        <?php
+                            }
+                            $menu_counter++;
+                        }
+                        ?>
+                    </div>
+                    <div class="footer__icons">
+                        <ul class="footer__social">
+                            <?php
+                            $socials_media = get_field('socials_media', 'option');
+                            if (is_array($socials_media) && !empty($socials_media)) {
+                                foreach ($socials_media as $social) {
+                                    $icon_id = $social['icon'];
+                                    if (!empty($icon_id)) {
+                                        $social_icon = wp_get_attachment_image($icon_id, 'full', false, array('loading' => 'lazy'));
+                                    }
+                                    $social_link = $social['url'];
+                            ?>
+                                    <li class="footer__social_item">
+                                        <a href="<?php echo $social_link; ?>" class="footer__social_link">
+                                            <?php
+                                            if (!empty($social_icon)) {
+                                                echo $social_icon;
+                                            }
+                                            ?>
+                                        </a>
+                                    </li>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </ul>
+                        <ul class="footer__payments">
+                            <li class="footer__payments_item">
+                                <img src="<?= home_url(); ?>/images/icons/footer-paypal.svg" alt="paypal">
+                            </li>
+                            <li class="footer__payments_item">
+                                <img src="<?= home_url(); ?>/images/icons/footer-mastercard.svg" alt="mastercard">
+                            </li>
+                            <li class="footer__payments_item">
+                                <img src="<?= home_url(); ?>/images/icons/footer-visa.svg" alt="visa">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer__copyright">
+                    <p>© 2023. All rights reserved.</p>
+                    <a href="#">Політка конфіденційності</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 
 <?php $description = get_field('description'); ?>
 
 <?php if ($description) { ?>
 
-	<script defer>
-		document.addEventListener('DOMContentLoaded', function() {
-			descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
-		})
-	</script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+        })
+    </script>
 
 <?php }; ?>
+
+<script type="text/javascript">
+    var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+            'sitekey': '6Lenrt4pAAAAABTEylEWEzBQk86LACrZfpo7HGMj'
+        });
+    };
+
+    function recaptchaCallback() {
+        const wpcf7Submit = document.querySelector('.wpcf7-submit');
+        wpcf7Submit.classList.remove('disable');
+        wpcf7Submit.removeAttribute('disabled');
+    }
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+</script>
 
 <?php wp_footer(); ?>
 

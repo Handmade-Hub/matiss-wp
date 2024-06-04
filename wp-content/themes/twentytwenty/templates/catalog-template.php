@@ -15,7 +15,7 @@ $elements = get_field('elements')
 ?>
 
 <script>
-    console.log(<?php print_r(json_encode($elements)) ?>)
+    // console.log(<?php print_r(json_encode($elements)) ?>)
 </script>
 
 <!-- collections -->
@@ -40,6 +40,49 @@ $elements = get_field('elements')
         </div>
     </div>
 </section>
+
+<div class="modal-individual-order">
+    <?php
+
+    $form_order = do_shortcode('[contact-form-7 id="3628495" title="Індивідуальне замовлення"]');
+    echo $form_order;
+    ?>
+</div>
+
+<script defer>
+    (() => {
+        const modalIndividualOrder = document.querySelector('.modal-individual-order');
+        const collectionsInner = document.querySelector('.collections__inner');
+        const closeBtn = document.querySelector('#close_btn');
+
+        collectionsInner.addEventListener('click', evt => {
+            const element = evt.target;
+
+            if (!element.href.includes('#speshial_order')) return;
+
+            modalIndividualOrder.style.display = 'flex';
+            setTimeout(() => {
+                modalIndividualOrder.style.opacity = 1;
+            }, 200)
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modalIndividualOrder.style.opacity = 0;
+            setTimeout(() => {
+                modalIndividualOrder.style.display = 'flex';
+            }, 200)
+        })
+
+    })();
+    (() => {
+        const shopUploadArea = document.querySelector('#shop-upload-area');
+
+        shopUploadArea.addEventListener('click', () => {
+            const cdUploadBtn = document.querySelector('.cd-upload-btn');
+            cdUploadBtn.click();
+        })
+    })()
+</script>
 
 <?php
 get_footer();

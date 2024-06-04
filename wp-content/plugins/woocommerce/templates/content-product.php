@@ -29,10 +29,6 @@ $bage = get_field('bage');
 $fitting_available = get_field('fitting_available');
 
 ?>
-<script>
-	// console.log(<?php printf(json_encode($common_values)); ?>);
-	// console.log(<?php printf(json_encode($parameters)) ?>);
-</script>
 
 <li class="collection__item">
 	<div class="product-card 
@@ -74,9 +70,17 @@ $fitting_available = get_field('fitting_available');
 			<h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
 			<div class="product-card__price fz-20 text-center">
 				<?php if ($product->is_on_sale()) : ?>
-					<span>від</span>
-					<span class="product-card__price_sale"><?= get_woocommerce_currency_symbol() . $product->get_sale_price() ?></span>
-					<span class="product-card__price_old"><?= get_woocommerce_currency_symbol() . $product->price ?></span>
+					<!-- <span>від</span> -->
+					<span class="product-card__price_sale"><?= get_woocommerce_currency_symbol() ?><?php if ($product->get_sale_price()) {
+																										echo ($product->get_sale_price());
+																									} else {
+																										echo ($product->get_variation_sale_price('min'));
+																									} ?></span>
+					<span class="product-card__price_old"><?= get_woocommerce_currency_symbol() ?><?php if ($product->get_regular_price()) {
+																										echo ($product->get_regular_price());
+																									} else {
+																										echo ($product->get_variation_sale_price('max'));
+																									} ?></span>
 				<?php else : ?>
 					<span><?= get_woocommerce_currency_symbol() . $product->price ?></span>
 				<?php endif; ?>

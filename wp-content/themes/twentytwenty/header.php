@@ -25,6 +25,37 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:wght@100..900&display=swap" rel="stylesheet">
 
+	<?php if (is_product()) : ?>
+		<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'single-post-thumbnail'); ?>
+
+		<meta name="description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
+		<meta property="og:title" content="Product - <?= get_the_title(); ?>">
+		<meta property="og:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
+		<meta property="og:image" content="<?= $image[0]; ?>">
+		<meta property="og:url" content="<?= get_permalink(); ?>">
+		<meta name="twitter:title" content="Product - <?= get_the_title(); ?>">
+		<meta name="twitter:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
+		<meta name="twitter:image" content="<?= $image[0]; ?>">
+		<meta name="twitter:card" content="<?= $image[0]; ?>">
+
+	<?php else : ?>
+		<?
+
+		$image = get_field('meta_image');
+		$description = get_field('meta_description');
+		$title = get_field('meta_title');
+
+		?>
+		<meta name="description" content="<?= $description; ?>">
+		<meta property="og:title" content="<?= $title; ?>">
+		<meta property="og:description" content="<?= $description; ?>">
+		<meta property="og:image" content="<?= $image; ?>">
+		<meta property="og:url" content="<?= get_permalink(); ?>">
+		<meta name="twitter:title" content="<?= $title; ?>">
+		<meta name="twitter:description" content="<?= $description; ?>">
+		<meta name="twitter:image" content="<?= $image; ?>">
+		<meta name="twitter:card" content="<?= $image; ?>">
+	<?php endif; ?>
 	<?php wp_head(); ?>
 
 </head>
@@ -36,13 +67,30 @@
 	?>
 
 	<div class="button__sticky">
-		<a href="#scroll-top" class="button__sticky_top">
-			<img src="<?= home_url(); ?>/images/icons/icon-arrow-long-top.svg" alt="arrow">
-		</a>
 		<a href="#" class="button__sticky_chat">
 			<img src="<?= home_url(); ?>/images/icons/icon-chat.svg" alt="chat">
 		</a>
+		<div class="contactWidgetButtons">
+			<a href="https://t.me/#" id="contactWidgetTelegram" title="Telegram" target="_blank"><img src="/images/social/telegram.png"></a>
+			<a href="viber://chat?service=#" id="contactWidgetViber" title="Viber" target="_blank"><img src="/images/social/viber.png"></a>
+			<a href="https://wa.me/#" id="contactWidgetWhatsapp" title="WhatsApp" target="_blank"><img src="/images/social/whatsapp.png"></a>
+			<!-- <a href="#" id="contactWidgetFeedback" title="Зворотній зв'язок" data-toggle="feedbackModal">
+				<i class="fas fa-comment-dots"></i>
+			</a> -->
+		</div>
+		<a href="#scroll-top" class="button__sticky_top">
+			<img src="<?= home_url(); ?>/images/icons/icon-arrow-long-top.svg" alt="arrow">
+		</a>
 	</div>
+	<script defer>
+		(() => {
+			const buttonStickyChat = document.querySelector('.button__sticky_chat');
+
+			buttonStickyChat.addEventListener('click', () => {
+				buttonStickyChat.classList.toggle('active');
+			})
+		})()
+	</script>
 
 	<?php
 	$header_menu_obj = wp_get_nav_menu_items(20);
@@ -72,9 +120,15 @@
 			<div class="container">
 				<div class="header__inner">
 					<div class="header__block">
-						<a href="<?= home_url(); ?>" class="header__logo">
-							<img src="<?= home_url(); ?>/images/logo.svg" alt="logo">
-						</a>
+						<?php
+						if (has_custom_logo()) {
+							the_custom_logo();
+						} else {
+						?>
+							<p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+						<?php
+						}
+						?>
 						<nav class="header__menu tablet-none">
 							<ul class="header__list">
 								<?php
@@ -106,11 +160,23 @@
 					</div>
 					<div class="header__pack tablet-none">
 						<div class="header__case">
-							<a href="tel:+380989940794" class="header__tel fw-600">+380 (98) 994 0794</a>
+							<?php
+							$phone = get_field('phone_numb', 'option');
+							$phone_clear = preg_replace('/\D/', '', $phone);
+							?>
+							<a href="tel:+<?php echo $phone_clear; ?>" class="header__tel fw-600"><?php echo $phone; ?></a>
 						</div>
 						<div class="header__localization">
-							<button class="header__localization_button active fw-600">UA</button>
-							<button class="header__localization_button fw-600">EN</button>
+							<div class="hidden">
+								<?php
+								// Use the do_shortcode() function to call a shortcode in PHP
+								$shortcode_output = do_shortcode('[gt-link lang="en" label="English" widget_look="flags_name"]');
+								echo $shortcode_output;
+								?>
+							</div>
+							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="uk"><span>Ukrainian</span>UK</a>
+							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="en"><span>English</span>EN</a>
+							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="de"><span>German</span>DE</a>
 						</div>
 						<div class="header__icons tablet-none">
 							<div class="header__search">
@@ -198,8 +264,9 @@
 									</ul>
 								</nav>
 								<div class="header__localization">
-									<button class="header__localization_button active fw-600">UA</button>
-									<button class="header__localization_button fw-600">EN</button>
+									<button class="header__localization_button active fw-600" data-lang="uk">UK</button>
+									<button class="header__localization_button fw-600" data-lang="en">EN</button>
+									<button class="header__localization_button fw-600" data-lang="de">DE</button>
 								</div>
 								<div class="header__case">
 									<img src="<?= home_url(); ?>/images/icons/icon-viber.svg" alt="viber">
@@ -211,6 +278,45 @@
 				</div>
 			</div>
 		</div>
+		<script defer>
+			setTimeout(() => {
+				const header = document.querySelector('header');
+				const currentLocale = document.documentElement.lang;
+				const gtCurrent = document.querySelector(`.gt-current`).dataset.gtLang;
+
+				const targetBtns = document.querySelectorAll(`[data-lang="${currentLocale}"]`);
+				const activesBtns = document.querySelectorAll('.header__localization_button.active');
+
+				activesBtns.forEach(element => {
+					element.classList.remove('active');
+				});
+
+				targetBtns.forEach(element => {
+					element.classList.add('active');
+				});
+
+				// while (currentLocale != gtCurrent) {
+				// 	console.log(currentLocale, gtCurrent);
+				// };
+
+				header.addEventListener('click', e => {
+					const element = e.target;
+
+					if (!element.closest('.header__localization_button')) {
+						return
+					}
+
+					const btn = element.closest('.header__localization_button');
+					const locale = btn.dataset.lang;
+					const langBtn = document.querySelector(`[data-gt-lang="${locale}"]`);
+
+					langBtn.click();
+					// setTimeout(() => {
+					// 	location.reload()
+					// }, 1000)
+				})
+			}, 2000)
+		</script>
 		<div class="search-modal">
 			<div class="search-modal__wrapper bg-gray">
 				<div class="container">
@@ -269,7 +375,7 @@
 				<div class="cart-modal__inner">
 					<div class="cart-modal__case">
 						<h5 class="cart-modal__title">КОШИК</h5>
-						<p class="cart-modal__count"><span>3</span>товари</p>
+						<p class="cart-modal__count"><span>0</span>товари</p>
 						<button class="cart-modal__close">
 							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M6 18L18 6M6 6L18 18" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
@@ -279,109 +385,22 @@
 					<!-- <p class="cart-modal__empty">Ваш кошик порожній.</p> -->
 					<div class="cart-modal__content">
 						<ul class="cart-modal__list">
-							<li class="cart-modal__item">
-								<div class="cart-modal__item_image">
-									<img src="images/product-card/product-two.jpg" alt="product">
-								</div>
-								<div class="cart-modal__item_info">
-									<h3 class="cart-modal__item_title">Impression</h3>
-									<p>Розмір: 80х120 см</p>
-									<p>Рама: біла деревʼяна</p>
-									<div class="cart-modal__quantity">
-										<button class="cart-modal__quantity_minus">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M18 12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black" />
-											</svg>
-										</button>
-										<input class="cart-modal__quantity_input" min="1" max="99" type="number" min="1" value="1">
-										<button class="cart-modal__quantity_plus">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M18 12.998H13V17.998C13 18.2633 12.8946 18.5176 12.7071 18.7052C12.5196 18.8927 12.2652 18.998 12 18.998C11.7348 18.998 11.4804 18.8927 11.2929 18.7052C11.1054 18.5176 11 18.2633 11 17.998V12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H11V5.99805C11 5.73283 11.1054 5.47848 11.2929 5.29094C11.4804 5.1034 11.7348 4.99805 12 4.99805C12.2652 4.99805 12.5196 5.1034 12.7071 5.29094C12.8946 5.47848 13 5.73283 13 5.99805V10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black" />
-											</svg>
-										</button>
-									</div>
-								</div>
-								<p class="cart-modal__item_price">$195</p>
-								<button class="cart-modal__item_remove">
-									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M4 12L12 4M4 4L12 12" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-									</svg>
-								</button>
-							</li>
-							<li class="cart-modal__item">
-								<div class="cart-modal__item_image">
-									<img src="images/product-card/product-two.jpg" alt="product">
-								</div>
-								<div class="cart-modal__item_info">
-									<h3 class="cart-modal__item_title">Rime</h3>
-									<p>Розмір: 80х120 см</p>
-									<p>Рама: без рами</p>
-									<div class="cart-modal__quantity">
-										<button class="cart-modal__quantity_minus">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M18 12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black" />
-											</svg>
-										</button>
-										<input class="cart-modal__quantity_input" min="1" max="99" type="number" min="1" value="1">
-										<button class="cart-modal__quantity_plus">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M18 12.998H13V17.998C13 18.2633 12.8946 18.5176 12.7071 18.7052C12.5196 18.8927 12.2652 18.998 12 18.998C11.7348 18.998 11.4804 18.8927 11.2929 18.7052C11.1054 18.5176 11 18.2633 11 17.998V12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H11V5.99805C11 5.73283 11.1054 5.47848 11.2929 5.29094C11.4804 5.1034 11.7348 4.99805 12 4.99805C12.2652 4.99805 12.5196 5.1034 12.7071 5.29094C12.8946 5.47848 13 5.73283 13 5.99805V10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black" />
-											</svg>
-										</button>
-									</div>
-								</div>
-								<p class="cart-modal__item_price">$300</p>
-								<button class="cart-modal__item_remove">
-									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M4 12L12 4M4 4L12 12" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-									</svg>
-								</button>
-							</li>
-							<li class="cart-modal__item">
-								<div class="cart-modal__item_image">
-									<img src="images/product-card/product-two.jpg" alt="product">
-								</div>
-								<div class="cart-modal__item_info">
-									<h3 class="cart-modal__item_title">Rime 2</h3>
-									<p>Розмір: 80х120 см</p>
-									<p>Рама: без рами</p>
-									<div class="cart-modal__quantity">
-										<button class="cart-modal__quantity_minus">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M18 12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black" />
-											</svg>
-										</button>
-										<input class="cart-modal__quantity_input" min="1" max="99" type="number" min="1" value="1">
-										<button class="cart-modal__quantity_plus">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M18 12.998H13V17.998C13 18.2633 12.8946 18.5176 12.7071 18.7052C12.5196 18.8927 12.2652 18.998 12 18.998C11.7348 18.998 11.4804 18.8927 11.2929 18.7052C11.1054 18.5176 11 18.2633 11 17.998V12.998H6C5.73478 12.998 5.48043 12.8927 5.29289 12.7052C5.10536 12.5176 5 12.2633 5 11.998C5 11.7328 5.10536 11.4785 5.29289 11.2909C5.48043 11.1034 5.73478 10.998 6 10.998H11V5.99805C11 5.73283 11.1054 5.47848 11.2929 5.29094C11.4804 5.1034 11.7348 4.99805 12 4.99805C12.2652 4.99805 12.5196 5.1034 12.7071 5.29094C12.8946 5.47848 13 5.73283 13 5.99805V10.998H18C18.2652 10.998 18.5196 11.1034 18.7071 11.2909C18.8946 11.4785 19 11.7328 19 11.998C19 12.2633 18.8946 12.5176 18.7071 12.7052C18.5196 12.8927 18.2652 12.998 18 12.998Z" fill="black" />
-											</svg>
-										</button>
-									</div>
-								</div>
-								<p class="cart-modal__item_price">$90</p>
-								<button class="cart-modal__item_remove">
-									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M4 12L12 4M4 4L12 12" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-									</svg>
-								</button>
-							</li>
 						</ul>
 					</div>
 					<div class="cart-modal__footer">
-						<div class="cart-modal__footer_case">
+						<div class="cart-modal__footer_case total_price">
 							<p>Сума</p>
-							<p>$585</p>
+							<p class="total_price_value">$0</p>
 						</div>
 						<div class="cart-modal__footer_case">
 							<p>Знижка</p>
-							<p class="cart-modal__footer_text cart-modal__footer_text--red">$0</p>
+							<p class="discount_price_value cart-modal__footer_text cart-modal__footer_text--red">$0</p>
 						</div>
-						<div class="cart-modal__footer_total">
+						<div class="cart-modal__footer_total subtotal_price">
 							<h4>Всього</h4>
-							<p>$585</p>
+							<p class="subtotal_price_value">$0</p>
 						</div>
-						<a href="#" class="cart-modal__footer_button button__primary">ОФОРМИТИ ЗАМОВЛЕННЯ</a>
+						<a href="/checkout" class="cart-modal__footer_button button__primary">ОФОРМИТИ ЗАМОВЛЕННЯ</a>
 					</div>
 				</div>
 			</div>
@@ -392,7 +411,12 @@
 
 
 		<?php
-		// Output the menu modal.
-		if (!is_front_page() && !is_page_template(['our-team.php', 'templates/services-template.php']) && !is_search()) {
+		// Output the menu modal
+		if (
+			!is_front_page() && !is_page_template('templates/information-template.php')
+			&& !is_page_template('templates/our-team-template.php') && !is_page_template('templates/partners-template.php') && !is_page_template('templates/services-template.php')
+			&& !is_page_template('templates/privacy-policy-template.php') && !is_page_template('templates/video-template.php') && !is_search()
+		) {
 			custom_breadcrumbs();
-		};
+		}
+		?>

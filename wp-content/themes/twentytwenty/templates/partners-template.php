@@ -13,6 +13,7 @@ get_header();
 
 $partners = get_field('partners');
 $newsletter = get_field('newsletter');
+$shortcode_subscribe_form = $newsletter['shortcode_form'];
 $result_array = get_information_menu_items();
 ?>
 
@@ -63,28 +64,34 @@ $result_array = get_information_menu_items();
  </div>
 </section>
 
-<!-- newsletter -->
-<section class="newsletter">
- <div class="newsletter__wrapper">
-  <div class="container">
-   <div class="newsletter__inner">
-    <h4 class="newsletter__title text-center fw-500"><?= $newsletter['title'] ?></h4>
-    <p class="newsletter__text text-center fz-18"><?= $newsletter['text'] ?></p>
-    <div class="newsletter__form">
-     <?php echo do_shortcode('[contact-form-7 id="170fa72" title="Newsletter"]')?>
-     <form id="newsletter__form_visible">
-      <div class="newsletter__form_field">
-       <input class="newsletter__form_input" placeholder="Email" id="POST-text" type="text" name="email">
-       <label class="newsletter__form_label" for="POST-text">Email</label>
-       <p class="newsletter__form_error">Будь ласка, введіть правильний email</p>
-      </div>
-      <input class="button__primary newsletter__form_button" type="submit" value="Підписатися">
-     </form>
-    </div>
-   </div>
-  </div>
- </div>
-</section>
+  <!-- newsletter -->
+  <section class="newsletter">
+        <div class="newsletter__wrapper">
+            <div class="container">
+                <div class="newsletter__inner">
+                    <h4 class="newsletter__title text-center fw-500"><?= $newsletter['title'] ?></h4>
+                    <p class="newsletter__text text-center fz-18"><?= $newsletter['text'] ?></p>
+                    <div class="newsletter__form">
+                        <div class="hidden_cf7_form">
+                            <?php
+                            echo do_shortcode( $shortcode_subscribe_form );
+                            ?>
+                        </div>
+                        <form class="newsletter_form_mask" method="post">
+                            <div class="newsletter__form_field">
+                                <input class="newsletter__form_input" placeholder="<?php echo __( 'Email', 'twentytwenty' ); ?>" id="POST-name" type="text" name="name">
+                                <label class="newsletter__form_label" for="POST-name"><?php echo __( 'Email', 'twentytwenty' ); ?></label>
+                            </div>
+                            <input class="button__primary newsletter__form_button" type="submit" value="<?php echo __( 'Підписатися', 'twentytwenty' ); ?>">
+
+                        </form>
+                        <p class="contact-form__error"><?php echo __( 'Будь-ласка, введіть правильний Email', 'twentytwenty' ); ?></p>
+                        <div class="subscribe-form-response"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <?php
 get_footer();

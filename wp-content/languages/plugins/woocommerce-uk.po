@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-08 00:42:09+0000\n"
+"PO-Revision-Date: 2024-04-17 12:49:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13812,10 +13812,6 @@ msgstr "Слаґ плагіна."
 msgid "There was an error connecting to Square."
 msgstr "Сталася помилка при підключенні Square."
 
-#: src/Admin/API/Plugins.php:428 src/Admin/API/Plugins.php:491
-msgid "There was an error loading the Woo.com Helper API."
-msgstr "При завантаженні допоміжного API Woo.com сталася помилка."
-
 #: src/Admin/API/Plugins.php:404
 msgid "Jetpack is not installed or active."
 msgstr "Jetpack не встановлений або не активний."
@@ -13883,10 +13879,6 @@ msgstr "На жаль, ви не можете керувати темами."
 #: src/Admin/API/ProductVariations.php:166
 msgid "Product parent name."
 msgstr "Назва батьківського товару."
-
-#: src/Admin/API/OnboardingProfile.php:412
-msgid "Whether or not the store was connected to Woo.com during the extension flow."
-msgstr "Чи був магазин підключений до Woo.com під час розширення."
 
 #: src/Admin/API/OnboardingProfile.php:405
 msgid "Whether or not this store was setup for a client."
@@ -17809,10 +17801,6 @@ msgstr "Привіт %s,"
 msgid "You’ve received the following order from %s:"
 msgstr "Ви отримали таке замовлення від %s:"
 
-#: includes/emails/class-wc-email-failed-order.php:142
-msgid "Hopefully they’ll be back. Read more about <a href=\"https://woo.com/document/managing-orders/\">troubleshooting failed payments</a>."
-msgstr "Сподіваємось, вони ще повернуться. Детальніше про <a href=\"https://woo.com/document/managing-orders/\">усунення неполадок із невдалими платежами</a>."
-
 #: includes/emails/class-wc-email-cancelled-order.php:144
 #: includes/emails/class-wc-email-customer-note.php:160
 #: includes/emails/class-wc-email-customer-reset-password.php:171
@@ -19821,7 +19809,7 @@ msgstr "Іконка магазину"
 #. translators: %s: theme name.
 #: includes/admin/class-wc-admin-setup-wizard.php:1895
 msgid "Design your store with deep WooCommerce integration. If toggled on, we’ll install <a href=\"https://woo.com/storefront/\" target=\"_blank\" rel=\"noopener noreferrer\">Storefront</a>, and your current theme <em>%s</em> will be deactivated."
-msgstr "Створіть свій магазин за допомогою інтеграції WooCommerce. Якщо включено, ми встановимо <a href=\"https://woo.com/storefront/\" target=\"_blank\" rel=\"noopener noreferrer\">Storefront</a> , і поточна тема <em>%s</em> буде деактивована."
+msgstr "Створіть свій магазин за допомогою інтеграції WooCommerce. Якщо включено, ми встановимо <a href=\"https://woo.com/storefront/\" target=\"_blank\" rel=\"noopener noreferrer\">Storefront</a>, і ваша поточна тема <em>%s</em> буде деактивована."
 
 #: includes/admin/class-wc-admin-setup-wizard.php:1882
 msgid "Enhance your store with these recommended free features."
@@ -22522,7 +22510,7 @@ msgstr "Встановлені розширення без підписки"
 
 #: includes/admin/helper/views/html-main.php:193
 msgid "Could not find any subscriptions on your Woo.com account"
-msgstr "Не вдалося знайти підписки на вашому обліковому записі Woo.com"
+msgstr "Не вдалося знайти жодноъ підписки у вашому обліковому записі Woo.com"
 
 #: includes/admin/helper/class-wc-helper.php:385
 #: includes/admin/helper/views/html-main.php:153
@@ -32135,10 +32123,6 @@ msgstr "Заголовок електронного листа (Оплачено
 msgid "Your invoice for order #{order_number}"
 msgstr "Ваш рахунок для замовлення #{order_number}"
 
-#: includes/emails/class-wc-email-customer-invoice.php:33
-msgid "Customer invoice emails can be sent to customers containing their order information and payment links."
-msgstr "Електронні листи \"Рахунок для покупця\" можуть надсилатись користувачам, з інформацією про замовлення та посиланням на сторінку оплати замовлення."
-
 #: includes/emails/class-wc-email-customer-completed-order.php:33
 msgid "Order complete emails are sent to customers when their orders are marked completed and usually indicate that their orders have been shipped."
 msgstr "Електронні листи \"Виконане замовлення\" надсилаються покупцям, коли їх замовлення позначене в системі, як виконане і зазвичай показує, що їх замовлення вже були відправлені (чи доставлені)."
@@ -34526,7 +34510,7 @@ msgstr "Шукаєте тему WooCommerce?"
 #. translators: a url
 #: includes/admin/views/html-admin-page-addons.php:134
 msgid "Our catalog of WooCommerce Extensions can be found on Woo.com here: <a href=\"%s\">WooCommerce Extensions Catalog</a>"
-msgstr "Ви можете знайти наш каталог розширень WooCommerce на сайті Woo.com: <a href=\"%s\">Каталог розширень WooCommerce</a>"
+msgstr "Наш каталог розширень WooCommerce можна знайти на сайті Woo.com: <a href=\"%s\">Каталог розширень WooCommerce</a>"
 
 #: includes/admin/class-wc-admin-addons.php:963
 #: includes/admin/class-wc-admin-addons.php:1456

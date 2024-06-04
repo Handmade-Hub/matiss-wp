@@ -48,7 +48,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="form">
-                        <?php showItems('surface') ?>
+                        <?php showItems('surface', 'desktop') ?>
                     </ul>
                 </div>
             </li>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="style">
-                        <?php showItems('style') ?>
+                        <?php showItems('style', 'desktop') ?>
                     </ul>
                 </div>
             </li>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="category">
-                        <?php showItems('category') ?>
+                        <?php showItems('category', 'desktop') ?>
                     </ul>
                 </div>
             </li>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="filters__item_list">
                     <ul class="filters__item_options" data-key="rooms">
-                        <?php showItems('rooms') ?>
+                        <?php showItems('rooms', 'desktop') ?>
                     </ul>
                 </div>
             </li>

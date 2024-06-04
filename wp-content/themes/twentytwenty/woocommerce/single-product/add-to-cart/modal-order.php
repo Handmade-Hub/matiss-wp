@@ -26,7 +26,7 @@ global $product;
             </button>
             <div class="hidden_cf7_form">
                 <?php
-                echo do_shortcode( '[contact-form-7 id="e9f15a2" title="Painting wall order"]' );
+                echo do_shortcode( '[contact-form-7 id="b2e582e" title="Painting wall order"]' );
                 ?>
             </div>
             <form class="modal-order__form">
