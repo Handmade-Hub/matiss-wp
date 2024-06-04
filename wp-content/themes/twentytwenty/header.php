@@ -160,11 +160,14 @@
 					</div>
 					<div class="header__pack tablet-none">
 						<div class="header__case">
-							<?php
-							$phone = get_field('phone_numb', 'option');
-							$phone_clear = preg_replace('/\D/', '', $phone);
-							?>
-							<a href="tel:+<?php echo $phone_clear; ?>" class="header__tel fw-600"><?php echo $phone; ?></a>
+							<<<<<<< HEAD <?php
+											$phone = get_field('phone_numb', 'option');
+											$phone_clear = preg_replace('/\D/', '', $phone);
+											?>=======<?php
+										$phone = get_field('phone_numb', 'option');
+										$phone_clear = preg_replace('/\D/', '', $phone);
+										?>>>>>>>> sp-glag
+								<a href="tel:+<?php echo $phone_clear; ?>" class="header__tel fw-600"><?php echo $phone; ?></a>
 						</div>
 						<div class="header__localization">
 							<div class="hidden">

@@ -1663,7 +1663,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       success: function (response) {
         let data = JSON.parse(response);
-        console.log('response', data)
+
         // relocate if quick buy
         if (param && param === 'quick') {
           window.location.href = "checkout";
