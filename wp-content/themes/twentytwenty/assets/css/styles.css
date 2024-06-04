@@ -582,6 +582,7 @@ button {
   .button__sticky_top:hover,
   .button__sticky_chat:hover {
     transform: scale(1.02);
+    cursor: pointer;
   }
 }
 

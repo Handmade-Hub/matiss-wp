@@ -39,9 +39,9 @@
 		<a href="#scroll-top" class="button__sticky_top">
 			<img src="<?= home_url(); ?>/images/icons/icon-arrow-long-top.svg" alt="arrow">
 		</a>
-		<a href="#" class="button__sticky_chat">
+		<div class="button__sticky_chat">
 			<img src="<?= home_url(); ?>/images/icons/icon-chat.svg" alt="chat">
-		</a>
+		</div>
 	</div>
 
 	<?php

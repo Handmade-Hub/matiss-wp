@@ -67,9 +67,9 @@
 	?>
 
 	<div class="button__sticky">
-		<a href="#" class="button__sticky_chat">
+		<div class="button__sticky_chat">
 			<img src="<?= home_url(); ?>/images/icons/icon-chat.svg" alt="chat">
-		</a>
+		</div>
 		<div class="contactWidgetButtons">
 			<a href="https://t.me/#" id="contactWidgetTelegram" title="Telegram" target="_blank"><img src="/images/social/telegram.png"></a>
 			<a href="viber://chat?service=#" id="contactWidgetViber" title="Viber" target="_blank"><img src="/images/social/viber.png"></a>
