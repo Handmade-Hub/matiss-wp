@@ -34,7 +34,7 @@ if ( $product->is_type( 'variable' ) ) {
                                 ?>
                                     <p class="atribute_size">
                                         <?php echo __('Розмір: ', 'twentytwenty'); ?>
-                                        <span class="atribute_size_value"></span> <?php echo __('см', 'twentytwenty'); ?>
+                                        <span class="atribute_size_value"></span>
                                     </p>
                                 <?php
                                 }
