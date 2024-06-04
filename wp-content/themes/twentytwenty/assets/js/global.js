@@ -1128,6 +1128,14 @@ document.addEventListener('DOMContentLoaded', function () {
         multiSelect.value = "Без кольору";
         multiSelect.dispatchEvent(new Event('change', { bubbles: true }));
         multiSelect.dispatchEvent(new Event('check_variations'));
+
+        setTimeout(function (){
+          if (wcSelect.value !== 'Без рами') {
+            wcSelect.value = itemValue;
+            wcSelect.dispatchEvent(new Event('change'));
+            wcForm.dispatchEvent(new Event('check_variations'));
+          }
+        },200)
       }
     }
     // change woocommerce multiitem select
@@ -1663,7 +1671,6 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       success: function (response) {
         let data = JSON.parse(response);
-        console.log('response', data)
         // relocate if quick buy
         if (param && param === 'quick') {
           window.location.href = "checkout";

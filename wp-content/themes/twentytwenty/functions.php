@@ -921,10 +921,24 @@ function custom_breadcrumbs()
 			echo '<li class="breadcrumbs__item">
 			<p class="breadcrumbs__item_link fw-500">' . $cats . '</p>' . $separator . '</li>';
 		}
-		if (is_single()) {
+		if (is_single() && !is_product()) {
 			echo '<li class="breadcrumbs__item">
 						<p class="breadcrumbs__item_link fw-500">' . the_title() . '</p>' . $separator . '</li>';
 		}
+        if (is_product()) {
+            $product_category = wp_get_post_terms( get_the_ID(), 'product_cat', array( 'fields' => 'names' ) )[0];
+            $product = wc_get_product( get_the_ID() );
+            $categories_id = $product->get_category_ids();
+            $category_link = get_term_link( $categories_id[0] );
+
+            echo '	<li class="breadcrumbs__item">
+		    <a href="/каталог" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
+            // echo $cats;
+            echo '<li class="breadcrumbs__item">
+			<a href="' . $category_link . '" class="breadcrumbs__item_link fw-500">' . $product_category . '</a>' . $separator . '</li>';
+            echo '<li class="breadcrumbs__item">
+						<p class="breadcrumbs__item_link fw-500">' . the_title() . '</p>' . $separator . '</li>';
+        }
 	} elseif (is_page()) {
 		if ($post->post_parent) {
 			$parent_id = $post->post_parent;

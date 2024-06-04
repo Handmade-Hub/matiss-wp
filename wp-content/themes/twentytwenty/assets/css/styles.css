@@ -5330,6 +5330,8 @@ button {
 .tabs__bar_item {
   padding: 0.8rem;
   position: relative;
+  opacity: 1;
+  transition: opacity .5s;
 }
 
 .tabs__bar_item.active::after {
@@ -5346,6 +5348,11 @@ button {
   background-color: var(--color-primary);
   opacity: 0;
   transition: all var(--duration-normal);
+}
+
+.tabs__bar_item:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .tabs__bar_button {
@@ -9031,6 +9038,7 @@ button {
   display: none !important;
 }
 
+.woocommerce-NoticeGroup,
 .woocommerce-NoticeGroup-checkout,
 #customer_details,
 #order_review_heading,
