@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const wishlistBtn = document.querySelector('#wishlist-btn');
+    const wishlistBtn = document.querySelectorAll('.wishlist-add');
     const wishlistContainer = document.querySelector('.wishlist__list');
     const wishlistEmptyContainer = document.querySelector('.wishlist-empty');
 
@@ -32,9 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const addToWishlist = () => {
-        console.log('addToWishlist')
         const coociesWishlist = localStorage.getItem('matis-wishlist');
-        const productId = wishlistBtn.dataset.id;
+        const productId = wishlistBtn[0].dataset.id;
 
         if (coociesWishlist) {
             pushLocalStorage(productId)
@@ -42,7 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
             createLocalStorage(productId);
         };
 
-        wishlistBtn.classList.add('wishlist-added');
+
+        wishlistBtn.forEach((item)=>{
+            item.classList.add('wishlist-added');
+        })
     };
 
     const removeFromWishlist = (id) => {
@@ -53,14 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 return item;
             }
         })
-        console.log('idList', idList)
-        console.log('newWishlist', newWishlist)
+
         localStorage.setItem('matis-wishlist', newWishlist);
     };
 
 
     const loadEmpty = () => {
-        console.log(wishlistEmptyContainer);
         wishlistEmptyContainer.classList.remove('hidden');
     };
 
@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const wishlistId = localStorage.getItem('matis-wishlist');
         if (!wishlistId) {
             loadEmpty();
-            console.log(false);
         } else if (checkProducts(wishlistId)) {
             loadProducts(wishlistId);
         }
@@ -105,23 +104,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const checkIfAdded = () => {
         const wishlist = localStorage.getItem('matis-wishlist');
-        const productId = wishlistBtn.dataset.id;
+        const productId = wishlistBtn[0].dataset.id;
         const wishlistIdList = wishlist.split(',');
 
         if (wishlistIdList.includes(productId)) {
-            wishlistBtn.classList.add('wishlist-added')
+            wishlistBtn.forEach((item)=>{
+                item.classList.add('wishlist-added')
+            });
         }
     }
 
-    wishlistBtn && wishlistBtn.addEventListener('click', () => {
-        if ( !wishlistBtn.classList.contains('wishlist-added')) {
-            addToWishlist();
-        } else {
-            const id = wishlistBtn.dataset.id;
-            removeFromWishlist(id);
-            wishlistBtn.classList.remove('wishlist-added');
-        }
-    });
+    wishlistBtn && wishlistBtn.forEach((item)=>{
+        item.addEventListener('click', () => {
+            if ( !item.classList.contains('wishlist-added')) {
+                addToWishlist();
+            } else {
+                const id = item.dataset.id;
+                removeFromWishlist(id);
+                wishlistBtn.forEach((item)=>{
+                    item.classList.remove('wishlist-added');
+                });
+            }
+        });
+    })
 
     function wishlistEvents(){
         const wishlistBtnRemove = document.querySelectorAll('.product-card__remove');
@@ -134,52 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
-
-
-
-
-    // const coociesWishlistJSON = JSON.parse(coociesWishlist);
-    // const productsID = coociesWishlistJSON;
-    // const apiKey = 'ck_8e872869c7559c61d33d277263c8a1ad22dc48f0'
-    // const apiSecret = 'cs_753ae6e56de5fcb3006f06ef89d43cbaeef3fd54';
-    // const storeUrl = '/wp-json/wc/v3';
-    // const endpoint = `${storeUrl}/products?consumer_key=${apiKey}&consumer_secret=${apiSecret}&include=${productsID.join(',')}`;
-
-    // fetch(endpoint).then(response => response.json()).then(data => {
-    //     console.log(data);
-    //     creatreCards(data);
-    // }
-    // ).catch(error => {
-    //     console.error(error);
-    // }
-    // ).finally(() => {
-    //     document.querySelector('.loader').style.display = "none"
-    // }
-    // );
-
-    // function creatreCards(products) {
-    //     const articlesContainer = document.querySelector('.calendars-list');
-    //     const sortedProducts = productsID.map(productId => products.find(product => product.id === productId)).reverse();
-
-    //     sortedProducts.forEach(product => {
-    //         if (!product.images)
-    //             return;
-
-    //         const article = document.createElement('article');
-    //         article.classList.add('product');
-
-    //         const img = `<img width="400" height="400" src="${product.images[0].src}" class="product__thumb" alt="" loading="lazy" sizes="(max-width: 400px) 100vw, 400px">`;
-    //         const h3 = `<h3 class="product__title">${product.name}</h3>`;
-    //         const a = `<a href="${product.permalink}" class="btn btn--bordered">Детальніше</a>`;
-
-    //         article.innerHTML = img + h3 + a;
-
-    //         articlesContainer.append(article);
-    //     }
-    //     );
-    // }
-
-    wishlistBtn && checkIfAdded();
+    wishlistBtn.length > 0 && checkIfAdded();
 
     wishlistContainer && loadWishlist();
 });
