@@ -1525,3 +1525,11 @@ function get_wishlist()
 
     wp_die();
 }
+
+// change related product count
+
+add_filter( 'woocommerce_output_related_products_args', 'custom_related_products_args', 20 );
+function custom_related_products_args( $args ) {
+    $args['posts_per_page'] = 6;
+    return $args;
+}
