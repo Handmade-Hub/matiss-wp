@@ -815,6 +815,27 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelectorAll('.contact-form').length) {
     const form = document.querySelector('.contact-form form.contact-form_mask');
     const requiredFields = form.querySelectorAll('.contact-form__field');
+    const contactSubmit = form.querySelector('.contact-form__button');
+    const nameInput =  form.querySelector('.contact-form__field input[name="name"]');
+    const phoneInput =  form.querySelector('.contact-form__field input[name="phone"]');
+
+    nameInput.addEventListener('input', function (){
+      checkContactsInput();
+    });
+
+    phoneInput.addEventListener('input', function (){
+      checkContactsInput();
+    });
+
+    function checkContactsInput(){
+      if (nameInput.value !== '' && phoneInput.value !== '') {
+        contactSubmit.classList.remove('disabled');
+        contactSubmit.removeAttribute('disabled');
+      } else {
+        contactSubmit.classList.add('disabled');
+        contactSubmit.setAttribute('disabled', true);
+      }
+    }
 
     form.addEventListener('submit', e => {
       e.preventDefault();

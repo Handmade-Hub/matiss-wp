@@ -3986,6 +3986,16 @@ button {
 
 @media (min-width: 992px) {
   .text-block__image {
+    justify-content: flex-end;
+    width: 50%;
+  }
+  .text-block--reverse .text-block__image {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 992px) {
+  .text-block__image {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -5837,6 +5847,8 @@ button {
   right: 1.2rem;
   width: 2.4rem;
   height: 2.4rem;
+  transform: rotate(0);
+  transition: transform .3s;
 }
 
 .product__select_panel.active::after {
@@ -5927,6 +5939,10 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+}
+
+.product__buttons .wc-stripe-clear {
+  display: none;
 }
 
 .product__button {
@@ -7834,6 +7850,7 @@ button {
 .checkout__order_button {
   max-width: 100%;
   margin-bottom: 1.6rem;
+  font-weight: 500;
 }
 
 @media (max-width: 767px) {
