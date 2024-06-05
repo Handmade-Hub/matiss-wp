@@ -21,17 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// if default related products empty
-if ( empty( $related_products ) ) {
-    $related_category = 'Картини';
-    $args = array(
-        'category' => $related_category,
-        'posts_per_page' => 4,
-        'orderby' => 'rand',
-        'post__not_in' => array( $product->get_id() ),
-    );
+$terms = wp_get_post_terms($product->get_id(), 'product_cat');
 
-    $related_products = wc_get_products( $args );
+if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+    $category = $terms[0];
+    $category_related_products = get_field('_category_related_products', 'term_' . $category->term_id);
+    $enable_manual_adding = get_field('_enable_manual_adding', 'term_' . $category->term_id);
+
+    if ( ! empty( $category_related_products ) && $enable_manual_adding ) {
+        $product_list = array();
+
+        foreach ( $category_related_products as $category_related_product ) {
+           $wc_product =  wc_get_product( $category_related_product );
+            array_push( $product_list, $wc_product );
+        }
+
+        $related_products = $product_list;
+    }
 }
 
 if ( $related_products ) : ?>
