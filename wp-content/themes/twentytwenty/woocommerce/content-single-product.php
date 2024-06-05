@@ -85,13 +85,24 @@ foreach ($mobile_gallery_images as $image_id) {
                 </svg>
             </button>
             <div class="product__swiper-wrapper swiper-wrapper">
-                <?php foreach ($mobile_gallery_images as $image_id) {
+                <?php
+                $counter = 1;
+                $product_video = get_field('product_video');
+                foreach ($mobile_gallery_images as $image_id) {
                     $image_html = wp_get_attachment_image($image_id);
-                ?>
+                    if (!empty($product_video) && $counter == 2) {
+                        ?>
+                        <div class="product__swiper-slide video_slide swiper-slide">
+                            <video src="<?php echo $product_video['url'] ;?>"></video>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <div class="product__swiper-slide swiper-slide">
                         <?php echo $image_html; ?>
                     </div>
                 <?php
+                    $counter++;
                 } ?>
             </div>
             <div class="product__swiper-pagination dots-primary swiper-pagination"></div>
@@ -206,7 +217,6 @@ foreach ($mobile_gallery_images as $image_id) {
                                 <?php
                             }
                     ?>
-                                    <script>console.log('product_video', <?php echo json_encode($product_video);?>)</script>
                             <li class="product__media_item">
                                 <a href="<?php echo $image_url; ?>" data-fancybox="gallery">
                                     <?php

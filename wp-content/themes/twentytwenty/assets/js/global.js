@@ -938,6 +938,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // mobile video listener
+
+  if (document.querySelectorAll('.product__swiper .video_slide video').length) {
+    const mobileVideo = document.querySelector('.product__swiper .video_slide video');
+    const videoPlayButton = document.querySelector('.product__swiper .video_slide');
+
+    videoPlayButton.addEventListener('click', ()=>{
+      videoPlayButton.classList.add('play');
+      mobileVideo.play();
+    })
+  }
+
   // tabs
   if (document.querySelectorAll('.tabs').length) {
     const barItems = document.querySelectorAll('.tabs__bar_item');
@@ -1261,6 +1273,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttonRemoveAll = document.querySelector('.modal-order__add-file_remove-all');
     const result = form.querySelector('.modal-order__add-file_result');
     const list = form.querySelector('.modal-order__add-file_list');
+    const nameInput =  form.querySelector('.modal-order__form_input[name="name"]');
+    const emailInput =  form.querySelector('.modal-order__form_input[name="email"]');
     let arr = [];
 
     // open and hide modal
@@ -1275,6 +1289,12 @@ document.addEventListener('DOMContentLoaded', function () {
         body.classList.remove('menu-open');
       })
     })
+
+
+
+    function checkModalOrderInput(){
+
+    }
 
     // submit form
     form.addEventListener('submit', e => {

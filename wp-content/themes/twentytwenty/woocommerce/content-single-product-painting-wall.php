@@ -85,13 +85,24 @@ foreach ($mobile_gallery_images as $image_id) {
                 </svg>
             </button>
             <div class="product__swiper-wrapper swiper-wrapper">
-                <?php foreach ($mobile_gallery_images as $image_id) {
+                <?php
+                $counter = 1;
+                $product_video = get_field('product_video');
+                foreach ($mobile_gallery_images as $image_id) {
                     $image_html = wp_get_attachment_image($image_id);
-                ?>
+                    if (!empty($product_video) && $counter == 2) {
+                        ?>
+                        <div class="product__swiper-slide video_slide swiper-slide">
+                            <video src="<?php echo $product_video['url'] ;?>"></video>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <div class="product__swiper-slide swiper-slide">
                         <?php echo $image_html; ?>
                     </div>
-                <?php
+                    <?php
+                    $counter++;
                 } ?>
             </div>
             <div class="product__swiper-pagination dots-primary swiper-pagination"></div>
@@ -150,9 +161,21 @@ foreach ($mobile_gallery_images as $image_id) {
                     $attachment_ids = $product->get_gallery_image_ids();
 
                     if ($attachment_ids && $product->get_image_id()) {
+                        $counter = 1;
+                        $product_video = get_field('product_video');
+
                         foreach ($attachment_ids as $attachment_id) {
                             $image_url = wp_get_attachment_image_url($attachment_id, 'full');
-                    ?>
+                            if ( ! empty( $product_video ) && $counter == 2) {
+                                ?>
+                                <li class="product__media_item video_item">
+                                    <a href="<?php echo $product_video['url'] ;?>" data-fancybox="gallery">
+                                        <video src="<?php echo $product_video['url'] ;?>"></video>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                            ?>
                             <li class="product__media_item">
                                 <a href="<?php echo $image_url; ?>" data-fancybox="gallery">
                                     <?php
@@ -160,7 +183,8 @@ foreach ($mobile_gallery_images as $image_id) {
                                     ?>
                                 </a>
                             </li>
-                    <?php
+                            <?php
+                            $counter++;
                         }
                     }
                     ?>

@@ -5525,6 +5525,36 @@ button {
   }
 }
 
+.product__swiper-slide video {
+  width: 100%;
+  object-fit: cover;
+}
+
+.product__swiper-slide.video_slide {
+  position: relative;
+}
+
+.product__swiper-slide.video_slide:hover:after {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.product__swiper-slide.video_slide:after {
+  content: url('data:image/svg+xml; utf8, <svg width="62" height="66" viewBox="0 0 62 66" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.51048C0 1.80648 6.116 -1.80952 11.116 0.938485L57.276 26.3305C62.456 29.1785 62.456 36.6225 57.276 39.4705L11.12 64.8625C6.12 67.6105 0.00399971 63.9945 0.00399971 58.2905L0 7.51048Z" fill="white" fill-opacity="0.9"/> </svg>');
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity .5s;
+}
+
+.product__swiper-slide.video_slide.play:after {
+  display: none;
+}
+
 .product__swiper-pagination {
   margin-bottom: 2.2rem;
 }
@@ -8778,6 +8808,7 @@ button {
 
 .modal-order__submit {
   max-width: 25.6rem;
+  font-weight: 500;
 }
 
 .modal-order__submit.disabled {
