@@ -5359,6 +5359,7 @@ button {
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 2.6rem;
+  text-transform: uppercase;
 }
 
 @media (max-width: 767px) {
@@ -5802,6 +5803,10 @@ button {
   height: 2.4rem;
 }
 
+.product__select_panel.active::after {
+  transform: rotate(180deg);
+}
+
 .product__select_list {
   border: 0.1rem solid transparent;
   border-top: none;
@@ -5917,6 +5922,31 @@ button {
 }
 
 .product__media_item img {
+  width: 100%;
+  object-fit: cover;
+}
+.product__media_item.video_item {
+  position: relative;
+}
+
+.product__media_item.video_item:hover a:after {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.product__media_item.video_item a:after {
+  content: url('data:image/svg+xml; utf8, <svg width="62" height="66" viewBox="0 0 62 66" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.51048C0 1.80648 6.116 -1.80952 11.116 0.938485L57.276 26.3305C62.456 29.1785 62.456 36.6225 57.276 39.4705L11.12 64.8625C6.12 67.6105 0.00399971 63.9945 0.00399971 58.2905L0 7.51048Z" fill="white" fill-opacity="0.9"/> </svg>');
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity .5s;
+}
+
+.product__media_item.video_item video {
   width: 100%;
   object-fit: cover;
 }

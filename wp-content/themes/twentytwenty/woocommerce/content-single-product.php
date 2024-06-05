@@ -191,9 +191,22 @@ foreach ($mobile_gallery_images as $image_id) {
                     $attachment_ids = $product->get_gallery_image_ids();
 
                     if ($attachment_ids && $product->get_image_id()) {
+                        $counter = 1;
+                        $product_video = get_field('product_video');
+
                         foreach ($attachment_ids as $attachment_id) {
                             $image_url = wp_get_attachment_image_url($attachment_id, 'full');
+                            if ( ! empty( $product_video ) && $counter == 2) {
+                                ?>
+                            <li class="product__media_item video_item">
+                                <a href="<?php echo $product_video['url'] ;?>" data-fancybox="gallery">
+                                    <video src="<?php echo $product_video['url'] ;?>"></video>
+                                </a>
+                            </li>
+                                <?php
+                            }
                     ?>
+                                    <script>console.log('product_video', <?php echo json_encode($product_video);?>)</script>
                             <li class="product__media_item">
                                 <a href="<?php echo $image_url; ?>" data-fancybox="gallery">
                                     <?php
@@ -202,6 +215,7 @@ foreach ($mobile_gallery_images as $image_id) {
                                 </a>
                             </li>
                     <?php
+                            $counter++;
                         }
                     }
                     ?>
