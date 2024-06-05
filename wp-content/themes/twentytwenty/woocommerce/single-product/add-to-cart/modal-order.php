@@ -38,13 +38,13 @@ global $product;
                             <p class="modal-order__form_error"><?php echo __( 'Будь-ласка, введіть імʼя', 'twentytwenty' ); ?></p>
                         </div>
                         <div class="modal-order__field">
-                            <input class="modal-order__form_input modal-order__form_input--required" type="text" name="name" placeholder="<?php echo __( 'Телефон*', 'twentytwenty' ); ?>" id="phone">
+                            <input class="modal-order__form_input modal-order__form_input--required" type="text" name="phone" placeholder="<?php echo __( 'Телефон*', 'twentytwenty' ); ?>" id="phone">
                             <label for="phone"><?php echo __( 'Телефон*', 'twentytwenty' ); ?></label>
                             <p class="modal-order__form_error"><?php echo __( 'Будь-ласка, введіть номер телефону', 'twentytwenty' ); ?></p>
                         </div>
                     </div>
                     <div class="modal-order__field">
-                        <input class="modal-order__form_input" type="text" name="name" placeholder="<?php echo __( 'Email', 'twentytwenty' ); ?>" id="email">
+                        <input class="modal-order__form_input" type="text" name="email" placeholder="<?php echo __( 'Email', 'twentytwenty' ); ?>" id="email">
                         <label for="email"><?php echo __( 'Email', 'twentytwenty' ); ?></label>
                         <p class="modal-order__form_error"><?php echo __( 'Будь-ласка, введіть правильний Email', 'twentytwenty' ); ?></p>
                     </div>
@@ -65,7 +65,7 @@ global $product;
                                data-multiple-caption="{count} files selected" accept="image/*" multiple />
                         <p><?php echo __( '(Не більше 2МБ)', 'twentytwenty' ); ?></p>
                     </div>
-                    <input type="submit" class="modal-order__submit button__primary" value="<?php echo __( 'надіслати', 'twentytwenty' ); ?>">
+                    <input type="submit" class="modal-order__submit button__primary disabled" disabled="true" value="<?php echo __( 'надіслати', 'twentytwenty' ); ?>">
                 </div>
                 <div class="modal-order-form-response"></div>
             </form>

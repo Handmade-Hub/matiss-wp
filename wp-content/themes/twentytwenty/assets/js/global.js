@@ -1273,8 +1273,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttonRemoveAll = document.querySelector('.modal-order__add-file_remove-all');
     const result = form.querySelector('.modal-order__add-file_result');
     const list = form.querySelector('.modal-order__add-file_list');
+    const modalOrderSubmit = form.querySelector('.modal-order__submit');
     const nameInput =  form.querySelector('.modal-order__form_input[name="name"]');
-    const emailInput =  form.querySelector('.modal-order__form_input[name="email"]');
+    const phoneInput =  form.querySelector('.modal-order__form_input[name="phone"]');
     let arr = [];
 
     // open and hide modal
@@ -1290,10 +1291,22 @@ document.addEventListener('DOMContentLoaded', function () {
       })
     })
 
+    nameInput.addEventListener('input', function (){
+      checkModalOrderInput();
+    });
 
+    phoneInput.addEventListener('input', function (){
+      checkModalOrderInput();
+    });
 
     function checkModalOrderInput(){
-
+      if (nameInput.value !== '' && phoneInput.value !== '') {
+        modalOrderSubmit.classList.remove('disabled');
+        modalOrderSubmit.removeAttribute('disabled');
+      } else {
+        modalOrderSubmit.classList.add('disabled');
+        modalOrderSubmit.setAttribute('disabled', true);
+      }
     }
 
     // submit form
