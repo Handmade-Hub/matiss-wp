@@ -8522,7 +8522,42 @@ button {
   }
 }
 
+.modal-order__form-container {
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .modal-order__form-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.modal-order__form-container #html_element {
+  position: absolute;
+  top: 224px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+  .modal-order__form-container #html_element {
+    position: relative;
+    top: initial;
+    left: initial;
+    transform: translateX(0);
+  }
+}
+
 .hidden_cf7_form {
+  display: none;
+}
+
+.modal-order__inner .wpcf7-form p {
+  display: none;
+}
+
+.modal-order__inner .wpcf7-response-output {
   display: none;
 }
 
@@ -8579,6 +8614,13 @@ button {
   gap: 2.4rem;
   display: flex;
   flex-direction: column;
+  margin-bottom: 90px;
+}
+
+@media (max-width: 767px) {
+  .modal-order__block {
+    margin-bottom: 0;
+  }
 }
 
 .modal-order__case {
