@@ -60,6 +60,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                                         foreach ( $options as $option ) {
                                             ?>
                                             <li <?php if ( $attribute_name === 'Рама' && $option !== "Без рами" ) { echo 'data-type="0"'; }?>
+                                                    data-value="<?php echo $option; ?>"
                                                 class="product__select_item <?php if ( $attribute_name === 'Рама' && $option !== "Без рами" ) { echo 'multichoice'; }?>">
                                                 <p><?php echo $option; ?></p>
                                             </li>
@@ -85,7 +86,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                                             foreach ($attributes['Колір Рами'] as $attribute) {
                                                 if ( $attribute !== 'Без кольору' ) {
                                                 ?>
-                                                <li class="product__select_multi-item">
+                                                <li class="product__select_multi-item" data-value="<?php echo $attribute; ?>">
                                                     <?php echo $attribute; ?>
                                                 </li>
                                                 <?php

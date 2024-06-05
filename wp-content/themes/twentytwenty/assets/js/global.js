@@ -1055,6 +1055,7 @@ document.addEventListener('DOMContentLoaded', function () {
           changeWcSelectValue(item); // change WC select
           if (spanValue.classList.contains('--default')) spanValue.classList.remove('--default');
           spanValue.innerText = item.innerText;
+          spanValue.dataset.value = item.dataset.value;
           if (select.classList.contains('error')) select.classList.remove('error');
           if (buttonAdd.classList.contains('error')) buttonAdd.classList.remove('error');
           // check on multichoice for item
@@ -1125,7 +1126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     // change  woocommerce select
     function changeWcSelectValue(currentSelectedItem) {
-      let itemValue = currentSelectedItem.innerText;
+      let itemValue = currentSelectedItem.dataset.value;
       let parentBlock = currentSelectedItem.closest('.product__select');
       let wcForm = currentSelectedItem.closest('.variations_form');
       let wcSelect = parentBlock.querySelector('.product_form_item select');
@@ -1152,7 +1153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // change woocommerce multiitem select
     function changeWcSelectMultiValue(currentSelectedItem) {
-      let itemValue = currentSelectedItem.innerText;
+      let itemValue = currentSelectedItem.dataset.value;
       let parentBlock = currentSelectedItem.closest('.product__select');
       let wcForm = currentSelectedItem.closest('.variations_form');
       let wcSelect = parentBlock.querySelector('.product_form_item_multi select');

@@ -5919,6 +5919,10 @@ button {
   color: var(--color-white);
 }
 
+.product__select_multi-item font {
+  pointer-events: none;
+}
+
 .product__buttons {
   display: flex;
   flex-direction: column;
