@@ -162,50 +162,30 @@
 								<h3 class="header-mobile__title fw-500 open-sans">Меню</h3>
 								<nav class="header-mobile__menu">
 									<ul class="header-mobile__menu_list">
-										<li class="header-mobile__menu_item header-mobile__drop-down">
-											<div class="header-mobile__menu_link fw-500 with-arrow">Каталог
-												<img src="<?= home_url(); ?>/images/icons/button-arrow-right.svg" alt="arrow">
-											</div>
-											<ul class="header-mobile__drop-down_list">
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Картини</a>
+										<?php
+
+										foreach ($result_array as $item) {
+											if (empty($item['children'])) { ?>
+												<li class="header-mobile__menu_item">
+													<a href="<?= $item['parent']->url ?>" class="header-mobile__menu_link fw-500"><?= $item['parent']->title ?></a>
 												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Постери</a>
+											<?php
+											} else { ?>
+												<li class="header-mobile__menu_item header-mobile__drop-down">
+													<div class="header-mobile__menu_link fw-500 with-arrow"><?= $item['parent']->title ?>
+														<img src="<?= home_url(); ?>/images/icons/button-arrow-right.svg" alt="arrow">
+													</div>
+													<ul class="header-mobile__drop-down_list">
+														<?php foreach ($item['children'] as $child) { ?>
+															<li class="header-mobile__drop-down_item">
+																<a href="<?= $child->url ?>" class="header-mobile__drop-down_link fw-400"><?= $child->title ?></a>
+															</li>
+														<?php } ?>
+													</ul>
 												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Рами</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Розпис</a>
-												</li>
-											</ul>
-										</li>
-										<li class="header-mobile__menu_item header-mobile__drop-down">
-											<div href="#" class="header-mobile__menu_link fw-500 with-arrow">Інформація
-												<img src="<?= home_url(); ?>/images/icons/button-arrow-right.svg" alt="arrow">
-											</div>
-											<ul class="header-mobile__drop-down_list">
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Картини</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Постери</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Рами</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Розпис</a>
-												</li>
-											</ul>
-										</li>
-										<li class="header-mobile__menu_item">
-											<a href="#" class="header-mobile__menu_link fw-500">Блог</a>
-										</li>
-										<li class="header-mobile__menu_item">
-											<a href="#" class="header-mobile__menu_link fw-500">Контакти</a>
-										</li>
+										<?php }
+										}
+										?>
 									</ul>
 								</nav>
 								<div class="header__localization">
@@ -215,7 +195,7 @@
 								</div>
 								<div class="header__case">
 									<img src="<?= home_url(); ?>/images/icons/icon-viber.svg" alt="viber">
-									<a href="tel:+380989940794" class="header__tel fw-600">+380 (98) 994 0794</a>
+									<a href="tel<?php echo $phone; ?>" class="header__tel fw-600"><?php echo $phone; ?></a>
 								</div>
 							</div>
 						</div>
