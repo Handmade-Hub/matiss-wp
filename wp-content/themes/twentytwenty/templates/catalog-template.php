@@ -30,7 +30,9 @@ $elements = get_field('elements')
                         <li class="collections__item">
                             <div class="collections__item_image">
                                 <img src="<?= $element['image'] ?>" alt="collection">
-                                <a href="<?= $element['button_link']['url'] ?>" class="collections__item_button button__secondary uppercase <?php if ($element['button_label'] === 'Індивідуальне замовлення'){ echo 'product__button--modal-order'; } ?>"><?= $element['button_label'] ?></a>
+                                <a href="<?= $element['button_link']['url'] ?>" class="collections__item_button button__secondary uppercase <?php if ($element['button_label'] === 'Індивідуальне замовлення') {
+                                                                                                                                                echo 'product__button--modal-order';
+                                                                                                                                            } ?>"><?= $element['button_label'] ?></a>
                             </div>
                             <p class="collections__item_description text-center"><?= $element['description'] ?></p>
                         </li>

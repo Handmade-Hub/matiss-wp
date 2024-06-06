@@ -1008,6 +1008,7 @@ function get_unique_acf_field_values($field_name, $post_type = 'product')
               AND $wpdb->postmeta.meta_key = '$field_name' 
               AND $wpdb->postmeta.meta_value != ''
               ORDER BY meta_value ASC";
+
 	return $wpdb->get_col($query);
 }
 

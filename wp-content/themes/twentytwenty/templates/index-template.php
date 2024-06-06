@@ -39,7 +39,7 @@ $description = get_field('description');
                             <div class="container">
                                 <div class="banner__inner">
                                     <h1 class="banner__title uppercase fw-600 h1"><?= $banner['title'] ?></h1>
-                                    <a href="<?= $banner['button_url']['button_url'] ?>" class="banner__button button__secondary"><?= $banner['button_label'] ?></a>
+                                    <a href="<?= $banner['button_url']['url'] ?>" class="banner__button button__secondary"><?= $banner['button_label'] ?></a>
                                 </div>
                             </div>
                         </div>

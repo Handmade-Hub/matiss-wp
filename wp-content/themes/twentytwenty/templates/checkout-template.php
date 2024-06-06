@@ -39,6 +39,12 @@ get_header();
 
 <script>
     // console.log(<?php print_r(json_encode($cart_products)) ?>)
+
+    const checkoutBlockRadios = document.querySelector('.checkout__block_radios');
+
+    checkoutBlockRadios && setTimeout(() => {
+        checkoutBlockRadios.classList.add('active')
+    }, 6000)
 </script>
 
 <?php if (!is_order_received_page()) : ?>
@@ -130,29 +136,29 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                     </div>
                                     <div class="checkout__block_checkboxes">
                                         <p>Оберіть додаткові поcлуги</p>
-                                        <div class="checkout__block_checkbox">
+                                        <div class="checkout__block_checkbox" data-p="5">
                                             <input id="checkboxOne" type="checkbox" value="Продовження сюжету на торці + 5% (стандартно торці забарвлені в один колір)">
                                             <label for="checkboxOne">
                                                 <span>Продовження сюжету на торці + 5%</span>
                                                 <span>(стандартно торці забарвлені в один колір)</span>
                                             </label>
                                         </div>
-                                        <div class="checkout__block_checkbox">
+                                        <div class="checkout__block_checkbox" data-p="10">
                                             <input id="checkboxTwo" type="checkbox" value="Зміна кольору/композиції + 10 % (попередньо виконується ескіз)">
                                             <label for="checkboxTwo">
                                                 <span>Зміна кольору/композиції + 10 %</span>
                                                 <span>(попередньо виконується ескіз)</span>
                                             </label>
                                         </div>
-                                        <div class="checkout__block_checkbox">
+                                        <div class="checkout__block_checkbox" data-p="15">
                                             <input id="checkboxThree" type="checkbox" value="Високий підрамник + 15%">
                                             <label for="checkboxThree">Високий підрамник + 15%</label>
                                         </div>
-                                        <div class="checkout__block_checkbox">
+                                        <div class="checkout__block_checkbox" data-p="5">
                                             <input id="checkboxFour" type="checkbox" value="Подарункова упаковка + 5%">
                                             <label for="checkboxFour">Подарункова упаковка + 5%</label>
                                         </div>
-                                        <div class="checkout__block_checkbox">
+                                        <div class="checkout__block_checkbox" data-p="0">
                                             <input id="checkboxFive" type="checkbox" value="Підпис автора + 0%">
                                             <label for="checkboxFive">Підпис автора + 0%</label>
                                         </div>
@@ -385,7 +391,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="checkout__delivery_item checkout__delivery_item--city">
+                                            <li class="checkout__delivery_item checkout__delivery_item--city disabled">
                                                 <div class="checkout__delivery_case">
                                                     <div class="checkout__delivery_radio">
                                                         <input id="deliveryTwo" type="radio" name="delivery" value="Самовивіз">
@@ -404,6 +410,15 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                         <ul class="checkout__select_list">
                                                             <li class="checkout__select_item">
                                                                 <p>Майстерня, Київ, вул. Генерала Шаповала, 2, офіс 555</p>
+                                                            </li>
+                                                            <li class="checkout__select_item">
+                                                                <p>ТЦ Аракс, Київ, вул. Кільцева дорога, 110</p>
+                                                            </li>
+                                                            <li class="checkout__select_item">
+                                                                <p>ТЦ 4room, Київ, Петропавлівська Борщагівка, вул. Петропавлівська, 6</p>
+                                                            </li>
+                                                            <li class="checkout__select_item">
+                                                                <p>ТЦ Три Слони, Львів, вул. Яворівська, 22</p>
                                                             </li>
                                                             <!-- <li class="checkout__select_item">
                                                                 <p>Майстерня, Київ</p>
@@ -442,7 +457,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                 <h3 class="checkout__block_title">Оплата</h3>
                                 <div class="checkout__block_case">
                                     <div class="checkout__block_radios">
-                                        <? do_action('woocommerce_before_checkout_form', $checkout);
+                                        <?php do_action('woocommerce_before_checkout_form', $checkout);
 
                                         // If checkout registration is disabled and not logged in, the user cannot checkout.
                                         if (!$checkout->is_registration_enabled() && $checkout->is_registration_required() && !is_user_logged_in()) {
@@ -578,7 +593,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                 <div class="checkout__order_footer">
                                     <div class="checkout__order_pack">
                                         <p>Сума <span>$<?= $woocommerce->cart->cart_contents_total ?></span></p>
-                                        <p class="checkout__order_checkbox">Додатково <span>$40</span></p>
+                                        <p class="checkout__order_checkbox">Додатково <span>$0</span></p>
                                         <p>Знижка <span class="checkout__order_discount red">$<?= WC()->cart->get_discount_tax(); ?></span></p>
                                     </div>
                                     <script>
@@ -596,13 +611,13 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                         $usd = WC()->cart->total;
                                         $uah = $usd * $usd_to_uah_rate;
 
-                                        $prety_cur = number_format($uah, 2, ',', ' ');
+                                        $prety_cur = number_format($uah, 0, ',', ' ');
 
-                                        return "(₴" . $prety_cur . ")";
+                                        return "(" . $prety_cur . " грн.)";
                                     }
 
                                     ?>
-                                    <p class="checkout__order_total">Всього <span id="usd">$<?= $woocommerce->cart->total ?><span id="uah"><?= getUah() ?></span></span></p>
+                                    <p class="checkout__order_total">Всього <span id="usd"><span id="original" data-initial-price="<?= $woocommerce->cart->total ?>">$<?= $woocommerce->cart->total ?></span><span id="uah"> <?= getUah() ?></span></span></p>
                                     <input type="submit" class="checkout__order_button button__primary" value="підтвердити замовлення">
                                     <p class="checkout__order_subtext text-center">Я згоден на обробку персональних даних</p>
                                 </div>
@@ -693,44 +708,44 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
             };
 
             const id = element.id;
-            const billingAddOpt1 = document.querySelector('[name="billing_add_opt_1"]');
-            const billingAddOpt2 = document.querySelector('[name="billing_add_opt_2"]');
-            const billingAddOpt3 = document.querySelector('[name="billing_add_opt_3"]');
-            const billingAddOpt4 = document.querySelector('[name="billing_add_opt_4"]');
-            const billingAddOpt5 = document.querySelector('[name="billing_add_opt_5"]');
-            const billingAddOpt6 = document.querySelector('[name="billing_add_opt_6"]');
+            // const billingAddOpt1 = document.querySelector('[name="billing_add_opt_1"]');
+            // const billingAddOpt2 = document.querySelector('[name="billing_add_opt_2"]');
+            // const billingAddOpt3 = document.querySelector('[name="billing_add_opt_3"]');
+            // const billingAddOpt4 = document.querySelector('[name="billing_add_opt_4"]');
+            // const billingAddOpt5 = document.querySelector('[name="billing_add_opt_5"]');
+            // const billingAddOpt6 = document.querySelector('[name="billing_add_opt_6"]');
 
-            if (id == 'checkboxOne') {
-                if (element.checked) {
-                    billingAddOpt1.checked = true;
-                } else {
-                    billingAddOpt1.checked = false;
-                }
-            } else if (id == 'checkboxTwo') {
-                if (element.checked) {
-                    billingAddOpt2.checked = true;
-                } else {
-                    billingAddOpt2.checked = false;
-                }
-            } else if (id == 'checkboxThree') {
-                if (element.checked) {
-                    billingAddOpt3.checked = true;
-                } else {
-                    billingAddOpt3.checked = false;
-                }
-            } else if (id == 'checkboxFour') {
-                if (element.checked) {
-                    billingAddOpt4.checked = true;
-                } else {
-                    billingAddOpt4.checked = false;
-                }
-            } else if (id == 'checkboxFive') {
-                if (element.checked) {
-                    billingAddOpt5.checked = true;
-                } else {
-                    billingAddOpt5.checked = false;
-                }
-            }
+            // if (id == 'checkboxOne') {
+            //     if (element.checked) {
+            //         billingAddOpt1.checked = true;
+            //     } else {
+            //         billingAddOpt1.checked = false;
+            //     }
+            // } else if (id == 'checkboxTwo') {
+            //     if (element.checked) {
+            //         billingAddOpt2.checked = true;
+            //     } else {
+            //         billingAddOpt2.checked = false;
+            //     }
+            // } else if (id == 'checkboxThree') {
+            //     if (element.checked) {
+            //         billingAddOpt3.checked = true;
+            //     } else {
+            //         billingAddOpt3.checked = false;
+            //     }
+            // } else if (id == 'checkboxFour') {
+            //     if (element.checked) {
+            //         billingAddOpt4.checked = true;
+            //     } else {
+            //         billingAddOpt4.checked = false;
+            //     }
+            // } else if (id == 'checkboxFive') {
+            //     if (element.checked) {
+            //         billingAddOpt5.checked = true;
+            //     } else {
+            //         billingAddOpt5.checked = false;
+            //     }
+            // }
         })
     });
 </script>

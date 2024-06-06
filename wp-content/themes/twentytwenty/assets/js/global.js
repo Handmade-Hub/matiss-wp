@@ -86,6 +86,22 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
+  const openEnterEvent = () => {
+    const searchModalField = document.querySelector('.search-modal__field');
+    const searchInput = searchModalField.querySelector('input');
+    searchInput.addEventListener('keyup', evt => {
+      const key = evt.key;
+
+      if (key != 'Enter') return;
+
+
+      console.log(key);
+      submitSearch();
+    })
+  }
+
+  openEnterEvent();
+
   //  cart modal
   if (document.querySelectorAll('.cart-modal').length && document.querySelectorAll('.header__cart').length) {
     const buttonOpen = document.querySelectorAll('.header__cart');
@@ -1624,11 +1640,51 @@ document.addEventListener('DOMContentLoaded', function () {
     checkboxes.forEach(checkbox => {
       checkbox.addEventListener('click', () => {
         let t = 0;
-        if (checkbox.checked) additionally.classList.add('active');
+
+        const pretyNum = (num) => {
+          let newNum = num.split('$')[1];
+          newNum = parseInt(newNum);
+          newNum = Math.round(newNum);
+
+          return newNum;
+        };
+
+        if (checkbox.checked) {
+          const addPrice = additionally.querySelector('span');
+          const actPrice = document.querySelector('.checkout__order_total').querySelector('#original');
+          const procent = checkbox.closest('[data-p]').dataset.p;
+          const initialPrice = actPrice.dataset.initialPrice;
+
+          console.log(Math.round(pretyNum(addPrice.innerHTML)));
+
+          const addAddPrice = Math.round(pretyNum(addPrice.innerHTML)) > 0 ? Math.round(pretyNum(addPrice.innerHTML)) : 0;
+
+          // set add price
+          addPrice.innerHTML = "$" + (addAddPrice + Math.round(Math.round(parseInt(initialPrice)) / 100 * parseInt(procent)));
+
+          // set actual price
+          actPrice.innerHTML = "$" + (Math.round(parseInt(initialPrice)) + pretyNum(addPrice.innerHTML));
+
+          additionally.classList.add('active');
+        } else {
+          const addPrice = additionally.querySelector('span');
+          const actPrice = document.querySelector('.checkout__order_total').querySelector('#original');
+          const procent = checkbox.closest('[data-p]').dataset.p;
+          const initialPrice = actPrice.dataset.initialPrice;
+
+          // set actual price
+          actPrice.innerHTML = "$" + (pretyNum(actPrice.innerHTML) - Math.round((Math.round(parseInt(initialPrice)) / 100 * parseInt(procent))));
+
+          // set add price
+          addPrice.innerHTML = "$" + (pretyNum(addPrice.innerHTML) - (Math.round(parseInt(initialPrice)) / 100 * parseInt(procent)));
+        };
+
         for (let i = 0; i < checkboxes.length; i++) {
           if (checkboxes[i].checked) t = 1;
         }
-        if (t == 0) additionally.classList.remove('active');
+        if (t == 0) {
+          additionally.classList.remove('active')
+        };
       })
     })
 
