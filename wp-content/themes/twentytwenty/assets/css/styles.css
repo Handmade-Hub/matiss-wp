@@ -650,11 +650,11 @@ button {
   opacity: 0;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .swiper-button-primary {
     display: none;
   }
-}
+} */
 
 @media (max-width: 767px) {
   .mobile-none {
@@ -783,6 +783,10 @@ button {
 
 .header__list_item {
   cursor: pointer;
+}
+
+.header__list_item.active {
+  border: 1px solid #fff;
 }
 
 .header__list_link {
@@ -1354,6 +1358,16 @@ button {
 .filters__item_option {
   padding: 0.8rem 1.9rem;
   text-align: center;
+  transition: all 0.2s ease-in;
+}
+
+
+.header-mobile__menu_item.active {
+  border: 1px solid #fff;
+}
+
+.filters__item_option:hover {
+  background: rgba(255, 255, 255, 1);
 }
 
 .filters__choosed {
@@ -1613,6 +1627,12 @@ button {
 .banner__image img {
   width: 100%;
   object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .banner__image img {
+    object-position: 90%;
+  }
 }
 
 .banner__content {
@@ -2130,7 +2150,7 @@ button {
 
 @media (max-width: 991px) {
   .goal__swiper-button-prev {
-    left: 0;
+    left: 8%;
     transform: translate(-50%, -50%);
   }
 }
@@ -2141,7 +2161,7 @@ button {
 
 @media (max-width: 991px) {
   .goal__swiper-button-next {
-    right: 0;
+    right: 8%;
     transform: translate(50%, -50%);
   }
 }
@@ -7414,6 +7434,11 @@ button {
   flex-direction: column;
   gap: 2.4rem;
   max-width: 41.6rem;
+  display: none;
+}
+
+.checkout__block_radios.active {
+  display: block;
 }
 
 @media (max-width: 767px) {
@@ -8138,6 +8163,19 @@ button {
   transition: all var(--duration-normal);
 }
 
+.checkout__delivery_radio input[value="Нова Пошта"]+label:has(font) font {
+  opacity: 0;
+}
+
+.checkout__delivery_radio input[value="Нова Пошта"]+label:has(font):before {
+  content: "Нова Пошта";
+  position: absolute;
+}
+
+:not([lang="uk"]) .checkout__delivery_radio input[value="Нова Пошта"]+label:has(font)::before {
+  content: "Nova Poshta";
+}
+
 .checkout__delivery_radio input::before {
   content: "";
   position: absolute;
@@ -8775,6 +8813,12 @@ button {
   position: relative;
 }
 
+@media screen and (max-widht: 768px) {
+  .modal-individual-order .wpcf7 {
+    padding: 25px 17px;
+  }
+}
+
 .modal-individual-order .wpcf7 form {
   max-width: 544px;
   margin: auto;
@@ -8790,9 +8834,16 @@ button {
 
 .modal-individual-order .wpcf7 form #close_btn {
   position: absolute;
-  right: 28px;
-  top: 28px;
+  right: 10px;
+  top: 10px;
   padding: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal-individual-order .wpcf7 form #close_btn {
+    right: 28px;
+    top: 28px;
+  }
 }
 
 .modal-individual-order__inputs {
@@ -8868,7 +8919,15 @@ button {
 .modal-individual-order__inputs [data-name="your-name"],
 .modal-individual-order__inputs [data-name="tel-495"] {
   display: block;
-  width: calc(50% - 12px);
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+
+  .modal-individual-order__inputs [data-name="your-name"],
+  .modal-individual-order__inputs [data-name="tel-495"] {
+    width: calc(50% - 12px);
+  }
 }
 
 .modal-individual-order__inputs [data-name="your-email"] {
