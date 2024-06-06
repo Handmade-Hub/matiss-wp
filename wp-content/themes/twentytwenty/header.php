@@ -132,21 +132,26 @@
 						<nav class="header__menu tablet-none">
 							<ul class="header__list">
 								<?php
+								$current_url = $_SERVER['REQUEST_URI']; // Get the current URL
 
 								foreach ($result_array as $item) {
+									$is_active = $item['parent']->url === $current_url ? ' active' : ''; // Check if parent URL is the current URL
+
 									if (empty($item['children'])) { ?>
-										<li class="header__list_item">
+										<li class="header__list_item<?= $is_active ?>">
 											<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600"><?= $item['parent']->title ?></a>
 										</li>
 									<?php
 									} else { ?>
-										<li class="header__list_item header__drop-down">
+										<li class="header__list_item header__drop-down<?= $is_active ?>">
 											<a href="<?= $item['parent']->url ?>" class="header__list_link fw-600 with-arrow"><?= $item['parent']->title ?>
 												<img src="<?= home_url(); ?>/images/icons/header-drop-icon.svg" alt="arrow">
 											</a>
 											<ul class="header__drop-down_list">
-												<?php foreach ($item['children'] as $child) { ?>
-													<li class="header__drop-down_item">
+												<?php foreach ($item['children'] as $child) {
+													$is_child_active = $child->url === $current_url ? ' active' : ''; // Check if child URL is the current URL
+												?>
+													<li class="header__drop-down_item<?= $is_child_active ?>">
 														<a href="<?= $child->url ?>" class="header__drop-down_link fw-600"><?= $child->title ?></a>
 													</li>
 												<?php } ?>
@@ -157,6 +162,7 @@
 								?>
 							</ul>
 						</nav>
+
 					</div>
 					<div class="header__pack tablet-none">
 						<div class="header__case">
@@ -191,9 +197,9 @@
 						</div>
 					</div>
 					<div class="header__icons tablet-up-none">
-						<div class="header__wishlist">
+						<a href="/wishlist" class="header__wishlist">
 							<img src="<?= home_url(); ?>/images/icons/icon-wishlist.svg" alt="wishlist">
-						</div>
+						</a>
 						<a href="#" class="header__search">
 							<img src="<?= home_url(); ?>/images/icons/icon-search.svg" alt="search">
 						</a>
@@ -217,60 +223,44 @@
 								<h3 class="header-mobile__title fw-500 open-sans">Меню</h3>
 								<nav class="header-mobile__menu">
 									<ul class="header-mobile__menu_list">
-										<li class="header-mobile__menu_item header-mobile__drop-down">
-											<div class="header-mobile__menu_link fw-500 with-arrow">Каталог
-												<img src="<?= home_url(); ?>/images/icons/button-arrow-right.svg" alt="arrow">
-											</div>
-											<ul class="header-mobile__drop-down_list">
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Картини</a>
+										<?php
+
+										$current_url = $_SERVER['REQUEST_URI']; // Get the current URL
+
+										foreach ($result_array as $item) {
+											$is_active = $item['parent']->url === $current_url ? ' active' : ''; // Check if parent URL is the current URL
+
+											if (empty($item['children'])) { ?>
+												<li class="header-mobile__menu_item<?= $is_active ?>">
+													<a href="<?= $item['parent']->url ?>" class="header-mobile__menu_link fw-500"><?= $item['parent']->title ?></a>
 												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Постери</a>
+											<?php
+											} else { ?>
+												<li class="header-mobile__menu_item header-mobile__drop-down<?= $is_active ?>">
+													<div class="header-mobile__menu_link fw-500 with-arrow"><?= $item['parent']->title ?>
+														<img src="<?= home_url(); ?>/images/icons/button-arrow-right.svg" alt="arrow">
+													</div>
+													<ul class="header-mobile__drop-down_list">
+														<?php foreach ($item['children'] as $child) { ?>
+															<li class="header-mobile__drop-down_item">
+																<a href="<?= $child->url ?>" class="header-mobile__drop-down_link fw-400"><?= $child->title ?></a>
+															</li>
+														<?php } ?>
+													</ul>
 												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Рами</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Розпис</a>
-												</li>
-											</ul>
-										</li>
-										<li class="header-mobile__menu_item header-mobile__drop-down">
-											<div href="#" class="header-mobile__menu_link fw-500 with-arrow">Інформація
-												<img src="<?= home_url(); ?>/images/icons/button-arrow-right.svg" alt="arrow">
-											</div>
-											<ul class="header-mobile__drop-down_list">
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Картини</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Постери</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Рами</a>
-												</li>
-												<li class="header-mobile__drop-down_item">
-													<a href="#" class="header-mobile__drop-down_link fw-400">Розпис</a>
-												</li>
-											</ul>
-										</li>
-										<li class="header-mobile__menu_item">
-											<a href="#" class="header-mobile__menu_link fw-500">Блог</a>
-										</li>
-										<li class="header-mobile__menu_item">
-											<a href="#" class="header-mobile__menu_link fw-500">Контакти</a>
-										</li>
+										<?php }
+										}
+										?>
 									</ul>
 								</nav>
 								<div class="header__localization">
-									<button class="header__localization_button active fw-600" data-lang="uk">UK</button>
-									<button class="header__localization_button fw-600" data-lang="en">EN</button>
-									<button class="header__localization_button fw-600" data-lang="de">DE</button>
+									<button class="header__localization_button active fw-600" data-gt-lang="uk">UK</button>
+									<button class="header__localization_button fw-600" data-gt-lang="en">EN</button>
+									<button class="header__localization_button fw-600" data-gt-lang="de">DE</button>
 								</div>
 								<div class="header__case">
 									<img src="<?= home_url(); ?>/images/icons/icon-viber.svg" alt="viber">
-									<a href="tel:+380989940794" class="header__tel fw-600">+380 (98) 994 0794</a>
+									<a href="tel<?php echo $phone; ?>" class="header__tel fw-600"><?php echo $phone; ?></a>
 								</div>
 							</div>
 						</div>
@@ -282,9 +272,16 @@
 			setTimeout(() => {
 				const header = document.querySelector('header');
 				const currentLocale = document.documentElement.lang;
-				const gtCurrent = document.querySelector(`.gt-current`).dataset.gtLang;
+				const gtCurrent = document.querySelector(`.gt-current`);
 
-				const targetBtns = document.querySelectorAll(`[data-lang="${currentLocale}"]`);
+				let gtLang = 'uk';
+
+				if (gtCurrent) {
+					gtLang = gtCurrent.dataset.gtLang;
+				};
+
+
+				const targetBtns = document.querySelectorAll(`[data-gt-lang="${currentLocale}"]`);
 				const activesBtns = document.querySelectorAll('.header__localization_button.active');
 
 				activesBtns.forEach(element => {
