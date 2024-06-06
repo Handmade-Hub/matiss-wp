@@ -738,8 +738,17 @@ button {
 }
 
 @media (min-width: 768px) {
-  .header__inner a:hover {
+  .header__inner  {
     transform: scale(1.02);
+  }
+
+  .header__inner .header__drop-down_item a {
+    width: 100%;
+  }
+
+  .header__inner .header__drop-down_item a:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
   }
 }
 
@@ -8964,11 +8973,28 @@ button {
   padding: 5.7% 0;
 }
 
+@media (max-width: 767px) {
+  .modal-individual-order .wpcf7 form {
+    padding: 20px 12px;
+  }
+}
+
 .modal-individual-order .wpcf7 form h3 {
   text-align: center;
   font-size: 36px;
   font-weight: 500;
   line-height: 47px;
+}
+
+@media (max-width: 767px) {
+  .modal-individual-order .wpcf7 form h3 {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    max-width: 90%;
+    margin-bottom: 10px;
+  }
 }
 
 .modal-individual-order .wpcf7 form #close_btn {
@@ -8978,14 +9004,41 @@ button {
   padding: 12px;
 }
 
+@media (max-width: 767px) {
+  .modal-individual-order .wpcf7 form #close_btn {
+    right: 0;
+    top: 0;
+  }
+
+  .modal-individual-order .wpcf7 form #close_btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
 .modal-individual-order__inputs {
   margin-top: 48px;
+}
+
+@media (max-width: 767px) {
+  .modal-individual-order__inputs {
+    margin-top: 0;
+    padding-top: 25px;
+    border-top: 1px solid #CBCBCB;
+  }
 }
 
 .modal-individual-order__inputs>p {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .modal-individual-order__inputs #html_element+p {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .modal-individual-order__inputs>p>br {
@@ -9052,6 +9105,13 @@ button {
 .modal-individual-order__inputs [data-name="tel-495"] {
   display: block;
   width: calc(50% - 12px);
+}
+
+@media (max-width: 767px) {
+  .modal-individual-order__inputs [data-name="your-name"],
+  .modal-individual-order__inputs [data-name="tel-495"] {
+    width: 100%;
+  }
 }
 
 .modal-individual-order__inputs [data-name="your-email"] {
