@@ -232,36 +232,37 @@ $shortcode_subscribe_form = $fields[ 'shortcode_subscribe_form' ];
             <div class="container">
                 <div class="contact-form__inner">
                     <h4 class="contact-form__title"><?php echo $form_title; ?></h4>
-                    <div class="hidden_cf7_form">
+                    <div class="contact-form__container">
                         <?php
                         echo do_shortcode( $shortcode_form );
                         ?>
+
+                        <form class="contact-form_mask">
+                            <div class="contact-form__case">
+                                <div class="contact-form__field contact-form__field--required">
+                                    <input type="text" name="name" placeholder="<?php echo __('Імʼя*', 'twentytwenty'); ?>" id="name">
+                                    <label for="name"><?php echo __('Імʼя*', 'twentytwenty'); ?></label>
+                                    <p class="contact-form__error"><?php echo __('Будь-ласка, введіть імʼя', 'twentytwenty'); ?></p>
+                                </div>
+                                <div class="contact-form__field contact-form__field--required">
+                                    <input type="text" name="phone" placeholder="<?php echo __('Телефон*', 'twentytwenty'); ?>" id="phone">
+                                    <label for="phone"><?php echo __('Телефон*', 'twentytwenty'); ?></label>
+                                    <p class="contact-form__error"><?php echo __('Будь-ласка, введіть номер телефону', 'twentytwenty'); ?></p>
+                                </div>
+                            </div>
+                            <div class="contact-form__field">
+                                <input type="text" name="email" placeholder="<?php echo __('Email', 'twentytwenty'); ?>" id="email">
+                                <label for="email"><?php echo __('Email', 'twentytwenty'); ?></label>
+                                <p class="contact-form__error"><?php echo __( 'Будь-ласка, введіть правильний Email', 'twentytwenty' ); ?></p>
+                            </div>
+                            <div class="contact-form__field">
+                                <textarea placeholder="<?php echo __('Повідомлення', 'twentytwenty'); ?>" name="message" id="message"></textarea>
+                                <label for="message"><?php echo __('Повідомлення', 'twentytwenty'); ?></label>
+                            </div>
+                            <input class="contact-form__button button__primary disabled" value="<?php echo __('надіслати', 'twentytwenty'); ?>" type="submit">
+                            <div class="contact-form-response"></div>
+                        </form>
                     </div>
-                    <form class="contact-form_mask">
-                        <div class="contact-form__case">
-                            <div class="contact-form__field contact-form__field--required">
-                                <input type="text" name="name" placeholder="<?php echo __('Імʼя*', 'twentytwenty'); ?>" id="name">
-                                <label for="name"><?php echo __('Імʼя*', 'twentytwenty'); ?></label>
-                                <p class="contact-form__error"><?php echo __('Будь-ласка, введіть імʼя', 'twentytwenty'); ?></p>
-                            </div>
-                            <div class="contact-form__field contact-form__field--required">
-                                <input type="text" name="phone" placeholder="<?php echo __('Телефон*', 'twentytwenty'); ?>" id="phone">
-                                <label for="phone"><?php echo __('Телефон*', 'twentytwenty'); ?></label>
-                                <p class="contact-form__error"><?php echo __('Будь-ласка, введіть номер телефону', 'twentytwenty'); ?></p>
-                            </div>
-                        </div>
-                        <div class="contact-form__field">
-                            <input type="text" name="email" placeholder="<?php echo __('Email', 'twentytwenty'); ?>" id="email">
-                            <label for="email"><?php echo __('Email', 'twentytwenty'); ?></label>
-                            <p class="contact-form__error"><?php echo __( 'Будь-ласка, введіть правильний Email', 'twentytwenty' ); ?></p>
-                        </div>
-                        <div class="contact-form__field">
-                            <textarea placeholder="<?php echo __('Повідомлення', 'twentytwenty'); ?>" name="message" id="message"></textarea>
-                            <label for="message"><?php echo __('Повідомлення', 'twentytwenty'); ?></label>
-                        </div>
-                        <input class="contact-form__button button__primary disabled" value="<?php echo __('надіслати', 'twentytwenty'); ?>" type="submit">
-                        <div class="contact-form-response"></div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -5182,6 +5182,32 @@ button {
   font-size: 1rem;
 }
 
+.contact-form .wpcf7 p {
+  display: none;
+}
+
+.contact-form__container {
+  position: relative;
+}
+
+.contact-form__field #message {
+  margin-bottom: 90px;
+}
+
+.contact-form .contact-form__container #html_element {
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .contact-form .contact-form__container #html_element {
+    top: 330px;
+  }
+}
+
 .contact-form__button {
   margin: 0.8rem auto 0;
   max-width: 25.6rem;
