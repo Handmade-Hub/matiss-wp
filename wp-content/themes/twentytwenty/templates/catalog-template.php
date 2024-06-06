@@ -69,7 +69,7 @@ $elements = get_field('elements')
         closeBtn.addEventListener('click', () => {
             modalIndividualOrder.style.opacity = 0;
             setTimeout(() => {
-                modalIndividualOrder.style.display = 'flex';
+                modalIndividualOrder.style.display = 'none';
             }, 200)
         })
 
