@@ -3227,8 +3227,19 @@ button {
 }
 
 .product-card__price_old {
-  text-decoration: line-through;
+  position: relative;
   color: var(--color-secondary);
+}
+
+.product-card__price_old:after{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: black;
+  top: calc(50% - -1px);
+  transform: translateY(-50%);
 }
 
 .product-card__remove {
