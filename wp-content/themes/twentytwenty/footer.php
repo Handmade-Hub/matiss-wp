@@ -174,8 +174,8 @@ foreach ($header_menu_obj as $menu_item) {
                     </div>
                 </div>
                 <div class="footer__copyright">
-                    <p>© 2023. All rights reserved.</p>
-                    <a href="#">Політка конфіденційності</a>
+                    <p><a href="/privacy-policy">© 2024. All rights reserved.</a></p>
+                    <a href="/privacy-policy">Політка конфіденційності</a>
                 </div>
             </div>
         </div>
