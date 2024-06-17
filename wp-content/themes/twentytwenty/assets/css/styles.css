@@ -6712,7 +6712,6 @@ button {
   position: relative;
   border-bottom: 0.1rem solid var(--color-primary);
   padding: 2.4rem 0;
-  margin-bottom: 2.4rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -6721,7 +6720,6 @@ button {
 @media (max-width: 767px) {
   .search-modal__field {
     padding: 1.6rem 0;
-    margin-bottom: 3.2rem;
   }
 }
 

@@ -932,7 +932,7 @@ function custom_breadcrumbs()
             $category_link = get_term_link( $categories_id[0] );
 
             echo '	<li class="breadcrumbs__item">
-		    <a href="/каталог" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
+		    <a href="/catalog" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
             // echo $cats;
             echo '<li class="breadcrumbs__item">
 			<a href="' . $category_link . '" class="breadcrumbs__item_link fw-500">' . $product_category . '</a>' . $separator . '</li>';
@@ -966,7 +966,7 @@ function custom_breadcrumbs()
 		$category_name = trim($category_name);
 
 		echo '	<li class="breadcrumbs__item">
-		<a href="/каталог" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
+		<a href="/catalog" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
 
 		echo '<li class="breadcrumbs__item">
 		<p class="breadcrumbs__item_link fw-500">' . $category_name . '</p>' . $separator . '</li>';

@@ -332,23 +332,6 @@
 								</svg>
 							</button>
 						</div>
-						<div class="search-modal__case">
-							<p>Пропозиції</p>
-							<ul class="search-modal__list">
-								<li class="search-modal__item">
-									<p>Картини абстрікції</p>
-								</li>
-								<li class="search-modal__item">
-									<p>Картини з квітами</p>
-								</li>
-								<li class="search-modal__item">
-									<p>Постери</p>
-								</li>
-								<li class="search-modal__item">
-									<p>Розпис стін</p>
-								</li>
-							</ul>
-						</div>
 					</div>
 					<form class="serach-form-hidden" id="header-search" role="search" <?php echo $twentytwenty_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. 
 																						?> method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">

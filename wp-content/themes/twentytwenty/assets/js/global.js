@@ -257,8 +257,13 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelectorAll('.banner__swiper').length) {
     const swiper = new Swiper('.banner__swiper', {
       speed: 1000,
+      autoplay: {
+        delay: 5000,
+        pauseOnMouseEnter: true
+      },
       pagination: {
         el: '.banner__swiper-pagination',
+        clickable: true
       },
     });
   }
