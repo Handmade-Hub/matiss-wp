@@ -1287,10 +1287,11 @@ function get_cart_drawer()
 		$price = $product->get_price();
 
 		if ($product->is_on_sale()) {
-			$total_discounted_price += $price * $cart_item['quantity'];
-		} else {
-			$total_regular_price += $price * $cart_item['quantity'];
+            $wc_product = wc_get_product($cart_item['variation_id']);
+			$total_discounted_price += ($wc_product->get_regular_price() - $wc_product->get_price()) * $cart_item['quantity'];
 		}
+			$total_regular_price += $price * $cart_item['quantity'];
+
 	}
 
 	$total_saving = $total_regular_price - $total_discounted_price;
