@@ -792,6 +792,7 @@ button {
 
 .header__list_item {
   cursor: pointer;
+  border: 1px solid transparent;
 }
 
 .header__list_item.active {
@@ -9355,4 +9356,8 @@ button {
 
 .woocommerce-checkout form #order_review #payment {
   width: 100%;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+  display: none!important;
 }

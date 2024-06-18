@@ -184,6 +184,7 @@ foreach ($header_menu_obj as $menu_item) {
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
             descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+            console.log('descriptionAccordion')
         })
     </script>
 
