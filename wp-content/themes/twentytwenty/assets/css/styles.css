@@ -5374,6 +5374,12 @@ button {
   }
 }
 
+@media (max-width: 576px) {
+  .featured-product__swiper-button-prev {
+    transform: translate(-12px, -50%);
+  }
+}
+
 .featured-product__swiper-button-next {
   right: -10rem;
 }
@@ -5382,6 +5388,12 @@ button {
   .featured-product__swiper-button-next {
     right: 0;
     transform: translate(50%, -50%);
+  }
+}
+
+@media (max-width: 576px) {
+  .featured-product__swiper-button-next {
+    transform: translate(12px, -50%);
   }
 }
 

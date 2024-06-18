@@ -1863,3 +1863,15 @@ const descriptionAccordion = (initialHeight, mobileHeight) => {
   }
 }
 
+// disable stripe plugin scroll
+if (jQuery('.single-product .product').length > 0) {
+  jQuery(document).ready(function (){
+    let interval = setInterval(function (){
+      jQuery('html, body').stop();
+    }, 50)
+
+    setTimeout(function (){
+      clearInterval(interval);
+    }, 2000)
+  })
+}
