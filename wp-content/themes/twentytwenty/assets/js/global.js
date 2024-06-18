@@ -189,6 +189,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function getCart() {
+      const cartIcon = document.querySelectorAll('.header__cart');
+
       jQuery.ajax({
         type: 'GET',
         url: wc_add_to_cart_params.ajax_url,
@@ -203,9 +205,16 @@ document.addEventListener('DOMContentLoaded', function () {
           jQuery('.cart-modal .discount_price_value').html(data['total_discounted_price']);
           jQuery('.cart-modal .cart-modal__count span').html(data['cart_count']);
 
+          console.log('cart_count', data['cart_count'])
+
           setQuantityListener();
           setRemoveListener();
 
+          if (data['cart_count'] > 0) {
+            cartIcon.forEach(icon => {
+              icon.classList.add('not-empty');
+            });
+          }
         },
         error: function (error) {
           console.log('error: ', error);
@@ -252,6 +261,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
+
+  getCart();
 
   // banner swiper
   if (document.querySelectorAll('.banner__swiper').length) {

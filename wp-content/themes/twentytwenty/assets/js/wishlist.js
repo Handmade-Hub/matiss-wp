@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pushLocalStorage(productId)
         } else {
             createLocalStorage(productId);
-        };
+        }
 
 
         wishlistBtn.forEach((item)=>{
@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     item.classList.remove('wishlist-added');
                 });
             }
+
+            wishlistAvailable();
         });
     })
 
@@ -135,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item.addEventListener('click', (event)=>{
                 removeFromWishlist(event.currentTarget.dataset.id);
                 item.closest('.wishlist__item').remove();
+                wishlistAvailable();
             })
         })
     }
@@ -142,4 +145,20 @@ document.addEventListener('DOMContentLoaded', function () {
     wishlistBtn.length > 0 && checkIfAdded();
 
     wishlistContainer && loadWishlist();
+
+    function wishlistAvailable() {
+        const wishlistIcon = document.querySelectorAll('.header__wishlist');
+
+        if (localStorage.getItem('matis-wishlist') !== '') {
+            wishlistIcon.forEach(icon => {
+                icon.classList.add('not-empty');
+            });
+        } else {
+            wishlistIcon.forEach(icon => {
+                icon.classList.remove('not-empty');
+            });
+        }
+    }
+
+    wishlistAvailable();
 });
