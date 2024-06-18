@@ -3171,20 +3171,38 @@ button {
   }
 }
 
-.product-card--trend .product-card__image::before {
-  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAACxMAAAsTAQCanBgAAABXUExURQAAAPr6+sPDw25ubi4uLlJSUu/v70dwTAAAAPT09MXFxdnZ2aioqIaGhri4uNjY2M7Ozre3t1JSUpmZmeDg4O7u7qqqqujo6Kurq8/Pz5ubm+fn5////29AOfAAAAAcdFJOU030pm9YY90AJummvJB6m7yxm2SFx96Q0o+xhNNuo5YfAAABwElEQVRo3rXX25KCMBAE0CQk9gYBcXXv+f/vXCK6tVVMhDg2Dz6empqhm9K8GOIDpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpg6mDqYOpo5KfXAafEUP0WnwFb1PToPf1UPcbZ8ddfpk+xB7DV7Us22MNycNXtBn25jDxr2jQv+zYx8HDS7q7dV+NY31Gry490Map1/bq/CCnnfimjFPr8FF/XNSwzm9NaZbvypq9duuuzSspgnV+s1+X+8ZPKZ3KXbTuzmo8II+zR2ybsJRg4t6n6aRw5vPsVLhor6fo3qL7ON4WQ8xeqPEZX24VHvee+M0uHzVudq7qWZaFS7q47yZtmxvxMtZPaX2f24fwktpuu4k7JwGl/WrfbRfYhNApY/Z7n/itwl20ODy3g/O2vyBcrZR4YLudzYd8zFFuwpf6uedv2RVtuvwhR78pQkKdiUuN4Et2LX4vY7U44Ie4t48CV/qH3vzNHx5VfNEfPv/JjB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUwdTB1MHUQ9V/9931zpGXb2AAAAABJRU5ErkJggg==");
+.product-card__badge {
   position: absolute;
-  right: 0;
   top: 0;
-  z-index: 2;
+  right: 0;
+  font-size: 12px;
+  color: var(--color-white);
+  width: 90px;
+  height: 92px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 7px;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.product-card--sale .product-card__image::before {
-  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAACxMAAAsTAQCanBgAAABjUExURQAAAMPDw/r6+i4uLqqqqvT09FJSUkdwTAAAAMXFxaioqIaGhm5ubufn57i4uNjY2NfX11JSUs7Ozu/v76urq5mZmdnZ2c/Pz+Li4t/f3+jo6O7u7pubm+Dg4G9vb8bGxv///yDNBNoAAAAgdFJOU02m9FiQ6WMAJqaQem/Tm7y9ZLHdj4W8scfI0t6Ex26lonACMQAAAhBJREFUaN6111m22yAQBNACARU0y8PzGxP2v8p82H8BW067tIB7+tBF08IvCD8qdSp1KnUqdSp1KnUqdSp1KnUqdSp17tc7E/5AP8VgwR/o6egs+D19BDo/WPC23sUe+MkmvK6nERj9spTtqbZyl54/AeQcBqRnusp9+qcD5ncgxWNnwmt6d5wOfn7SruLV2k9rQIplvgXn//FGZlI8jrEH+jJY8Kqe4rFDin1fsqnyRmY6AMmXDPTOgjdvU18y0Jdgwhv6M/YdvKoPz9j38Kr+fbO382FyFrx+Mn2Z5w/vv5bHoeHT+luJ6zx2KWYkZ8GrencNfQaGyYS3EpliBnB+t+GN+R4zAOSM0Vnwqn649vItjD6b8Hrt2xjy6ue79h68ql/ixyVkv5zDYXUWvNXV0f+UjzWH0YTX9dHnWxads+Ctrs4rALjWrKFBBy75nr0br+vTN+DKn+EcQrDg9ZMZ4MqlfE3rmjcLXq/dlTAcYT2W1owMOE+tBZ5WHThdx1fn/GzB63peAQyLX/5ZI2nX54xhKnkbImx4fdObfI4OU7Didb1Dige/mfHm2+QX2PHWllq2V+B1fVnwErx+m36/CN/7J0+lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6lTqVOpU6h/hefVoNUQIsR1gAAAABJRU5ErkJggg==");
+.product-card__badge span {
   position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 2;
+  bottom: 37%;
+  right: -56%;
+  transform: rotate(45deg);
+  font-size: 12px;
+  color: var(--color-white);
+  background-color: rgba(0, 0, 0, .3);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  width: 140%;
+  height: 100%;
+  text-align: center;
+  line-height: 119%;
 }
 
 .product-card--fitting-ua .product-card__image::after {
@@ -7023,6 +7041,10 @@ button {
     line-height: 2.4rem;
     font-weight: 600;
   }
+}
+
+.cart-modal__item_price bdi {
+  display: flex;
 }
 
 .cart-modal__item_remove {

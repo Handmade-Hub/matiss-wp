@@ -189,7 +189,7 @@
 									</ul>
 								</nav>
 								<div class="header__localization">
-									<button class="header__localization_button active fw-600">UK</button>
+									<button class="header__localization_button active fw-600">UA</button>
 									<button class="header__localization_button fw-600">EN</button>
 									<button class="header__localization_button fw-600">DE</button>
 								</div>

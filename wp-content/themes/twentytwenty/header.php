@@ -180,7 +180,7 @@
 								echo $shortcode_output;
 								?>
 							</div>
-							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="uk"><span>Ukrainian</span>UK</a>
+							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="uk"><span>Ukrainian</span>UA</a>
 							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="en"><span>English</span>EN</a>
 							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="de"><span>German</span>DE</a>
 						</div>
@@ -254,7 +254,7 @@
 									</ul>
 								</nav>
 								<div class="header__localization">
-									<button class="header__localization_button active fw-600" data-gt-lang="uk">UK</button>
+									<button class="header__localization_button active fw-600" data-gt-lang="uk">UA</button>
 									<button class="header__localization_button fw-600" data-gt-lang="en">EN</button>
 									<button class="header__localization_button fw-600" data-gt-lang="de">DE</button>
 								</div>
