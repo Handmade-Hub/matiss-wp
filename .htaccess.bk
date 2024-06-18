@@ -1,6 +1,4 @@
-RewriteEngine On
-RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 # BEGIN WordPress
 # Директиви (рядки) між `BEGIN WordPress` і `END WordPress`
 # створені автоматично і підлягають змінам тільки через фільтри WordPress.
