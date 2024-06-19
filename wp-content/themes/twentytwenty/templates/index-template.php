@@ -64,21 +64,14 @@ $description = get_field('description');
                             $products = $slider_products['products'];
                             foreach ($products as $product_obj) {
                                 $product = $product_obj['product'];
-                                $wc_data = wc_get_product($product->ID);
-                                $price = $wc_data->get_price();
-
-                                $image_id = $wc_data->get_image_id();
-                                $image_url = wp_get_attachment_url($image_id);
-                                $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+                                $product = wc_get_product($product->ID);
                             ?>
+
                                 <div class="new-collection__swiper-slide swiper-slide">
-                                    <div class="new-collection__swiper_image">
-                                        <img src="<?= $image_url ?>" alt="<?= $image_alt ?>">
-                                    </div>
-                                    <div class="new-collection__swiper_content">
-                                        <p class="new-collection__swiper_title fz-22 fw-500 text-center"><?= $product->post_title ?></p>
-                                        <p class="new-collection__swiper_price fz-20 text-center"><?= get_woocommerce_currency_symbol() . $price ?></p>
-                                    </div>
+                                    <?php
+                                    global $product;
+                                    wc_get_template_part('content', 'product');
+                                    ?>
                                 </div>
                             <?php } ?>
                         </div>

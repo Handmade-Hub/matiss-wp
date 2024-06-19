@@ -792,11 +792,6 @@ button {
 
 .header__list_item {
   cursor: pointer;
-  border: 1px solid transparent;
-}
-
-.header__list_item.active {
-  border: 1px solid #fff;
 }
 
 .header__list_link {
@@ -2965,17 +2960,23 @@ button {
   position: relative;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .collections__item_image img {
   max-width: 100%;
   object-fit: cover;
+  transition: scale .5s;
 }
 
 @media (max-width: 991px) {
   .collections__item_image img {
     width: 100%;
   }
+}
+
+.collections__item_image:hover img {
+  scale: 1.1;
 }
 
 .collections__item_button {
@@ -3048,22 +3049,26 @@ button {
   max-width: calc((100% / var(--per-col)) - 2.1333333333rem);
 }
 
-@media (max-width: 991px) {
-  .collection__item {
-    max-width: calc(50% - 1.6rem);
-  }
-}
+/*@media (max-width: 991px) {*/
+/*  .collection__item {*/
+/*    max-width: calc(50% - 1.6rem);*/
+/*  }*/
+/*}*/
 
-@media (max-width: 767px) {
-  .collection__item {
-    max-width: calc(50% - 1.4rem);
-  }
-}
+/*@media (max-width: 767px) {*/
+/*  .collection__item {*/
+/*    max-width: calc(50% - 1.4rem);*/
+/*  }*/
+/*}*/
 
 @media (max-width: 575px) {
   .collection__item {
     max-width: 100%;
   }
+}
+
+.collection__item .product-card {
+  width: 100%;
 }
 
 .collection__item img {
@@ -3332,6 +3337,8 @@ button {
 
 .information-bar__wrapper {
   padding: 1.6rem 0;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 767px) {
@@ -8925,6 +8932,7 @@ button {
 @media (max-width: 767px) {
   .modal-order__add-file label {
     height: 5rem;
+    font-size: 1.6rem;
   }
 }
 
