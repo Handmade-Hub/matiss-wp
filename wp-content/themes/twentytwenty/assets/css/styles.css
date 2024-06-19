@@ -1242,6 +1242,7 @@ button {
   gap: 0.8rem;
   font-size: 1.6rem;
   line-height: 2.4rem;
+  color: var(--color-primary);
 }
 
 @media (max-width: 1199px) {
