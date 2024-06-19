@@ -2991,7 +2991,13 @@ button {
 @media (max-width: 767px) {
   .collections__item_button {
     bottom: 2rem;
-    max-width: 32rem;
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .collections__item_button {
+    max-width: 90%;
   }
 }
 
@@ -3371,6 +3377,7 @@ button {
 
 .information-bar__item {
   padding: 0.8rem 1.1rem 0.8rem 0.8rem;
+  position: relative;
 }
 
 @media (max-width: 767px) {
@@ -3411,6 +3418,14 @@ button {
   .information-bar__link {
     font-weight: 500;
   }
+}
+
+.information-bar__item a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 .our-team__wrapper {
@@ -6123,6 +6138,12 @@ button {
   padding: 0;
 }
 
+@media (max-width: 767px) {
+  .fancybox__content {
+    max-width: 92%;
+  }
+}
+
 .f-button.is-next,
 .f-button.is-prev {
   background-color: transparent !important;
@@ -6224,15 +6245,33 @@ button {
     justify-content: flex-end;
   }
 }
+@media (max-width: 767px) {
+  .fancybox__container {
+    --fancybox-bg: rgba(24, 24, 27, 0.50);
+  }
+}
 
 .fancybox__toolbar__column.is-right {
   margin: 2.4rem 2.4rem 0 0;
+}
+
+@media (max-width: 767px) {
+  .fancybox__toolbar__column.is-right {
+    margin: 0.6rem 0.6rem 0 0;
+  }
 }
 
 .fancybox__toolbar__column.is-right .f-button {
   position: relative;
   background: transparent;
   transition: all var(--duration-normal);
+}
+
+@media (max-width: 767px) {
+  .fancybox__toolbar__column.is-right .f-button {
+    background: var(--color-white);
+    border-radius: 50%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -6249,9 +6288,10 @@ button {
 .fancybox__toolbar__column.is-right .f-button svg {
   display: none;
 }
-
-.fancybox__carousel {
-  background-color: var(--color-gray-l);
+@media (min-width: 768px) {
+  .fancybox__carousel {
+    background-color: var(--color-gray-l);
+  }
 }
 
 @keyframes showObject {
