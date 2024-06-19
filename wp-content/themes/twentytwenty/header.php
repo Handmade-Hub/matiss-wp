@@ -25,37 +25,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:wght@100..900&display=swap" rel="stylesheet">
 
-	<?php if (is_product()) : ?>
-		<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'single-post-thumbnail'); ?>
 
-		<meta name="description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
-		<meta property="og:title" content="Product - <?= get_the_title(); ?>">
-		<meta property="og:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
-		<meta property="og:image" content="<?= $image[0]; ?>">
-		<meta property="og:url" content="<?= get_permalink(); ?>">
-		<meta name="twitter:title" content="Product - <?= get_the_title(); ?>">
-		<meta name="twitter:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
-		<meta name="twitter:image" content="<?= $image[0]; ?>">
-		<meta name="twitter:card" content="<?= $image[0]; ?>">
-
-	<?php else : ?>
-		<?
-
-		$image = get_field('meta_image');
-		$description = get_field('meta_description');
-		$title = get_field('meta_title');
-
-		?>
-		<meta name="description" content="<?= $description; ?>">
-		<meta property="og:title" content="<?= $title; ?>">
-		<meta property="og:description" content="<?= $description; ?>">
-		<meta property="og:image" content="<?= $image; ?>">
-		<meta property="og:url" content="<?= get_permalink(); ?>">
-		<meta name="twitter:title" content="<?= $title; ?>">
-		<meta name="twitter:description" content="<?= $description; ?>">
-		<meta name="twitter:image" content="<?= $image; ?>">
-		<meta name="twitter:card" content="<?= $image; ?>">
-	<?php endif; ?>
 	<?php wp_head(); ?>
 
 </head>
@@ -332,6 +302,23 @@
 								</svg>
 							</button>
 						</div>
+                        <div class="search-modal__case">
+                            <p>Пропозиції</p>
+                            <ul class="search-modal__list">
+                                <li class="search-modal__item">
+                                    <p>Картини абстрікції</p>
+                                </li>
+                                <li class="search-modal__item">
+                                    <p>Картини з квітами</p>
+                                </li>
+                                <li class="search-modal__item">
+                                    <p>Постери</p>
+                                </li>
+                                <li class="search-modal__item">
+                                    <p>Розпис стін</p>
+                                </li>
+                            </ul>
+                        </div>
 					</div>
 					<form class="serach-form-hidden" id="header-search" role="search" <?php echo $twentytwenty_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. 
 																						?> method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
