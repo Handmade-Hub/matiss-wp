@@ -1535,3 +1535,32 @@ function custom_related_products_args( $args ) {
     $args['posts_per_page'] = 6;
     return $args;
 }
+
+// get search suggestions
+
+function get_search_suggestions() {
+    $query = sanitize_text_field($_POST['query']);
+
+    $args = array(
+        's' => $query,
+        'post_status' => 'publish',
+        'post_type' => array('post', 'product'),
+        'posts_per_page' => 5
+    );
+
+    $search_query = new WP_Query($args);
+
+    if ($search_query->have_posts()) {
+        while ($search_query->have_posts()) {
+            $search_query->the_post();
+            echo '<li class="search-modal__item"><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+        }
+    } else {
+        echo '<p>Нічого не знайдено</p>';
+    }
+
+    wp_reset_postdata();
+    wp_die();
+}
+add_action('wp_ajax_nopriv_get_search_suggestions', 'get_search_suggestions');
+add_action('wp_ajax_get_search_suggestions', 'get_search_suggestions');

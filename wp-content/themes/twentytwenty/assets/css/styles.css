@@ -6868,13 +6868,19 @@ button {
   gap: 2.4rem;
 }
 
-.search-modal__item p {
+.search-modal__item p,
+.search-modal__item a {
   margin: 0;
   font-weight: 500;
   font-size: 1.6rem;
   line-height: 2.4rem;
-  width: max-content;
+  width: 100%;
   color: var(--color-primary);
+}
+
+.search-modal__item:hover p,
+.search-modal__item:hover a {
+  opacity: .8;
 }
 
 .cart-modal {

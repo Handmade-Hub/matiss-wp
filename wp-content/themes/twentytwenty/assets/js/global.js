@@ -72,18 +72,69 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelectorAll('.header__search').length && document.querySelectorAll('.search-modal__wrapper').length) {
     const buttons = document.querySelectorAll('.header__search');
     const modal = document.querySelector('.search-modal__wrapper');
+    const modalField = document.querySelector('.search-modal__field input');
     const buttonClose = document.querySelector('.search-modal__button_close');
+    let activeClickOutside = false;
+    let modalActive = false;
 
     buttons.forEach(button => {
       button.addEventListener('click', function () {
         modal.classList.add('open');
         body.classList.add('menu-open');
+        modalField.focus();
+
+        setTimeout(function (){
+          modalActive = true;
+        },100)
+
+        // outside click listener
+        if (!activeClickOutside) {
+          setTimeout(function (){
+            document.addEventListener('click', handleClickOutside);
+            activeClickOutside = true;
+          }, 100)
+        }
       })
     })
     buttonClose.addEventListener('click', function () {
       modal.classList.remove('open');
       body.classList.remove('menu-open');
+      modalActive = false;
     })
+
+    modalField.addEventListener('input', function(event) {
+      const searchResult = jQuery('.search-modal__list');
+      let query = event.target.value;
+
+      if (query.length < 2) {
+        searchResult.empty();
+        return;
+      }
+
+      // get search result
+      jQuery.ajax({
+        url: wc_add_to_cart_params.ajax_url,
+        type: 'POST',
+        data: {
+          action: 'get_search_suggestions',
+          query: query
+        },
+        success: function(response) {
+          searchResult.html(response);
+        }
+      });
+    });
+
+    function handleClickOutside(event) {
+      const element = modal;
+      if (!element.contains(event.target) && modalActive) {
+        modal.classList.remove('open');
+        body.classList.remove('menu-open');
+        modalActive = false;
+
+        console.log('handleClickOutside')
+      }
+    }
   }
 
   const openEnterEvent = () => {
@@ -94,8 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (key != 'Enter') return;
 
-
-      console.log(key);
       submitSearch();
     })
   }
@@ -204,8 +253,6 @@ document.addEventListener('DOMContentLoaded', function () {
           jQuery('.cart-modal .subtotal_price_value').html(data['total_saving']);
           jQuery('.cart-modal .discount_price_value').html(data['total_discounted_price']);
           jQuery('.cart-modal .cart-modal__count span').html(data['cart_count']);
-
-          console.log('cart_count', data['cart_count'])
 
           setQuantityListener();
           setRemoveListener();

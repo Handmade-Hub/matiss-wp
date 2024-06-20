@@ -315,7 +315,7 @@
 			}, 2000)
 		</script>
 		<div class="search-modal">
-			<div class="search-modal__wrapper bg-gray">
+			<div class="search-modal__wrapper bg-gray" tabindex="0">
 				<div class="container">
 					<div class="search-modal__inner">
 						<div class="search-modal__field">
@@ -336,30 +336,39 @@
                             <p>Пропозиції</p>
                             <ul class="search-modal__list">
                                 <li class="search-modal__item">
-                                    <p>Картини абстрікції</p>
+                                    <a href="/product/impression/">Impression</a>
                                 </li>
                                 <li class="search-modal__item">
-                                    <p>Картини з квітами</p>
+                                    <a href="/product/moon/">Moon</a>
                                 </li>
                                 <li class="search-modal__item">
-                                    <p>Постери</p>
+                                    <a href="/product/north-glacier/">North glacier</a>
                                 </li>
-                                <li class="search-modal__item">
-                                    <p>Розпис стін</p>
-                                </li>
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Картини абстрікції</p>-->
+<!--                                </li>-->
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Картини з квітами</p>-->
+<!--                                </li>-->
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Постери</p>-->
+<!--                                </li>-->
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Розпис стін</p>-->
+<!--                                </li>-->
                             </ul>
                         </div>
 					</div>
-					<form class="serach-form-hidden" id="header-search" role="search" <?php echo $twentytwenty_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. 
+					<form class="serach-form-hidden" id="header-search" role="search" <?php if (!empty($twentytwenty_aria_label)){ echo $twentytwenty_aria_label; } // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
 																						?> method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
-						<label for="<?php echo esc_attr($twentytwenty_unique_id); ?>">
+						<label for="<?php if (!empty($twentytwenty_unique_id)){ echo esc_attr($twentytwenty_unique_id); } ?>">
 							<span class="screen-reader-text">
 								<?php
 								/* translators: Hidden accessibility text. */
 								_e('Search for:', 'twentytwenty'); // phpcs:ignore: WordPress.Security.EscapeOutput.UnsafePrintingFunction -- core trusts translations
 								?>
 							</span>
-							<input type="search" id="<?php echo esc_attr($twentytwenty_unique_id); ?>" class="search-field" placeholder="<?php echo esc_attr_x('Search &hellip;', 'placeholder', 'twentytwenty'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+							<input type="search" id="<?php if (!empty($twentytwenty_unique_id)){ echo esc_attr($twentytwenty_unique_id); } ?>" class="search-field" placeholder="<?php echo esc_attr_x('Search &hellip;', 'placeholder', 'twentytwenty'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
 						</label>
 						<input type="submit" class="search-submit" value="<?php echo esc_attr_x('Search', 'submit button', 'twentytwenty'); ?>" />
 					</form>
