@@ -1933,3 +1933,15 @@ if (jQuery('.single-product .product').length > 0) {
     }, 2000)
   })
 }
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+// hide UAH price if not default language
+if (document.querySelectorAll('.checkout__order_footer').length > 0) {
+  if (getCookie('googtrans') !== undefined) {
+    document.querySelector('.checkout__order_footer #uah').style.display = 'none';
+  }
+}

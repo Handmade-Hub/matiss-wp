@@ -30,30 +30,27 @@ get_header();
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
 
+$str = strip_tags(get_the_archive_title());
+$categorie_name = str_replace("Категорія:", "", $str);
+$categorie_name = trim($categorie_name);
 
+if ($categorie_name == "Картини" || $categorie_name == "Постери") {
 ?>
+    <div class="filters">
+        <div class="filters__wrapper bg-gray">
+            <?php
+            if ($categorie_name == "Рами") {
+                get_template_part('template-parts/filter-frames');
+            } elseif ($categorie_name == "Картини" || $categorie_name == "Постери") {
+                get_template_part('template-parts/filter-paintings');
+            } elseif ($categorie_name == "Розпис") {
+                get_template_part('template-parts/filter-painting-wall');
+            };
 
-
-<div class="filters">
-	<div class="filters__wrapper bg-gray">
-		<?php
-
-		$str = strip_tags(get_the_archive_title());
-		$categorie_name = str_replace("Категорія:", "", $str);
-		$categorie_name = trim($categorie_name);
-
-		if ($categorie_name == "Рами") {
-			get_template_part('template-parts/filter-frames');
-		} elseif ($categorie_name == "Картини" || $categorie_name == "Постери") {
-			get_template_part('template-parts/filter-paintings');
-		} elseif ($categorie_name == "Розпис") {
-			get_template_part('template-parts/filter-painting-wall');
-		};
-
-		?>
-	</div>
-</div>
-
+            ?>
+        </div>
+    </div>
+<?php } ?>
 
 <!-- <header class="woocommerce-products-header">
 	<?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
