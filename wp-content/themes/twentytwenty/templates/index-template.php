@@ -64,21 +64,14 @@ $description = get_field('description');
                             $products = $slider_products['products'];
                             foreach ($products as $product_obj) {
                                 $product = $product_obj['product'];
-                                $wc_data = wc_get_product($product->ID);
-                                $price = $wc_data->get_price();
-
-                                $image_id = $wc_data->get_image_id();
-                                $image_url = wp_get_attachment_url($image_id);
-                                $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+                                $product = wc_get_product($product->ID);
                             ?>
+
                                 <div class="new-collection__swiper-slide swiper-slide">
-                                    <div class="new-collection__swiper_image">
-                                        <img src="<?= $image_url ?>" alt="<?= $image_alt ?>">
-                                    </div>
-                                    <div class="new-collection__swiper_content">
-                                        <p class="new-collection__swiper_title fz-22 fw-500 text-center"><?= $product->post_title ?></p>
-                                        <p class="new-collection__swiper_price fz-20 text-center"><?= get_woocommerce_currency_symbol() . $price ?></p>
-                                    </div>
+                                    <?php
+                                    global $product;
+                                    wc_get_template_part('content', 'product');
+                                    ?>
                                 </div>
                             <?php } ?>
                         </div>
@@ -218,28 +211,6 @@ $description = get_field('description');
                         </li>
                     <?php } ?>
                 </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- clients -->
-<section class="clients">
-    <div class="clients__wrapper space-sections">
-        <div class="container">
-            <div class="clients__inner">
-                <h2 class="clients__title fw-500 text-center uppercase"><?= $clients['title'] ?></h2>
-            </div>
-        </div>
-        <div class="clients__swiper swiper">
-            <div class="clients__swiper-wrapper swiper-wrapper">
-                <?php foreach ([1, 2, 3] as $key) {
-                    foreach ($clients['images'] as $image) { ?>
-                        <div class="clients__swiper-slide swiper-slide">
-                            <img src="<?= $image['image']['url'] ?>" alt="<?= $image['image']['alt'] ?>">
-                        </div>
-                <?php }
-                } ?>
             </div>
         </div>
     </div>

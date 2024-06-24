@@ -24,7 +24,8 @@ $result_array = get_information_menu_items();
      <ul class="information-bar__list">
       <?php foreach ($result_array as $item) { ?>
        <li class="information-bar__item <?php echo is_menu_item_active($item) ? 'active' : ''; ?>">
-        <a href="<?= $item['parent']->url ?>" class="information-bar__link uppercase"><?= $item['parent']->title ?></a>
+           <span class="information-bar__link uppercase"><?= $item['parent']->title ?></span>
+           <a href="<?= $item['parent']->url ?>" aria-label="<?= $item['parent']->title ?>"></a>
        </li>
       <?php } ?>
      </ul>

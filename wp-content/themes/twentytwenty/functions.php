@@ -925,20 +925,20 @@ function custom_breadcrumbs()
 			echo '<li class="breadcrumbs__item">
 						<p class="breadcrumbs__item_link fw-500">' . the_title() . '</p>' . $separator . '</li>';
 		}
-        if (is_product()) {
-            $product_category = wp_get_post_terms( get_the_ID(), 'product_cat', array( 'fields' => 'names' ) )[0];
-            $product = wc_get_product( get_the_ID() );
-            $categories_id = $product->get_category_ids();
-            $category_link = get_term_link( $categories_id[0] );
+		if (is_product()) {
+			$product_category = wp_get_post_terms(get_the_ID(), 'product_cat', array('fields' => 'names'))[0];
+			$product = wc_get_product(get_the_ID());
+			$categories_id = $product->get_category_ids();
+			$category_link = get_term_link($categories_id[0]);
 
-            echo '	<li class="breadcrumbs__item">
-		    <a href="/каталог" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
-            // echo $cats;
-            echo '<li class="breadcrumbs__item">
+			echo '	<li class="breadcrumbs__item">
+		    <a href="/catalog" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
+			// echo $cats;
+			echo '<li class="breadcrumbs__item">
 			<a href="' . $category_link . '" class="breadcrumbs__item_link fw-500">' . $product_category . '</a>' . $separator . '</li>';
-            echo '<li class="breadcrumbs__item">
+			echo '<li class="breadcrumbs__item">
 						<p class="breadcrumbs__item_link fw-500">' . the_title() . '</p>' . $separator . '</li>';
-        }
+		}
 	} elseif (is_page()) {
 		if ($post->post_parent) {
 			$parent_id = $post->post_parent;
@@ -966,7 +966,7 @@ function custom_breadcrumbs()
 		$category_name = trim($category_name);
 
 		echo '	<li class="breadcrumbs__item">
-		<a href="/каталог" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
+		<a href="/catalog" class="breadcrumbs__item_link fw-500">Каталог</a>' . $separator . '</li>';
 
 		echo '<li class="breadcrumbs__item">
 		<p class="breadcrumbs__item_link fw-500">' . $category_name . '</p>' . $separator . '</li>';
@@ -1151,7 +1151,7 @@ function output_custom_info_tab_content()
 			</td>
 		</tr>
 	</table>
-<?php
+	<?php
 }
 
 // add field in woocommerce settings
@@ -1287,10 +1287,10 @@ function get_cart_drawer()
 		$price = $product->get_price();
 
 		if ($product->is_on_sale()) {
-			$total_discounted_price += $price * $cart_item['quantity'];
-		} else {
-			$total_regular_price += $price * $cart_item['quantity'];
+			$wc_product = wc_get_product($cart_item['variation_id']);
+			$total_discounted_price += ($wc_product->get_regular_price() - $wc_product->get_price()) * $cart_item['quantity'];
 		}
+		$total_regular_price += $price * $cart_item['quantity'];
 	}
 
 	$total_saving = $total_regular_price - $total_discounted_price;
@@ -1468,88 +1468,119 @@ add_action('wp_ajax_nopriv_get_wishlist', 'get_wishlist');
 
 function get_wishlist()
 {
-    $products_id = $_GET['products'];
-    $products_id = explode(",", $products_id);
+	$products_id = $_GET['products'];
+	$products_id = explode(",", $products_id);
 
-    if (!empty($products_id)){
-        foreach ($products_id as $product_id){
-            $product = wc_get_product($product_id);
+	if (!empty($products_id)) {
+		foreach ($products_id as $product_id) {
+			$product = wc_get_product($product_id);
 
-            $product_category = wp_get_post_terms( $product->get_id(), 'product_cat', array( 'fields' => 'names' ) )[0];
-            ?>
-                <li class="wishlist__item">
-                    <div class="product-card">
-                        <a href="<?php echo $product->get_permalink(); ?>" class="product-card__link"></a>
-                        <div class="featured-product__swiper_image">
-                            <?php
-                            $image_id  = $product->get_image_id();
-                            $image_url = wp_get_attachment_image_url($image_id, 'full');
+			$product_category = wp_get_post_terms($product->get_id(), 'product_cat', array('fields' => 'names'))[0];
+	?>
+			<li class="wishlist__item">
+				<div class="product-card">
+					<a href="<?php echo $product->get_permalink(); ?>" class="product-card__link"></a>
+					<div class="featured-product__swiper_image">
+						<?php
+						$image_id  = $product->get_image_id();
+						$image_url = wp_get_attachment_image_url($image_id, 'full');
 
-                            ?>
-                            <img class="product-card__image_primary" src="<?= $image_url ?>" alt="image preview of <?= $product->name ?>">
-                            <?php if ($product->get_gallery_image_ids() && $product->get_gallery_image_ids()[0]) : ?>
-                                <?php
+						?>
+						<img class="product-card__image_primary" src="<?= $image_url ?>" alt="image preview of <?= $product->name ?>">
+						<?php if ($product->get_gallery_image_ids() && $product->get_gallery_image_ids()[0]) : ?>
+							<?php
 
-                                $second_image_id  = $product->get_gallery_image_ids()[0];
-                                $second_image_url = wp_get_attachment_image_url($second_image_id, 'full');
+							$second_image_id  = $product->get_gallery_image_ids()[0];
+							$second_image_url = wp_get_attachment_image_url($second_image_id, 'full');
 
-                                ?>
-                                <img class="product-card__image_preview" src="<?= $second_image_url ?>" alt="second image preview of <?= $product->name ?>">
-                            <?php endif; ?>
-                        </div>
-                        <div class="product-card__info">
-                            <h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
-                            <?php
+							?>
+							<img class="product-card__image_preview" src="<?= $second_image_url ?>" alt="second image preview of <?= $product->name ?>">
+						<?php endif; ?>
+					</div>
+					<div class="product-card__info">
+						<h3 class="product-card__title fz-22 text-center open-sans"><?= $product->name ?></h3>
+						<?php
 
-                            if ( $product_category === 'Розпис' ) {
-                                ?>
-                                <div class="product-card__price fz-20 text-center"><span><?= $product->price . ' ' . __('$/м.кв.', 'twentytwenty') ?></span></div>
-                                <?php
-                            } else {
-                                ?>
-                                <div class="product-card__price fz-20 text-center"><span><?= __( 'від', 'twentytwenty' ) . ' ' . get_woocommerce_currency_symbol() . $product->price ?></span></div>
-                                <?php
-                            }
-                            ?>
+						if ($product_category === 'Розпис') {
+						?>
+							<div class="product-card__price fz-20 text-center"><span><?= $product->price . ' ' . __('$/м.кв.', 'twentytwenty') ?></span></div>
+						<?php
+						} else {
+						?>
+							<div class="product-card__price fz-20 text-center"><span><?= __('від', 'twentytwenty') . ' ' . get_woocommerce_currency_symbol() . $product->price ?></span></div>
+						<?php
+						}
+						?>
 
-                        </div>
-                        <button class="product-card__remove" data-id="<?=$product->get_id()?>">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </li>
-            <?php
-        }
-    }
+					</div>
+					<button class="product-card__remove" data-id="<?= $product->get_id() ?>">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+						</svg>
+					</button>
+				</div>
+			</li>
+<?php
+		}
+	}
 
-    wp_die();
+	wp_die();
 }
 
 // change related product count
 
-add_filter( 'woocommerce_output_related_products_args', 'custom_related_products_args', 20 );
-function custom_related_products_args( $args ) {
-    $args['posts_per_page'] = 6;
-    return $args;
+add_filter('woocommerce_output_related_products_args', 'custom_related_products_args', 20);
+function custom_related_products_args($args)
+{
+	$args['posts_per_page'] = 6;
+	return $args;
 }
+
+// get search suggestions
+
+function get_search_suggestions()
+{
+	$query = sanitize_text_field($_POST['query']);
+
+	$args = array(
+		's' => $query,
+		'post_status' => 'publish',
+		'post_type' => array('post', 'product'),
+		'posts_per_page' => 5
+	);
+
+	$search_query = new WP_Query($args);
+
+	if ($search_query->have_posts()) {
+		while ($search_query->have_posts()) {
+			$search_query->the_post();
+			echo '<li class="search-modal__item"><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+		}
+	} else {
+		echo '<p>Нічого не знайдено</p>';
+	}
+
+	wp_reset_postdata();
+	wp_die();
+}
+add_action('wp_ajax_nopriv_get_search_suggestions', 'get_search_suggestions');
+add_action('wp_ajax_get_search_suggestions', 'get_search_suggestions');
 
 // allow svg files to upload
 
 add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {
-    $filetype = wp_check_filetype($filename, $mimes);
-    return [
-        'ext' => $filetype['ext'],
-        'type' => $filetype['type'],
-        'proper_filename' => $data['proper_filename']
-    ];
+	$filetype = wp_check_filetype($filename, $mimes);
+	return [
+		'ext' => $filetype['ext'],
+		'type' => $filetype['type'],
+		'proper_filename' => $data['proper_filename']
+	];
 }, 10, 4);
 
 add_filter('upload_mimes', 'svgMimeTypes');
 
 function svgMimeTypes($mimes)
 {
-    $mimes['svg'] = 'image/svg+xml';
-    return $mimes;
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
 }

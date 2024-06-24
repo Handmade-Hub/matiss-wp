@@ -29,7 +29,9 @@ $elements = get_field('elements')
                     foreach ($elements as $element) { ?>
                         <li class="collections__item">
                             <div class="collections__item_image">
-                                <img src="<?= $element['image'] ?>" alt="collection">
+                                <a href="<?= $element['button_link']['url'] ?>">
+                                    <img src="<?= $element['image'] ?>" alt="collection">
+                                </a>
                                 <a href="<?= $element['button_link']['url'] ?>" class="collections__item_button button__secondary uppercase <?php if ($element['button_label'] === 'Індивідуальне замовлення') {
                                                                                                                                                 echo 'product__button--modal-order';
                                                                                                                                             } ?>"><?= $element['button_label'] ?></a>

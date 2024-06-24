@@ -72,18 +72,69 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelectorAll('.header__search').length && document.querySelectorAll('.search-modal__wrapper').length) {
     const buttons = document.querySelectorAll('.header__search');
     const modal = document.querySelector('.search-modal__wrapper');
+    const modalField = document.querySelector('.search-modal__field input');
     const buttonClose = document.querySelector('.search-modal__button_close');
+    let activeClickOutside = false;
+    let modalActive = false;
 
     buttons.forEach(button => {
       button.addEventListener('click', function () {
         modal.classList.add('open');
         body.classList.add('menu-open');
+        modalField.focus();
+
+        setTimeout(function (){
+          modalActive = true;
+        },100)
+
+        // outside click listener
+        if (!activeClickOutside) {
+          setTimeout(function (){
+            document.addEventListener('click', handleClickOutside);
+            activeClickOutside = true;
+          }, 100)
+        }
       })
     })
     buttonClose.addEventListener('click', function () {
       modal.classList.remove('open');
       body.classList.remove('menu-open');
+      modalActive = false;
     })
+
+    modalField.addEventListener('input', function(event) {
+      const searchResult = jQuery('.search-modal__list');
+      let query = event.target.value;
+
+      if (query.length < 2) {
+        searchResult.empty();
+        return;
+      }
+
+      // get search result
+      jQuery.ajax({
+        url: wc_add_to_cart_params.ajax_url,
+        type: 'POST',
+        data: {
+          action: 'get_search_suggestions',
+          query: query
+        },
+        success: function(response) {
+          searchResult.html(response);
+        }
+      });
+    });
+
+    function handleClickOutside(event) {
+      const element = modal;
+      if (!element.contains(event.target) && modalActive) {
+        modal.classList.remove('open');
+        body.classList.remove('menu-open');
+        modalActive = false;
+
+        console.log('handleClickOutside')
+      }
+    }
   }
 
   const openEnterEvent = () => {
@@ -94,8 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (key != 'Enter') return;
 
-
-      console.log(key);
       submitSearch();
     })
   }
@@ -189,6 +238,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function getCart() {
+      const cartIcon = document.querySelectorAll('.header__cart');
+
       jQuery.ajax({
         type: 'GET',
         url: wc_add_to_cart_params.ajax_url,
@@ -206,6 +257,11 @@ document.addEventListener('DOMContentLoaded', function () {
           setQuantityListener();
           setRemoveListener();
 
+          if (data['cart_count'] > 0) {
+            cartIcon.forEach(icon => {
+              icon.classList.add('not-empty');
+            });
+          }
         },
         error: function (error) {
           console.log('error: ', error);
@@ -253,12 +309,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  getCart();
+
   // banner swiper
   if (document.querySelectorAll('.banner__swiper').length) {
     const swiper = new Swiper('.banner__swiper', {
       speed: 1000,
+      autoplay: {
+        delay: 5000,
+        pauseOnMouseEnter: true
+      },
       pagination: {
         el: '.banner__swiper-pagination',
+        clickable: true
       },
     });
   }
@@ -1862,3 +1925,27 @@ const descriptionAccordion = (initialHeight, mobileHeight) => {
   }
 }
 
+// disable stripe plugin scroll
+if (jQuery('.single-product .product').length > 0) {
+  jQuery(document).ready(function (){
+    let interval = setInterval(function (){
+      jQuery('html, body').stop();
+    }, 50)
+
+    setTimeout(function (){
+      clearInterval(interval);
+    }, 2000)
+  })
+}
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+// hide UAH price if not default language
+if (document.querySelectorAll('.checkout__order_footer').length > 0) {
+  if (getCookie('googtrans') !== undefined) {
+    document.querySelector('.checkout__order_footer #uah').style.display = 'none';
+  }
+}

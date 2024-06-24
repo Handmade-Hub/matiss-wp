@@ -93,14 +93,20 @@ foreach ($mobile_gallery_images as $image_id) {
                     if (!empty($product_video) && $counter == 2) {
                 ?>
                         <div class="product__swiper-slide video_slide swiper-slide">
-                            <video src="<?php echo $product_video['url']; ?>"></video>
+                            <a href="<?php echo $product_video['url']; ?>" data-fancybox="gallery">
+                                <video src="<?php echo $product_video['url']; ?>"></video>
+                            </a>
                         </div>
                     <?php
                     }
                     ?>
+
                     <div class="product__swiper-slide swiper-slide">
-                        <?php echo $image_html; ?>
+                        <a data-fancybox="gallery" href="<?= wp_get_attachment_image_url($image_id, 'large') ?>">
+                            <?= wp_get_attachment_image($image_id, 'large'); ?>
+                        </a>
                     </div>
+
                 <?php
                     $counter++;
                 } ?>

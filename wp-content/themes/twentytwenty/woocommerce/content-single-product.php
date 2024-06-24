@@ -102,8 +102,8 @@ foreach ($mobile_gallery_images as $image_id) {
                     ?>
 
                     <div class="product__swiper-slide swiper-slide">
-                        <a data-fancybox="gallery" href="<?= wp_get_attachment_image_url($image_id, 'medium') ?>">
-                            <?= wp_get_attachment_image($image_id, 'medium'); ?>
+                        <a data-fancybox="gallery" href="<?= wp_get_attachment_image_url($image_id, 'large') ?>">
+                            <?= wp_get_attachment_image($image_id, 'large'); ?>
                         </a>
                     </div>
 

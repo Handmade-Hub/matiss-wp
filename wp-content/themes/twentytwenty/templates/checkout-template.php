@@ -617,7 +617,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                             </div>
                             <div class="checkout__order">
                                 <div class="checkout__order_case">
-                                    <h5 class="checkout__order_title">Ваше замовлення</h5>
+                                    <h5 class="checkout__order_title">Ваше Замовлення</h5>
                                     <a href="#" class="checkout__order_link" onclick="document.querySelector('.header__cart').click()">Редагувати</a>
                                 </div>
                                 <ul class="checkout__order_list">

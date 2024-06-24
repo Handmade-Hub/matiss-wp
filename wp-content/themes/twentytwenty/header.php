@@ -25,37 +25,37 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:wght@100..900&display=swap" rel="stylesheet">
 
-	<?php if (is_product()) : ?>
-		<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'single-post-thumbnail'); ?>
+    <?php if (is_product()) : ?>
+        <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'single-post-thumbnail'); ?>
 
-		<meta name="description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
-		<meta property="og:title" content="Product - <?= get_the_title(); ?>">
-		<meta property="og:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
-		<meta property="og:image" content="<?= $image[0]; ?>">
-		<meta property="og:url" content="<?= get_permalink(); ?>">
-		<meta name="twitter:title" content="Product - <?= get_the_title(); ?>">
-		<meta name="twitter:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
-		<meta name="twitter:image" content="<?= $image[0]; ?>">
-		<meta name="twitter:card" content="<?= $image[0]; ?>">
+        <meta name="description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
+        <meta property="og:title" content="Product - <?= get_the_title(); ?>">
+        <meta property="og:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
+        <meta property="og:image" content="<?= $image[0]; ?>">
+        <meta property="og:url" content="<?= get_permalink(); ?>">
+        <meta name="twitter:title" content="Product - <?= get_the_title(); ?>">
+        <meta name="twitter:description" content="<?= wp_strip_all_tags(get_the_content()); ?>">
+        <meta name="twitter:image" content="<?= $image[0]; ?>">
+        <meta name="twitter:card" content="<?= $image[0]; ?>">
 
-	<?php else : ?>
-		<?
+    <?php else : ?>
+        <?
 
-		$image = get_field('meta_image');
-		$description = get_field('meta_description');
-		$title = get_field('meta_title');
+        $image = get_field('meta_image');
+        $description = get_field('meta_description');
+        $title = get_field('meta_title');
 
-		?>
-		<meta name="description" content="<?= $description; ?>">
-		<meta property="og:title" content="<?= $title; ?>">
-		<meta property="og:description" content="<?= $description; ?>">
-		<meta property="og:image" content="<?= $image; ?>">
-		<meta property="og:url" content="<?= get_permalink(); ?>">
-		<meta name="twitter:title" content="<?= $title; ?>">
-		<meta name="twitter:description" content="<?= $description; ?>">
-		<meta name="twitter:image" content="<?= $image; ?>">
-		<meta name="twitter:card" content="<?= $image; ?>">
-	<?php endif; ?>
+        ?>
+        <meta name="description" content="<?= $description; ?>">
+        <meta property="og:title" content="<?= $title; ?>">
+        <meta property="og:description" content="<?= $description; ?>">
+        <meta property="og:image" content="<?= $image; ?>">
+        <meta property="og:url" content="<?= get_permalink(); ?>">
+        <meta name="twitter:title" content="<?= $title; ?>">
+        <meta name="twitter:description" content="<?= $description; ?>">
+        <meta name="twitter:image" content="<?= $image; ?>">
+        <meta name="twitter:card" content="<?= $image; ?>">
+    <?php endif; ?>
 	<?php wp_head(); ?>
 
 </head>
@@ -184,7 +184,7 @@
 								echo $shortcode_output;
 								?>
 							</div>
-							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="uk"><span>Ukrainian</span>UK</a>
+							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="uk"><span>Ukrainian</span>UA</a>
 							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="en"><span>English</span>EN</a>
 							<a href="#" class="header__localization_button fw-600 notranslate glink nturl gt_raw_link-xxjexk" data-gt-lang="de"><span>German</span>DE</a>
 						</div>
@@ -258,7 +258,7 @@
 									</ul>
 								</nav>
 								<div class="header__localization">
-									<button class="header__localization_button active fw-600" data-gt-lang="uk">UK</button>
+									<button class="header__localization_button active fw-600" data-gt-lang="uk">UA</button>
 									<button class="header__localization_button fw-600" data-gt-lang="en">EN</button>
 									<button class="header__localization_button fw-600" data-gt-lang="de">DE</button>
 								</div>
@@ -319,7 +319,7 @@
 			}, 2000)
 		</script>
 		<div class="search-modal">
-			<div class="search-modal__wrapper bg-gray">
+			<div class="search-modal__wrapper bg-gray" tabindex="0">
 				<div class="container">
 					<div class="search-modal__inner">
 						<div class="search-modal__field">
@@ -336,34 +336,43 @@
 								</svg>
 							</button>
 						</div>
-						<div class="search-modal__case">
-							<p>Пропозиції</p>
-							<ul class="search-modal__list">
-								<li class="search-modal__item">
-									<p>Картини абстрікції</p>
-								</li>
-								<li class="search-modal__item">
-									<p>Картини з квітами</p>
-								</li>
-								<li class="search-modal__item">
-									<p>Постери</p>
-								</li>
-								<li class="search-modal__item">
-									<p>Розпис стін</p>
-								</li>
-							</ul>
-						</div>
+                        <div class="search-modal__case">
+                            <p>Пропозиції</p>
+                            <ul class="search-modal__list">
+                                <li class="search-modal__item">
+                                    <a href="/product/impression/">Impression</a>
+                                </li>
+                                <li class="search-modal__item">
+                                    <a href="/product/moon/">Moon</a>
+                                </li>
+                                <li class="search-modal__item">
+                                    <a href="/product/north-glacier/">North glacier</a>
+                                </li>
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Картини абстрікції</p>-->
+<!--                                </li>-->
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Картини з квітами</p>-->
+<!--                                </li>-->
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Постери</p>-->
+<!--                                </li>-->
+<!--                                <li class="search-modal__item">-->
+<!--                                    <p>Розпис стін</p>-->
+<!--                                </li>-->
+                            </ul>
+                        </div>
 					</div>
-					<form class="serach-form-hidden" id="header-search" role="search" <?php echo $twentytwenty_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. 
+					<form class="serach-form-hidden" id="header-search" role="search" <?php if (!empty($twentytwenty_aria_label)){ echo $twentytwenty_aria_label; } // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above.
 																						?> method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
-						<label for="<?php echo esc_attr($twentytwenty_unique_id); ?>">
+						<label for="<?php if (!empty($twentytwenty_unique_id)){ echo esc_attr($twentytwenty_unique_id); } ?>">
 							<span class="screen-reader-text">
 								<?php
 								/* translators: Hidden accessibility text. */
 								_e('Search for:', 'twentytwenty'); // phpcs:ignore: WordPress.Security.EscapeOutput.UnsafePrintingFunction -- core trusts translations
 								?>
 							</span>
-							<input type="search" id="<?php echo esc_attr($twentytwenty_unique_id); ?>" class="search-field" placeholder="<?php echo esc_attr_x('Search &hellip;', 'placeholder', 'twentytwenty'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+							<input type="search" id="<?php if (!empty($twentytwenty_unique_id)){ echo esc_attr($twentytwenty_unique_id); } ?>" class="search-field" placeholder="<?php echo esc_attr_x('Search &hellip;', 'placeholder', 'twentytwenty'); ?>" value="<?php echo get_search_query(); ?>" name="s" />
 						</label>
 						<input type="submit" class="search-submit" value="<?php echo esc_attr_x('Search', 'submit button', 'twentytwenty'); ?>" />
 					</form>

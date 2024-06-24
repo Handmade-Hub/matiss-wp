@@ -13,7 +13,7 @@
  */
 
 
-$header_menu_obj = wp_get_nav_menu_items(20);
+$header_menu_obj = wp_get_nav_menu_items(84);
 $result_array = array();
 
 foreach ($header_menu_obj as $menu_item) {
@@ -105,16 +105,14 @@ foreach ($header_menu_obj as $menu_item) {
                         <?php
                         $menu_counter = 1;
                         foreach ($result_array as $key => $item) {
-                            if ($menu_counter < 4) {
                         ?>
                                 <div class="footer__menu">
                                 <?php
-                            }
                             if (empty($item['children'])) { ?>
                                     <a href="<?= $item['parent']->url ?>" class="footer__menu_link"><?= $item['parent']->title ?></a>
                                 <?php
                             } else { ?>
-                                    <p class="footer__menu_title fw-600"><?= $item['parent']->title ?></p>
+                                    <a href="<?= $item['parent']->url ?>" class="footer__menu_title fw-600"><?= $item['parent']->title ?></a>
                                     <nav class="footer__menu_nav">
                                         <ul class="footer__menu_list">
                                             <?php foreach ($item['children'] as $child) { ?>
@@ -128,12 +126,9 @@ foreach ($header_menu_obj as $menu_item) {
                                     </nav>
                                 <?php
                             }
-                            if ($menu_counter < 3 || $key === key(array_slice($result_array, -1, 1, true))) {
-                                ?>
+                            ?>
                                 </div>
                         <?php
-                            }
-                            $menu_counter++;
                         }
                         ?>
                     </div>
@@ -192,6 +187,7 @@ foreach ($header_menu_obj as $menu_item) {
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
             descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+            console.log('descriptionAccordion')
         })
     </script>
 
