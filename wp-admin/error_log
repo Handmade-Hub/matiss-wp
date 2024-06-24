@@ -19,3 +19,449 @@ Stack trace:
 #2 /home2/handma30/public_html/wp-content/plugins/wc-ukr-shipping/vendor/kirillbdev/wcus-core/src/Foundation/Container.php(88): kirillbdev\WCUSCore\Foundation\Container->resolve(Object(Closure))
 #3 /home2/handma30/public_html/wp-content/plugins/wc-ukr-shipping/vendor/kirillbdev/wcus-core/src/Foundation/Container.php(122): kirillbdev\WCUSCore\Foundation\Container->get('kirillbdev\\WCUk...')
 #4 /home2/handma30/public_html/wp-content/plugins/wc-ukr-shipping/src/Include in /home2/handma30/public_html/wp-content/plugins/wc-ukr-shipping/src/Foundation/Dependencies.php on line 28
+[06-Jun-2024 11:57:14 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'wc_pending_batch_processes' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->__call, call_user_func_array, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->maybe_reset_state, Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController->is_enqueued, Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController->get_enqueued_processors, get_option
+[06-Jun-2024 11:57:14 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'woocommerce_hpos_legacy_data_cleanup_in_progress' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->__call, call_user_func_array, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->maybe_reset_state, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->is_flag_set, get_option
+[06-Jun-2024 11:57:14 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'action_scheduler_lock_async-request-runner' made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_Lock->is_locked, ActionScheduler_OptionLock->get_expiration, ActionScheduler_OptionLock->get_existing_lock
+[06-Jun-2024 11:57:14 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'action_scheduler_lock_async-request-runner' made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_OptionLock->set, ActionScheduler_OptionLock->get_existing_lock
+[06-Jun-2024 11:57:14 UTC] WordPress database error Commands out of sync; you can't run this command now for query SHOW FULL COLUMNS FROM `wp_options` made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_OptionLock->set
+[06-Jun-2024 11:57:14 UTC] WordPress database error Commands out of sync; you can't run this command now for query SHOW FULL COLUMNS FROM `wp_options` made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Blocks\Assets\Api->update_script_data_cache, set_transient, update_option
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:03:28 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:10 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:10 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:10 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:10 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:35 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:35 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:35 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[07-Jun-2024 11:04:35 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:42 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:42 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:42 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:42 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:57 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:57 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:57 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:13:57 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 20:16:29 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:31:58 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:34:15 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:34:15 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:34:15 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[15-Jun-2024 21:34:15 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_nopriv_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[17-Jun-2024 12:06:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('0c0c36fd4cd0d90...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[17-Jun-2024 12:06:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('0c0c36fd4cd0d90...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[17-Jun-2024 12:06:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('0c0c36fd4cd0d90...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[17-Jun-2024 12:06:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('0c0c36fd4cd0d90...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[17-Jun-2024 14:43:20 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'wc_pending_batch_processes' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->__call, call_user_func_array, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->maybe_reset_state, Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController->is_enqueued, Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController->get_enqueued_processors, get_option
+[17-Jun-2024 14:43:20 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'woocommerce_hpos_legacy_data_cleanup_in_progress' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->__call, call_user_func_array, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->maybe_reset_state, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->is_flag_set, get_option
+[17-Jun-2024 14:43:20 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'action_scheduler_lock_async-request-runner' made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_Lock->is_locked, ActionScheduler_OptionLock->get_expiration, ActionScheduler_OptionLock->get_existing_lock
+[17-Jun-2024 14:43:20 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'action_scheduler_lock_async-request-runner' made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_OptionLock->set, ActionScheduler_OptionLock->get_existing_lock
+[17-Jun-2024 14:43:20 UTC] WordPress database error Commands out of sync; you can't run this command now for query SHOW FULL COLUMNS FROM `wp_options` made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_OptionLock->set
+[17-Jun-2024 14:43:20 UTC] WordPress database error Commands out of sync; you can't run this command now for query SHOW FULL COLUMNS FROM `wp_options` made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Blocks\Assets\Api->update_script_data_cache, set_transient, update_option
+[18-Jun-2024 08:40:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '4', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:04 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:04 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '4', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:12 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '4', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:14 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '4', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '4', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:40:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:41:00 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:41:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '3', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:41:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:41:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '2', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 08:41:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_tax_class() on null in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php:232
+Stack trace:
+#0 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(658): WC_Cart_Totals->get_items_from_cart()
+#1 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(150): WC_Cart_Totals->calculate_item_totals()
+#2 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php(141): WC_Cart_Totals->calculate()
+#3 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1408): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart.php(1367): WC_Cart->calculate_totals()
+#5 /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php(1417): WC_Cart->set_quantity('6deb2a93fc5fe9e...', '1', true)
+#6 /home2/handma30/public_html in /home2/handma30/public_html/wp-content/plugins/woocommerce/includes/class-wc-cart-totals.php on line 232
+[18-Jun-2024 13:44:02 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home2/handma30/public_html/wp-includes/class-wp-image-editor-imagick.php on line 913
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] name was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 14:22:36 UTC] price was called incorrectly. Властивості товару недоступні напряму. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[18-Jun-2024 15:02:55 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'wc_pending_batch_processes' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->__call, call_user_func_array, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->maybe_reset_state, Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController->is_enqueued, Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController->get_enqueued_processors, get_option
+[18-Jun-2024 15:02:55 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'woocommerce_hpos_legacy_data_cleanup_in_progress' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->__call, call_user_func_array, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->maybe_reset_state, Automattic\WooCommerce\Internal\DataStores\Orders\LegacyDataCleanup->is_flag_set, get_option
+[18-Jun-2024 15:02:55 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'action_scheduler_lock_async-request-runner' made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_Lock->is_locked, ActionScheduler_OptionLock->get_expiration, ActionScheduler_OptionLock->get_existing_lock
+[18-Jun-2024 15:02:55 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'action_scheduler_lock_async-request-runner' made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_OptionLock->set, ActionScheduler_OptionLock->get_existing_lock
+[18-Jun-2024 15:02:55 UTC] WordPress database error Commands out of sync; you can't run this command now for query SHOW FULL COLUMNS FROM `wp_options` made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->maybe_dispatch_async_request, ActionScheduler_OptionLock->set
+[18-Jun-2024 15:02:55 UTC] WordPress database error Commands out of sync; you can't run this command now for query SHOW FULL COLUMNS FROM `wp_options` made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, Automattic\WooCommerce\Blocks\Assets\Api->update_script_data_cache, set_transient, update_option
+[20-Jun-2024 11:09:49 UTC] PHP Warning:  Use of undefined constant IMAGETYPE_WebP - assumed 'IMAGETYPE_WebP' (this will throw an Error in a future version of PHP) in /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php on line 868
+[20-Jun-2024 11:11:00 UTC] PHP Warning:  Use of undefined constant IMAGETYPE_WebP - assumed 'IMAGETYPE_WebP' (this will throw an Error in a future version of PHP) in /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php on line 868
+[20-Jun-2024 11:11:10 UTC] PHP Warning:  Use of undefined constant IMAGETYPE_WebP - assumed 'IMAGETYPE_WebP' (this will throw an Error in a future version of PHP) in /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php on line 868
+[20-Jun-2024 11:11:20 UTC] PHP Warning:  Use of undefined constant IMAGETYPE_WebP - assumed 'IMAGETYPE_WebP' (this will throw an Error in a future version of PHP) in /home2/handma30/public_html/wp-content/themes/twentytwenty/functions.php on line 868
+[21-Jun-2024 16:22:42 UTC] name was called incorrectly. Produkteigenschaften sollten nicht direkt abgerufen werden. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[21-Jun-2024 16:22:42 UTC] name was called incorrectly. Produkteigenschaften sollten nicht direkt abgerufen werden. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[21-Jun-2024 16:22:42 UTC] name was called incorrectly. Produkteigenschaften sollten nicht direkt abgerufen werden. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.
+[21-Jun-2024 16:22:42 UTC] price was called incorrectly. Produkteigenschaften sollten nicht direkt abgerufen werden. Backtrace: do_action('wp_ajax_get_wishlist'), WP_Hook->do_action, WP_Hook->apply_filters, get_wishlist, WC_Abstract_Legacy_Product->__get, wc_doing_it_wrong. This message was added in version 3.0.

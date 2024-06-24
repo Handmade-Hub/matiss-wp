@@ -1,129 +1,217 @@
 <?php
 
-/* * * The template for displaying the footer *
- * * Contains the opening of the #site-footer div and all content after.
- * * * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- * * * @package WordPress * @subpackage Twenty_Twenty * @since Twenty Twenty 1.0 */
+/**
+ * The template for displaying the footer
+ *
+ * Contains the opening of the #site-footer div and all content after.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package WordPress
+ * @subpackage Twenty_Twenty
+ * @since Twenty Twenty 1.0
+ */
+
+
+$header_menu_obj = wp_get_nav_menu_items(20);
+$result_array = array();
+
+foreach ($header_menu_obj as $menu_item) {
+    if ($menu_item->menu_item_parent == 0) {
+        $parent_array = array(
+            'parent' => $menu_item,
+            'children' => array()
+        );
+
+        foreach ($header_menu_obj as $child_menu_item) {
+            if ($child_menu_item->menu_item_parent == $menu_item->ID) {
+                $parent_array['children'][] = $child_menu_item;
+            }
+        }
+
+        $result_array[] = $parent_array;
+    }
+}
+
 ?>
-
-
 </main>
-<footer>
-	<div class="container footer-container">
-		<div class="footer_menu--info">
-			<!-- <img src="https://etsy-expert.com.ua/wp-content/uploads/2024/06/logo-white.webp" class="footer_logo" alt="Footer logo"> -->
-			<picture class="footer_logo">
-				<source srcset="https://etsy-expert.com.ua/wp-content/uploads/2024/06/logo-white.webp" type="image/webp">
-				<source srcset="./images/old/logo-white.png" type="image/jpeg">
-				<img class="desctop" src="./images/old/logo-white.png" alt="Найважливіші вміння для розвитку онлайн-магазинів" alt="Footer logo">
-			</picture>
-			<p class="footer_menu--info-text">Масштабуємо бізнес українських підприємців на міжнародних маркетплейсах: створюємо та промотуємо онлайн-магазини, забезпечуємо доставку по всьому світу й супроводжуємо у фінансових питаннях.</p>
-			<ul class="footer_menu--links">
-				<li class="footer_menu--links-item">
-					<a href="https://www.facebook.com/HandmadeHubUA" aria-label="To facebook" class="wp-block-social-link-anchor" target="_blank">
-						<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-							<path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z">
-							</path>
-						</svg>
-						<span>Facebook</span>
-					</a>
-				</li>
-				<!-- 
-				<li class="footer_menu--links-item">
-					<a href="https://#" class="wp-block-social-link-anchor"><svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-							<path d="M12.289,2C6.617,2,3.606,5.648,3.606,9.622c0,1.846,1.025,4.146,2.666,4.878c0.25,0.111,0.381,0.063,0.439-0.169 c0.044-0.175,0.267-1.029,0.365-1.428c0.032-0.128,0.017-0.237-0.091-0.362C6.445,11.911,6.01,10.75,6.01,9.668 c0-2.777,2.194-5.464,5.933-5.464c3.23,0,5.49,2.108,5.49,5.122c0,3.407-1.794,5.768-4.13,5.768c-1.291,0-2.257-1.021-1.948-2.277 c0.372-1.495,1.089-3.112,1.089-4.191c0-0.967-0.542-1.775-1.663-1.775c-1.319,0-2.379,1.309-2.379,3.059 c0,1.115,0.394,1.869,0.394,1.869s-1.302,5.279-1.54,6.261c-0.405,1.666,0.053,4.368,0.094,4.604 c0.021,0.126,0.167,0.169,0.25,0.063c0.129-0.165,1.699-2.419,2.142-4.051c0.158-0.59,0.817-2.995,0.817-2.995 c0.43,0.784,1.681,1.446,3.013,1.446c3.963,0,6.822-3.494,6.822-7.833C20.394,5.112,16.849,2,12.289,2">
-							</path>
-						</svg><span>Pinterest</span></a>
-				</li> -->
 
-				<li class="footer_menu--links-item">
-					<a href="https://www.instagram.com/handmadehubua/" aria-label="to instagram" class="wp-block-social-link-anchor" target="_blank">
-						<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-							<path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673 c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637 s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035 c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052 s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673 c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12 s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035 c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3 C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511 c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711 c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038 c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418 c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185 C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594 c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378 c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15 c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08 s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z">
-							</path>
-						</svg>
-						<span>Instagram</span>
-					</a>
-				</li>
+<?php wc_get_template_part('single-product/add-to-cart/modal-order'); ?>
 
-				<li class="footer_menu--links-item">
-					<a href="https://t.me/handmade_hub_UA" aria-label="to telegram" class="wp-block-social-link-anchor" target="_blank">
-						<svg width="24" height="24" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-							<path d="M28.9700376,63.3244248 C47.6273373,55.1957357 60.0684594,49.8368063 66.2934036,47.2476366 C84.0668845,39.855031 87.7600616,38.5708563 90.1672227,38.528 C90.6966555,38.5191258 91.8804274,38.6503351 92.6472251,39.2725385 C93.294694,39.7979149 93.4728387,40.5076237 93.5580865,41.0057381 C93.6433345,41.5038525 93.7494885,42.63857 93.6651041,43.5252052 C92.7019529,53.6451182 88.5344133,78.2034783 86.4142057,89.5379542 C85.5170662,94.3339958 83.750571,95.9420841 82.0403991,96.0994568 C78.3237996,96.4414641 75.5015827,93.6432685 71.9018743,91.2836143 C66.2690414,87.5912212 63.0868492,85.2926952 57.6192095,81.6896017 C51.3004058,77.5256038 55.3966232,75.2369981 58.9976911,71.4967761 C59.9401076,70.5179421 76.3155302,55.6232293 76.6324771,54.2720454 C76.6721165,54.1030573 76.7089039,53.4731496 76.3346867,53.1405352 C75.9604695,52.8079208 75.4081573,52.921662 75.0095933,53.0121213 C74.444641,53.1403447 65.4461175,59.0880351 48.0140228,70.8551922 C45.4598218,72.6091037 43.1463059,73.4636682 41.0734751,73.4188859 C38.7883453,73.3695169 34.3926725,72.1268388 31.1249416,71.0646282 C27.1169366,69.7617838 23.931454,69.0729605 24.208838,66.8603276 C24.3533167,65.7078514 25.9403832,64.5292172 28.9700376,63.3244248 Z"></path>
-						</svg>
-						<span>Telegram</span>
-					</a>
-				</li>
-
-				<li class="footer_menu--links-item">
-					<a href="https://www.youtube.com/channel/UCDBEzZf4EMiLyQ1YwZNNpvw" aria-label="to youtube" class="wp-block-social-link-anchor" target="_blank">
-						<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-							<path d="M21.8,8.001c0,0-0.195-1.378-0.795-1.985c-0.76-0.797-1.613-0.801-2.004-0.847c-2.799-0.202-6.997-0.202-6.997-0.202 h-0.009c0,0-4.198,0-6.997,0.202C4.608,5.216,3.756,5.22,2.995,6.016C2.395,6.623,2.2,8.001,2.2,8.001S2,9.62,2,11.238v1.517 c0,1.618,0.2,3.237,0.2,3.237s0.195,1.378,0.795,1.985c0.761,0.797,1.76,0.771,2.205,0.855c1.6,0.153,6.8,0.201,6.8,0.201 s4.203-0.006,7.001-0.209c0.391-0.047,1.243-0.051,2.004-0.847c0.6-0.607,0.795-1.985,0.795-1.985s0.2-1.618,0.2-3.237v-1.517 C22,9.62,21.8,8.001,21.8,8.001z M9.935,14.594l-0.001-5.62l5.404,2.82L9.935,14.594z"></path>
-						</svg>
-						<span>YouTube</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="footer-center-image">
-			<svg width="514" height="475" viewBox="0 0 514 475" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<g clip-path="url(#clip0_229_1691)">
-					<mask id="mask0_229_1691" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="514" height="514">
-						<path d="M0 0H514V514H0V0Z" fill="white" />
-					</mask>
-					<g mask="url(#mask0_229_1691)">
-						<path d="M246.823 184.32C246.72 182.778 246.514 181.236 246.206 179.694C246.206 179.694 272.42 179.386 274.579 147.929C274.579 147.929 272.934 153.892 282.7 163.246C292.363 172.704 292.466 185.348 287.943 191.002C287.943 191.002 301.41 186.171 298.737 173.218C298.737 173.218 304.699 184.526 314.876 184.218L260.084 245.692L247.337 194.806C247.337 194.806 220.198 195.32 210.74 221.534C201.282 247.748 201.694 286.401 195.32 294.933C195.32 294.933 205.189 290.616 212.488 292.774C212.488 292.774 236.543 267.486 240.449 269.542C244.356 271.598 223.796 291.849 222.87 292.26C222.048 292.672 229.758 293.494 232.328 299.559C234.898 305.522 251.552 321.97 260.598 322.792C269.644 323.614 316.418 323.203 328.857 320.633C341.296 318.063 354.146 320.222 348.595 323.614C343.044 327.007 334.408 316.727 338.315 290.102C342.221 263.476 334.922 238.599 334.922 238.599" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-						<path d="M246.412 179.695C233.459 178.872 229.964 172.19 222.973 168.387C215.983 164.583 209.815 158.929 208.684 151.939C207.656 144.948 199.226 143.098 197.068 134.154C197.068 134.154 193.881 152.761 199.226 166.433C204.572 180.106 219.684 197.171 211.048 208.993C196.759 228.628 203.236 238.907 221.534 236.44C238.702 234.179 249.084 208.582 246.72 184.321" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-						<path d="M724.02 456.432C724.02 456.432 633.762 417.06 547.718 429.396C461.675 441.732 400.406 435.358 362.164 415.929C320.53 394.752 316.521 363.604 327.932 362.473C339.446 361.342 330.091 382.724 283.728 359.183C237.262 335.745 195.217 299.148 195.217 299.148L160.574 309.12L111.949 280.233L125.313 315.802C125.313 315.802 121.818 316.83 120.07 328.857C118.323 340.885 123.566 348.286 125.724 348.286C127.883 348.286 129.014 315.904 138.78 310.25C146.696 305.624 144.845 315.802 142.07 325.362C139.294 334.922 141.247 344.072 141.247 344.072C141.247 344.072 150.191 314.568 155.845 317.138C160.368 319.194 153.172 355.277 149.677 353.221C146.182 351.062 156.05 322.689 162.013 324.848C167.975 327.007 158.106 344.072 164.48 355.688L205.189 384.883C205.189 384.883 287.737 354.66 321.25 357.333C354.763 360.006 376.865 367.613 383.341 346.025C389.818 324.437 382.622 253.608 388.378 223.487C394.135 193.367 368.846 176.919 347.567 175.582C347.567 175.582 350.445 161.293 338.418 151.322C326.39 141.35 315.904 146.593 309.12 121.51C302.335 96.3237 282.392 68.5677 255.15 62.8109C227.908 57.0541 205.394 71.2405 194.909 86.3521C184.423 101.566 186.479 120.893 190.694 118.837C194.909 116.781 187.507 107.323 199.638 105.267C211.665 103.211 226.88 95.5013 239.01 111.435C246.514 121.304 262.346 123.874 262.962 115.753C263.99 103.417 268.822 97.2489 273.345 99.6133C281.364 103.931 284.139 115.136 281.158 124.285C278.999 130.967 271.392 134.36 265.327 130.762C264.607 130.35 264.093 129.939 263.785 129.425C261.626 126.547 265.944 122.538 269.85 125.005C276.018 128.911 274.476 147.518 274.476 147.518" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-						<path d="M347.772 172.807C346.128 201.282 301.204 217.833 301.204 217.833L311.792 222.562L261.934 257.925C257.308 261.215 254.43 266.457 254.122 272.214L252.168 312.615" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-						<path d="M125.313 316.418C125.313 316.418 122.64 349.931 152.761 366.174C185.451 383.752 232.122 402.462 221.945 431.554C213.002 456.946 157.078 461.983 53.5588 416.546C-49.9608 371.211 -110.51 463.731 -110.51 463.731" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-					</g>
-				</g>
-				<defs>
-					<clipPath id="clip0_229_1691">
-						<rect width="514" height="514" fill="white" transform="matrix(-1 0 0 1 514 0)" />
-					</clipPath>
-				</defs>
-			</svg>
-		</div>
-		<div class="footer_menu">
-			<h2 class="footer_menu--title">Навігація</h2>
-			<ul class="footer_menu--list">
-				<li class="footer_menu--item"><a href="#" data-id="target" class="scroll">Аудиторія</a></li>
-				<li class="footer_menu--item"><a href="#" class="scroll" data-id="advantages">Про курс</a></li>
-				<li class="footer_menu--item"><a href="#" class="scroll" data-id="image_with_text">Викладачі</a></li>
-				<li class="footer_menu--item"><a href="#" class="scroll" data-id="courses">Програма</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="footer--copiryght container">
-		©Copyright 2024. All rights reserved.
-	</div>
+<footer class="footer">
+    <div class="footer__wrapper space-sections">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__block">
+                    <div class="footer__logo footer__logo_mobile">
+                        <?php
+                        if (has_custom_logo()) {
+                            the_custom_logo();
+                        } else {
+                        ?>
+                            <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="footer__content">
+                        <div class="footer__wrap">
+                            <div class="footer__logo">
+                                <?php
+                                if (has_custom_logo()) {
+                                    the_custom_logo();
+                                } else {
+                                ?>
+                                    <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div class="footer__info">
+                                <p class="footer__info_title fw-600"><?php echo __('Салони', 'twentytwenty'); ?></p>
+                                <ul class="footer__info_list">
+                                    <?php
+                                    $salons = get_field('salons_list', 'option');
+                                    if (is_array($salons) && !empty($salons)) {
+                                        foreach ($salons as $salon) {
+                                    ?>
+                                            <li class="footer__info_item">
+                                                <?php echo $salon['salon']; ?>
+                                            </li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                            <div class="footer__info">
+                                <p class="footer__info_title fw-600"><?php echo __('Майстерня', 'twentytwenty'); ?></p>
+                                <ul class="footer__info_list">
+                                    <?php
+                                    $workshops = get_field('workshops', 'option');
+                                    if (is_array($workshops) && !empty($workshops)) {
+                                        foreach ($workshops as $workshop) {
+                                    ?>
+                                            <li class="footer__info_item">
+                                                <?php echo $workshop['workshop']; ?>
+                                            </li>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php
+                        $menu_counter = 1;
+                        foreach ($result_array as $key => $item) {
+                            if ($menu_counter < 4) {
+                        ?>
+                                <div class="footer__menu">
+                                <?php
+                            }
+                            if (empty($item['children'])) { ?>
+                                    <a href="<?= $item['parent']->url ?>" class="footer__menu_link"><?= $item['parent']->title ?></a>
+                                <?php
+                            } else { ?>
+                                    <p class="footer__menu_title fw-600"><?= $item['parent']->title ?></p>
+                                    <nav class="footer__menu_nav">
+                                        <ul class="footer__menu_list">
+                                            <?php foreach ($item['children'] as $child) { ?>
+                                                <li class="footer__menu_item">
+                                                    <a href="<?= $child->url ?>" class="footer__menu_link"><?= $child->title ?></a>
+                                                </li>
+                                            <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    </nav>
+                                <?php
+                            }
+                            if ($menu_counter < 3 || $key === key(array_slice($result_array, -1, 1, true))) {
+                                ?>
+                                </div>
+                        <?php
+                            }
+                            $menu_counter++;
+                        }
+                        ?>
+                    </div>
+                    <div class="footer__icons">
+                        <ul class="footer__social">
+                            <?php
+                            $socials_media = get_field('socials_media', 'option');
+                            if (is_array($socials_media) && !empty($socials_media)) {
+                                foreach ($socials_media as $social) {
+                                    $icon_id = $social['icon'];
+                                    if (!empty($icon_id)) {
+                                        $social_icon = wp_get_attachment_image($icon_id, 'full', false, array('loading' => 'lazy'));
+                                    }
+                                    $social_link = $social['url'];
+                            ?>
+                                    <li class="footer__social_item">
+                                        <a href="<?php echo $social_link; ?>" class="footer__social_link">
+                                            <?php
+                                            if (!empty($social_icon)) {
+                                                echo $social_icon;
+                                            }
+                                            ?>
+                                        </a>
+                                    </li>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </ul>
+                        <ul class="footer__payments">
+                            <li class="footer__payments_item">
+                                <img src="<?= home_url(); ?>/images/icons/footer-paypal.svg" alt="paypal">
+                            </li>
+                            <li class="footer__payments_item">
+                                <img src="<?= home_url(); ?>/images/icons/footer-mastercard.svg" alt="mastercard">
+                            </li>
+                            <li class="footer__payments_item">
+                                <img src="<?= home_url(); ?>/images/icons/footer-visa.svg" alt="visa">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer__copyright">
+                    <p><a href="/privacy-policy">© 2024. All rights reserved.</a></p>
+                    <a href="/privacy-policy">Політка конфіденційності</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
-<div class="popup_registration" id="popup_registation">
-	<div class="form-main">
-		<button type="button" class="close_popup" aria-label="Close popup registration">
-			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-				<path d="M 11.480469 5.0058594 C 10.500482 5.0058442 9.521297 5.3771405 8.7792969 6.1191406 L 6.1191406 8.7792969 C 4.6346201 10.26247 4.6351404 12.69764 6.1191406 14.181641 L 15.9375 24 L 6.1191406 33.818359 C 4.6346201 35.301533 4.6351404 37.736703 6.1191406 39.220703 L 8.7792969 41.880859 C 10.26247 43.36538 12.69764 43.36486 14.181641 41.880859 L 24 32.0625 L 33.818359 41.880859 C 35.301533 43.36538 37.736703 43.36486 39.220703 41.880859 L 41.880859 39.220703 C 43.36538 37.73753 43.36486 35.30236 41.880859 33.818359 L 32.0625 24 L 41.880859 14.181641 C 43.36538 12.698467 43.36486 10.263297 41.880859 8.7792969 L 39.220703 6.1191406 C 37.73753 4.6346201 35.30236 4.6351404 33.818359 6.1191406 L 24 15.9375 L 14.181641 6.1191406 C 13.440054 5.3768804 12.460456 5.0058746 11.480469 5.0058594 z M 11.480469 6.9921875 C 11.944232 6.9921723 12.408165 7.1734634 12.767578 7.5332031 L 23.292969 18.058594 A 1.0001 1.0001 0 0 0 24.707031 18.058594 L 35.232422 7.5332031 C 35.952422 6.8132033 37.087814 6.8137237 37.806641 7.5332031 L 40.466797 10.193359 C 41.186797 10.913359 41.186276 12.048752 40.466797 12.767578 L 29.941406 23.292969 A 1.0001 1.0001 0 0 0 29.941406 24.707031 L 40.466797 35.232422 C 41.186797 35.952422 41.186276 37.087814 40.466797 37.806641 L 37.806641 40.466797 C 37.086641 41.186797 35.951248 41.186276 35.232422 40.466797 L 24.707031 29.941406 A 1.0001 1.0001 0 0 0 23.292969 29.941406 L 12.767578 40.466797 C 12.047578 41.186797 10.912186 41.186276 10.193359 40.466797 L 7.5332031 37.806641 C 6.8132033 37.086641 6.8137237 35.951248 7.5332031 35.232422 L 18.058594 24.707031 A 1.0001 1.0001 0 0 0 18.058594 23.292969 L 7.5332031 12.767578 C 6.8132033 12.047578 6.8137237 10.912186 7.5332031 10.193359 L 10.193359 7.5332031 C 10.553359 7.1732032 11.016706 6.9922027 11.480469 6.9921875 z"></path>
-			</svg>
-		</button>
-		<p class="form-main_desc">Залиш свої дані і наш фахівець допоможе з вибором.</p>
-		<?= do_shortcode('[contact-form-7 id="c7b910d" title="Запис на курс"]'); ?>
-	</div>
-</div>
-<div class="popup_registration" id="popup_mailto">
-	<div class="form-main">
-		<button type="button" class="close_popup" aria-label="Close popup mail">
-			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-				<path d="M 11.480469 5.0058594 C 10.500482 5.0058442 9.521297 5.3771405 8.7792969 6.1191406 L 6.1191406 8.7792969 C 4.6346201 10.26247 4.6351404 12.69764 6.1191406 14.181641 L 15.9375 24 L 6.1191406 33.818359 C 4.6346201 35.301533 4.6351404 37.736703 6.1191406 39.220703 L 8.7792969 41.880859 C 10.26247 43.36538 12.69764 43.36486 14.181641 41.880859 L 24 32.0625 L 33.818359 41.880859 C 35.301533 43.36538 37.736703 43.36486 39.220703 41.880859 L 41.880859 39.220703 C 43.36538 37.73753 43.36486 35.30236 41.880859 33.818359 L 32.0625 24 L 41.880859 14.181641 C 43.36538 12.698467 43.36486 10.263297 41.880859 8.7792969 L 39.220703 6.1191406 C 37.73753 4.6346201 35.30236 4.6351404 33.818359 6.1191406 L 24 15.9375 L 14.181641 6.1191406 C 13.440054 5.3768804 12.460456 5.0058746 11.480469 5.0058594 z M 11.480469 6.9921875 C 11.944232 6.9921723 12.408165 7.1734634 12.767578 7.5332031 L 23.292969 18.058594 A 1.0001 1.0001 0 0 0 24.707031 18.058594 L 35.232422 7.5332031 C 35.952422 6.8132033 37.087814 6.8137237 37.806641 7.5332031 L 40.466797 10.193359 C 41.186797 10.913359 41.186276 12.048752 40.466797 12.767578 L 29.941406 23.292969 A 1.0001 1.0001 0 0 0 29.941406 24.707031 L 40.466797 35.232422 C 41.186797 35.952422 41.186276 37.087814 40.466797 37.806641 L 37.806641 40.466797 C 37.086641 41.186797 35.951248 41.186276 35.232422 40.466797 L 24.707031 29.941406 A 1.0001 1.0001 0 0 0 23.292969 29.941406 L 12.767578 40.466797 C 12.047578 41.186797 10.912186 41.186276 10.193359 40.466797 L 7.5332031 37.806641 C 6.8132033 37.086641 6.8137237 35.951248 7.5332031 35.232422 L 18.058594 24.707031 A 1.0001 1.0001 0 0 0 18.058594 23.292969 L 7.5332031 12.767578 C 6.8132033 12.047578 6.8137237 10.912186 7.5332031 10.193359 L 10.193359 7.5332031 C 10.553359 7.1732032 11.016706 6.9922027 11.480469 6.9921875 z"></path>
-			</svg>
-		</button>
-		<p class="form-main_desc">Залиш свої дані і наш фахівець допоможе з вибором.</p>
-		<?= do_shortcode('[contact-form-7 id="a359370" title="Mailto"]'); ?>
-	</div>
-</div>
-<script defer>
-	AOS.init();
+
+<?php $description = get_field('description'); ?>
+
+<?php if ($description) { ?>
+
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            descriptionAccordion(<?= $description['min-height'] ?>, <?= $description['min-height-mob'] ?>)
+        })
+    </script>
+
+<?php }; ?>
+
+<script type="text/javascript">
+    var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+            'sitekey': '6Lenrt4pAAAAABTEylEWEzBQk86LACrZfpo7HGMj'
+        });
+    };
+
+    function recaptchaCallback() {
+        const wpcf7Submit = document.querySelector('.wpcf7-submit');
+        wpcf7Submit.classList.remove('disable');
+        wpcf7Submit.removeAttribute('disabled');
+    }
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
 </script>
 
 <?php wp_footer(); ?>

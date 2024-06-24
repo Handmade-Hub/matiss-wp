@@ -203,6 +203,32 @@ get_header();
 	</div>
 </section>
 
+<!-- description -->
+<?php
+
+$term = get_queried_object();
+$description_cat = get_field('description_cat', $term);
+
+?>
+<section class="description" style="--min-height: <?= $description_cat['min-height'] ?>px; --min-height-mob: <?= $description_cat['min-height-mob'] ?>px;">
+	<div class="description__wrapper space-sections">
+		<button class="description__button">
+			<div class="arrow-primary">
+				<img src="<?= home_url(); ?>/images/icons/button-arrow-down.svg" alt="button">
+			</div>
+		</button>
+		<div class="container">
+			<div class="description__inner">
+				<?php echo ($description_cat['content']) ?>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	console.log(<?php print_r(json_encode($description)) ?>)
+</script>
+
 <?php
 
 wp_enqueue_script('archive', get_template_directory_uri() . '/assets/js/archive.js', array(), $theme_version);

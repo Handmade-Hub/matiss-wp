@@ -48,7 +48,7 @@ $elements = get_field('elements')
 //    $form_order = do_shortcode('[contact-form-7 id="3628495" title="Індивідуальне замовлення"]');
 //    echo $form_order;
 
-wc_get_template_part('single-product/add-to-cart/modal-order');
+// wc_get_template_part('single-product/add-to-cart/modal-order');
 ?>
 
 <script defer>

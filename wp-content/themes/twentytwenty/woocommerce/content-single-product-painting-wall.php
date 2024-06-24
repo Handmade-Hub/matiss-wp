@@ -91,17 +91,17 @@ foreach ($mobile_gallery_images as $image_id) {
                 foreach ($mobile_gallery_images as $image_id) {
                     $image_html = wp_get_attachment_image($image_id);
                     if (!empty($product_video) && $counter == 2) {
-                        ?>
+                ?>
                         <div class="product__swiper-slide video_slide swiper-slide">
-                            <video src="<?php echo $product_video['url'] ;?>"></video>
+                            <video src="<?php echo $product_video['url']; ?>"></video>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
                     <div class="product__swiper-slide swiper-slide">
                         <?php echo $image_html; ?>
                     </div>
-                    <?php
+                <?php
                     $counter++;
                 } ?>
             </div>
@@ -166,14 +166,14 @@ foreach ($mobile_gallery_images as $image_id) {
 
                         foreach ($attachment_ids as $attachment_id) {
                             $image_url = wp_get_attachment_image_url($attachment_id, 'full');
-                            if ( ! empty( $product_video ) && $counter == 2) {
-                                ?>
+                            if (!empty($product_video) && $counter == 2) {
+                    ?>
                                 <li class="product__media_item video_item">
-                                    <a href="<?php echo $product_video['url'] ;?>" data-fancybox="gallery">
-                                        <video src="<?php echo $product_video['url'] ;?>"></video>
+                                    <a href="<?php echo $product_video['url']; ?>" data-fancybox="gallery">
+                                        <video src="<?php echo $product_video['url']; ?>"></video>
                                     </a>
                                 </li>
-                                <?php
+                            <?php
                             }
                             ?>
                             <li class="product__media_item">
@@ -183,7 +183,7 @@ foreach ($mobile_gallery_images as $image_id) {
                                     ?>
                                 </a>
                             </li>
-                            <?php
+                    <?php
                             $counter++;
                         }
                     }
@@ -195,5 +195,5 @@ foreach ($mobile_gallery_images as $image_id) {
 </div>
 
 <?php
-wc_get_template_part('single-product/add-to-cart/modal-order');
+// wc_get_template_part('single-product/add-to-cart/modal-order');
 ?>

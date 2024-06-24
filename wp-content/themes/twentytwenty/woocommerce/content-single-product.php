@@ -91,16 +91,22 @@ foreach ($mobile_gallery_images as $image_id) {
                 foreach ($mobile_gallery_images as $image_id) {
                     $image_html = wp_get_attachment_image($image_id);
                     if (!empty($product_video) && $counter == 2) {
-                        ?>
+                ?>
                         <div class="product__swiper-slide video_slide swiper-slide">
-                            <video src="<?php echo $product_video['url'] ;?>"></video>
+                            <a href="<?php echo $product_video['url']; ?>" data-fancybox="gallery">
+                                <video src="<?php echo $product_video['url']; ?>"></video>
+                            </a>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
+
                     <div class="product__swiper-slide swiper-slide">
-                        <?php echo $image_html; ?>
+                        <a data-fancybox="gallery" href="<?= wp_get_attachment_image_url($image_id, 'medium') ?>">
+                            <?= wp_get_attachment_image($image_id, 'medium'); ?>
+                        </a>
                     </div>
+
                 <?php
                     $counter++;
                 } ?>
@@ -207,16 +213,16 @@ foreach ($mobile_gallery_images as $image_id) {
 
                         foreach ($attachment_ids as $attachment_id) {
                             $image_url = wp_get_attachment_image_url($attachment_id, 'full');
-                            if ( ! empty( $product_video ) && $counter == 2) {
-                                ?>
-                            <li class="product__media_item video_item">
-                                <a href="<?php echo $product_video['url'] ;?>" data-fancybox="gallery">
-                                    <video src="<?php echo $product_video['url'] ;?>"></video>
-                                </a>
-                            </li>
-                                <?php
-                            }
+                            if (!empty($product_video) && $counter == 2) {
                     ?>
+                                <li class="product__media_item video_item">
+                                    <a href="<?php echo $product_video['url']; ?>" data-fancybox="gallery">
+                                        <video src="<?php echo $product_video['url']; ?>"></video>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            ?>
                             <li class="product__media_item">
                                 <a href="<?php echo $image_url; ?>" data-fancybox="gallery">
                                     <?php

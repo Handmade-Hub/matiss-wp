@@ -38,8 +38,6 @@ get_header();
 
 
 <script>
-    // console.log(<?php print_r(json_encode($cart_products)) ?>)
-
     const checkoutBlockRadios = document.querySelector('.checkout__block_radios');
 
     checkoutBlockRadios && setTimeout(() => {
@@ -48,25 +46,25 @@ get_header();
 </script>
 
 <?php if (!is_order_received_page()) : ?>
+<?php endif; ?>
 
-    <div class="breadcrumbs">
-        <div class="breadcrumbs__wrapper">
-            <div class="container">
-                <nav class="breadcrumbs__inner">
-                    <ul class="breadcrumbs__list">
-                        <li class="breadcrumbs__item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 20L8.5 12.5L16 5" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <a href="/каталог" class="breadcrumbs__item_link fw-500">Продовжити покупки</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+<div class="breadcrumbs">
+    <div class="breadcrumbs__wrapper">
+        <div class="container">
+            <nav class="breadcrumbs__inner">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 20L8.5 12.5L16 5" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <a href="/каталог" class="breadcrumbs__item_link fw-500">Продовжити покупки</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
+</div>
 
-<?php endif; ?>
 
 <?php
 
@@ -144,9 +142,9 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                             </label>
                                         </div>
                                         <div class="checkout__block_checkbox" data-p="10">
-                                            <input id="checkboxTwo" type="checkbox" value="Зміна кольору/композиції + 10 % (попередньо виконується ескіз)">
+                                            <input id="checkboxTwo" type="checkbox" value="Зміна кольору / композиції + 10 % (попередньо виконується ескіз)">
                                             <label for="checkboxTwo">
-                                                <span>Зміна кольору/композиції + 10 %</span>
+                                                <span>Зміна кольору / композиції + 10 %</span>
                                                 <span>(попередньо виконується ескіз)</span>
                                             </label>
                                         </div>
@@ -172,6 +170,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                     <div class="checkout__select checkout__select--city">
                                         <p class="checkout__select_title">Місто</p>
                                         <div class="checkout__select_panel" data-content="">
+                                            <input type="text" id="input-cities" value="Львів">
                                             <span>Оберіть місто</span>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M20 8L12.5 15.5L5 8" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -203,7 +202,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                     const li = document.createElement('li');
                                                     const p = document.createElement('p');
 
-                                                    li.classList.add('checkout__select_item');
+                                                    li.classList.add('checkout__select_item', 'place');
                                                     p.innerText = city.SettlementTypeDescription + " " + city.Description;
 
                                                     li.append(p);
@@ -212,6 +211,8 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                     // console.log(city);
                                                     // console.log(city.SettlementTypeDescription + " " + city.Description);
                                                 });
+
+                                                updSelect();
                                             };
 
                                             const requestData = {
@@ -238,7 +239,33 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                 .catch(error => {
                                                     console.error('Error fetching data:', error);
                                                 });
-                                        })()
+                                        })();
+                                        const updSelect = () => {
+                                            const inputCities = document.querySelector('#input-cities');
+                                            const citiesList = document.querySelector('#cities-list');
+                                            const allCities = Array.from(document.querySelectorAll('.checkout__select_item.place'));
+
+                                            inputCities.addEventListener('input', () => {
+                                                const value = inputCities.value;
+
+                                                if (value.length < 3) return;
+
+                                                filterElements(value);
+                                            })
+
+                                            function filterElements(value) {
+                                                const stringValue = value.toString().toLowerCase();
+                                                const filteredElements = allCities.filter(el => el.innerText.toLowerCase().includes(stringValue));
+
+                                                console.log(filteredElements);
+
+                                                citiesList.innerHTML = "";
+
+                                                filteredElements.forEach(el => {
+                                                    citiesList.appendChild(el.cloneNode(true));
+                                                });
+                                            }
+                                        };
                                     </script>
                                     <div class="checkout__delivery">
                                         <ul class="checkout__delivery_list">
@@ -345,7 +372,7 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                                         li.append(p);
                                                                         npWaerehouses.append(li);
 
-                                                                        console.log(warehouse);
+                                                                        // console.log(warehouse);
                                                                     });
                                                                 };
 
@@ -445,6 +472,44 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
                                                                 <img src="images/checkout-map.png" alt="map">
                                                             </div> -->
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="checkout__delivery_item rolled-delivery en">
+                                                <div class="checkout__delivery_case">
+                                                    <div class="checkout__delivery_radio">
+                                                        <input id="deliveryRolled" type="radio" name="delivery" checked="" value="Rolled in a tube (+50 $ / pc)">
+                                                        <label for="deliveryRolled">Rolled in a tube (+50 $ / pc)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="checkout__rolled-delivery">
+                                                    <div class="checkout__rolled-delivery_case">
+                                                        <div class="checkout__rolled-delivery_field --required">
+                                                            <input id="country" type="text" placeholder="Country*">
+                                                            <label for="country">Country*</label>
+                                                            <p class="checkout__rolled-delivery_error">Please, enter the country</p>
+                                                        </div>
+                                                        <div class="checkout__rolled-delivery_field">
+                                                            <input id="state" type="text" placeholder="Region/State">
+                                                            <label for="state">Region/State</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="checkout__rolled-delivery_case">
+                                                        <div class="checkout__rolled-delivery_field --required">
+                                                            <input id="city" type="text" placeholder="City*">
+                                                            <label for="city">City*</label>
+                                                            <p class="checkout__rolled-delivery_error">Please, enter the city</p>
+                                                        </div>
+                                                        <div class="checkout__rolled-delivery_field --required">
+                                                            <input id="index" type="text" placeholder="Index*">
+                                                            <label for="index">Index*</label>
+                                                            <p class="checkout__rolled-delivery_error">Please, enter the index</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="checkout__rolled-delivery_field --required">
+                                                        <input id="address" type="text" placeholder="Adress*">
+                                                        <label for="address">Adress*</label>
+                                                        <p class="checkout__rolled-delivery_error">Please, enter the adress</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -746,6 +811,16 @@ if (empty($_POST) && wc_notice_count('error') > 0) { // WPCS: input var ok, CSRF
             //         billingAddOpt5.checked = false;
             //     }
             // }
+        })
+
+        const checkoutForm = document.querySelector('#checkout__form');
+        checkoutForm && checkoutForm.addEventListener('input', evt => {
+            const element = evt.target;
+            const inputContainer = element.closest('.checkout__block_field');
+
+            if (!inputContainer) return;
+
+            inputContainer.classList.remove('error');
         })
     });
 </script>
